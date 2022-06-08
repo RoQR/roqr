@@ -1,0 +1,15 @@
+<div id="<%= dom_id link %>">
+  <p>
+    <strong>Url:</strong>
+    <%= link.url %>
+  </p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= link.name %>
+  </p>
+
+
+  <%= image_tag "data:image/png;base64,#{Base64.strict_encode64(@png.to_s)}" %>
+
+</div>
