@@ -3,8 +3,12 @@
 <%= render @link %>
 
 <div>
-  <%= link_to "Edit this link", edit_link_path(@link) %> |
+  <% if can? :update, @link %>
+    <%= link_to "Edit this link", edit_link_path(@link) %> |
+  <% end %>
   <%= link_to "Back to links", links_path %>
 
-  <%= button_to "Destroy this link", @link, method: :delete %>
+  <% if can? :destroy, @link %>
+    <%= button_to "Destroy this link", @link, method: :delete %>
+  <% end %>
 </div>
