@@ -1,4 +1,7 @@
 class Link < ApplicationRecord
-  validates :url, presence: true, url: true
+  include Linkable
+
   validates :name, presence: true
+  validates :url, presence: true, url: true
 end
+

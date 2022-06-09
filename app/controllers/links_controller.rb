@@ -9,7 +9,7 @@ class LinksController < ApplicationController
   # GET /links/1 or /links/1.json
   def show
     link = links_url(@link)
-    @qrcode = RQRCode::QRCode.new(link)
+    @qrcode = @link.qr
     @png = @qrcode.as_png(
       color: "black",
       fill: "white",
