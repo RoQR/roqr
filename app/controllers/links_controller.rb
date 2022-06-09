@@ -8,12 +8,7 @@ class LinksController < ApplicationController
 
   # GET /links/1 or /links/1.json
   def show
-    link = links_url(@link)
-    @qrcode = @link.qr
-    @png = @qrcode.as_png(
-      color: "black",
-      fill: "white",
-    )
+    redirect_to @link.url, allow_other_host: true
   end
 
   # GET /links/new
@@ -31,7 +26,7 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.save
-        format.html { redirect_to link_url(@link), notice: "Link was successfully created." }
+        format.html { redirect_to links_url, notice: "Link was successfully created." }
         format.json { render :show, status: :created, location: @link }
       else
         format.html { render :new, status: :unprocessable_entity }

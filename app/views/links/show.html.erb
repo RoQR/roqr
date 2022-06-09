@@ -2,13 +2,12 @@
 
 <%= render @link %>
 
-<div>
+<div class="btn-group" role="group" aria-label="Links buttons">
+  <%= link_to "Back to links", links_path, class: "btn btn-secondary" %>
   <% if can? :update, @link %>
-    <%= link_to "Edit this link", edit_link_path(@link) %> |
+    <%= link_to "Edit this link", edit_link_path(@link), class: "btn btn-secondary" %>
   <% end %>
-  <%= link_to "Back to links", links_path %>
-
   <% if can? :destroy, @link %>
-    <%= button_to "Destroy this link", @link, method: :delete %>
+    <%= link_to "Destroy this link", @link, method: :delete, class: "btn btn-danger" %>
   <% end %>
 </div>

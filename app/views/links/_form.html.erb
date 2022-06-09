@@ -1,27 +1,15 @@
 <%= form_with(model: link) do |form| %>
-  <% if link.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(link.errors.count, "error") %> prohibited this link from being saved:</h2>
+  <div class="form-floating mb-3">
+    <%= form.text_field :name, class: "form-control", placeholder: "Name" %>
+    <%= form.label :name, class: "form-label" %>
+  </div>
 
-      <ul>
-        <% link.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :url, style: "display: block" %>
-    <%= form.text_area :url %>
+  <div class="form-floating mb-3">
+    <%= form.url_field :url, class: "form-control", placeholder: "https://qapir.com" %>
+    <%= form.label :url, class: "form-label" %>
   </div>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_area :name %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit "Create", class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -14,44 +14,4 @@
  *= require_self
  */
 
-body {
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    min-height: 100vh;
-}
-
-main {
-    display: flex;
-    width: 100%;
-}
-
-nav.main-nav {
-    min-width: 256px;
-    border-right: 1px solid black;
-
-}
-
-nav.main-nav > ul {
-   list-style: none
-}
-
-div.main-nav-title {
-    padding: 4px 0 16px 16px;
-    border-bottom: 1px solid black;
-}
-
-div.main-content-container {
-    width: 100%;
-}
-
-div.main-content {
-    padding: 32px;
-    width: 100%;
-    max-width: 1184px;
-}
-
-footer {
-    margin-top: 64px;
-    border-top: 1px solid black;
-}
+@import 'bootstrap';

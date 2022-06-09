@@ -1,0 +1,19 @@
+<div id="<%= dom_id link %>" class="card text-center h-100">
+  <div class="card-header"><h5 class="card-title"><%= link.name %></h5></div>
+  <% image = qr(link_url(link)).as_png(size: 480) %>
+  <%= image_tag "data:image/png;base64,#{Base64.strict_encode64(image.to_s)}", class: "card-img-top" %>
+
+  <div class="card-body">
+    <p class="card-text"><%= link.url %></p>
+  </div>
+    <div class="card-footer">
+      <div class="d-grid gap-2 d-xl-block">
+        <% if can? :update, link %>
+          <%= link_to "Edit", edit_link_path(link), class: "btn btn-secondary" %>
+        <% end %>
+        <% if can? :destroy, link %>
+          <%= link_to "Destroy", link, data: {'turbo-method': :delete }, class: "btn btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+</div>
