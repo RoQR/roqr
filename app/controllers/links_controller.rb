@@ -78,7 +78,9 @@ class LinksController < ApplicationController
         device_name: browser.device.name,
         platform_name: browser.platform.name,
         platform_version: browser.platform.version,
-        language: browser.accept_language.first&.name
+        language: browser.accept_language.first&.name,
+        city: request.location.city,
+        country: request.location.country
       )
     end
 end
