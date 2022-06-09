@@ -1,6 +1,16 @@
+<div class="row mb-3">
+  <div class="col">
+    <h1>Events</h1>
+  </div>
+</div>
+
+<div class="table-responsive">
 <table class="table table-hover">
   <thead>
     <tr>
+      <th scope="col">
+        Datetime
+      </th>
       <th scope="col">
         Link
       </th>
@@ -30,6 +40,7 @@
   <tbody>
       <% @events.each do |event| %>
         <tr>
+          <td><%= event.created_at.to_fs(:db) %></td>
           <td><%= link_to event.link.name, edit_link_path(event.link) %></td>
           <td><%= event.browser_name %></td>
           <td><%= event.browser_version %></td>
@@ -42,3 +53,5 @@
       <% end %>
   </tbody>
 </table>
+  
+</div>
