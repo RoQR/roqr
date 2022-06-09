@@ -8,6 +8,8 @@ class LinksController < ApplicationController
 
   # GET /links/1 or /links/1.json
   def show
+    @link.visits += 1
+    @link.save
     redirect_to @link.url, allow_other_host: true
   end
 
