@@ -8,8 +8,7 @@ class LinksController < ApplicationController
 
   # GET /links/1 or /links/1.json
   def show
-    @link.visits += 1
-    @link.save
+    event = event_from_browser
     redirect_to @link.url, allow_other_host: true
   end
 
@@ -69,5 +68,9 @@ class LinksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def link_params
       params.require(:link).permit(:id, :url, :name)
+    end
+
+    def event_from_browser
+      @link.events.create(browser_name: browser.name, browser_version: browser.version)
     end
 end
