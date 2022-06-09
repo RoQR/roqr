@@ -1,6 +1,44 @@
-<ul>
-  <% @events.each do |event| %>
-    <li><%= event.browser_name %> - <%= event.browser_version %></li>
-  <% end %>
-</ul>
-
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">
+        Link
+      </th>
+      <th scope="col">
+        Browser name
+      </th>
+      <th scope="col">
+        Browser version
+      </th>
+      <th scope="col">
+        Bot name
+      </th>
+      <th scope="col">
+        Device name
+      </th>
+      <th scope="col">
+        Platform name
+      </th>
+      <th scope="col">
+        Platform version
+      </th>
+      <th scope="col">
+        Language
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <td><%= link_to event.link.name, edit_link_path(event.link) %></td>
+          <td><%= event.browser_name %></td>
+          <td><%= event.browser_version %></td>
+          <td><%= event.bot_name %></td>
+          <td><%= event.device_name %></td>
+          <td><%= event.platform_name %></td>
+          <td><%= event.platform_version %></td>
+          <td><%= event.language %></td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>

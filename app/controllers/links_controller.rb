@@ -71,6 +71,14 @@ class LinksController < ApplicationController
     end
 
     def event_from_browser
-      @link.events.create(browser_name: browser.name, browser_version: browser.version)
+      @link.events.create(
+        browser_name: browser.name,
+        browser_version: browser.version,
+        bot_name: browser.bot.name,
+        device_name: browser.device.name,
+        platform_name: browser.platform.name,
+        platform_version: browser.platform.version,
+        language: browser.accept_language.first&.name
+      )
     end
 end
