@@ -2,11 +2,11 @@
 
 require "test_helper"
 
-class PageComponentTest < ViewComponent::TestCase
+class SectionHeaderComponentTest < ViewComponent::TestCase
   def test_component_renders_something_useful
     # assert_equal(
     #   %(<span>Hello, components!</span>),
-    #   render_inline(PageComponent.new(message: "Hello, components!")).css("span").to_html
+    #   render_inline(SectionHeaderComponent.new(message: "Hello, components!")).css("span").to_html
     # )
   end
 end

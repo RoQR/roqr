@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class ButtonComponent < ViewComponent::Base
-  def initialize(size: 'md')
+  def initialize(text:, link:, size: 'md')
+    @text = text
+    @link = link
     @size = size
   end
 
@@ -23,15 +25,15 @@ class ButtonComponent < ViewComponent::Base
   def py
     case @size
     when 'xs'
-      'px-1.5'
+      'py-1.5'
     when 'sm'
-      'px-2'
+      'py-2'
     when 'md'
-      'px-2'
+      'py-2'
     when 'lg'
-      'px-2'
+      'py-2'
     when 'xl'
-      'px-3'
+      'py-3'
     end
   end
 

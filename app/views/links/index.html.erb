@@ -1,24 +1,22 @@
+<% content_for :title, "Links" %>
+<%= render SectionHeaderComponent.new do |c| %>
+  <%= c.with_title do %>
+    Active links
+  <% end %>
+  <% if can?(:create, Link) %>
+    <%= c.with_button(text: "New link", link: new_link_path) %>
+  <% end %>
+<% end %>
 <% if notice %>
   <div>
     <%= render AlertComponent.new(status: 'success').with_content(notice) %>
   </div>
 <% end %>
 
-<%= render PageComponent.new(title: 'Links') do %>
-  <div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
-    <% @links.each do |link| %>
-      <div class="col">
-        <%= render LinkCardComponent.new(link: link, can_edit: can?(:update, link), can_delete: can?(:destroy, link)) %>
-      </div>
-    <% end %>
-  </div>
-
-  <% if can? :create, Link %>
-    <div class="row">
-      <div class="col">
-        <% render ButtonComponent.new.with_content("New link") %>
-        <%= link_to "New link", new_link_path, class: "btn btn-primary" %>
-      </div>
-    </div>
+<ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  <% @links.each do |link| %>
+    <li class="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200">
+      <%= render LinkCardComponent.new(link: link, can_edit: can?(:update, link), can_delete: can?(:destroy, link)) %>
+    </li>
   <% end %>
-<% end %>
+</ul>

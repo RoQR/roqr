@@ -1,38 +1,37 @@
-<%= render PageComponent.new(title: 'Events', subtitle: 'All of the scanning events for your QR codes.') do %>
-  <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-    <table class="min-w-full divide-y divide-gray-300">
-      <thead class="bg-gray-50">
+<% content_for :title, "Events" %>
+<div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+  <table class="min-w-full divide-y divide-gray-300">
+    <thead class="bg-gray-50">
+      <tr>
+        <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Datetime</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Link</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Browser name</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Browser version</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Bot name</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Device name</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Platform name</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Platform version</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Language</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">City</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Country</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200 bg-white">
+      <% @events.each do |event| %>
         <tr>
-          <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Datetime</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Link</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Browser name</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Browser version</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Bot name</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Device name</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Platform name</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Platform version</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Language</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">City</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Country</th>
+          <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><%= event.created_at.to_fs(:db) %></td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.link.name %></td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.browser_name %></td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.browser_version %></td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.bot_name %></td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.device_name %></td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.platform_name %></td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.platform_version %></td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.language %></td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.city %></td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.country %></td>
         </tr>
-      </thead>
-      <tbody class="divide-y divide-gray-200 bg-white">
-        <% @events.each do |event| %>
-          <tr>
-            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><%= event.created_at.to_fs(:db) %></td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.link.name %></td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.browser_name %></td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.browser_version %></td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.bot_name %></td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.device_name %></td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.platform_name %></td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.platform_version %></td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.language %></td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.city %></td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.country %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-<% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
