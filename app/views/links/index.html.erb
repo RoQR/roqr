@@ -1,11 +1,5 @@
 <% content_for :title, "Links" %>
 
-<% if notice %>
-  <div class="py-3">
-    <%= render AlertComponent.new(status: 'success').with_content(notice) %>
-  </div>
-<% end %>
-
 <%= render SectionHeaderComponent.new do |c| %>
   <%= c.with_title do %>
     Active links
