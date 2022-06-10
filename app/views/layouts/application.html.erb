@@ -1,25 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Qapir</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= render 'layouts/common_header' %>
   </head>
 
   <body>
     <header>
-      <%= render 'layouts/nav' %>
+      <%= render NavbarComponent.new %>
     </header>
-    <div class="container">
-      <div class="row">
-		<div class="col">
-		  <%= yield %>
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+		<div class="mt-3">
+	      <%= yield %>
 		</div>
-	  </div>
-	</div>
+    </div>
   </body>
 </html>

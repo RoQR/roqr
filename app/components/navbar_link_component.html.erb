@@ -1,0 +1,4 @@
+<% html_class = @is_active ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white" %>
+<% html_class = html_class + (@is_mobile ? " text-base block" : " text-sm") %>
+<% html_class = html_class + " px-3 py-2 rounded-md font-medium"  %>
+<%= link_to @title, @link, class: html_class %>

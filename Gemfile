@@ -20,6 +20,8 @@ gem 'bootstrap', '~> 5.1.3'
 gem 'sass-rails'
 gem 'browser'
 gem 'geocoder'
+gem 'view_component'
+gem "tailwindcss-rails", "~> 2.0"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -34,3 +36,4 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
