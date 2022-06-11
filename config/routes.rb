@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'user/sessions', passwords: 'user/passwords' }
   resources :links do
     get :scan, on: :member
   end
