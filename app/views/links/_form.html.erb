@@ -1,12 +1,16 @@
 <%= form_with(model: link) do |form| %>
-  <div class="form-floating mb-3">
-    <%= form.text_field :name, class: "form-control", placeholder: "Name" %>
-    <%= form.label :name, class: "form-label" %>
+  <div class="mb-3">
+    <%= form.label :name, class: "block text-sm font-medium text-gray-700" %>
+    <div class="mt-1">
+      <%= form.text_field :name, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+    </div>
   </div>
 
-  <div class="form-floating mb-3">
-    <%= form.url_field :url, class: "form-control", placeholder: "https://qapir.com" %>
-    <%= form.label :url, class: "form-label" %>
+  <div class="mb-3">
+    <%= form.label :url, class: "block text-sm font-medium text-gray-700" %>
+    <div class="mt-1">
+      <%= form.url_field :url, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+    </div>
   </div>
 
   <div>

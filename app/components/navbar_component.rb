@@ -2,4 +2,5 @@
 
 class NavbarComponent < ViewComponent::Base
   include ApplicationHelper
+  include UsersHelper
 end
