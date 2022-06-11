@@ -45,9 +45,11 @@
               <span class="block px-4 py-2 text-sm text-gray-700" role="none" tabindex="-1"><%= @user.email %></span>
             </div>
             <div class="py-1" role="none">
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+              <%= link_to user_path(@user), class: "block px-4 py-2 text-sm text-gray-700", role: "menuitem", tabindex: "-1", id: "user-menu-item-0" do  %>
+                Profile
+                <% end %>
             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-            <%= link_to destroy_user_session_path, data: { "turbo-method": :delete }, class:"block px-4 py-2 text-sm text-gray-700", role: "menuitem", tabindex: "-1", id: "user-menu-item-2" do %>
+            <%= button_to destroy_user_session_path, method: :delete, class:"block px-4 py-2 text-sm text-gray-700", role: "menuitem", tabindex: "-1", id: "user-menu-item-2" do %>
               Sign out
             <% end %>
               
