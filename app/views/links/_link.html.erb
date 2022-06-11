@@ -1,0 +1,2 @@
+  <% image = qr(scan_link_url(link)).as_png(size: 480) %>
+<%= image_tag "data:image/png;base64,#{Base64.strict_encode64(image.to_s)}", class: "card-img-top" %>

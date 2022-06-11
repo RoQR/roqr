@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  before_action :set_link, only: %i[ show edit update destroy ]
+  before_action :set_link, only: %i[ show scan edit update destroy ]
 
   # GET /links or /links.json
   def index
@@ -8,6 +8,9 @@ class LinksController < ApplicationController
 
   # GET /links/1 or /links/1.json
   def show
+  end
+
+  def scan
     event = event_from_browser
     redirect_to @link.url, allow_other_host: true
   end

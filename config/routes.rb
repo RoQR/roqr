@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :links
+  resources :links do
+    get :scan, on: :member
+  end
   resources :users
   resources :events, only: :index
   root 'links#index'
