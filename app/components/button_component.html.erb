@@ -1,3 +1,3 @@
-<%= link_to @link, class: "inline-flex items-center #{px} #{py} border border-transparent #{text_size} font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
-  <%= @text %>
+<%= button_to @link, method: @method, class: "inline-flex items-center #{px} #{py} border #{styling} #{text_size} font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
+  <%= content %>
 <% end %>

@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class ButtonComponent < ViewComponent::Base
-  def initialize(text:, link:, size: 'md')
-    @text = text
+  def initialize(link:, method: :get, size: 'md', style: 'primary')
     @link = link
     @size = size
+    @method = method
+    @style = style
   end
 
   def px
@@ -49,6 +50,15 @@ class ButtonComponent < ViewComponent::Base
       'text-base'
     when 'xl'
       'text-base'
+    end
+  end
+
+  def styling
+    case @style
+    when 'primary'
+      'border-transparent text-white bg-indigo-600 hover:bg-indigo-700 '
+    when 'white'
+      'border-gray-300 text-gray-700 bg-white hover:bg-gray-50'
     end
   end
 end

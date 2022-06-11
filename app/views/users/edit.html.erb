@@ -5,6 +5,5 @@
 <br>
 
 <div>
-  <%= link_to "Show this user", @user %> |
-  <%= link_to "Back to users", users_path %>
+  <%= render ButtonComponent.new(link: @user, style: 'white').with_content("Show this user") %>
 </div>
