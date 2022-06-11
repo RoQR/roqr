@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
   before_action :set_link, only: %i[ show scan edit update destroy ]
+  before_action :authenticate_user!, except: :scan
 
   # GET /links or /links.json
   def index
