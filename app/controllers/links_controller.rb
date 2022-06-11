@@ -1,10 +1,9 @@
 class LinksController < ApplicationController
-  before_action :set_link, only: %i[ show scan edit update destroy ]
   before_action :authenticate_user!, except: :scan
+  load_and_authorize_resource
 
   # GET /links or /links.json
   def index
-    @links = Link.all
   end
 
   # GET /links/1 or /links/1.json
@@ -18,7 +17,6 @@ class LinksController < ApplicationController
 
   # GET /links/new
   def new
-    @link = Link.new
   end
 
   # GET /links/1/edit
@@ -27,8 +25,6 @@ class LinksController < ApplicationController
 
   # POST /links or /links.json
   def create
-    @link = Link.new(link_params)
-
     respond_to do |format|
       if @link.save
         format.html { redirect_to links_url, success: "Link was successfully created." }
@@ -64,14 +60,10 @@ class LinksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_link
-      @link = Link.find(params[:id])
-    end
 
     # Only allow a list of trusted parameters through.
     def link_params
-      params.require(:link).permit(:id, :url, :name)
+      params.require(:link).permit(:id, :user_id, :url, :name)
     end
 
     def event_from_browser

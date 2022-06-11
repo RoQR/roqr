@@ -2,6 +2,7 @@ class Link < ApplicationRecord
   validates :name, presence: true
   validates :url, presence: true, url: true
 
-  has_many :events, dependent: :delete_all
+  belongs_to :user
+  has_many :events, dependent: :destroy
 end
 
