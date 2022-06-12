@@ -49,7 +49,10 @@
               <%= link_to user_path(@user), class: "block px-4 py-2 text-sm text-gray-700", role: "menuitem", tabindex: "-1", id: "user-menu-item-0" do  %>
                 Profile
                 <% end %>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+                <% if Flipper.enabled? :settings, @user %>
+                  <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+                  
+                <% end %>
             <%= button_to destroy_user_session_path, method: :delete, class:"block px-4 py-2 text-sm text-gray-700 w-full text-left", role: "menuitem", tabindex: "-1", id: "user-menu-item-2" do %>
               Sign out
             <% end %>
