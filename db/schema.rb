@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_12_203821) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_12_232635) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_203821) do
     t.datetime "updated_at", null: false
     t.string "city"
     t.string "country"
+    t.inet "ip"
     t.index ["link_id"], name: "index_events_on_link_id"
   end
 

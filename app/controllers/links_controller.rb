@@ -87,7 +87,8 @@ class LinksController < ApplicationController
         platform_version: browser.platform.version,
         language: browser.accept_language.first&.name,
         city: request.location.city,
-        country: request.location.country
+        country: request.location.country,
+        ip: request.remote_ip
       )
     end
 end

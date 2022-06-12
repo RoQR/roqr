@@ -11,6 +11,7 @@
       <tr>
         <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Datetime</th>
         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Link</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">IP Address</th>
         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Browser name</th>
         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Browser version</th>
         <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Bot name</th>
@@ -27,6 +28,7 @@
         <tr>
           <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><%= event.created_at.to_fs(:db) %></td>
           <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.link.name %></td>
+          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.ip %></td>
           <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.browser_name %></td>
           <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.browser_version %></td>
           <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.bot_name %></td>
