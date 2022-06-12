@@ -26,7 +26,8 @@ class LinksController < ApplicationController
   # GET /links/1/edit
   def edit
     add_breadcrumb "All links", links_path
-    add_breadcrumb @link.name, edit_link_path(@link)
+    add_breadcrumb @link.name, @link
+    add_breadcrumb "Edit", edit_link_path(@link)
   end
 
   # POST /links or /links.json
