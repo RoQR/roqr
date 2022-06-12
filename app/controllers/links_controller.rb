@@ -15,6 +15,7 @@ class LinksController < ApplicationController
 
   def scan
     event = event_from_browser
+    event.save
     redirect_to @link.url, allow_other_host: true
   end
 
@@ -78,7 +79,7 @@ class LinksController < ApplicationController
     end
 
     def event_from_browser
-      @link.events.create(
+      @link.events.new(
         browser_name: browser.name,
         browser_version: browser.version,
         bot_name: browser.bot.name,
