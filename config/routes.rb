@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :links do
     get :scan, on: :member
   end
-  resources :users
+  resources :users, except: [:index, :new]
   resources :events, only: :index
 
   authenticated :user do

@@ -2,18 +2,6 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
-  # GET /users or /users.json
-  def index
-  end
-
-  # GET /users/1 or /users/1.json
-  def show
-  end
-
-  # GET /users/new
-  def new
-  end
-
   # GET /users/1/edit
   def edit
   end
@@ -22,7 +10,7 @@ class UsersController < ApplicationController
   def create
     respond_to do |format|
       if @user.save
-        format.html { redirect_to user_url(@user), notice: "Successfully created account." }
+        format.html { redirect_to edit_user_url(@user), notice: "Successfully created account." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -35,7 +23,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to user_url(@user), notice: "Your account has been updated." }
+        format.html { redirect_to edit_user_url(@user), notice: "Your account has been updated." }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -57,6 +45,6 @@ class UsersController < ApplicationController
   private
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :can_create_links)
+      params.require(:user).permit(:name, :email, :can_create_links)
     end
 end

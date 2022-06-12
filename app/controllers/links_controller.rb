@@ -71,7 +71,9 @@ class LinksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def link_params
-      params[:link][:url] = 'https://' + params[:link][:url]
+      unless params[:link][:url].starts_with? 'https://'
+        params[:link][:url] = 'https://' + params[:link][:url]
+      end
       params.require(:link).permit(:id, :user_id, :url, :name)
     end
 

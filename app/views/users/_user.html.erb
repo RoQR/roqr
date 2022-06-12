@@ -1,12 +1,25 @@
-<div id="<%= dom_id user %>">
-  <p>
-    <strong>Name:</strong>
-    <%= user.name %>
-  </p>
-
-  <p>
-    <strong>Can create links:</strong>
-    <%= user.can_create_links %>
-  </p>
-
+<div class="bg-white shadow overflow-hidden rounded-lg mb-5">
+  <div class="px-4 py-5 sm:px-6 flex flex-row iterms-center">
+    <h3 class="text-lg leading-6 font-medium text-gray-900"><%= user.name %></h3>
+    <div class="mt-6 ml-auto flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
+      <%= render InlineButtonGroupComponent.new do |c| %>
+        <% if can? :update, user %>
+          <% c.with_button(link: edit_user_path(@user), style: 'white').with_content("Edit account") %>
+        <% end %>
+        <% if can? :destroy, @user %>
+          <% c.with_button(link: user_path(@user), method: :delete, style: 'red').with_content("Delete account") %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+    <dl class="sm:divide-y sm:divide-gray-200">
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">Email</dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= user.email %>
+        </dd>
+      </div>
+    </dl>
+  </div>
 </div>

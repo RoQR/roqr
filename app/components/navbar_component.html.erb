@@ -46,7 +46,7 @@
               <span class="block px-4 py-2 text-sm text-gray-700" role="none" tabindex="-1"><%= @user.email %></span>
             </div>
             <div class="py-1" role="none">
-              <%= link_to user_path(@user), class: "block px-4 py-2 text-sm text-gray-700", role: "menuitem", tabindex: "-1", id: "user-menu-item-0" do  %>
+              <%= link_to edit_user_path(@user), class: "block px-4 py-2 text-sm text-gray-700", role: "menuitem", tabindex: "-1", id: "user-menu-item-0" do  %>
                 Profile
                 <% end %>
                 <% if Flipper.enabled? :settings, @user %>
