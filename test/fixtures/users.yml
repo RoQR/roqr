@@ -3,7 +3,9 @@
 one:
   name: MyString
   can_create_links: false
+  email: email@test.com
 
 two:
   name: MyString
   can_create_links: false
+  email: email@test2.com
