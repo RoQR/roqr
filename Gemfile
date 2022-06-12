@@ -39,3 +39,5 @@ end
 
 
 gem "devise", "~> 4.8"
+
+gem "breadcrumbs_on_rails", "~> 4.1"

@@ -78,6 +78,8 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.9.3, < 3)
       sassc-rails (>= 2.0.0)
+    breadcrumbs_on_rails (4.1.0)
+      railties (>= 5.0)
     browser (5.3.1)
     builder (3.2.4)
     cancancan (3.3.0)
@@ -270,6 +272,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   bootstrap (~> 5.1.3)
+  breadcrumbs_on_rails (~> 4.1)
   browser
   cancancan
   capybara

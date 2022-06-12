@@ -8,6 +8,8 @@ class LinksController < ApplicationController
 
   # GET /links/1 or /links/1.json
   def show
+    add_breadcrumb "All links", links_path
+    add_breadcrumb @link.name, @link 
   end
 
   def scan
@@ -17,10 +19,14 @@ class LinksController < ApplicationController
 
   # GET /links/new
   def new
+    add_breadcrumb "All links", links_path
+    add_breadcrumb "New link", new_link_path
   end
 
   # GET /links/1/edit
   def edit
+    add_breadcrumb "All links", links_path
+    add_breadcrumb @link.name, edit_link_path(@link)
   end
 
   # POST /links or /links.json
