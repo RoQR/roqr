@@ -1,3 +1,32 @@
 <% content_for :title, "Link: #{@link.name}" %>
 <%= render @link %>
+<%= render SectionHeaderComponent.new do |c| %>
+  <%= c.with_title do %>
+    Statistics
+  <% end %>
+<% end %>
 <%= render 'stats' %>
+<%= render SectionHeaderComponent.new do |c| %>
+  <%= c.with_title do %>
+    Timeline
+  <% end %>
+<% end %>
+<div>
+  <ul role="list" class="divide-y divide-gray-200">
+    <% @link.versions.sort_by {|v| v.created_at}.reverse.each do |v| %>
+      <% user = User.find(v.whodunnit) %>
+      <li class="py-4">
+        <div class="flex space-x-3">
+          <%= image_tag(user.gravatar_url, alt: user.name, class: "h-6 w-6 rounded-full") %>
+          <div class="flex-1 space-y-1">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-medium"><%= user.name %></h3>
+              <p class="text-sm text-gray-500"><%= time_ago_in_words(v.created_at) %></p>
+            </div>
+            <p class="text-sm text-gray-500"><%= v.event.titlecase %></p>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -44,3 +44,5 @@ gem "breadcrumbs_on_rails", "~> 4.1"
 gem "flipper", "~> 0.25.0"
 
 gem "flipper-active_record", "~> 0.25.0"
+
+gem "paper_trail", "~> 12.3"
