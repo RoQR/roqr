@@ -9,6 +9,7 @@
   <% end %>
 <% end %>
 
+<% unless @links.empty? %>
 <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
   <% @links.each do |link| %>
     <li class="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200">
@@ -16,3 +17,12 @@
     </li>
   <% end %>
 </ul>
+<% else %>
+  <div class="text-center">
+    <div class="mx-auto h-12 w-12 text-gray-400 flex items-center justify-center">
+      <%= show_svg("link.svg") %>
+    </div>
+    <h3 class="mt-2 text-sm font-medium text-gray-900">No links</h3>
+    <p class="mt-1 text-sm text-gray-500">Get started by creating a new link.</p>
+  </div>
+<% end %>
