@@ -72,7 +72,7 @@ Rails.application.configure do
     password:             ENV['MAILGUN_SMTP_PASSWORD'],
     authentication:       'plain'
   }
-  config.action_mailer.default_url_options = { :host => "sandbox8d4400667bdd4df499ea99a2ea113012.mailgun.org" }
+  config.action_mailer.default_url_options = { :host => "https://www.roqr.app" }
 
 
   # Ignore bad email addresses and do not raise email delivery errors.
