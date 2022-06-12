@@ -23,7 +23,7 @@
       </tr>
     </thead>
     <tbody class="divide-y divide-gray-200 bg-white">
-      <% @events.each do |event| %>
+      <% @events.sort_by {|e| e.created_at }.reverse.each do |event| %>
         <tr>
           <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><%= event.created_at.to_fs(:db) %></td>
           <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= event.link.name %></td>
