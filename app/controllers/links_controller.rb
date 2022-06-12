@@ -1,6 +1,7 @@
 class LinksController < ApplicationController
   before_action :authenticate_user!, except: :scan
   load_and_authorize_resource
+  skip_authorize_resource only: :scan
 
   # GET /links or /links.json
   def index
