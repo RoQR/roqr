@@ -87,7 +87,7 @@
       </nav>
 
       <div
-          class="absolute z-10 top-0 inset-x-0 p-1 transition transform origin-top-right"
+          class="absolute z-10 top-0 inset-x-0 p-1 origin-top-right"
           x-show="mobileMenu"
           x-transition:enter="transition ease-out duration-150"
           x-transition:enter-start="transform opacity-100 scale-95"
@@ -95,6 +95,7 @@
           x-transition:leave="transition ease-in duration-100"
           x-transition:leave-start="transform opacity-100 scale-100"
           x-transition:leave-end="transform opacity-0 scale-95"
+          style="display: none"
       >
         <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
           <div class="px-5 pt-4 flex items-center justify-between">
