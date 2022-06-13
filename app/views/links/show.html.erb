@@ -21,7 +21,7 @@
           <div class="flex-1 space-y-1">
             <div class="flex items-center justify-between">
               <h3 class="text-sm font-medium"><%= user.name&.presence || 'Unknown Name' %></h3>
-              <p class="text-sm text-gray-500"><%= time_ago_in_words(v.created_at) %></p>
+              <p class="text-sm text-gray-500"><%= time_ago_in_words(v.created_at) %> ago</p>
             </div>
             <p class="text-sm text-gray-500"><%= v.event.titlecase %></p>
           </div>
