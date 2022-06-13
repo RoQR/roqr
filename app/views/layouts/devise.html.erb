@@ -4,6 +4,15 @@
     <%= render 'layouts/common_header' %>
   </head>
   <body class="h-full bg-gray-800">
-    <%= yield %>
+    <div class="min-h-full flex items-center justify-center">
+      <div class="max-w-md w-full bg-white rounded-md py-12 px-4 sm:px-6 lg:px-8 space-y-8">
+        <div>
+          <div class="text-indigo-600 mx-auto flex h-8 w-8">
+            <%= show_svg("solid-bolt") %>
+          </div>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
