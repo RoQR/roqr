@@ -1,6 +1,6 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
-<div class="bg-indigo-600">
-  <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
+<div class="bg-indigo-600" x-data="{ banner: true }">
+  <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8" x-show = "banner">
     <div class="flex items-center justify-between flex-wrap">
       <div class="w-0 flex-1 flex items-center">
         <span class="flex p-2 rounded-lg bg-indigo-800">
@@ -10,15 +10,15 @@
           </svg>
         </span>
         <p class="ml-3 font-medium text-white truncate">
-          <span class="md:hidden"> We announced a new product! </span>
-          <span class="hidden md:inline"> Big news! We're excited to announce a brand new product. </span>
+          <span class="md:hidden"> RoQR is in open alpha! </span>
+          <span class="hidden md:inline"> RoQR is now in open alpha! Create your account today. </span>
         </p>
       </div>
       <div class="order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto">
         <a href="#" class="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-600 bg-white hover:bg-indigo-50"> Learn more </a>
       </div>
       <div class="order-2 flex-shrink-0 sm:order-3 sm:ml-3">
-        <button type="button" class="-mr-1 flex p-2 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white sm:-mr-2">
+        <button @click="banner = ! banner" type="button" class="-mr-1 flex p-2 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white sm:-mr-2">
           <span class="sr-only">Dismiss</span>
           <!-- Heroicon name: outline/x -->
           <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -62,7 +62,7 @@
         <div class="flex items-center flex-1">
           <div class="flex items-center justify-between w-full md:w-auto">
             <a href="#">
-              <span class="sr-only">Workflow</span>
+              <span class="sr-only">RoQR</span>
               <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="">
             </a>
             <div class="-mr-2 flex items-center md:hidden">
@@ -76,17 +76,13 @@
             </div>
           </div>
           <div class="hidden space-x-10 md:flex md:ml-10">
-            <a href="#" class="font-medium text-white hover:text-gray-300">Product</a>
-
-            <a href="#" class="font-medium text-white hover:text-gray-300">Features</a>
-
-            <a href="#" class="font-medium text-white hover:text-gray-300">Marketplace</a>
-
-            <a href="#" class="font-medium text-white hover:text-gray-300">Company</a>
+            <%= link_to 'Features', marketing_path(anchor: 'Features'), class: 'font-medium text-white hover:text-gray-300' %>
+            <%= link_to 'Pricing', marketing_path(anchor: 'Pricing'), class: 'font-medium text-white hover:text-gray-300' %>
+            <%= link_to 'FAQ', marketing_path(anchor: 'FAQ'), class: 'font-medium text-white hover:text-gray-300' %>
           </div>
         </div>
         <div class="hidden md:flex">
-          <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"> Log in </a>
+          <%= link_to 'Log in', new_user_session_path, class: 'inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700' %>
         </div>
       </nav>
 
@@ -117,15 +113,16 @@
             </div>
           </div>
           <div class="px-2 pt-2 pb-3 space-y-1">
-            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Product</a>
-
             <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Features</a>
 
-            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Marketplace</a>
+            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Pricing</a>
 
-            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Company</a>
+            <a href="#" class="">FAQ</a>
+            <%= link_to 'Features', marketing_path(anchor: 'Features'), class: 'block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50' %>
+            <%= link_to 'Pricing', marketing_path(anchor: 'Pricing'), class: 'block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50' %>
+            <%= link_to 'FAQ', marketing_path(anchor: 'FAQ'), class: 'block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50' %>
           </div>
-          <a href="#" class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100"> Log in </a>
+          <%= link_to 'Log in', new_user_session_path, class: 'block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100' %>
         </div>
       </div>
     </div>
@@ -135,38 +132,17 @@
         <div class="lg:grid lg:grid-cols-12 lg:gap-8">
           <div class="px-4 sm:px-6 sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left lg:flex lg:items-center">
             <div>
-              <a href="#" class="inline-flex items-center text-white bg-gray-900 rounded-full p-1 pr-2 sm:text-base lg:text-sm xl:text-base hover:text-gray-200">
-                <span class="px-3 py-0.5 text-white text-xs font-semibold leading-5 uppercase tracking-wide bg-indigo-500 rounded-full">We're hiring</span>
-                <span class="ml-4 text-sm">Visit our careers page</span>
-                <!-- Heroicon name: solid/chevron-right -->
-                <svg class="ml-2 w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                </svg>
-              </a>
               <h1 class="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:leading-none lg:mt-6 lg:text-5xl xl:text-6xl">
-                <span class="md:block">Data to enrich your</span>
-                <span class="text-indigo-400 md:block">online business</span>
+                <span class="md:block">QR codes that will</span>
+                <span class="text-indigo-400 md:block">rock your world</span>
               </h1>
-              <p class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua ad ad non deserunt sunt.</p>
-              <p class="mt-8 text-sm text-white uppercase tracking-wide font-semibold sm:mt-10">Used by</p>
-              <div class="mt-5 w-full sm:mx-auto sm:max-w-lg lg:ml-0">
-                <div class="flex flex-wrap items-start justify-between">
-                  <div class="flex justify-center px-1">
-                    <img class="h-9 sm:h-10" src="https://tailwindui.com/img/logos/tuple-logo-gray-400.svg" alt="Tuple">
-                  </div>
-                  <div class="flex justify-center px-1">
-                    <img class="h-9 sm:h-10" src="https://tailwindui.com/img/logos/workcation-logo-gray-400.svg" alt="Workcation">
-                  </div>
-                  <div class="flex justify-center px-1">
-                    <img class="h-9 sm:h-10" src="https://tailwindui.com/img/logos/statickit-logo-gray-400.svg" alt="StaticKit">
-                  </div>
-                </div>
-              </div>
+              <p class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">Our supercharged QR codes let you manage, update and track behavior for all your marketing campaigns.</p>
             </div>
           </div>
           <div class="mt-16 sm:mt-24 lg:mt-0 lg:col-span-6">
             <div class="bg-white sm:max-w-md sm:w-full sm:mx-auto sm:rounded-lg sm:overflow-hidden">
               <div class="px-4 py-8 sm:px-10">
+                <% if Flipper.enabled? :oauth %>
                 <div>
                   <p class="text-sm font-medium text-gray-700">Sign in with</p>
 
@@ -208,17 +184,13 @@
                     <span class="px-2 bg-white text-gray-500"> Or </span>
                   </div>
                 </div>
+                <% end %>
 
                 <div class="mt-6">
                   <form action="#" method="POST" class="space-y-6">
                     <div>
-                      <label for="name" class="sr-only">Full name</label>
-                      <input type="text" name="name" id="name" autocomplete="name" placeholder="Full name" required class="block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
-                    </div>
-
-                    <div>
-                      <label for="mobile-or-email" class="sr-only">Mobile number or email</label>
-                      <input type="text" name="mobile-or-email" id="mobile-or-email" autocomplete="email" placeholder="Mobile number or email" required class="block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
+                      <label for="email" class="sr-only">Email</label>
+                      <input type="text" name="email" id="email" autocomplete="email" placeholder="Email" required class="block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
                     </div>
 
                     <div>
@@ -357,23 +329,23 @@
   </div>
 </div>
 <!-- This example requires Tailwind CSS v2.0+ -->
-<div class="bg-white">
+<div class="bg-gray-800">
   <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
     <div class="pb-16 xl:flex xl:items-center xl:justify-between">
       <div>
         <h1 class="text-4xl font-extrabold sm:text-5xl sm:tracking-tight">
-          <span class="text-gray-900">Everything you need for </span>
-          <span class="text-indigo-600">$99 a month</span>
+          <span class="text-white">Everything you need for </span>
+          <span class="text-indigo-400">$99 a month</span>
         </h1>
-        <p class="mt-5 text-xl text-gray-500">Includes every feature we offer plus unlimited projects and unlimited users.</p>
+        <p class="mt-5 text-xl text-gray-300">Includes every feature we offer plus unlimited projects and unlimited users.</p>
       </div>
       <a href="#" class="mt-8 w-full bg-indigo-600 border border-transparent px-5 py-3 inline-flex items-center justify-center text-base font-medium rounded-md text-white hover:bg-indigo-700 sm:mt-10 sm:w-auto xl:mt-0">Get started today</a>
     </div>
-    <div class="border-t border-gray-200 pt-16 xl:grid xl:grid-cols-3 xl:gap-x-8">
+    <div class="border-t border-white pt-16 xl:grid xl:grid-cols-3 xl:gap-x-8">
       <div>
-        <h2 class="text-base font-semibold text-indigo-600 tracking-wide uppercase">Everything you need</h2>
-        <p class="mt-2 text-3xl font-extrabold text-gray-900">All-in-one platform</p>
-        <p class="mt-4 text-lg text-gray-500">Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla nec. Urna, sed a lectus elementum blandit et.</p>
+        <h2 class="text-base font-semibold text-indigo-400 tracking-wide uppercase">Everything you need</h2>
+        <p class="mt-2 text-3xl font-extrabold text-white">All-in-one platform</p>
+        <p class="mt-4 text-lg text-gray-300">Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla nec. Urna, sed a lectus elementum blandit et.</p>
       </div>
       <div class="mt-4 sm:mt-8 md:mt-10 md:grid md:grid-cols-2 md:gap-x-8 xl:mt-0 xl:col-span-2">
         <ul role="list" class="divide-y divide-gray-200">
@@ -382,7 +354,7 @@
             <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
             </svg>
-            <span class="ml-3 text-base text-gray-500">Vitae in pulvinar odio id utobortis in inter.</span>
+            <span class="ml-3 text-base text-gray-300">Vitae in pulvinar odio id utobortis in inter.</span>
           </li>
 
           <li class="py-4 flex">
@@ -390,7 +362,7 @@
             <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
             </svg>
-            <span class="ml-3 text-base text-gray-500">Sed sed id viverra viverra augue eget massa.</span>
+            <span class="ml-3 text-base text-gray-300">Sed sed id viverra viverra augue eget massa.</span>
           </li>
 
           <li class="py-4 flex">
@@ -398,7 +370,7 @@
             <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
             </svg>
-            <span class="ml-3 text-base text-gray-500">Urna, gravida amet, a, integer venenatis.</span>
+            <span class="ml-3 text-base text-gray-300">Urna, gravida amet, a, integer venenatis.</span>
           </li>
 
           <li class="py-4 flex">
@@ -406,7 +378,7 @@
             <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
             </svg>
-            <span class="ml-3 text-base text-gray-500">Lobortis sed pharetra amet vitae eleifend.</span>
+            <span class="ml-3 text-base text-gray-300">Lobortis sed pharetra amet vitae eleifend.</span>
           </li>
 
           <li class="py-4 flex">
@@ -414,7 +386,7 @@
             <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
             </svg>
-            <span class="ml-3 text-base text-gray-500">Ullamcorper blandit a consequat donec elit aoreet.</span>
+            <span class="ml-3 text-base text-gray-300">Ullamcorper blandit a consequat donec elit aoreet.</span>
           </li>
         </ul>
         <ul role="list" class="border-t border-gray-200 divide-y divide-gray-200 md:border-t-0">
@@ -423,7 +395,7 @@
             <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
             </svg>
-            <span class="ml-3 text-base text-gray-500">Dolor quo assumenda.</span>
+            <span class="ml-3 text-base text-gray-300">Dolor quo assumenda.</span>
           </li>
 
           <li class="py-4 flex">
@@ -431,7 +403,7 @@
             <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
             </svg>
-            <span class="ml-3 text-base text-gray-500">Esse rerum distinctio maiores maiores.</span>
+            <span class="ml-3 text-base text-gray-300">Esse rerum distinctio maiores maiores.</span>
           </li>
 
           <li class="py-4 flex">
@@ -439,7 +411,7 @@
             <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
             </svg>
-            <span class="ml-3 text-base text-gray-500">Eos enim officiis ratione.</span>
+            <span class="ml-3 text-base text-gray-300">Eos enim officiis ratione.</span>
           </li>
 
           <li class="py-4 flex">
@@ -447,7 +419,7 @@
             <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
             </svg>
-            <span class="ml-3 text-base text-gray-500">Tempore molestiae aliquid excepturi.</span>
+            <span class="ml-3 text-base text-gray-300">Tempore molestiae aliquid excepturi.</span>
           </li>
 
           <li class="py-4 flex">
@@ -455,7 +427,7 @@
             <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
             </svg>
-            <span class="ml-3 text-base text-gray-500">Perspiciatis eveniet inventore eum et aliquam.</span>
+            <span class="ml-3 text-base text-gray-300">Perspiciatis eveniet inventore eum et aliquam.</span>
           </li>
         </ul>
       </div>

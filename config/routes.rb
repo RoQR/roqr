@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
   resources :users, except: [:index, :new]
   resources :events, only: :index
+  get :marketing, to: 'marketing#index'
 
   authenticated :user do
     root to: 'links#index', as: :authenticated_root
