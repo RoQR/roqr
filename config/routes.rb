@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   end
 
   devise_scope :user do
-    root to: 'user/sessions#new'
+    root to: 'marketing#index'
+  end
+
+  if Rails.env.production?
+    get '404', to: 'application#page_not_found'
   end
 end
