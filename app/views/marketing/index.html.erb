@@ -86,17 +86,16 @@
         </div>
       </nav>
 
-      <!--
-        Mobile menu, show/hide based on menu open state.
-
-        Entering: "duration-150 ease-out"
-        From: "opacity-0 scale-95"
-        To: "opacity-100 scale-100"
-        Leaving: "duration-100 ease-in"
-        From: "opacity-100 scale-100"
-        To: "opacity-0 scale-95"
-      -->
-      <div x-show="mobileMenu" class="absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right">
+      <div
+          class="absolute z-10 top-0 inset-x-0 p-1 transition transform origin-top-right"
+          x-show="mobileMenu"
+          x-transition:enter="transition ease-out duration-150"
+          x-transition:enter-start="transform opacity-100 scale-95"
+          x-transition:enter-end="transform opacity-100 scale-100"
+          x-transition:leave="transition ease-in duration-100"
+          x-transition:leave-start="transform opacity-100 scale-100"
+          x-transition:leave-end="transform opacity-0 scale-95"
+      >
         <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
           <div class="px-5 pt-4 flex items-center justify-between">
             <div>
