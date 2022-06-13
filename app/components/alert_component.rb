@@ -37,13 +37,13 @@ class AlertComponent < ViewComponent::Base
   def icon
     case @status
     when 'success'
-      show_svg('solid-check-circle.svg')
+      show_svg('solid-check-circle')
     when 'info', 'notice'
-      show_svg('solid-information-circle.svg')
+      show_svg('solid-information-circle')
     when 'warn', 'alert'
-      show_svg('solid-exclamation.svg')
+      show_svg('solid-exclamation')
     when 'error'
-      show_svg('solid-x-circle.svg')
+      show_svg('solid-x-circle')
     end
   end
 
