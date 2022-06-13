@@ -11,7 +11,6 @@ class User::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    flash[:warn] = "Please confirm your email to start creating links." unless current_user&.confirmed?
     super
   end
 
