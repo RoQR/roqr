@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class FeatureCardComponent < ViewComponent::Base
-  include IconHelper
+  include IconsHelper
   def initialize(title:, icon:)
     @title = title
     @icon = icon

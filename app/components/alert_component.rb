@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AlertComponent < ViewComponent::Base
-  include IconHelper
+  include IconsHelper
   def initialize(status:)
     @status = status
   end

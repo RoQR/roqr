@@ -96,29 +96,29 @@
           x-transition:leave-start="transform opacity-100 scale-100"
           x-transition:leave-end="transform opacity-0 scale-95"
           style="display: none"
-      >
-        <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
-          <div class="px-5 pt-4 flex items-center justify-between">
-            <div>
-              <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="">
-            </div>
-            <div class="-mr-2">
-              <button @click="mobileMenu = !mobileMenu" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-                <span class="sr-only">Close menu</span>
-                <!-- Heroicon name: outline/x -->
-                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div class="px-2 pt-2 pb-3 space-y-1">
-            <%= link_to 'Features', marketing_path(anchor: 'Features'), class: 'block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50' %>
-            <%= link_to 'Pricing', marketing_path(anchor: 'Pricing'), class: 'block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50' %>
-            <%= link_to 'FAQ', marketing_path(anchor: 'FAQ'), class: 'block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50' %>
-          </div>
-          <%= link_to 'Log in', new_user_session_path, class: 'block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100' %>
+          >
+          <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
+            <div class="px-5 pt-4 flex items-center justify-between">
+              <div>
+                <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="">
+              </div>
+        <div class="-mr-2">
+          <button @click="mobileMenu = !mobileMenu" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+            <span class="sr-only">Close menu</span>
+            <!-- Heroicon name: outline/x -->
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
+            </div>
+            <div class="px-2 pt-2 pb-3 space-y-1">
+              <%= link_to 'Features', marketing_path(anchor: 'Features'), class: 'block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50' %>
+              <%= link_to 'Pricing', marketing_path(anchor: 'Pricing'), class: 'block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50' %>
+              <%= link_to 'FAQ', marketing_path(anchor: 'FAQ'), class: 'block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50' %>
+            </div>
+            <%= link_to 'Log in', new_user_session_path, class: 'block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100' %>
+          </div>
       </div>
     </div>
 
@@ -182,21 +182,27 @@
                 <% end %>
 
                 <div class="mt-6">
-                  <form action="#" method="POST" class="space-y-6">
-                    <div>
-                      <label for="email" class="sr-only">Email</label>
-                      <input type="text" name="email" id="email" autocomplete="email" placeholder="Email" required class="block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
+                  <%= form_for(User.new, as: :user, url: registration_path(:user), html: { class: "mt-8 space-y-6" }) do |f| %>
+                    <input type="hidden" name="remember" value="true">
+                    <div class="rounded-md shadow-sm -space-y-px">
+                      <div>
+                        <%= f.label :email, class: "sr-only" %>
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Email address" %>
+                      </div>
+                      <div>
+                        <%= f.label :password, class: "sr-only" %>
+                        <%= f.password_field :password, autocomplete: "new-password", required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Password" %>
+                      </div>
+                      <div>
+                        <%= f.label :password_confirmation, class: "sr-only" %>
+                        <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Confirm password" %>
+                      </div>
                     </div>
 
                     <div>
-                      <label for="password" class="sr-only">Password</label>
-                      <input id="password" name="password" type="password" placeholder="Password" autocomplete="current-password" required class="block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
+                      <%= f.submit "Create your account", class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
                     </div>
-
-                    <div>
-                      <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create your account</button>
-                    </div>
-                  </form>
+                  <% end %>
                 </div>
               </div>
               <div class="px-4 py-6 bg-gray-50 border-t-2 border-gray-200 sm:px-10">
@@ -213,95 +219,29 @@
 <!-- Feature grid -->
 <div class="relative bg-white py-16 sm:py-24 lg:py-32">
   <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
-    <h2 class="text-base font-semibold uppercase tracking-wider text-indigo-600">Deploy faster</h2>
-    <p class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Everything you need to deploy your app</p>
-    <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">Phasellus lorem quam molestie id quisque diam aenean nulla in. Accumsan in quis quis nunc, ullamcorper malesuada. Eleifend condimentum id viverra nulla.</p>
+    <h2 class="text-base font-semibold uppercase tracking-wider text-indigo-600">Everything you need</h2>
+    <p class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Infinitely customizable</p>
+    <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">Gather feedback from your key customers, promote your brand, advertise your events and discounts and track user engagement - RoQR let's you do it all</p>
     <div class="mt-12">
       <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        <%= render FeatureCardComponent.new(title: 'Dynamic QR Codes', icon: 'outline/qrcode') do %>
+        <%= render FeatureCardComponent.new(title: 'Dynamic QR codes', icon: 'outline/qrcode') do %>
           QR codes that update on your schedule, allowing you to route users exactly as you see fit.
         <% end %>
-
-        <div class="pt-6">
-          <div class="flow-root rounded-lg bg-gray-50 px-6 pb-8">
-            <div class="-mt-6">
-              <div>
-                <span class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-3 shadow-lg">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                  </svg>
-                </span>
-              </div>
-              <h3 class="mt-8 text-lg font-medium tracking-tight text-gray-900">Event log</h3>
-              <p class="mt-5 text-base text-gray-500">A complete event log so you know who scanned your QR codes when.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="pt-6">
-          <div class="flow-root rounded-lg bg-gray-50 px-6 pb-8">
-            <div class="-mt-6">
-              <div>
-                <span class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-3 shadow-lg text-white">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                  </svg>
-                </span>
-              </div>
-              <h3 class="mt-8 text-lg font-medium tracking-tight text-gray-900">API</h3>
-              <p class="mt-5 text-base text-gray-500">A modern API that lets you generate and manage links on the fly.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="pt-6">
-          <div class="flow-root rounded-lg bg-gray-50 px-6 pb-8">
-            <div class="-mt-6">
-              <div>
-                <span class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-3 shadow-lg text-white">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                  </svg>
-                </span>
-              </div>
-              <h3 class="mt-8 text-lg font-medium tracking-tight text-gray-900">Data export</h3>
-              <p class="mt-5 text-base text-gray-500">Export your data for further analysis.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="pt-6">
-          <div class="flow-root rounded-lg bg-gray-50 px-6 pb-8">
-            <div class="-mt-6">
-              <div>
-                <span class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-3 shadow-lg">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </span>
-              </div>
-              <h3 class="mt-8 text-lg font-medium tracking-tight text-gray-900">Password protected links</h3>
-              <p class="mt-5 text-base text-gray-500">Protect your links with passwords to keep your data secure.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="pt-6">
-          <div class="flow-root rounded-lg bg-gray-50 px-6 pb-8">
-            <div class="-mt-6">
-              <div>
-                <span class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-3 shadow-lg">
-                  <!-- Heroicon name: outline/server -->
-                  <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
-                  </svg>
-                </span>
-              </div>
-              <h3 class="mt-8 text-lg font-medium tracking-tight text-gray-900">Database Backups</h3>
-              <p class="mt-5 text-base text-gray-500">Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.</p>
-            </div>
-          </div>
-        </div>
+        <%= render FeatureCardComponent.new(title: 'Event log', icon: 'outline/collection') do %>
+          A complete event log so you know who scanned your QR codes when.
+        <% end %>
+        <%= render FeatureCardComponent.new(title: 'API', icon: 'outline/code') do %>
+          A modern API that lets you generate and manage links on the fly.
+        <% end %>
+        <%= render FeatureCardComponent.new(title: 'Data export', icon: 'outline/table') do %>
+          Export your date for further analysis and insights.
+        <% end %>
+        <%= render FeatureCardComponent.new(title: 'Password-protected links', icon: 'outline/lock-closed') do %>
+          Protect your links with passwords to keep your data secure.
+        <% end %>
+        <%= render FeatureCardComponent.new(title: 'Styles and templates', icon: 'outline/color-swatch') do %>
+          Make your QR codes your own through various styles, colors and saveable templates.
+        <% end %>
       </div>
     </div>
   </div>

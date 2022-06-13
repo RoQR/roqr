@@ -4,7 +4,7 @@ module BreadcrumbsHelper
     include ERB::Util
 
     def chevron
-      File.open("app/assets/images/solid-chevron-right.svg", "rb") do |file|
+      File.open("app/assets/icons/solid-chevron-right.svg", "rb") do |file|
         file.read
       end
     end
