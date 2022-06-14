@@ -5,7 +5,7 @@
     Active links
   <% end %>
   <% if can?(:create, Link) %>
-    <%= c.with_button(link: new_url_link_path).with_content("New link") %>
+    <%= c.with_button(link: new_link_path).with_content("New link") %>
   <% end %>
 <% end %>
 

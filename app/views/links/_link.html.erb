@@ -4,22 +4,16 @@
     <div class="mt-6 ml-auto flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
       <%= render InlineButtonGroupComponent.new do |c| %>
         <% if can? :update, @link %>
-          <% c.with_button(link: edit_link_path(@link), style: 'white').with_content("Edit this link") %>
+          <% c.with_button(link: url_for([:edit, @link.link_data]), style: 'white').with_content("Edit this link") %>
         <% end %>
         <% if can? :destroy, @link %>
-          <% c.with_button(link: link_path(@link), method: :delete, style: 'red').with_content("Delete this link") %>
+          <% c.with_button(link: url_for(@link.link_data), method: :delete, style: 'red').with_content("Delete this link") %>
         <% end %>
       <% end %>
     </div>
   </div>
   <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
     <dl class="sm:divide-y sm:divide-gray-200">
-      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-500">URL</dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= link.link_data.url %>
-        </dd>
-      </div>
       <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">QR Code</dt>
         <% image = qr(scan_link_url(link)).as_png(size: 480) %>

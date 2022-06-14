@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users, except: [:index, :new]
   resources :events, only: :index
   resources :url_links, except: :index
+  resources :email_links, except: :index
   get :marketing, to: 'marketing#index'
 
   authenticated :user do

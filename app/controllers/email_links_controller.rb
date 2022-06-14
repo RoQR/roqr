@@ -1,35 +1,36 @@
-class UrlLinksController < ApplicationController
+class EmailLinksController < ApplicationController
   before_action :authenticate_user!
+  load_resource :links
   load_and_authorize_resource
 
   # GET /links/1 or /links/1.json
   def show
     add_breadcrumb "All links", links_path
-    add_breadcrumb @url_link.links.name, @url_link 
+    add_breadcrumb @email_link.link.name, @email_link 
   end
 
   # GET /links/new
   def new
     add_breadcrumb "All links", links_path
-    add_breadcrumb "New link", new_link_path
-    @url_link.links.build
+    add_breadcrumb "New link", new_email_link_path
+    @email_link.links.build
   end
 
   # GET /links/1/edit
   def edit
     add_breadcrumb "All links", links_path
-    add_breadcrumb "Edit", edit_link_path(@url_link)
+    add_breadcrumb "Edit", edit_link_path(@email_link)
   end
 
   # POST /links or /links.json
   def create
     respond_to do |format|
-      if @url_link.save
+      if @email_link.save
         format.html { redirect_to links_url, success: "Link was successfully created." }
-        format.json { render :show, status: :created, location: @url_link }
+        format.json { render :show, status: :created, location: @email_link }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @url_link.errors, status: :unprocessable_entity }
+        format.json { render json: @email_link.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -37,19 +38,19 @@ class UrlLinksController < ApplicationController
   # PATCH/PUT /links/1 or /links/1.json
   def update
     respond_to do |format|
-      if @url_link.update(url_link_params)
+      if @email_link.update(email_link_params)
         format.html { redirect_to links_url, success: "Link was successfully updated." }
-        format.json { render :show, status: :ok, location: @url_link }
+        format.json { render :show, status: :ok, location: @email_link }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @url_link.errors, status: :unprocessable_entity }
+        format.json { render json: @email_link.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /links/1 or /links/1.json
   def destroy
-    @url_link.destroy
+    @email_link.destroy
 
     respond_to do |format|
       format.html { redirect_to links_url, success: "Link was successfully destroyed." }
@@ -60,7 +61,7 @@ class UrlLinksController < ApplicationController
   private
 
     # Only allow a list of trusted parameters through.
-    def url_link_params
-      params.require(:url_link).permit(:id, :url, links_attributes: [:id, :user_id, :name])
+    def email_link_params
+      params.require(:email_link).permit(:id, :email_address, :subject, :body, links_attributes: [:id, :user_id, :name])
     end
 end

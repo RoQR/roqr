@@ -16,7 +16,7 @@ class LinksController < ApplicationController
   def scan
     event = event_from_browser
     event.save
-    redirect_to @link.url, allow_other_host: true
+    redirect_to @link.link_data.barcode_data, allow_other_host: true
   end
 
   # GET /links/new
