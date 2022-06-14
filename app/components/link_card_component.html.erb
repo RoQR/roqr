@@ -2,20 +2,20 @@
   <div class="flex-1 truncate">
     <div class="flex items-center space-x-3">
       <h3 class="text-gray-900 text-sm font-medium truncate"><%= name %></h3>
-      <span class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">Url</span>
+      <span class="flex-shrink-0 inline-block px-2 py-0.5 text-xs font-medium rounded-full <%= badge_color %>"><%= badge_text %></span>
     </div>
-    <p class="mt-1 text-gray-500 text-sm truncate"><%= @link.url %></p>
+    <p class="mt-1 text-gray-500 text-sm truncate"><%= @link.link_data.summary %></p>
   </div>
 </div>
 <div>
   <div class="-mt-px flex divide-x divide-gray-200">
     <div class="w-0 flex-1 flex">
-      <%= link_to link_path(@link), class: "relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500" do %>
+      <%= link_to @link, class: "relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500" do %>
         <span class="ml-3">Show</span>
       <% end %>
     </div>
     <div class="-ml-px w-0 flex-1 flex">
-      <%= link_to @link, data: {'turbo-method': :delete }, class: "relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500" do %>
+      <%= link_to @link.link_data, data: {'turbo-method': :delete }, class: "relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500" do %>
         <span class="ml-3">Delete</span>
       <% end %>
     </div>

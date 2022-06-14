@@ -1,0 +1,33 @@
+<%= form_with(model: email_link) do |form| %>
+  <%= form.fields_for(:links) do |link_form| %>
+    <%= link_form.hidden_field :user_id, value: current_user.id %>
+    <div class="mb-3">
+      <%= link_form.label :name, class: "block text-sm font-medium text-gray-700" %>
+      <div class="mt-1">
+        <%= link_form.text_field :name, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+      </div>
+    </div>
+  <% end %>
+  <div class="mb-3">
+    <%= form.label :email_address, class: "block text-sm font-medium text-gray-700" %>
+    <div class="mt-1 flex shadow-sm">
+      <%= form.text_field :email_address, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-none rounded-r-md" %>
+    </div>
+  </div>
+  <div class="mb-3">
+    <%= form.label :subject, class: "block text-sm font-medium text-gray-700" %>
+    <div class="mt-1 flex shadow-sm">
+      <%= form.text_field :subject, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-none rounded-r-md" %>
+    </div>
+  </div>
+  <div class="mb-3">
+    <%= form.label :body, class: "block text-sm font-medium text-gray-700" %>
+    <div class="mt-1 flex shadow-sm">
+      <%= form.text_area :body, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-none rounded-r-md" %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.submit class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+  </div>
+<% end %>

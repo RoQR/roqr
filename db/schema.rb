@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_14_012140) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_14_204536) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "email_links", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "email_address"
+    t.text "subject"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "link_id"
@@ -49,12 +57,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_14_012140) do
   end
 
   create_table "links", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.text "url"
-    t.text "name"
+    t.text "name", null: false
+    t.string "link_data_type"
+    t.uuid "link_data_id"
+    t.uuid "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.uuid "user_id"
+    t.index ["link_data_type", "link_data_id"], name: "index_links_on_link_data"
     t.index ["user_id"], name: "index_links_on_user_id"
+  end
+
+  create_table "url_links", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -86,5 +102,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_14_012140) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
-  add_foreign_key "events", "links"
 end

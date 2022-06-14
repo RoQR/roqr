@@ -16,7 +16,7 @@ class LinksController < ApplicationController
   def scan
     event = event_from_browser
     event.save
-    redirect_to @link.url, allow_other_host: true
+    redirect_to @link.link_data.barcode_data, allow_other_host: true
   end
 
   # GET /links/new
@@ -72,10 +72,7 @@ class LinksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def link_params
-      unless params[:link][:url].starts_with? 'https://'
-        params[:link][:url] = 'https://' + params[:link][:url]
-      end
-      params.require(:link).permit(:id, :user_id, :url, :name)
+      params.require(:link).permit(:id, :user_id, :name)
     end
 
     def event_from_browser
