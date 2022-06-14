@@ -6,9 +6,8 @@ class Ability
   def initialize(user)
     can :read, Event, link: {user: user}
     can :read, Link, user: user
-    if user.confirmed?
-      can :manage, Link, user: user
-    end
+    can :manage, Link, user: user 
+    can :manage, UrlLink
     can :manage, user
   end
 end
