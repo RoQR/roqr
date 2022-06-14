@@ -1,4 +1,5 @@
 class EmailLink < ApplicationRecord
+  include ERB::Util
   has_many :links, as: :link_data, dependent: :destroy
   accepts_nested_attributes_for :links
   has_paper_trail
@@ -8,7 +9,6 @@ class EmailLink < ApplicationRecord
   end
 
   def barcode_data
-    query_data = {subject: subject, body: body}.to_query
-    "mailto:#{email_address}?#{query_data}"
+    "mailto:" + "#{u email_address}?subject=#{u subject}&body=#{u body}"
   end
 end
