@@ -1,8 +1,6 @@
 class EmailLink < ApplicationRecord
+include LinkDataModelConcern
   include ERB::Util
-  has_many :links, as: :link_data, dependent: :destroy
-  accepts_nested_attributes_for :links
-  has_paper_trail
 
   def summary
     email_address
