@@ -7,13 +7,17 @@
     </div>
   </div>
 
+  <%= form.hidden_field(:link_data_type, value: 'UrlLink') %>
+
+  <%= form.fields_for(:link_data) do |url_link_form| %>
   <div class="mb-3">
-    <%= form.label :url, class: "block text-sm font-medium text-gray-700" %>
+    <%= url_link_form.label :url, class: "block text-sm font-medium text-gray-700" %>
     <div class="mt-1 flex shadow-sm">
       <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm"> https:// </span>
-      <%= form.text_field :url, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-none rounded-r-md" %>
+      <%= url_link_form.text_field :url, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-none rounded-r-md" %>
     </div>
   </div>
+  <% end %>
 
   <div>
     <%= form.submit class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
