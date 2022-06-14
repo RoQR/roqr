@@ -14,7 +14,7 @@ module.exports = {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
       backgroundImage: {
-        'topography': "url('texture.svg')",
+        'texture': "url('texture.svg')",
 			},
     },
   },
