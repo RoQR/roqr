@@ -18,6 +18,8 @@ class LinkCardComponent < ViewComponent::Base
       'url'
     elsif @link.link_data.is_a?(EmailLink)
       'email'
+    elsif @link.link_data.is_a?(WifiLink)
+      'wifi'
     end
   end
 
@@ -27,6 +29,8 @@ class LinkCardComponent < ViewComponent::Base
       'text-green-800 bg-green-100'
     when 'email'
       'text-blue-800 bg-blue-100'
+    when 'wifi'
+      'text-fuchsia-800 bg-fuchsia-100'
     end
   end
 
@@ -36,6 +40,8 @@ class LinkCardComponent < ViewComponent::Base
       'Url'
     when 'email'
       'Email'
+    when 'wifi'
+      'WiFi'
     end
   end
 
