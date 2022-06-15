@@ -7,6 +7,7 @@
         <%= link_form.text_field :name, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
       </div>
     </div>
+    <%= link_form.hidden_field :dynamic, value: false,  "x-bind:value": "dynamic" %>
   <% end %>
   <div class="mb-3">
     <%= form.label :ssid, "SSID", class: "block text-sm font-medium text-gray-700" %>

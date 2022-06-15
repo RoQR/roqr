@@ -16,11 +16,7 @@ class LinksController < ApplicationController
   def scan
     event = event_from_browser
     event.save
-    if @link.link_data.is_a?(WifiLink)
-      send_data @link.link_data.barcode_data
-    else
-      redirect_to @link.link_data.barcode_data, allow_other_host: true
-    end
+    redirect_to @link.link_data.barcode_data, allow_other_host: true
   end
 
   # GET /links/new
@@ -76,7 +72,7 @@ class LinksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def link_params
-      params.require(:link).permit(:id, :user_id, :name)
+      params.require(:link).permit(:id, :user_id, :name, :dynamic)
     end
 
     def event_from_browser
