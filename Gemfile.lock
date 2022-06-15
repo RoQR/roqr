@@ -325,6 +325,7 @@ DEPENDENCIES
   geocoder
   importmap-rails
   jbuilder
+  omniauth
   omniauth-github!
   omniauth-rails_csrf_protection
   paper_trail (~> 12.3)
