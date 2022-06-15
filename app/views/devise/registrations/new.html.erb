@@ -13,8 +13,12 @@ Or
   <input type="hidden" name="remember" value="true">
   <div class="rounded-md shadow-sm -space-y-px">
     <div>
+      <%= f.label :name, class: "sr-only" %>
+      <%= f.text_field :name, autofocus: true, required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Name" %>
+    </div>
+    <div>
       <%= f.label :email, class: "sr-only" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Email address" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-:-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Email address" %>
     </div>
   </div>
     <div class="text-sm">
