@@ -22,5 +22,9 @@ class User < ApplicationRecord
       # uncomment the line below to skip the confirmation emails.
       user.skip_confirmation!
     end
+  protected
+
+  def password_required?
+    confirmed? ? super : false
   end
 end
