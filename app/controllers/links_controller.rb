@@ -16,7 +16,11 @@ class LinksController < ApplicationController
   def scan
     event = event_from_browser
     event.save
-    redirect_to @link.link_data.barcode_data, allow_other_host: true
+    if @link.link_data.is_a?(WifiLink)
+      send_data @link.link_data.barcode_data
+    else
+      redirect_to @link.link_data.barcode_data, allow_other_host: true
+    end
   end
 
   # GET /links/new
