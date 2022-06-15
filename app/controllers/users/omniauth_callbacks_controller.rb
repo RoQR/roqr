@@ -21,6 +21,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # https://github.com/heartcombo/devise#omniauth
 
   # GET|POST /resource/auth/github
+  def passthru
+    super
+  end
 
   # GET|POST /users/auth/github/callback
   def failure
