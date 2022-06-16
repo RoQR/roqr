@@ -1,6 +1,6 @@
 <%= @form.fields_for(:links) do |link_form| %>
   <%= link_form.hidden_field :user_id, value: @user.id %>
-  <div class="mb-3">
+  <div>
     <%= link_form.label :name, class: "block text-sm font-medium text-gray-700" %>
     <div class="mt-1">
       <%= link_form.text_field :name, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", required: true %>
@@ -9,8 +9,8 @@
   <% if @static_only %>
     <%= link_form.hidden_field :dynamic, value: false,  "x-bind:value": "dynamic" %>
   <% else %>
-    <div class="flex flex-col justify-between mb-3 sm:flex-row sm:items-center">
-      <span class="flex-grow flex flex-col mb-4">
+    <div class="flex justify-between flex-row items-center">
+      <span class="flex-grow flex flex-col">
         <%= link_form.label :dynamic, class: "text-sm font-medium text-gray-900" %>
         <span class="text-sm text-gray-500" id="availability-description">Create a dynamic link?</span>
       </span>
