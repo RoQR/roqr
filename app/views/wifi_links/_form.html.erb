@@ -1,14 +1,5 @@
 <%= form_with(model: link_data) do |form| %>
-  <%= form.fields_for(:links) do |link_form| %>
-    <%= link_form.hidden_field :user_id, value: current_user.id %>
-    <div class="mb-3">
-      <%= link_form.label :name, class: "block text-sm font-medium text-gray-700" %>
-      <div class="mt-1">
-        <%= link_form.text_field :name, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", required: true %>
-      </div>
-    </div>
-    <%= link_form.hidden_field :dynamic, value: false,  "x-bind:value": "dynamic" %>
-  <% end %>
+  <%= render LinkFormComponent.new(form: form, user: current_user, static_only: true) %>
   <div class="mb-3">
     <%= form.label :ssid, "SSID", class: "block text-sm font-medium text-gray-700" %>
     <div class="mt-1 flex shadow-sm">
