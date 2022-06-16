@@ -33,7 +33,7 @@ class LinkCardComponent < ViewComponent::Base
       'text-blue-800 bg-blue-100'
     when 'wifi'
       'text-fuchsia-800 bg-fuchsia-100'
-    when 'phone'
+    when 'telephone'
       'text-amber-800 bg-amber-100'
 
     end
