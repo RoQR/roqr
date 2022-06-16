@@ -7,7 +7,7 @@ module LinksHelper
     if link.dynamic?
       scan_link_url(link)
     else
-      link.link_data.barcode_data
+      link.barcode_data
     end
   end
 end
