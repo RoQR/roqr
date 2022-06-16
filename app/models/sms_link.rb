@@ -1,4 +1,4 @@
-class TelephoneLink < ApplicationRecord
+class SmsLink < ApplicationRecord
   include LinkDataModelConcern
   include ERB::Util
 
@@ -7,6 +7,6 @@ class TelephoneLink < ApplicationRecord
   end
 
   def barcode_data
-    "tel:#{u number}"
+    "sms:" + "#{u number}?body=#{u body}"
   end
 end
