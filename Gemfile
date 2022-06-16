@@ -24,6 +24,7 @@ gem "tailwindcss-rails", "~> 2.0"
 gem 'omniauth'
 gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 gem 'omniauth-rails_csrf_protection'
+gem 'victor'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
