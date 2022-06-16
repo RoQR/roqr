@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   end
   resources :users, except: [:index, :new]
   resources :events, only: :index
-  resources :url_links, except: :index
   resources :email_links, except: :index
+  resources :telephone_links, except: :index
+  resources :url_links, except: :index
   resources :wifi_links, except: :index
   get :marketing, to: 'marketing#index'
 

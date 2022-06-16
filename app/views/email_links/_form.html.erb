@@ -4,7 +4,7 @@
     <div class="mb-3">
       <%= link_form.label :name, class: "block text-sm font-medium text-gray-700" %>
       <div class="mt-1">
-        <%= link_form.text_field :name, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+        <%= link_form.text_field :name, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", required: true %>
       </div>
     </div>
     <div x-data="{ dynamic: false }" class="flex flex-col justify-between mb-3 sm:flex-row sm:items-center">

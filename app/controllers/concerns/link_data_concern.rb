@@ -16,6 +16,7 @@ module LinkDataConcern
     def new
       add_breadcrumb "All links", links_path
       add_breadcrumb "New link", new_link_path
+      debugger
       @link_data.links.build
     end
 
