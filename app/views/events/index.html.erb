@@ -1,10 +1,15 @@
-<% content_for :title, "Events" %>
 <% if @events.empty? %>
   <div class="text-center">
     <h3 class="mt-2 text-sm font-medium text-gray-900">No events</h3>
     <p class="mt-1 text-sm text-gray-500">Share your QR codes to start generating events.</p>
   </div>
 <% else %>
+<%= render SectionHeaderComponent.new do |c| %>
+  <%= c.with_title do %>
+    Events
+  <% end %>
+  <%= c.with_button(style: :white, link: events_path(format: :csv)).with_content("Download as CSV") %>
+<% end %>
 <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-md md:rounded-lg overflow-x-auto">
   <table class="min-w-full divide-y divide-gray-300">
     <thead class="bg-gray-50">

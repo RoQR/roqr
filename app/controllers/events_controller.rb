@@ -4,5 +4,9 @@ class EventsController < ApplicationController
 
   # GET /events or /events.json
   def index
+    respond_to do |format|
+      format.html
+      format.csv { send_data @events.to_csv, filename: "roqr-events-#{Date.today}.csv" }
+    end
   end
 end

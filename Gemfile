@@ -50,3 +50,5 @@ gem "flipper", "~> 0.25.0"
 gem "flipper-active_record", "~> 0.25.0"
 
 gem "paper_trail", "~> 12.3"
+
+gem "csv", "~> 3.2"
