@@ -1,23 +1,18 @@
 require 'victor'
 
 class QrGenerator
-  def initialize
-  end
-
-  def gen
-    svg = Victor::SVG.new width: 140, height: 100, style: { background: '#ddd' }
-    svg.build do 
-      rect x: 10, y: 10, width: 120, height: 80, rx: 10, fill: '#666'
-
-      circle cx: 50, cy: 50, r: 30, fill: 'yellow'
-      circle cx: 58, cy: 32, r: 4, fill: 'black'
-      polygon points: %w[45,50 80,30 80,70], fill: '#666'
-
-      3.times do |i|
-        x = 80 + i*18
-        circle cx: x, cy: 50, r: 4, fill: 'yellow'
-      end
+  def self.gen(link, fill: '#fff', color: '#000', border: 4)
+    qr = RQRCode::QRCode.new(link)
+    scale = 11
+    len = qr.modules.size
+    @svg = Victor::SVG.new class: 'x', width: (border*2+len)*scale, height: (border*2+len)*scale, style: { background: fill}
+    @svg.build do 
+      qr.modules.each_with_index {|row, i|
+        row.each_with_index  {|mod, j| 
+          rect x: j*scale+border*scale, y: i*scale+border*scale, height: scale, width: scale, fill: mod ? color :  fill, shape_rendering: 'crispEdges'
+        }
+      }
     end
-    svg.save 'pacman'
+    @svg.render
   end
 end
