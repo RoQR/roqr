@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :url_links, except: :index
   resources :wifi_links, except: :index
   get :marketing, to: 'marketing#index'
+  get :qr, to: 'qr#show', format: :svg
 
   authenticated :user do
     root to: 'links#index', as: :authenticated_root
