@@ -10,6 +10,6 @@ export default class extends Controller {
     var color = this.colorTarget
     var image = this.imageTarget
 
-    image.src = `/qr.svg?data=${this.barcodeDataValue}&fill=${encodeURIComponent(fill.value)}&color=${encodeURIComponent(color.value)}`
+    image.src = `/qr.svg?data=${encodeURIComponent(this.barcodeDataValue)}&fill=${encodeURIComponent(fill.value)}&color=${encodeURIComponent(color.value)}`
   }
 }

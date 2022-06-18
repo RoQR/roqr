@@ -286,6 +286,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    vcardigan (0.0.9)
     victor (0.3.3)
     view_component (2.56.2)
       activesupport (>= 5.0.0, < 8.0)
@@ -343,6 +344,7 @@ DEPENDENCIES
   tailwindcss-rails (~> 2.0)
   turbo-rails
   tzinfo-data
+  vcardigan (~> 0.0.9)
   victor
   view_component
   web-console

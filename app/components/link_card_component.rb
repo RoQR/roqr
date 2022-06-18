@@ -24,6 +24,8 @@ class LinkCardComponent < ViewComponent::Base
       'telephone'
     elsif @link.link_data.is_a?(SmsLink)
       'sms'
+    elsif @link.link_data.is_a?(ContactLink)
+      'contact'
     end
   end
 
@@ -39,6 +41,8 @@ class LinkCardComponent < ViewComponent::Base
       'text-amber-800 bg-amber-100'
     when 'sms'
       'text-slate-800 bg-slate-100'
+    when 'contact'
+      'text-rose-800 bg-rose-100'
     end
   end
 
@@ -54,6 +58,8 @@ class LinkCardComponent < ViewComponent::Base
       'Telephone'
     when 'sms'
       'SMS'
+    when 'contact'
+      'Contact'
     end
   end
 
