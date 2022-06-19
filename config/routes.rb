@@ -23,6 +23,18 @@ Rails.application.routes.draw do
     root to: 'marketing#index'
   end
 
+  namespace :user do
+    resource :private_api_keys, only: :update
+  end
+
+  namespace :api do
+    namespace :v0 do
+      defaults format: :json do
+        resources :links, only: [:index, :create, :show, :update, :destroy]
+      end
+    end
+  end
+
   if Rails.env.production?
     get '404', to: 'application#page_not_found'
   end

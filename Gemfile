@@ -55,3 +55,7 @@ gem "paper_trail", "~> 12.3"
 gem "csv", "~> 3.2"
 
 gem "vcardigan", "~> 0.0.9"
+
+gem "lockbox", "~> 1.0"
+
+gem "blind_index", "~> 2.3"

@@ -6,6 +6,11 @@ class User < ApplicationRecord
     :confirmable, :omniauthable, omniauth_providers: [:github, :google_oauth2]
 
   has_many :links, dependent: :destroy
+  has_encrypted :private_api_key
+  blind_index :private_api_key
+  validates :private_api_key, uniqueness: true, allow_blank: true
+
+  before_create :set_private_api_key
 
   def gravatar_url
     gravatar_id = Digest::MD5::hexdigest(email.downcase)
@@ -28,5 +33,11 @@ class User < ApplicationRecord
 
   def password_required?
     confirmed? ? super : false
+  end
+
+  private
+
+  def set_private_api_key
+    self.private_api_key = SecureRandom.hex if self.private_api_key.nil?
   end
 end
