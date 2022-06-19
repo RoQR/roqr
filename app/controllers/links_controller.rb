@@ -3,11 +3,9 @@ class LinksController < ApplicationController
   load_and_authorize_resource
   skip_authorize_resource only: :scan
 
-  # GET /links or /links.json
   def index
   end
 
-  # GET /links/1 or /links/1.json
   def show
     add_breadcrumb "All links", links_path
     add_breadcrumb @link.name, @link 
@@ -19,52 +17,42 @@ class LinksController < ApplicationController
     redirect_to @link.barcode_data, allow_other_host: true
   end
 
-  # GET /links/new
   def new
     add_breadcrumb "All links", links_path
     add_breadcrumb "New link", new_link_path
   end
 
-  # GET /links/1/edit
   def edit
     add_breadcrumb "All links", links_path
     add_breadcrumb @link.name, @link
     add_breadcrumb "Edit", edit_link_path(@link)
   end
 
-  # POST /links or /links.json
   def create
     respond_to do |format|
       if @link.save
         format.html { redirect_to links_url, success: "Link was successfully created." }
-        format.json { render :show, status: :created, location: @link }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /links/1 or /links/1.json
   def update
     respond_to do |format|
       if @link.update(link_params)
         format.html { redirect_to link_url(@link), success: "Link was successfully updated." }
-        format.json { render :show, status: :ok, location: @link }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /links/1 or /links/1.json
   def destroy
     @link.destroy
 
     respond_to do |format|
       format.html { redirect_to links_url, success: "Link was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
