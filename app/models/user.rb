@@ -6,6 +6,7 @@ class User < ApplicationRecord
     :confirmable, :omniauthable, omniauth_providers: [:github, :google_oauth2]
 
   has_many :links, dependent: :destroy
+  has_many :requests, dependent: :destroy
   has_encrypted :private_api_key
   blind_index :private_api_key
   validates :private_api_key, uniqueness: true, allow_blank: true

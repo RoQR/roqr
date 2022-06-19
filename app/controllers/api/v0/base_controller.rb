@@ -1,6 +1,7 @@
 class Api::V0::BaseController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :handle_not_found
   rescue_from CanCan::AccessDenied, with: :unauthorized
+  protect_from_forgery with: :null_session
 
   private
 
