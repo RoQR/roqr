@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_19_153124) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_20_150133) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -73,20 +73,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_153124) do
 
   create_table "links", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "name", null: false
-    t.string "link_data_type"
-    t.uuid "link_data_id"
     t.uuid "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "dynamic", default: false, null: false
-    t.index ["link_data_type", "link_data_id"], name: "index_links_on_link_data"
+    t.bigint "contact_link_id"
+    t.bigint "email_link_id"
+    t.bigint "sms_link_id"
+    t.bigint "telephone_link_id"
+    t.bigint "url_link_id"
+    t.bigint "wifi_link_id"
+    t.index ["contact_link_id"], name: "index_links_on_contact_link_id"
+    t.index ["email_link_id"], name: "index_links_on_email_link_id"
+    t.index ["sms_link_id"], name: "index_links_on_sms_link_id"
+    t.index ["telephone_link_id"], name: "index_links_on_telephone_link_id"
+    t.index ["url_link_id"], name: "index_links_on_url_link_id"
     t.index ["user_id"], name: "index_links_on_user_id"
-  end
-
-  create_table "organizations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["wifi_link_id"], name: "index_links_on_wifi_link_id"
   end
 
   create_table "requests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -133,23 +136,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_153124) do
     t.string "unconfirmed_email"
     t.string "provider"
     t.string "uid"
-    t.uuid "organization_id"
-    t.string "invitation_token"
-    t.datetime "invitation_created_at"
-    t.datetime "invitation_sent_at"
-    t.datetime "invitation_accepted_at"
-    t.integer "invitation_limit"
-    t.string "invited_by_type"
-    t.bigint "invited_by_id"
-    t.integer "invitations_count", default: 0
     t.text "private_api_key_ciphertext"
     t.string "private_api_key_bidx"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
-    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
-    t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
-    t.index ["organization_id"], name: "index_users_on_organization_id"
     t.index ["private_api_key_bidx"], name: "index_users_on_private_api_key_bidx", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -174,5 +164,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_153124) do
   end
 
   add_foreign_key "requests", "users"
-  add_foreign_key "users", "organizations"
 end
