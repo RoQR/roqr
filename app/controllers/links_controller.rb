@@ -18,11 +18,13 @@ class LinksController < ApplicationController
   end
 
   def new
+    @link_type = request.query_parameters[:link_type]
     add_breadcrumb "All links", links_path
     add_breadcrumb "New link", new_link_path
   end
 
   def edit
+    @link_type = @link.link_data.class.to_s.underscore
     add_breadcrumb "All links", links_path
     add_breadcrumb @link.name, @link
     add_breadcrumb "Edit", edit_link_path(@link)
@@ -60,7 +62,7 @@ class LinksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def link_params
-      params.require(:link).permit(:id, :user_id, :name, :dynamic, url_link_attributes: [:id, :url])
+      params.require(:link).permit(:id, :user_id, :name, :dynamic, url_link_attributes: [:id, :url], telephone_link_attributes: [:number])
     end
 
     def event_from_browser
