@@ -1,135 +1,54 @@
 <% content_for :title, "New link" %>
 
-<div class="rounded-lg bg-gray-200 overflow-hidden shadow divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px">
-  <div class="rounded-tl-lg rounded-tr-lg sm:rounded-tr-none relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500">
-    <div>
-      <span class="rounded-lg inline-flex p-3 bg-green-100 text-green-800 ring-4 ring-white">
-        <%= show_svg('outline/globe-alt') %>
-      </span>
+<%= form_with(model: @link) do |form| %>
+  <div class="space-y-6">
+    <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
+      <div class="md:grid md:grid-cols-3 md:gap-6">
+        <div class="md:col-span-1">
+          <h3 class="text-lg font-medium leading-6 text-gray-900">Link settings</h3>
+          <p class="mt-1 text-sm text-gray-500">General settings for the link</p>
+        </div>
+        <div class="mt-5 md:mt-0 md:col-span-2">
+          <%= form.hidden_field :user_id, value: current_user.id %>
+          <div>
+            <%= form.label :name, class: "block text-sm font-medium text-gray-700" %>
+            <div class="mt-1">
+              <%= form.text_field :name, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", required: true %>
+            </div>
+          </div>
+            <div class="flex justify-between flex-row items-center">
+              <span class="flex-grow flex flex-col">
+                <%= form.label :dynamic, class: "text-sm font-medium text-gray-900" %>
+                <span class="text-sm text-gray-500" id="availability-description">Create a dynamic link?</span>
+              </span>
+              <%= form.check_box :dynamic, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+            </div>
+        </div>
+      </div>
     </div>
-    <div class="mt-8">
-      <h3 class="text-lg font-medium">
-        <%= link_to new_url_link_path, class: "focus:outline-none" do %>
-          <span class="absolute inset-0" aria-hidden="true"></span>
-          URL link
-        <% end %>
-      </h3>
-      <p class="mt-2 text-sm text-gray-500">A URL link let's you link to any website on the internet.</p>
-    </div>
-    <span class="pointer-events-none absolute top-6 right-6 text-gray-300 group-hover:text-gray-400" aria-hidden="true">
-      <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
-      </svg>
-    </span>
-  </div>
 
-  <div class="sm:rounded-tr-lg relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500">
-    <div>
-      <span class="rounded-lg inline-flex p-3 bg-blue-100 text-blue-800 ring-4 ring-white">
-        <%= show_svg('outline/inbox') %>
-      </span>
+    <%= form.fields_for :url_link, UrlLink.new do |url_form| %>
+    <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
+      <div class="md:grid md:grid-cols-3 md:gap-6">
+        <div class="md:col-span-1">
+          <h3 class="text-lg font-medium leading-6 text-gray-900">Link target</h3>
+          <p class="mt-1 text-sm text-gray-500">Specific settings for your URL link target.</p>
+        </div>
+        <div class="mt-5 md:mt-0 md:col-span-2">
+          <div class="grid grid-cols-6 gap-6">
+            <div class="col-span-12 sm:col-span-5 lg:col-span-3">
+              <%= url_form.label :url, class: "block text-sm font-medium text-gray-700" %>
+              <%= url_form.url_field :url, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="mt-8">
-      <h3 class="text-lg font-medium">
-        <%= link_to new_email_link_path, class: "focus:outline-none" do %>
-          <span class="absolute inset-0" aria-hidden="true"></span>
-          Email link
-        <% end %>
-      </h3>
-      <p class="mt-2 text-sm text-gray-500">An email link lets you link to a prepopulated email with an address, subject and body text. All the scanner has to do is hit send.</p>
-    </div>
-    <span class="pointer-events-none absolute top-6 right-6 text-gray-300 group-hover:text-gray-400" aria-hidden="true">
-      <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
-      </svg>
-    </span>
-  </div>
+    <% end %>
 
-  <div class="sm:rounded-tr-none relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500">
-    <div>
-      <span class="rounded-lg inline-flex p-3 bg-fuchsia-100 text-fuchsia-800 ring-4 ring-white">
-        <%= show_svg('outline/wifi') %>
-      </span>
+    <div class="flex justify-end">
+      <%= link_to 'Cancel', :back, class: "bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+      <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
     </div>
-    <div class="mt-8">
-      <h3 class="text-lg font-medium">
-        <%= link_to new_wifi_link_path, class: "focus:outline-none" do %>
-          <span class="absolute inset-0" aria-hidden="true"></span>
-          WiFi link
-        <% end %>
-      </h3>
-      <p class="mt-2 text-sm text-gray-500">A WiFi link let's you share the settings for a WiFi network so that the user only has to scan the code to connect.</p>
-    </div>
-    <span class="pointer-events-none absolute top-6 right-6 text-gray-300 group-hover:text-gray-400" aria-hidden="true">
-      <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
-      </svg>
-    </span>
   </div>
-
-  <div class="sm:rounded-tr-none relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500">
-    <div>
-      <span class="rounded-lg inline-flex p-3 bg-amber-100 text-amber-800 ring-4 ring-white">
-        <%= show_svg('outline/phone') %>
-      </span>
-    </div>
-    <div class="mt-8">
-      <h3 class="text-lg font-medium">
-        <%= link_to new_telephone_link_path, class: "focus:outline-none" do %>
-          <span class="absolute inset-0" aria-hidden="true"></span>
-          Telephone link
-        <% end %>
-      </h3>
-      <p class="mt-2 text-sm text-gray-500">A telephone link let's you specify a phone number for the scanner to call.</p>
-    </div>
-    <span class="pointer-events-none absolute top-6 right-6 text-gray-300 group-hover:text-gray-400" aria-hidden="true">
-      <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
-      </svg>
-    </span>
-  </div>
-
-  <div class="sm:rounded-tr-none relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500">
-    <div>
-      <span class="rounded-lg inline-flex p-3 bg-slate-100 text-slate-800 ring-4 ring-white">
-        <%= show_svg('outline/chat-alt') %>
-      </span>
-    </div>
-    <div class="mt-8">
-      <h3 class="text-lg font-medium">
-        <%= link_to new_sms_link_path, class: "focus:outline-none" do %>
-          <span class="absolute inset-0" aria-hidden="true"></span>
-          SMS link
-        <% end %>
-      </h3>
-      <p class="mt-2 text-sm text-gray-500">An SMS link let's you link to a pre-specified SMS for the scanner to send.</p>
-    </div>
-    <span class="pointer-events-none absolute top-6 right-6 text-gray-300 group-hover:text-gray-400" aria-hidden="true">
-      <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
-      </svg>
-    </span>
-  </div>
-
-  <div class="sm:rounded-tr-none relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500">
-    <div>
-      <span class="rounded-lg inline-flex p-3 bg-rose-100 text-rose-800 ring-4 ring-white">
-        <%= show_svg('outline/user') %>
-      </span>
-    </div>
-    <div class="mt-8">
-      <h3 class="text-lg font-medium">
-        <%= link_to new_contact_link_path, class: "focus:outline-none" do %>
-          <span class="absolute inset-0" aria-hidden="true"></span>
-          Contact link
-        <% end %>
-      </h3>
-      <p class="mt-2 text-sm text-gray-500">Specify contact details for quick entry into the scanners contact list.</p>
-    </div>
-    <span class="pointer-events-none absolute top-6 right-6 text-gray-300 group-hover:text-gray-400" aria-hidden="true">
-      <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
-      </svg>
-    </span>
-  </div>
-</div>
+<% end %>	

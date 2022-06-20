@@ -4,10 +4,10 @@
     <div class="mt-6 ml-auto flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
       <%= render InlineButtonGroupComponent.new do |c| %>
         <% if can? :update, link %>
-          <% c.with_button(link: url_for([:edit, @link.link_data]), style: 'white').with_content("Edit this link") %>
+          <% c.with_button(link: edit_link_path(@link), style: 'white').with_content("Edit this link") %>
         <% end %>
         <% if can? :destroy, link %>
-          <% c.with_button(link: url_for(@link.link_data), method: :delete, style: 'red').with_content("Delete this link") %>
+          <% c.with_button(link: link_path(@link), method: :delete, style: 'red').with_content("Delete this link") %>
         <% end %>
       <% end %>
     </div>

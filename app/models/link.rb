@@ -1,8 +1,8 @@
 class Link < ApplicationRecord
   validates :name, presence: true
   belongs_to :user
-  belongs_to :url_link
-  accepts_nested_attributes_for :link_data
+  belongs_to :url_link, dependent: :destroy
+  accepts_nested_attributes_for :url_link
   has_many :events, dependent: :destroy
   has_paper_trail
   delegate :summary, :barcode_data, to: :link_data
@@ -46,5 +46,6 @@ class Link < ApplicationRecord
 
     self.send reflection_assignment_method(p.class), p
   end
+
 end
 

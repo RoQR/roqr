@@ -1,7 +1,7 @@
 class UrlLink < LinkData
   self.table_name = 'url_links'
-  include LinkDataModelConcern
   validates :url, presence: true
+  has_one :link
 
   def summary
     url

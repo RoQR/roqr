@@ -77,12 +77,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_20_150133) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "dynamic", default: false, null: false
-    t.bigint "contact_link_id"
-    t.bigint "email_link_id"
-    t.bigint "sms_link_id"
-    t.bigint "telephone_link_id"
-    t.bigint "url_link_id"
-    t.bigint "wifi_link_id"
+    t.uuid "contact_link_id"
+    t.uuid "email_link_id"
+    t.uuid "sms_link_id"
+    t.uuid "telephone_link_id"
+    t.uuid "url_link_id"
+    t.uuid "wifi_link_id"
     t.index ["contact_link_id"], name: "index_links_on_contact_link_id"
     t.index ["email_link_id"], name: "index_links_on_email_link_id"
     t.index ["sms_link_id"], name: "index_links_on_sms_link_id"
