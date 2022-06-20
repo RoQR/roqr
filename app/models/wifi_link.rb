@@ -1,5 +1,6 @@
-class WifiLink < ApplicationRecord
-  include LinkDataModelConcern
+class WifiLink < LinkData
+  self.table_name = 'wifi_links'
+  has_one :link
 
   def summary
     ssid

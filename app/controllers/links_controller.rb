@@ -62,7 +62,13 @@ class LinksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def link_params
-      params.require(:link).permit(:id, :user_id, :name, :dynamic, url_link_attributes: [:id, :url], telephone_link_attributes: [:number])
+      params.require(:link).permit(:id, :user_id, :name, :dynamic, 
+                                   contact_link_attributes: [:id, :first_name, :last_name, :phone, :email, :website, :company, :title, :address, :birthday, :note],
+                                   email_link_attributes: [:id, :email_address, :subject, :body],
+                                   sms_link_attributes: [:number, :body],
+                                   telephone_link_attributes: [:number], 
+                                   url_link_attributes: [:id, :url], 
+                                   wifi_link_attributes: [:id, :ssid, :password, :hidden, :protocol])
     end
 
     def event_from_browser

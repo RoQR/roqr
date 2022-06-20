@@ -1,9 +1,13 @@
 class Link < ApplicationRecord
   validates :name, presence: true
   belongs_to :user
+  belongs_to :contact_link, dependent: :destroy, optional: true
+  belongs_to :email_link, dependent: :destroy, optional: true
+  belongs_to :sms_link, dependent: :destroy, optional: true
   belongs_to :telephone_link, dependent: :destroy, optional: true
   belongs_to :url_link, dependent: :destroy, optional: true
-  accepts_nested_attributes_for :telephone_link, :url_link
+  belongs_to :wifi_link, dependent: :destroy, optional: true
+  accepts_nested_attributes_for :contact_link, :email_link, :sms_link, :telephone_link, :url_link, :wifi_link
   has_many :events, dependent: :destroy
   has_paper_trail
   delegate :summary, :barcode_data, to: :link_data

@@ -1,5 +1,6 @@
-class EmailLink < ApplicationRecord
-include LinkDataModelConcern
+class EmailLink < LinkData
+  self.table_name = 'email_links'
+  has_one :link
   include ERB::Util
 
   def summary

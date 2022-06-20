@@ -1,5 +1,6 @@
-class SmsLink < ApplicationRecord
-  include LinkDataModelConcern
+class SmsLink < LinkData
+  self.table_name = 'sms_links'
+  has_one :link
   include ERB::Util
 
   def summary
