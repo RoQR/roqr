@@ -1,8 +1,14 @@
 require "test_helper"
 
 class LinksControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+  include Warden::Test::Helpers
+
   setup do
-    @link = links(:one)
+    @user = create(:user)
+    sign_in @user
+    @user.confirm
+    @link = create(:link, :url, user: @user)
   end
 
   test "should get index" do
@@ -16,11 +22,12 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create link" do
+    @link = build(:link, :url)
     assert_difference("Link.count") do
-      post links_url, params: { link: { id: @link.id, name: @link.name, url: @link.url } }
+      post links_url, params: { link: { name: @link.name, url_link_attributes: { url: @link.url_link } } }
     end
 
-    assert_redirected_to link_url(Link.last)
+    assert_redirected_to links_url
   end
 
   test "should show link" do
@@ -34,7 +41,7 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update link" do
-    patch link_url(@link), params: { link: { id: @link.id, name: @link.name, url: @link.url } }
+    patch link_url(@link), params: { link: { id: @link.id, name: @link.name, url_link_attributes: { url: @link.url_link } } }
     assert_redirected_to link_url(@link)
   end
 

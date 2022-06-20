@@ -29,6 +29,7 @@ gem 'victor'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "factory_bot_rails", "~> 6.2"
 end
 
 group :development do
@@ -59,3 +60,5 @@ gem "vcardigan", "~> 0.0.9"
 gem "lockbox", "~> 1.0"
 
 gem "blind_index", "~> 2.3"
+
+

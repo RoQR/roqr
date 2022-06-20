@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :links do
     get :scan, on: :member
   end
-  resources :users, except: [:index, :new]
+  resources :users, only: [:edit, :create, :update, :destroy]
   resources :events, only: :index
   get :marketing, to: 'marketing#index'
   get :qr, to: 'qr#show', format: :svg
