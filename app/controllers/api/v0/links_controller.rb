@@ -1,15 +1,16 @@
 class Api::V0::LinksController < Api::V0::BaseController
-  before_action :set_link, only: [:show, :update, :destroy] 
+  load_and_authorize_resource
 
   def index
-    @links = @user.links
+    current_user.requests.create(method: :get, requestable_type: "Link")
   end
 
   def show
+    current_user.requests.create(method: :get, requestable_type: "Link")
   end
 
   def create
-    @link = @user.links.build(link_params)
+    current_user.requests.create(method: :post, requestable_type: "Link")
     if @link.save
       render :show, status: :created
     else
@@ -18,6 +19,7 @@ class Api::V0::LinksController < Api::V0::BaseController
   end
 
   def update
+    current_user.requests.create(method: :put, requestable_type: "Link")
     if @link.update(link_params)
       render :show, status: :ok
     else
@@ -26,15 +28,12 @@ class Api::V0::LinksController < Api::V0::BaseController
   end
 
   def destroy
+    current_user.requests.create(method: :delete, requestable_type: "Link")
     @link.destroy
     render :show, status: :ok
   end 
   
   private
-
-    def set_link
-      @link = link.find(params[:id])
-    end
 
     def link_params
       params.require(:link).permit(:id, :name, :user_id, :dynamic)

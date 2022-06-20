@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v0 do
       defaults format: :json do
+        resources :events, only: :index
         resources :links, only: [:index, :create, :show, :update, :destroy]
         resources :users, only: [:show, :update, :destroy]
       end
