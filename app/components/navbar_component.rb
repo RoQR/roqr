@@ -2,7 +2,6 @@
 
 class NavbarComponent < ViewComponent::Base
   include IconsHelper
-  include UsersHelper
 
   def initialize(user:)
     @user = user
