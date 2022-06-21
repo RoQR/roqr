@@ -58,13 +58,21 @@
             <div class="grid grid-cols-6 gap-6">
               <div class="col-span-6 sm:col-span-4">
                 <%= form.label :name, class: "block text-sm font-medium text-gray-700" %>
-                <%= form.text_field :name, class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+                <% if can? :edit, @user.organization %>
+                  <%= form.text_field :name, class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+                <% else %>
+                  <%= form.text_field :name, class: "mt-1 shadow-sm bg-gray-100 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", disabled: true %>
+                <% end %>
               </div>
 
             </div>
         </div>
         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-          <%= form.submit "Save", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+          <% if can? :edit, @user.organization %>
+            <%= form.submit "Save", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+            <% else %>
+            <%= form.submit "Save", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-gray-500 bg-gray-300", disabled: true %>
+            <% end %>
         <% end %>
         </div>
       </div>
