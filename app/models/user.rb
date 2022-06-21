@@ -5,13 +5,8 @@ class User < ApplicationRecord
     :recoverable, :rememberable, :validatable,
     :confirmable, :omniauthable, omniauth_providers: [:github, :google_oauth2]
 
-  has_many :links, dependent: :destroy
-  has_many :requests, dependent: :destroy
-  has_encrypted :private_api_key
-  blind_index :private_api_key
-  validates :private_api_key, uniqueness: true, allow_blank: true
-
-  before_create :set_private_api_key
+  belongs_to :organization
+  accepts_nested_attributes_for :organization
 
   def gravatar_url
     gravatar_id = Digest::MD5::hexdigest(email.downcase)
@@ -36,9 +31,4 @@ class User < ApplicationRecord
     confirmed? ? super : false
   end
 
-  private
-
-  def set_private_api_key
-    self.private_api_key = SecureRandom.hex if self.private_api_key.nil?
-  end
 end

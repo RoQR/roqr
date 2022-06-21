@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_20_200733) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_21_215310) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -83,14 +83,26 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_20_200733) do
     t.uuid "telephone_link_id"
     t.uuid "url_link_id"
     t.uuid "wifi_link_id"
+    t.uuid "organization_id"
     t.index ["contact_link_id"], name: "index_links_on_contact_link_id"
     t.index ["email_link_id"], name: "index_links_on_email_link_id"
+    t.index ["organization_id"], name: "index_links_on_organization_id"
     t.index ["sms_link_id"], name: "index_links_on_sms_link_id"
     t.index ["telephone_link_id"], name: "index_links_on_telephone_link_id"
     t.index ["url_link_id"], name: "index_links_on_url_link_id"
     t.index ["user_id"], name: "index_links_on_user_id"
     t.index ["wifi_link_id"], name: "index_links_on_wifi_link_id"
     t.check_constraint "((contact_link_id IS NOT NULL)::integer + (email_link_id IS NOT NULL)::integer + (sms_link_id IS NOT NULL)::integer + (telephone_link_id IS NOT NULL)::integer + (url_link_id IS NOT NULL)::integer + (wifi_link_id IS NOT NULL)::integer) = 1", name: "link_data_xor"
+  end
+
+  create_table "organizations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.text "users"
+    t.text "private_api_key_ciphertext"
+    t.string "private_api_key_bidx"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["private_api_key_bidx"], name: "index_organizations_on_private_api_key_bidx", unique: true
   end
 
   create_table "requests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -139,8 +151,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_20_200733) do
     t.string "uid"
     t.text "private_api_key_ciphertext"
     t.string "private_api_key_bidx"
+    t.uuid "organization_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["organization_id"], name: "index_users_on_organization_id"
     t.index ["private_api_key_bidx"], name: "index_users_on_private_api_key_bidx", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -1,6 +1,6 @@
 class Link < ApplicationRecord
   validates :name, presence: true
-  belongs_to :user
+  belongs_to :organization
   belongs_to :contact_link, dependent: :destroy, optional: true
   belongs_to :email_link, dependent: :destroy, optional: true
   belongs_to :sms_link, dependent: :destroy, optional: true

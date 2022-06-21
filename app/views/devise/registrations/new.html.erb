@@ -13,13 +13,18 @@ Or
   <input type="hidden" name="remember" value="true">
   <div class="rounded-md shadow-sm -space-y-px">
     <div>
-      <%= f.label :name, class: "sr-only" %>
       <%= f.text_field :name, required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Name" %>
     </div>
     <div>
-      <%= f.label :email, class: "sr-only" %>
       <%= f.email_field :email, autocomplete: "email", required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-:-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Email address" %>
     </div>
+    <div>
+      <%= f.fields_for :organization, resource.organization || Organization.new do |o| %>
+        <%= o.hidden_field :id %>
+        <%= o.text_field :name, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Organization name" %>
+      <% end %>
+    </div>
+    <div>
   </div>
     <div class="text-sm">
       <%= link_to "Resend confirmation email", new_user_confirmation_path, class: "font-medium text-indigo-600 hover:text-indigo-500" %>

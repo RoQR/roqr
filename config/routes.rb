@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get :scan, on: :member
   end
   resources :users, only: [:edit, :create, :update, :destroy]
+  resources :organizations, only: [:update]
   resources :events, only: :index
   get :marketing, to: 'marketing#index'
 
