@@ -97,12 +97,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_215310) do
 
   create_table "organizations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
-    t.text "users"
-    t.text "private_api_key_ciphertext"
-    t.string "private_api_key_bidx"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["private_api_key_bidx"], name: "index_organizations_on_private_api_key_bidx", unique: true
   end
 
   create_table "requests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
