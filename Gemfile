@@ -61,3 +61,5 @@ gem "lockbox", "~> 1.0"
 gem "blind_index", "~> 2.3"
 
 
+
+gem "rqrcode", "~> 2.1"

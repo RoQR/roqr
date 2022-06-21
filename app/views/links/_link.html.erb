@@ -17,7 +17,7 @@
       <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">QR Code</dt>
 
-        <dd data-controller="qr" data-qr-barcode-data-value="<%= barcode_data(link) %>"class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <dd data-controller="qr" data-qr-id-value="<%= link.id %>"class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <div class="flex flex-row">
           <div class="flex flex-col">
           <label>Fill</label>
@@ -29,7 +29,7 @@
           </div>
             
           </div>
-          <%= image_tag(qr_path(data: barcode_data(link), format: :svg), "data-qr-target": "image") %>
+          <%= image_tag(link_path(link, format: :svg), "data-qr-target": "image") %>
         </dd>
       </div>
     </dl>

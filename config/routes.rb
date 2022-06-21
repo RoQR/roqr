@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :create, :update, :destroy]
   resources :events, only: :index
   get :marketing, to: 'marketing#index'
-  get :qr, to: 'qr#show', format: :svg
 
   authenticated :user do
     root to: 'links#index', as: :authenticated_root

@@ -9,6 +9,13 @@ class LinksController < ApplicationController
   def show
     add_breadcrumb "All links", links_path
     add_breadcrumb @link.name, @link 
+    respond_to do |format|
+      format.svg {
+        @params = params.permit(:data, :format, :fill, :color)
+        render inline: QrGenerator.gen(@link.barcode_data, fill: params[:fill] || '#fff', color: params[:color] || '#000')
+      }
+      format.html { render :show }
+    end
   end
 
   def scan
