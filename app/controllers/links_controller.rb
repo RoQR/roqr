@@ -1,20 +1,24 @@
 class LinksController < ApplicationController
-  before_action :authenticate_user!, except: :scan
+  before_action :authenticate_user!, except: [:scan, :show]
   load_and_authorize_resource
-  skip_authorize_resource only: :scan
+  skip_authorize_resource only: [:scan, :show]
 
   def index
   end
 
   def show
-    add_breadcrumb "All links", links_path
-    add_breadcrumb @link.name, @link 
     respond_to do |format|
       format.svg {
-        @params = params.permit(:data, :format, :fill, :color)
+        @params = params.permit(:id, :format, :fill, :color)
         render inline: QrGenerator.gen(@link.barcode_data, fill: params[:fill] || '#fff', color: params[:color] || '#000')
       }
-      format.html { render :show }
+      format.html { 
+        authenticate_user!
+        authorize! :show, @link
+        add_breadcrumb "All links", links_path
+        add_breadcrumb @link.name, @link 
+        render :show
+      }
     end
   end
 
