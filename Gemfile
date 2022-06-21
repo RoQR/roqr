@@ -65,3 +65,5 @@ gem "blind_index", "~> 2.3"
 
 
 gem "rqrcode", "~> 2.1"
+
+gem "devise_invitable", "~> 2.0"
