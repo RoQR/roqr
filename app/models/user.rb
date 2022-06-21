@@ -7,6 +7,11 @@ class User < ApplicationRecord
 
   belongs_to :organization
   accepts_nested_attributes_for :organization
+  has_encrypted :private_api_key
+  blind_index :private_api_key
+  validates :private_api_key, uniqueness: true, allow_blank: true
+  before_create :set_private_api_key
+  has_many :requests, dependent: :destroy
 
   def gravatar_url
     gravatar_id = Digest::MD5::hexdigest(email.downcase)
@@ -31,4 +36,9 @@ class User < ApplicationRecord
     confirmed? ? super : false
   end
 
+  private 
+
+  def set_private_api_key
+    self.private_api_key = SecureRandom.hex if self.private_api_key.nil?
+  end
 end
