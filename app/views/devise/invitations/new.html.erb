@@ -2,7 +2,6 @@
 
 <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :organization_id, value: current_user.organization.id, readonly: true %>
 
   <% resource.class.invite_key_fields.each do |field| -%>
     <div class="field">

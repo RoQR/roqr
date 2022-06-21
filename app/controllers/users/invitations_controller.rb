@@ -19,6 +19,12 @@ class Users::InvitationsController < Devise::InvitationsController
   end
 
   private
+
+  def invite_resource
+    super do |user|
+      user.organization = current_user.organization
+    end
+  end
   
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:invite, keys: [:organization_id])
