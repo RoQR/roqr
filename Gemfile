@@ -75,3 +75,5 @@ gem "stripe", "~> 6.4"
 gem "stripe-rails", "~> 2.3"
 
 gem "bcrypt", "~> 3.1"
+
+gem "chartkick", "~> 4.2"

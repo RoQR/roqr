@@ -38,4 +38,7 @@
       </tbody>
     </table>
   </div>
+  <% if Flipper.enabled? :charts, current_user %>
+    <%= geo_chart @events.group(:country).count %>
+  <% end %>
 <% end %>
