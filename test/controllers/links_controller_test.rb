@@ -40,6 +40,11 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should scan link" do
+    get scan_link_url(@link)
+    assert_redirected_to @link.link_data.url
+  end
+
   test "should update link" do
     patch link_url(@link), params: { link: { id: @link.id, name: @link.name, url_link_attributes: { url: @link.url_link } } }
     assert_redirected_to link_url(@link)
