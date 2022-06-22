@@ -3,6 +3,7 @@
 class Users::InvitationsController < Devise::InvitationsController
   before_action :configure_permitted_parameters
   def new
+    authorize! :invite, User
     super
   end
 
@@ -11,6 +12,7 @@ class Users::InvitationsController < Devise::InvitationsController
   end
 
   def create
+    authorize! :invite, User
     super
   end
 
