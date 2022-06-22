@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "account@roqr.app"
+  default from: "account@m.roqr.app"
   layout "mailer"
 end
