@@ -1,16 +1,96 @@
-<h2><%= t "devise.invitations.new.header" %></h2>
-
-<%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <% resource.class.invite_key_fields.each do |field| -%>
-    <div class="field">
-      <%= f.label field %><br />
-      <%= f.text_field field %>
-    </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit t("devise.invitations.new.submit_button") %>
+<h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Send invitation</h2>
+<% flash.each do |type, msg| %>
+  <div class="py-3">
+    <%= render AlertComponent.new(status: type).with_content(msg) %>
   </div>
+<% end %>
+</div>
+<%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post, class: "mt-8 space-y-6" }) do |f| %>
+  <div class="rounded-md shadow-sm">
+
+  <% resource.class.invite_key_fields.each do |field| %>
+    <div class="field">
+      <%= f.text_field field, class: "appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: field %>
+    </div>
+  <% end %>
+
+<fieldset class="space-y-5">
+  <legend class="sr-only">Permissions</legend>
+  <div class="relative flex items-start">
+    <div class="flex items-center h-5">
+      <%= f.check_box :can_create_links, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+    </div>
+    <div class="ml-3 text-sm">
+      <%= f.label :can_create_links, "Create links" %>
+      <p id="comments-description" class="text-gray-500">User can create new links</p>
+    </div>
+  </div>
+  <div class="relative flex items-start">
+    <div class="flex items-center h-5">
+      <%= f.check_box :can_edit_links, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+    </div>
+    <div class="ml-3 text-sm">
+      <%= f.label :can_edit_links, "Edit links" %>
+      <p id="comments-description" class="text-gray-500">User can edit existing links</p>
+    </div>
+  </div>
+  <div class="relative flex items-start">
+    <div class="flex items-center h-5">
+      <%= f.check_box :can_delete_links, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+    </div>
+    <div class="ml-3 text-sm">
+      <%= f.label :can_delete_links, "Delete links" %>
+      <p id="comments-description" class="text-gray-500">User can delete existing links</p>
+    </div>
+  </div>
+  <div class="relative flex items-start">
+    <div class="flex items-center h-5">
+      <%= f.check_box :can_edit_organization, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+    </div>
+    <div class="ml-3 text-sm">
+      <%= f.label :can_edit_organization, "Edit organization" %>
+      <p id="comments-description" class="text-gray-500">User can edit organization settings</p>
+    </div>
+  </div>
+  <div class="relative flex items-start">
+    <div class="flex items-center h-5">
+      <%= f.check_box :can_delete_organization, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+    </div>
+    <div class="ml-3 text-sm">
+      <%= f.label :can_delete_organization, "Delete organization" %>
+      <p id="comments-description" class="text-gray-500">User can delete organization</p>
+    </div>
+  </div>
+  <div class="relative flex items-start">
+    <div class="flex items-center h-5">
+      <%= f.check_box :can_invite_users, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+    </div>
+    <div class="ml-3 text-sm">
+      <%= f.label :can_invite_users, "Invite users" %>
+      <p id="comments-description" class="text-gray-500">User can invite other users to the organization</p>
+    </div>
+  </div>
+  <div class="relative flex items-start">
+    <div class="flex items-center h-5">
+      <%= f.check_box :can_edit_users, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+    </div>
+    <div class="ml-3 text-sm">
+      <%= f.label :can_edit_users, "Edit users" %>
+      <p id="comments-description" class="text-gray-500">User can edit settings for other users</p>
+    </div>
+  </div>
+  <div class="relative flex items-start">
+    <div class="flex items-center h-5">
+      <%= f.check_box :can_delete_users, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+    </div>
+    <div class="ml-3 text-sm">
+      <%= f.label :can_delete_users, "Delete users" %>
+      <p id="comments-description" class="text-gray-500">User can delete other users</p>
+    </div>
+  </div>
+</fieldset>
+
+<div class="mt-4">
+  <%= f.submit "Send invitation", class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+</div>
 <% end %>

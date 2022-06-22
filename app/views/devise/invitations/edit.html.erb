@@ -1,22 +1,24 @@
-<h2><%= t "devise.invitations.edit.header" %></h2>
-
-<%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :invitation_token, readonly: true %>
-
-  <% if f.object.class.require_password_on_accepting %>
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password %>
+<h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Set your password</h2>
+<% flash.each do |type, msg| %>
+  <div class="py-3">
+    <%= render AlertComponent.new(status: type).with_content(msg) %>
+  </div>
+<% end %>
+</div>
+<%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put, class: "mt-8 space-y-6" }) do |f| %>
+  <%= f.hidden_field :invitation_token %>
+  <div class="rounded-md shadow-sm -space-y-px">
+    <div>
+      <%= f.label :password, class: "sr-only" %>
+      <%= f.password_field :password, autocomplete: "new-password", required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Password" %>
     </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation %>
+    <div>
+      <%= f.label :password_confirmation, class: "sr-only" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Confirm password" %>
     </div>
-  <% end %>
+  </div>
 
-  <div class="actions">
-    <%= f.submit t("devise.invitations.edit.submit_button") %>
+  <div>
+    <%= f.submit "Set my password", class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
   </div>
 <% end %>

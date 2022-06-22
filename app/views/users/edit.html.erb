@@ -55,15 +55,24 @@
           <%= form_with(model: @user.organization, url: organization_path(@user.organization)) do |form| %>
             <div class="grid grid-cols-6 gap-6">
               <div class="col-span-6 sm:col-span-4">
-                <%= form.label :name, class: "block text-sm font-medium text-gray-700" %>
+                <%= form.label :name, "Organization name", class: "block text-sm font-medium text-gray-700" %>
                 <% if can? :edit, @user.organization %>
                   <%= form.text_field :name, class: "mt-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
                 <% else %>
                   <%= form.text_field :name, class: "mt-1 shadow-sm bg-gray-100 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", disabled: true %>
                 <% end %>
               </div>
+              <% if can? :invite, User %>
+                <div class="col-span-6">
+                  <%= link_to new_user_invitation_path, class: "text-indigo-500 hover:text-indigo-600 flex" do %>
+                    Invite member
+                    <span class="ml-3">
+                      <%= show_svg('outline/user-add') %>
+                    </span>
+                  <% end %>
+                </div>
+              <% end %>
             </div>
-            <%= link_to 'Invite user', new_user_invitation_path %>
         </div>
         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
           <% if can? :edit, @user.organization %>
