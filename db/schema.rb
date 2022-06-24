@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_24_202034) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_24_215049) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -83,6 +83,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_24_202034) do
     t.uuid "url_link_id"
     t.uuid "wifi_link_id"
     t.uuid "organization_id"
+    t.string "color", default: "#000000", null: false
+    t.string "fill", default: "#ffffff", null: false
     t.index ["contact_link_id"], name: "index_links_on_contact_link_id"
     t.index ["email_link_id"], name: "index_links_on_email_link_id"
     t.index ["organization_id"], name: "index_links_on_organization_id"

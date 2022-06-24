@@ -16,20 +16,8 @@
     <dl class="sm:divide-y sm:divide-gray-200">
       <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">QR Code</dt>
-
-        <dd data-controller="qr" data-qr-id-value="<%= link.id %>"class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <div class="flex flex-row">
-          <div class="flex flex-col">
-          <label>Fill</label>
-            <input data-action="input->qr#updateImage" data-qr-target="fill" type="color" value="#ffffff">
-            </div>
-          <div class="flex flex-col">
-            <label>Color</label>
-            <input data-action="input->qr#updateImage" data-qr-target="color" type="color" value="#000000">
-          </div>
-            
-          </div>
-          <%= image_tag(link_path(link, format: :svg), "data-qr-target": "image") %>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= image_tag link_path(link, format: :svg) %>
         </dd>
       </div>
     </dl>
