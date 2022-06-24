@@ -23,11 +23,11 @@
           <div class="flex flex-row">
             <div class="flex flex-col">
               <%= form.label :fill, class: "text-sm font-medium text-gray-900" %>
-              <%= form.color_field :fill %>
+              <%= form.color_field :fill, value: link.fill %>
             </div>
             <div class="flex flex-col">
               <%= form.label :color, class: "text-sm font-medium text-gray-900" %>
-              <%= form.color_field :color %>
+              <%= form.color_field :color, value: link.color %>
             </div>
           </div>
         </div>
