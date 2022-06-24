@@ -13,6 +13,8 @@ class User < ApplicationRecord
   before_create :set_private_api_key
   has_many :requests, dependent: :destroy
 
+  before_validation :maybe_create_org
+
   def gravatar_url
     gravatar_id = Digest::MD5::hexdigest(email.downcase)
     "http://secure.gravatar.com/avatar/#{gravatar_id}?d=identicon"
@@ -42,6 +44,10 @@ class User < ApplicationRecord
   end
 
   private 
+
+  def maybe_create_org
+    self.organization = Organization.new if self.organization.nil?
+  end
 
   def set_private_api_key
     self.private_api_key = SecureRandom.hex if self.private_api_key.nil?
