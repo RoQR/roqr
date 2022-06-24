@@ -19,38 +19,36 @@ class Link < ApplicationRecord
     # for a given class, returns the appropriate symbol
     # to pass to the ActiveRecord method reflect_on_association
     def reflection_symbol(klass)
-      klass.to_s.split("::").last.underscore.to_sym
+      klass.to_s.split('::').last.underscore.to_sym
     end
 
     # for all subclasses of the given base class, returns a
     # list of defined associations within the current class
     def association_methods(mti_base_class)
-      mti_base_class.subclasses.collect{|p|
+      mti_base_class.subclasses.collect do |p|
         assoc = self.class.reflect_on_association(reflection_symbol(p))
         assoc ? assoc.name : nil
-      }.compact
+      end.compact
     end
 
     # invoke each association method and return the first
     # that is not null
-    association_methods(LinkData).collect{|a|
-      self.send a
-    }.inject do |a, b| 
+    association_methods(LinkData).collect do |a|
+      send a
+    end.inject do |a, b|
       a || b
-    end 
+    end
   end
 
   def link_data=(p)
     def reflection_symbol(klass)
-      klass.to_s.split("::").last.underscore.to_sym
+      klass.to_s.split('::').last.underscore.to_sym
     end
 
     def reflection_assignment_method(klass)
-      Link.reflect_on_association(reflection_symbol(klass)).name.to_s + "="
+      Link.reflect_on_association(reflection_symbol(klass)).name.to_s + '='
     end
 
-    self.send reflection_assignment_method(p.class), p
+    send reflection_assignment_method(p.class), p
   end
-
 end
-

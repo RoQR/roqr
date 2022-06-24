@@ -3,7 +3,8 @@ FactoryBot.define do
     "test#{n}@example.com"
   end
   factory :user do
-    name {"Test User"}
+    name { 'Test User' }
     email
+    organization
   end
 end

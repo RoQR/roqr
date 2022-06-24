@@ -1,12 +1,12 @@
 FactoryBot.define do
   factory :url_link do
-    url { "https://google.com" }
+    url { 'https://google.com' }
   end
 
   factory :link do
-    name { "Link" }
+    name { 'Link' }
     dynamic { false }
-    user
+    organization
 
     trait :url do
       url_link

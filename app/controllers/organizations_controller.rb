@@ -5,7 +5,7 @@ class OrganizationsController < ApplicationController
   def update
     respond_to do |format|
       if @organization.update(organization_params)
-        format.html { redirect_to edit_user_url(current_user), notice: "Your organization has been updated." }
+        format.html { redirect_to edit_user_url(current_user), notice: 'Your organization has been updated.' }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -13,8 +13,9 @@ class OrganizationsController < ApplicationController
   end
 
   private
-    # Only allow a list of trusted parameters through.
-    def organization_params
-      params.require(:organization).permit(:name)
-    end
+
+  # Only allow a list of trusted parameters through.
+  def organization_params
+    params.require(:organization).permit(:name)
+  end
 end
