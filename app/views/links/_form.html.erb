@@ -6,20 +6,20 @@
           <h3 class="text-lg font-medium leading-6 text-gray-900">Link settings</h3>
           <p class="mt-1 text-sm text-gray-500">General settings for the link</p>
         </div>
-        <div class="mt-5 md:mt-0 md:col-span-2">
+        <div class="mt-5 mt-0 md:col-span-2">
           <div>
             <%= form.label :name, class: "block text-sm font-medium text-gray-700" %>
             <div class="mt-1">
               <%= form.text_field :name, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", required: true %>
             </div>
           </div>
-            <div class="flex justify-between flex-row items-center">
-              <span class="flex-grow flex flex-col">
-                <%= form.label :dynamic, class: "text-sm font-medium text-gray-900" %>
-                <span class="text-sm text-gray-500" id="availability-description">Create a dynamic link?</span>
-              </span>
-              <%= form.check_box :dynamic, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
-            </div>
+          <div class="flex justify-between flex-row items-center mt-5">
+            <span class="flex-grow flex flex-col">
+              <%= form.label :dynamic, class: "text-sm font-medium text-gray-900" %>
+              <span class="text-sm text-gray-500" id="availability-description">Create a dynamic link?</span>
+            </span>
+            <%= form.check_box :dynamic, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+          </div>
         </div>
       </div>
     </div>

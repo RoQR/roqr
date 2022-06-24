@@ -17,7 +17,9 @@ class Users::InvitationsController < Devise::InvitationsController
   end
 
   def update
-    super
+    super do |user|
+      Notification.create(recipient: user.invited_by, actor: user, action: 'joined', notifiable: user)
+    end
   end
 
   private
@@ -27,9 +29,10 @@ class Users::InvitationsController < Devise::InvitationsController
       user.organization = current_user.organization
     end
   end
-  
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:invite, keys: [:can_create_links, :can_edit_links, :can_delete_links, :can_edit_organization, :can_delete_organization, :can_invite_users, :can_edit_users, :can_delete_users, :organization_id])
-  end
 
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:invite,
+                                      keys: %i[can_create_links can_edit_links can_delete_links can_edit_organization can_delete_organization
+                                               can_invite_users can_edit_users can_delete_users organization_id])
+  end
 end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class LinkCardComponent < ViewComponent::Base
+  include IconsHelper
   include LinksHelper
 
   def initialize(link:, can_edit: false, can_delete: false)
@@ -48,7 +49,7 @@ class LinkCardComponent < ViewComponent::Base
 
   def badge_text
     case type
-    when'url'
+    when 'url'
       'Url'
     when 'email'
       'Email'

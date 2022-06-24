@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_24_133456) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_24_202034) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -94,6 +94,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_24_133456) do
     t.check_constraint "((contact_link_id IS NOT NULL)::integer + (email_link_id IS NOT NULL)::integer + (sms_link_id IS NOT NULL)::integer + (telephone_link_id IS NOT NULL)::integer + (url_link_id IS NOT NULL)::integer + (wifi_link_id IS NOT NULL)::integer) = 1", name: "link_data_xor"
   end
 
+  create_table "notifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "recipient_id"
+    t.uuid "actor_id"
+    t.datetime "read_at"
+    t.string "action"
+    t.uuid "notifiable_id"
+    t.string "notifiable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "organizations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -153,7 +164,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_24_133456) do
     t.datetime "invitation_accepted_at"
     t.integer "invitation_limit"
     t.string "invited_by_type"
-    t.bigint "invited_by_id"
+    t.uuid "invited_by_id"
     t.integer "invitations_count", default: 0
     t.boolean "can_edit_links", default: true
     t.boolean "can_delete_links", default: true
