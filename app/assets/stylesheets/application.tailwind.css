@@ -2,12 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+@keyframes flash-countdown {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
   }
 }
-
-*/

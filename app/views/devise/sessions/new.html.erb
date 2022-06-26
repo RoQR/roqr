@@ -3,12 +3,11 @@
 Or
 <%= link_to "sign up now", new_user_registration_path, class: "font-medium text-indigo-600 hover:text-indigo-500"  %>
 </p>
-<% flash.each do |type, msg| %>
+<% flash.each do |type, data| %>
   <div class="py-3">
-    <%= render AlertComponent.new(status: type).with_content(msg) %>
+    <%= render FlashComponent.new(type: type, data: data) %>
   </div>
 <% end %>
-</div>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "mt-8 space-y-6" }) do |f| %>
   <input type="hidden" name="remember" value="true">
   <div class="rounded-md shadow-sm -space-y-px">

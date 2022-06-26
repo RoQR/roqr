@@ -1,10 +1,9 @@
 <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Set your password</h2>
-<% flash.each do |type, msg| %>
+<% flash.each do |type, data| %>
   <div class="py-3">
-    <%= render AlertComponent.new(status: type).with_content(msg) %>
+    <%= render FlashComponent.new(type: type, data: data) %>
   </div>
 <% end %>
-</div>
 <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put, class: "mt-8 space-y-6" }) do |f| %>
   <%= f.hidden_field :invitation_token %>
   <div class="rounded-md shadow-sm -space-y-px">

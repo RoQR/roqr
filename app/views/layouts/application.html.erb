@@ -28,9 +28,9 @@
         </div>
       </header>
       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <% flash.each do |type, msg| %>
+        <% flash.each do |type, data| %>
           <div class="py-3">
-            <%= render AlertComponent.new(status: type).with_content(msg) %>
+            <%= render FlashComponent.new(type: type, data: data) %>
           </div>
         <% end %>
         <%= yield %>
