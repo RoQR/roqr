@@ -1,4 +1,5 @@
 class LinksController < ApplicationController
+  include LinksHelper
   before_action :authenticate_user!, except: %i[scan show]
   load_and_authorize_resource
   skip_authorize_resource only: %i[scan show]
@@ -9,8 +10,8 @@ class LinksController < ApplicationController
     respond_to do |format|
       format.svg do
         @params = params.permit(:id, :format, :fill, :color)
-        render inline: QrGenerator.gen(@link.barcode_data, fill: params[:fill] || @link.fill,
-                                                           color: params[:color] || @link.color)
+        render inline: QrGenerator.gen(barcode_data(@link), fill: params[:fill] || @link.fill,
+                                                            color: params[:color] || @link.color)
       end
 
       format.html do
