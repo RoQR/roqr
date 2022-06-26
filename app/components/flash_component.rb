@@ -35,8 +35,6 @@ class FlashComponent < ViewComponent::Base
       'text-red-400'
     when 'error'
       'text-red-800'
-    else
-      'text-gray-400'
     end
   end
 
