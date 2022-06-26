@@ -1,5 +1,5 @@
 class MarketingController < ApplicationController
-  layout 'empty'
+  layout 'marketing'
   def index
   end
 end

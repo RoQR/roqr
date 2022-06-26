@@ -67,7 +67,7 @@ class LinksController < ApplicationController
     @link.destroy
 
     respond_to do |format|
-      flash[:success] = { title: 'Link was successfully destroyed.', countdown: true }
+      flash[:success] = 'Link was successfully destroyed.'
       format.html { redirect_to links_url }
     end
   end

@@ -1,9 +1,4 @@
 <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Send invitation</h2>
-<% flash.each do |type, data| %>
-  <div class="py-3">
-    <%= render FlashComponent.new(type: type, data: data) %>
-  </div>
-<% end %>
 <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post, class: "mt-8 space-y-6" }) do |f| %>
   <div class="rounded-md shadow-sm">
 
