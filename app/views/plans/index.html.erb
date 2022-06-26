@@ -48,7 +48,7 @@
       </ul>
     </div>
 
-    <%= render partial: "pay/stripe/checkout_button", locals: {class: "bg-indigo-50 text-indigo-700 hover:bg-indigo-100 mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium", session: @processor.checkout(mode: 'subscription', line_items: 'price_1LF2i5KEEF3z117yNEhVZYQn'), title: 'Checkout' } %>
+    <%= render partial: "pay/stripe/checkout_button", locals: {class: "bg-indigo-50 text-indigo-700 hover:bg-indigo-100 mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium", session: @processor.checkout(mode: 'subscription', line_items: Stripe::Plans::ONE_HIT_WONDER), title: 'Checkout' } %>
   </div>
 
   <div class="relative p-8 bg-white border border-gray-200 rounded-2xl shadow-sm flex flex-col">
@@ -106,7 +106,7 @@
       </ul>
     </div>
 
-    <%= render partial: "pay/stripe/checkout_button", locals: {class: "bg-indigo-500 text-white hover:bg-indigo-600 mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium", session: @processor.checkout(mode: 'subscription', line_items: 'price_1LF2h4KEEF3z117ydiTcX6ef'), title: 'Checkout' } %>
+    <%= render partial: "pay/stripe/checkout_button", locals: {class: "bg-indigo-500 text-white hover:bg-indigo-600 mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium", session: @processor.checkout(mode: 'subscription', line_items: Stripe::Plans::SOLO_ARTIST), title: 'Checkout' } %>
   </div>
 
   <div class="relative p-8 bg-white border border-gray-200 rounded-2xl shadow-sm flex flex-col">
@@ -170,7 +170,7 @@
       </ul>
     </div>
 
-    <%= render partial: "pay/stripe/checkout_button", locals: {class: "bg-indigo-50 text-indigo-700 hover:bg-indigo-100 mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium", session: @processor.checkout(mode: 'subscription', line_items: 'price_1LF2fnKEEF3z117ynY6OMGs8'), title: 'Checkout' } %>
+    <%= render partial: "pay/stripe/checkout_button", locals: {class: "bg-indigo-50 text-indigo-700 hover:bg-indigo-100 mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium", session: @processor.checkout(mode: 'subscription', line_items: Stripe::Plans::ROCK_BAND), title: 'Checkout' } %>
   </div>
 </div>
 

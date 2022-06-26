@@ -71,3 +71,5 @@ gem "devise_invitable", "~> 2.0"
 gem "pay", "~> 4.0"
 
 gem "stripe", "~> 6.4"
+
+gem "stripe-rails", "~> 2.3"
