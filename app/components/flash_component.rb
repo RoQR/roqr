@@ -29,10 +29,12 @@ class FlashComponent < ViewComponent::Base
     case @type
     when 'success'
       'text-green-400'
+    when 'info', 'notice'
+      'text-blue-400'
+    when 'warn', 'alert'
+      'text-red-400'
     when 'error'
       'text-red-800'
-    when 'alert'
-      'text-red-400'
     else
       'text-gray-400'
     end
