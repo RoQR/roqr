@@ -7,6 +7,6 @@ class PlansController < ApplicationController
   end
 
   def continue_if_active
-    page_not_found unless Flipper.active? :stripe, current_user
+    page_not_found unless Flipper.enabled? :stripe, current_user
   end
 end
