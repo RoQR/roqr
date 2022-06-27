@@ -1,0 +1,7 @@
+<aside class="py-6 px-2 sm:px-6 lg:py-0 lg:px-0 lg:col-span-3">
+  <nav class="space-y-1">
+    <%= render 'users/nav_item', path: edit_user_path(current_user), name: 'Profile', icon: 'outline/user-circle' %>
+    <%= render 'users/nav_item', path: edit_organization_path(current_user.organization), name: 'Organization', icon: 'outline/office-building' %>
+    <%= render 'users/nav_item', path: settings_developer_path, name: 'Developer', icon: 'outline/code' %>
+  </nav>
+</aside>

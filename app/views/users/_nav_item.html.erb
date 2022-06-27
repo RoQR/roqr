@@ -1,0 +1,6 @@
+<%= link_to path, class: "#{style_if_active(path, "bg-gray-50 text-indigo-600 hover:bg-white", "text-gray-900 hover:text-gray-900 hover:bg-gray-50") } group rounded-md px-3 py-2 flex items-center text-sm font-medium" do %>
+  <div class="<%= style_if_active(path, "text-indigo-500", "text-gray-400 group-hover:text-gray-500") %> flex-shrink-0 -ml-1 mr-3">
+    <%= show_svg(icon) %>
+  </div>
+  <span class="truncate"> <%= name %> </span>
+<% end %>
