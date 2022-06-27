@@ -2,8 +2,8 @@ class LinksController < ApplicationController
   include LinksHelper
   before_action :authenticate_user!, except: %i[scan show]
   load_and_authorize_resource
-  before_action :authenticate_before_scan, only: :scan
   skip_authorize_resource only: %i[scan show]
+  before_action :authenticate_before_scan, only: :scan
 
   def index; end
 
