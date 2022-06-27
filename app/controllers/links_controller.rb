@@ -63,6 +63,12 @@ class LinksController < ApplicationController
     end
   end
 
+  def confirm_destroy
+    render TurboModalComponent.new(title: 'Delete link', resource: @link).with_content(
+      'Are you sure you want to delete your link? All of your data will be permanently removed from our servers forever. This action cannot be undone.'
+    )
+  end
+
   def destroy
     @link.destroy
 

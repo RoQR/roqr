@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 class ButtonComponent < ViewComponent::Base
-  def initialize(link:, method: :get, size: 'md', style: 'primary')
+  def initialize(link:, method: :get, size: 'md', style: 'primary', data: {})
     @link = link
     @size = size
     @method = method
     @style = style
+    @data = data
   end
 
   def px
