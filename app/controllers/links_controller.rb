@@ -2,6 +2,7 @@ class LinksController < ApplicationController
   include LinksHelper
   before_action :authenticate_user!, except: %i[scan show]
   load_and_authorize_resource
+  before_action :authenticate_before_scan, only: :scan
   skip_authorize_resource only: %i[scan show]
 
   def index; end
@@ -27,7 +28,7 @@ class LinksController < ApplicationController
   def scan
     event = event_from_browser
     event.save
-    redirect_to @link.barcode_data, allow_other_host: true
+    redirect_to(@link.barcode_data, allow_other_host: true) and return
   end
 
   def new
@@ -82,13 +83,22 @@ class LinksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def link_params
-    params.require(:link).permit(:id, :name, :dynamic, :fill, :color,
+    params.require(:link).permit(:id, :name, :dynamic, :password, :fill, :color,
                                  contact_link_attributes: %i[id first_name last_name phone email website company title address birthday note],
                                  email_link_attributes: %i[id email_address subject body],
                                  sms_link_attributes: %i[number body],
                                  telephone_link_attributes: [:number],
                                  url_link_attributes: %i[id url],
                                  wifi_link_attributes: %i[id ssid password hidden protocol])
+  end
+
+  def authenticate_before_scan
+    return if @link.public?
+
+    realm = "link-#{@link.id}"
+    authenticate_or_request_with_http_basic(realm) do |_username, password|
+      @link.authenticate(password)
+    end
   end
 
   def event_from_browser

@@ -9,8 +9,16 @@ class Link < ApplicationRecord
   belongs_to :wifi_link, dependent: :destroy, optional: true
   accepts_nested_attributes_for :contact_link, :email_link, :sms_link, :telephone_link, :url_link, :wifi_link
   has_many :events, dependent: :destroy
+  has_secure_password validations: false
+  validates_length_of :password,
+                      maximum: ActiveModel::SecurePassword::MAX_PASSWORD_LENGTH_ALLOWED
+
   has_paper_trail
   delegate :summary, :barcode_data, to: :link_data
+
+  def public?
+    password_digest.nil?
+  end
 
   # HERE BE MULTIBLE TABLE INHERITANCE
   # https://danchak99.wordpress.com/enterprise-rails/chapter-10-multiple-table-inheritance/

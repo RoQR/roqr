@@ -348,6 +348,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bcrypt (~> 3.1)
   blind_index (~> 2.3)
   bootsnap
   bootstrap (~> 5.1.3)
