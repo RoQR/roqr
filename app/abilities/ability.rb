@@ -18,8 +18,9 @@ class Ability
         link: { organization: user.organization }
     can :manage, user
     can :invite, User if user.can_invite_users
-    can :create, User, organization: user.organization && user.can_invite_users
-    can :update, User, organization: user.organization && user.can_edit_users
-    can :destroy, User, organization: user.organization && user.can_delete_users
+    can :read, User, organization: user.organization
+    can :create, User, organization: user.organization if user.can_invite_users
+    can :update, User, organization: user.organization if user.can_edit_users
+    can :destroy, User, organization: user.organization if user.can_delete_users
   end
 end

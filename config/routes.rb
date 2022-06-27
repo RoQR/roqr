@@ -7,13 +7,13 @@ Rails.application.routes.draw do
     get :scan, on: :member
     get :confirm_destroy, on: :member
   end
-  resources :users, only: %i[edit create update destroy]
+  resources :users, only: %i[show edit create update destroy]
   resources :organizations, only: %i[edit update]
   resources :events, only: :index
   namespace :settings do
-    get :user, to: 'users#edit'
-    get :organization, to: 'organizations#edit'
-    get :developer, to: 'settings#developer'
+    get :profile, to: 'user'
+    get :organization, to: 'organization'
+    get :developer, to: 'developer'
   end
   get :plans, to: 'plans#index'
   get :marketing, to: 'marketing#index'
