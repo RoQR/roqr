@@ -1,10 +1,10 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
-<nav x-data="{ showMobileMenu: false }" class="bg-gray-800">
+<nav data-controller="mobile-menu" class="bg-gray-800">
   <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
     <div class="relative flex items-center justify-between h-16">
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
         <!-- Mobile menu button-->
-        <button @click="showMobileMenu = !showMobileMenu" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+        <button data-action="mobile-menu#toggle" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
           <%= show_svg("menu") %>
           <%= show_svg("x") %>
@@ -56,7 +56,7 @@
   </div>
 
   <!-- Mobile menu, show/hide based on menu state. -->
-  <div class="sm:hidden" id="mobile-menu" x-show="showMobileMenu" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" style="display: none">
+  <div data-mobile-menu-target="menu" class="hidden sm:hidden" id="mobile-menu" data-transition-enter="transition ease-out duration-100" data-transition-enter-start="transform opacity-0 scale-95" data-transition-enter-end="transform opacity-100 scale-100" data-transition-leave="transition ease-in duration-75" data-transition-leave-start="transform opacity-100 scale-100" data-transition-leave-end="transform opacity-0 scale-95">
     <div class="px-2 pt-2 pb-3 space-y-1">
       <%= render NavbarLinkComponent.new(title: 'Links', link: links_path, is_active: current_page?(links_path), is_mobile: true) %>
       <%= render NavbarLinkComponent.new(title: 'Events', link: events_path, is_active: current_page?(events_path), is_mobile: true) %>
