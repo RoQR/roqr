@@ -59,6 +59,8 @@ class LinksController < ApplicationController
       if @link.update(link_params)
         format.html { redirect_to link_url(@link), success: 'Link was successfully updated.' }
       else
+        @link_type = @link.link_data.class.to_s.underscore
+        flash[:error] = @link.errors.full_messages.first
         format.html { render :edit, status: :unprocessable_entity }
       end
     end

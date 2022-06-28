@@ -8,16 +8,26 @@ class Link < ApplicationRecord
   belongs_to :url_link, dependent: :destroy, optional: true
   belongs_to :wifi_link, dependent: :destroy, optional: true
   accepts_nested_attributes_for :contact_link, :email_link, :sms_link, :telephone_link, :url_link, :wifi_link
+  before_save :cleanup_password
   has_many :events, dependent: :destroy
   has_secure_password validations: false
   validates_length_of :password,
                       maximum: ActiveModel::SecurePassword::MAX_PASSWORD_LENGTH_ALLOWED
+  validate :no_password_on_static_link
 
   has_paper_trail
   delegate :summary, :barcode_data, to: :link_data
 
   def public?
     password_digest.nil?
+  end
+
+  def cleanup_password
+    self.password_digest = nil unless dynamic
+  end
+
+  def no_password_on_static_link
+    errors.add(:password, "can't exist for static links") unless dynamic || password.nil?
   end
 
   # HERE BE MULTIBLE TABLE INHERITANCE
