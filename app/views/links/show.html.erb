@@ -23,7 +23,7 @@
               <h3 class="text-sm font-medium"><%= user.display_name %></h3>
               <p class="text-sm text-gray-500" title="<%= v.created_at %>"><%= time_ago_in_words(v.created_at) %> ago</p>
             </div>
-            <p class="text-sm text-gray-500"><%= v.event.titlecase %></p>
+            <p class="text-sm text-gray-500"><%= v.event.titlecase + 'd' %></p>
           </div>
         </div>
       </li>
