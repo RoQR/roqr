@@ -85,13 +85,15 @@ class LinksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def link_params
-    params.require(:link).permit(:id, :name, :dynamic, :password, :fill, :color,
-                                 contact_link_attributes: %i[id first_name last_name phone email website company title address birthday note],
-                                 email_link_attributes: %i[id email_address subject body],
-                                 sms_link_attributes: %i[number body],
-                                 telephone_link_attributes: [:number],
-                                 url_link_attributes: %i[id url],
-                                 wifi_link_attributes: %i[id ssid password hidden protocol])
+    link_params = params.require(:link).permit(:id, :name, :dynamic, :password, :fill, :color,
+                                               contact_link_attributes: %i[id first_name last_name phone email website company title address birthday note],
+                                               email_link_attributes: %i[id email_address subject body],
+                                               sms_link_attributes: %i[number body],
+                                               telephone_link_attributes: [:number],
+                                               url_link_attributes: %i[id url],
+                                               wifi_link_attributes: %i[id ssid password hidden protocol])
+    link_params.delete(:password) unless truthy?(link_params[:dynamic])
+    link_params
   end
 
   def authenticate_before_scan

@@ -2,7 +2,7 @@
 
 pin "application", preload: true
 pin "@hotwired/turbo-rails", to: "turbo.min.js", preload: true
-pin "@hotwired/stimulus", to: "stimulus.min.js", preload: true
+pin "@hotwired/stimulus", to: "https://ga.jspm.io/npm:@hotwired/stimulus@3.0.1/dist/stimulus.js"
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 pin_all_from "app/javascript/controllers", under: "controllers"
 pin "bootstrap", to: "https://ga.jspm.io/npm:bootstrap@5.1.3/dist/js/bootstrap.esm.js"
@@ -20,7 +20,7 @@ pin "@lit/reactive-element/decorators/query-async.js", to: "https://ga.jspm.io/n
 pin "@lit/reactive-element/decorators/query.js", to: "https://ga.jspm.io/npm:@lit/reactive-element@1.3.2/decorators/query.js"
 pin "@lit/reactive-element/decorators/state.js", to: "https://ga.jspm.io/npm:@lit/reactive-element@1.3.2/decorators/state.js"
 pin "@material/mwc-icon", to: "https://ga.jspm.io/npm:@material/mwc-icon@0.25.3/mwc-icon.js"
-pin "hotkeys-js", to: "https://ga.jspm.io/npm:hotkeys-js@3.8.7/dist/hotkeys.esm.js"
+pin "hotkeys-js", to: "https://ga.jspm.io/npm:hotkeys-js@3.9.4/dist/hotkeys.esm.js"
 pin "lit", to: "https://ga.jspm.io/npm:lit@2.0.2/index.js"
 pin "lit-element/lit-element.js", to: "https://ga.jspm.io/npm:lit-element@3.2.0/lit-element.js"
 pin "lit-html", to: "https://ga.jspm.io/npm:lit-html@2.2.6/lit-html.js"
@@ -36,3 +36,5 @@ pin "lit/directives/ref.js", to: "https://ga.jspm.io/npm:lit@2.0.2/directives/re
 pin "lit/directives/repeat.js", to: "https://ga.jspm.io/npm:lit@2.0.2/directives/repeat.js"
 pin "lit/directives/unsafe-html.js", to: "https://ga.jspm.io/npm:lit@2.0.2/directives/unsafe-html.js"
 pin "tslib", to: "https://ga.jspm.io/npm:tslib@2.4.0/tslib.es6.js"
+pin "stimulus-dropdown", to: "https://ga.jspm.io/npm:stimulus-dropdown@2.0.0/dist/stimulus-dropdown.es.js"
+pin "stimulus-use", to: "https://ga.jspm.io/npm:stimulus-use@0.50.0/dist/index.js"

@@ -6,4 +6,8 @@ module ApplicationHelper
       inactive
     end
   end
+
+  def truthy?(arg)
+    ActiveModel::Type::Boolean.new.cast(arg)
+  end
 end
