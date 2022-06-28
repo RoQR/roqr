@@ -13,15 +13,14 @@
       <% end %>
     </div>
 
-    <fieldset class="space-y-5">
-      <legend class="sr-only">Permissions</legend>
+    <fieldset class="space-y-3 mt-5">
+      <legend class="text-lg font-medium text-gray-900">Links permissions</legend>
       <div class="relative flex items-start">
         <div class="flex items-center h-5">
           <%= f.check_box :can_create_links, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
         </div>
         <div class="ml-3 text-sm">
-          <%= f.label :can_create_links, "Create links" %>
-          <p id="comments-description" class="text-gray-500">User can create new links</p>
+          <%= f.label :can_create_links, "Create new" %>
         </div>
       </div>
       <div class="relative flex items-start">
@@ -29,8 +28,7 @@
           <%= f.check_box :can_edit_links, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
         </div>
         <div class="ml-3 text-sm">
-          <%= f.label :can_edit_links, "Edit links" %>
-          <p id="comments-description" class="text-gray-500">User can edit existing links</p>
+          <%= f.label :can_edit_links, "Edit existing" %>
         </div>
       </div>
       <div class="relative flex items-start">
@@ -38,17 +36,18 @@
           <%= f.check_box :can_delete_links, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
         </div>
         <div class="ml-3 text-sm">
-          <%= f.label :can_delete_links, "Delete links" %>
-          <p id="comments-description" class="text-gray-500">User can delete existing links</p>
+          <%= f.label :can_delete_links, "Delete existing" %>
         </div>
       </div>
+    </fieldset>
+    <fieldset class="space-y-3 mt-5">
+      <legend class="text-lg font-medium text-gray-900">Organization permissions</legend>
       <div class="relative flex items-start">
         <div class="flex items-center h-5">
           <%= f.check_box :can_edit_organization, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
         </div>
         <div class="ml-3 text-sm">
-          <%= f.label :can_edit_organization, "Edit organization" %>
-          <p id="comments-description" class="text-gray-500">User can edit organization settings</p>
+          <%= f.label :can_edit_organization, "Edit" %>
         </div>
       </div>
       <div class="relative flex items-start">
@@ -56,17 +55,18 @@
           <%= f.check_box :can_delete_organization, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
         </div>
         <div class="ml-3 text-sm">
-          <%= f.label :can_delete_organization, "Delete organization" %>
-          <p id="comments-description" class="text-gray-500">User can delete organization</p>
+          <%= f.label :can_delete_organization, "Delete" %>
         </div>
       </div>
+    </fieldset>
+    <fieldset class="space-y-3 mt-5">
+      <legend class="text-lg font-medium text-gray-900">Team member permissions</legend>
       <div class="relative flex items-start">
         <div class="flex items-center h-5">
           <%= f.check_box :can_invite_users, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
         </div>
         <div class="ml-3 text-sm">
-          <%= f.label :can_invite_users, "Invite users" %>
-          <p id="comments-description" class="text-gray-500">User can invite other users to the organization</p>
+          <%= f.label :can_invite_users, "Invite members" %>
         </div>
       </div>
       <div class="relative flex items-start">
@@ -74,8 +74,7 @@
           <%= f.check_box :can_edit_users, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
         </div>
         <div class="ml-3 text-sm">
-          <%= f.label :can_edit_users, "Edit users" %>
-          <p id="comments-description" class="text-gray-500">User can edit settings for other users</p>
+          <%= f.label :can_edit_users, "Edit member profiles" %>
         </div>
       </div>
       <div class="relative flex items-start">
@@ -83,8 +82,7 @@
           <%= f.check_box :can_delete_users, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
         </div>
         <div class="ml-3 text-sm">
-          <%= f.label :can_delete_users, "Delete users" %>
-          <p id="comments-description" class="text-gray-500">User can delete other users</p>
+          <%= f.label :can_delete_users, "Delete members" %>
         </div>
       </div>
     </fieldset>
