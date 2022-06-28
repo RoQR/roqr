@@ -10,7 +10,7 @@ module BreadcrumbsHelper
     end
 
     def render
-      @context.content_tag(:div, class: 'mt-3 flex items-center space-x-1 sm:space-x-3') do
+      @context.content_tag(:div, class: 'mt-6 flex items-center space-x-1 sm:space-x-3') do
         separator = chevron
         @elements.collect do |element|
           html_escape(render_element(element))
