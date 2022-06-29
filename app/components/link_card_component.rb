@@ -64,8 +64,8 @@ class LinkCardComponent < ViewComponent::Base
     end
   end
 
-  def num_events
-    @link.events.count
+  def num_scans
+    @link.scans.count
   end
 
   def qr_image

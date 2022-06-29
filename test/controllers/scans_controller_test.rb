@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class EventsControllerTest < ActionDispatch::IntegrationTest
+class ScansControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   setup do
@@ -10,7 +10,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index when logged in' do
-    get events_url
+    get scans_url
     assert_response :success
   end
 end

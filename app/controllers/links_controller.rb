@@ -27,8 +27,8 @@ class LinksController < ApplicationController
   end
 
   def scan
-    event = event_from_browser
-    event.save
+    scan = scan_from_browser
+    scan.save
     redirect_to(@link.barcode_data, allow_other_host: true) and return
   end
 
@@ -106,8 +106,8 @@ class LinksController < ApplicationController
     end
   end
 
-  def event_from_browser
-    @link.events.new(
+  def scan_from_browser
+    @link.scans.new(
       browser_name: browser.name,
       browser_version: browser.version,
       bot_name: browser.bot.name,

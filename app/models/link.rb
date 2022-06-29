@@ -9,7 +9,7 @@ class Link < ApplicationRecord
   belongs_to :wifi_link, dependent: :destroy, optional: true
   accepts_nested_attributes_for :contact_link, :email_link, :sms_link, :telephone_link, :url_link, :wifi_link
   before_save :cleanup_password
-  has_many :events, dependent: :destroy
+  has_many :scans, dependent: :destroy
   has_secure_password validations: false
   validates_length_of :password,
                       maximum: ActiveModel::SecurePassword::MAX_PASSWORD_LENGTH_ALLOWED

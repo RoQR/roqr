@@ -4,7 +4,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, Event, link: { organization: user.organization }
+    can :read, Scan, link: { organization: user.organization }
     can :read, Request, organization: user.organization
     can :read, Link, organization: user.organization
     can :create, Link, organization: user.organization if user.confirmed? && user.can_create_links

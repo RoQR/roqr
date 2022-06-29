@@ -14,12 +14,12 @@ export default class extends Controller {
         }
       },
       {
-        id: 'Events',
-        title: 'Open Events',
-        hotkey: 'ctrl+E',
-        section: 'Events',
+        id: 'Scans',
+        title: 'Open Scans',
+        hotkey: 'ctrl+S',
+        section: 'Scans',
         handler: () => {
-            Turbo.visit("/events")
+            Turbo.visit("/scans")
         }
       }
     ]

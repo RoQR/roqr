@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
   resources :users, only: %i[show edit create update destroy]
   resources :organizations, only: %i[edit update]
-  resources :events, only: :index
+  resources :scans, only: :index
   namespace :settings do
     get :profile, to: 'user'
     get :organization, to: 'organization'
@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v0 do
       defaults format: :json do
-        resources :events, only: :index
+        resources :scans, only: :index
         resources :links, only: %i[index create show update destroy]
         resources :users, only: %i[show update destroy]
       end
