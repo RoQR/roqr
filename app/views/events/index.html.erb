@@ -40,5 +40,6 @@
   </div>
   <% if Flipper.enabled? :charts, current_user %>
     <%= geo_chart @events.group(:country).count %>
+    <%= line_chart @events.group(:link_id).group_by_day(:created_at).count  %>
   <% end %>
 <% end %>

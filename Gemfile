@@ -77,3 +77,5 @@ gem "stripe-rails", "~> 2.3"
 gem "bcrypt", "~> 3.1"
 
 gem "chartkick", "~> 4.2"
+
+gem "groupdate", "~> 6.1"
