@@ -4,26 +4,24 @@
     <p class="mt-1 text-sm text-gray-500">Share your QR codes to start generating events.</p>
   </div>
 <% else %>
-  <% if Flipper.enabled? :charts, current_user %>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
-      <div>
-        <p>Events by country</p>
-        <%= geo_chart @events.group(:country).count %>
-      </div>
-      <div>
-        <p>Events by day</p> 
-        <%= line_chart @events.group(:link_id).group_by_day(:created_at).count  %>
-      </div>
-      <div>
-        <p>Events by browser</p>
-        <%= pie_chart @events.group(:platform_name).count %>
-      </div>
-      <div>
-        <p>Events by platform</p>
-        <%= pie_chart @events.group(:platform_name).count %>
-      </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+    <div>
+      <p>Events by country</p>
+      <%= geo_chart @events.group(:country).count %>
     </div>
-  <% end %>
+    <div>
+      <p>Events by day</p> 
+      <%= line_chart @events.group(:link_id).group_by_day(:created_at).count  %>
+    </div>
+    <div>
+      <p>Events by browser</p>
+      <%= pie_chart @events.group(:platform_name).count %>
+    </div>
+    <div>
+      <p>Events by platform</p>
+      <%= pie_chart @events.group(:platform_name).count %>
+    </div>
+  </div>
   <%= render SectionHeaderComponent.new do |c| %>
     <%= c.with_title do %>
       Event log
