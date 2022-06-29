@@ -17,22 +17,30 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should get new' do
-    get new_link_url
+  test 'should show link' do
+    get link_url(@link)
     assert_response :success
   end
 
-  test 'should create link' do
-    @link = build(:link, :url)
-    assert_difference('Link.count') do
-      post links_url, params: { link: { name: @link.name, url_link_attributes: { url: @link.url_link } } }
-    end
-
-    assert_redirected_to links_url
+  test 'should show svg link' do
+    get link_url(@link, format: :svg)
+    assert_response :success
   end
 
-  test 'should show link' do
-    get link_url(@link)
+  test 'should scan link' do
+    get scan_link_url(@link)
+    assert_redirected_to @link.link_data.url
+  end
+
+  test 'should authenticate on link with password' do
+    @link = create(:link, :url, dynamic: true, password: 'pass')
+    get scan_link_url(@link)
+    assert_response :unauthorized
+    assert_equal "Basic realm=\"link-#{@link.id}\"", response.header['WWW-Authenticate']
+  end
+
+  test 'should get new' do
+    get new_link_url
     assert_response :success
   end
 
@@ -41,9 +49,15 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should scan link' do
-    get scan_link_url(@link)
-    assert_redirected_to @link.link_data.url
+  test 'should create link' do
+    @link = build(:link, :url)
+    assert_difference('Link.count') do
+      assert_difference('UrlLink.count') do
+        post links_url, params: { link: { name: @link.name, url_link_attributes: { url: @link.url_link } } }
+      end
+    end
+
+    assert_redirected_to links_url
   end
 
   test 'should update link' do
@@ -54,7 +68,9 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
 
   test 'should destroy link' do
     assert_difference('Link.count', -1) do
-      delete link_url(@link)
+      assert_difference('UrlLink.count', -1) do
+        delete link_url(@link)
+      end
     end
 
     assert_redirected_to links_url

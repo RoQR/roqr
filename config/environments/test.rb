@@ -60,5 +60,6 @@ Rails.application.configure do
   # config.action_view.annotate_rendered_view_with_filenames = true
 
   config.assets.css_compressor = nil
+  config.stripe.secret_key = Rails.application.credentials.stripe.private_key
 end
 Rails.application.routes.default_url_options[:host] = 'localhost:3000'

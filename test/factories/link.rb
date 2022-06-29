@@ -6,6 +6,7 @@ FactoryBot.define do
   factory :link do
     name { 'Link' }
     dynamic { false }
+    password { nil }
     organization
 
     trait :url do

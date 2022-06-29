@@ -9,7 +9,7 @@ class ScansControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
   end
 
-  test 'should get index when logged in' do
+  test 'should load' do
     get scans_url
     assert_response :success
   end
