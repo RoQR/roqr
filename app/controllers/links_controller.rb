@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
   include LinksHelper
+  include VersionsHelper
   before_action :authenticate_user!, except: %i[scan show]
   load_and_authorize_resource
   skip_authorize_resource only: %i[scan show]
