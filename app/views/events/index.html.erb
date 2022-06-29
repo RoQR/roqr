@@ -15,7 +15,7 @@
     </div>
     <div>
       <p>Events by browser</p>
-      <%= pie_chart @events.group(:platform_name).count %>
+      <%= pie_chart @events.group(:browser_name).count %>
     </div>
     <div>
       <p>Events by platform</p>
