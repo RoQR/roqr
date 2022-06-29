@@ -1,4 +1,4 @@
-class Api::V0::EventsController < Api::V0::BaseController
+class Api::V0::ScansController < Api::V0::BaseController
   load_and_authorize_resource
 
   def index
