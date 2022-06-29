@@ -8,6 +8,8 @@ FactoryBot.define do
     dynamic { false }
     password { nil }
     organization
+    color { '#000000' }
+    fill { '#ffffff' }
 
     trait :url do
       url_link

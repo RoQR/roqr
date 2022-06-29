@@ -28,7 +28,9 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should scan link' do
-    get scan_link_url(@link)
+    assert_difference('Scan.count') do
+      get scan_link_url(@link)
+    end
     assert_redirected_to @link.link_data.url
   end
 

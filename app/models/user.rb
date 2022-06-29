@@ -38,12 +38,6 @@ class User < ApplicationRecord
     name || email
   end
 
-  protected
-
-  def password_required?
-    confirmed? ? super : false
-  end
-
   private
 
   def maybe_create_org
