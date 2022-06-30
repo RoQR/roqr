@@ -1,13 +1,15 @@
 class TemplatesController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
   skip_authorize_resource only: :show
 
   # GET /templates or /templates.json
-  def index; end
+  def index
+    @templates = Template.accessible_by(current_ability)
+  end
 
   # GET /templates/1 or /templates/1.json
   def show
+    @template = Template.find_by(params[:id])
     respond_to do |format|
       format.svg do
         @params = params.permit(:id, :format, :fill, :color)
@@ -24,13 +26,16 @@ class TemplatesController < ApplicationController
   end
 
   # GET /templates/new
-  def new; end
+  def new
+    @template = current_user.organization.template.new
+  end
 
   # GET /templates/1/edit
   def edit; end
 
   # POST /templates or /templates.json
   def create
+    @template = Template
     respond_to do |format|
       if @template.save
         format.html { redirect_to templates_url, notice: 'Template was successfully created.' }
