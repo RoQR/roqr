@@ -1,7 +1,8 @@
 class Organization < ApplicationRecord
   after_create :initialize_payment_processor
-  has_many :users
+  has_many :users, dependent: :destroy
   has_many :links, dependent: :destroy
+  has_many :templates, dependent: :destroy
   pay_customer
 
   def email

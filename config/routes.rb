@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   devise_for :users,
              controllers: { sessions: 'users/sessions', passwords: 'users/passwords', registrations: 'users/registrations',
                             confirmations: 'users/confirmations', omniauth_callbacks: 'users/omniauth_callbacks', invitations: 'users/invitations' }
-
   resources :links do
     get :scan, on: :member
     get :confirm_destroy, on: :member
@@ -10,6 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[show edit create update destroy]
   resources :organizations, only: %i[edit update]
   resources :scans, only: :index
+  resources :templates, except: :show
   namespace :settings do
     get :profile, to: 'user'
     get :organization, to: 'organization'
@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       defaults format: :json do
         resources :scans, only: :index
         resources :links, only: %i[index create show update destroy]
+        resources :templates
         resources :users, only: %i[show update destroy]
       end
     end
