@@ -9,8 +9,8 @@ export default class extends Controller {
     console.log("Connected")
   }
 
-  getTemplateValues(id) {
-    const response = get(`/templates/${id}.json`);
+  getStyleValues(id) {
+    const response = get(`/styles/${id}.json`);
     if (response.ok) {
       return response.json;
     }
@@ -19,13 +19,13 @@ export default class extends Controller {
   apply() {
     let id = event.target.value;
     if (id) {
-      let values = getTemplateValues(id);
-      applyTemplateValues(values);
+      let values = getStyleValues(id);
+      applyStyleValues(values);
     }
   }
 
 
-  applyTemplateValues(values) {
+  applyStyleValues(values) {
 
   }
 }

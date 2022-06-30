@@ -6,11 +6,11 @@ class Ability
   def initialize(user)
     can :read, Scan, link: { organization: user.organization }
     can :read, Request, organization: user.organization
-    can :read, [Template, Link], organization: user.organization
-    can :create, [Template, Link], organization: user.organization if user.confirmed? && user.can_create_links
-    can :update, [Template, Link], organization: user.organization if user.confirmed? && user.can_edit_links
+    can :read, [Style, Link], organization: user.organization
+    can :create, [Style, Link], organization: user.organization if user.confirmed? && user.can_create_links
+    can :update, [Style, Link], organization: user.organization if user.confirmed? && user.can_edit_links
     can :confirm_destroy, Link, organization: user.organization if user.confirmed? && user.can_delete_links
-    can :destroy, [Template, Link], organization: user.organization if user.confirmed? && user.can_delete_links
+    can :destroy, [Style, Link], organization: user.organization if user.confirmed? && user.can_delete_links
     can :create, Organization
     can :update, Organization, id: user.organization.id if user.confirmed? && user.can_edit_organization
     can :destroy, Organization, id: user.organization.id if user.confirmed? && user.can_delete_organization

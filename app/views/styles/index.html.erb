@@ -1,0 +1,14 @@
+<div class="w-full">
+  <%= render SectionHeaderComponent.new do |c| %>
+    <%= c.with_title do %>
+      Styles
+    <% end %>
+    <% if can? :create, Style %>
+      <%= c.with_button(link: new_style_path).with_content("New style") %>
+    <% end %>
+  <% end %>
+
+  <div id="styles" class="min-w-full">
+    <%= render @styles %>
+  </div>
+</div>

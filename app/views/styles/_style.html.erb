@@ -1,11 +1,11 @@
-<div id="<%= dom_id template %>">
+<div id="<%= dom_id style %>">
   <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
     <div class="px-4 py-5 sm:px-6 flex justify-between items-center">
-      <%= template.name %>
-      <%= link_to 'Edit this template', edit_template_path(template), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= style.name %>
+      <%= link_to 'Edit this style', edit_style_path(style), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     </div>
     <div class="px-4 py-5 sm:p-6 flex justify-center">
-      <%= image_tag template_path(template, format: :svg), size: '250' %>
+      <%= image_tag style_path(style, format: :svg), size: '250' %>
     </div>
   </div>
 

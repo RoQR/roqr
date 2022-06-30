@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get :scan, on: :member
     get :confirm_destroy, on: :member
   end
-  resources :templates
+  resources :styles
   resources :users, only: %i[show edit create update destroy]
   resources :organizations, only: %i[edit update]
   resources :scans, only: :index
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
       defaults format: :json do
         resources :scans, only: :index
         resources :links, only: %i[index create show update destroy]
-        resources :templates
+        resources :styles
         resources :users, only: %i[show update destroy]
       end
     end

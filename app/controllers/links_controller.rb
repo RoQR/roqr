@@ -34,14 +34,14 @@ class LinksController < ApplicationController
 
   def new
     @link_type = request.query_parameters[:link_type]
-    @templates = allowed_templates
+    @styles = allowed_styles
     add_breadcrumb 'All links', links_path
     add_breadcrumb 'New link', new_link_path
   end
 
   def edit
     @link_type = @link.link_data.class.to_s.underscore
-    @templates = allowed_templates
+    @styles = allowed_styles
     add_breadcrumb 'All links', links_path
     add_breadcrumb @link.name, @link
     add_breadcrumb 'Edit', edit_link_path(@link)
@@ -87,8 +87,8 @@ class LinksController < ApplicationController
 
   private
 
-  def allowed_templates
-    Template.accessible_by(current_ability)
+  def allowed_styles
+    Style.accessible_by(current_ability)
   end
 
   # Only allow a list of trusted parameters through.
