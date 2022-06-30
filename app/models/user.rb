@@ -40,6 +40,10 @@ class User < ApplicationRecord
 
   private
 
+  def password_required?
+    confirmed? ? super : false
+  end
+
   def maybe_create_org
     self.organization = Organization.new if organization.nil?
   end
