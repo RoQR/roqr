@@ -6,10 +6,10 @@ Rails.application.routes.draw do
     get :scan, on: :member
     get :confirm_destroy, on: :member
   end
+  resources :templates
   resources :users, only: %i[show edit create update destroy]
   resources :organizations, only: %i[edit update]
   resources :scans, only: :index
-  resources :templates, except: :show
   namespace :settings do
     get :profile, to: 'user'
     get :organization, to: 'organization'

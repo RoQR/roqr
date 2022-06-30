@@ -28,14 +28,17 @@
               </div>
             </div>
           </div>
-          <div class="flex flex-row">
-            <div class="flex flex-col">
-              <%= form.label :fill, class: "text-sm font-medium text-gray-900" %>
-              <%= form.color_field :fill, value: link.fill %>
-            </div>
-            <div class="flex flex-col">
-              <%= form.label :color, class: "text-sm font-medium text-gray-900" %>
-              <%= form.color_field :color, value: link.color %>
+          <div data-controller="template">
+            <%= form.select(:template, options_for_select(@templates.map{|t| [t.name, t.id]}), {include_blank: :true}, {data: {action: "template#apply"}}) %>
+            <div class="flex flex-row">
+              <div class="flex flex-col">
+                <%= form.label :fill, class: "text-sm font-medium text-gray-900" %>
+                <%= form.color_field :fill, value: link.fill, data: {template: {target: "fill"}} %>
+              </div>
+              <div class="flex flex-col">
+                <%= form.label :color, class: "text-sm font-medium text-gray-900" %>
+                <%= form.color_field :color, value: link.color, data: {template: {target: "color"}} %>
+              </div>
             </div>
           </div>
         </div>
