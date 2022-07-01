@@ -1,8 +1,5 @@
-<% content_for :title, "New link" %>
-
 <% if @link_type.nil? %>
   <%= render 'link_select' %>
 <% else %>
   <%= render 'form', link: @link %>
 <% end %>
-

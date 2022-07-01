@@ -1,0 +1,17 @@
+<div
+    data-mobile-menu-target="menu"
+    class="hidden sm:hidden"
+    id="mobile-menu"
+    data-transition-enter="transition ease-out duration-100"
+    data-transition-enter-start="transform opacity-0 scale-95"
+    data-transition-enter-end="transform opacity-100 scale-100"
+    data-transition-leave="transition ease-in duration-75"
+    data-transition-leave-start="transform opacity-100 scale-100"
+    data-transition-leave-end="transform opacity-0 scale-95"
+  >
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <%= render Navbar::LinkComponent.new(title: 'Links', link: links_path, is_active: current_page?(links_path), is_mobile: true) %>
+      <%= render Navbar::LinkComponent.new(title: 'Scans', link: scans_path, is_active: current_page?(scans_path), is_mobile: true) %>
+      <%= render Navbar::LinkComponent.new(title: 'Styles', link: styles_path, is_active: current_page?(styles_path), is_mobile: true) %>
+    </div>
+  </div>

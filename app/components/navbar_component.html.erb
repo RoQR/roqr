@@ -6,8 +6,12 @@
         <!-- Mobile menu button-->
         <button data-action="mobile-menu#toggle" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
-          <%= show_svg("menu") %>
-          <%= show_svg("x") %>
+          <div data-mobile-menu-target="openButton" data-transition-enter="transition ease-out duration-100" data-transition-enter-start="transform opacity-0 scale-95" data-transition-enter-end="transform opacity-100 scale-100" data-transition-leave="transition ease-in duration-75" data-transition-leave-start="transform opacity-100 scale-100" data-transition-leave-end="transform opacity-0 scale-95">
+            <%= show_svg("outline/menu") %>
+          </div>
+          <div class="hidden" data-mobile-menu-target="closeButton" data-transition-enter="transition ease-out duration-100" data-transition-enter-start="transform opacity-0 scale-95" data-transition-enter-end="transform opacity-100 scale-100" data-transition-leave="transition ease-in duration-75" data-transition-leave-start="transform opacity-100 scale-100" data-transition-leave-end="transform opacity-0 scale-95">
+            <%= show_svg("outline/x") %>
+          </div>
         </button>
       </div>
       <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
@@ -18,9 +22,9 @@
         </div>
         <div class="hidden sm:block sm:ml-6">
           <div class="flex space-x-4">
-            <%= render NavbarLinkComponent.new(title: 'Links', link: links_path, is_active: current_page?(links_path)) %>
-            <%= render NavbarLinkComponent.new(title: 'Scans', link: scans_path, is_active: current_page?(scans_path)) %>
-            <%= render NavbarLinkComponent.new(title: 'Styles', link: styles_path, is_active: current_page?(styles_path)) %>
+            <%= render Navbar::LinkComponent.new(title: 'Links', link: links_path, is_active: current_page?(links_path)) %>
+            <%= render Navbar::LinkComponent.new(title: 'Scans', link: scans_path, is_active: current_page?(scans_path)) %>
+            <%= render Navbar::LinkComponent.new(title: 'Styles', link: styles_path, is_active: current_page?(styles_path)) %>
           </div>
         </div>
       </div>
@@ -29,39 +33,9 @@
           <span class="sr-only">View notifications</span>
           <%= show_svg('outline/bell') %>
         </button>
-
-        <!-- Profile dropdown -->
-        <div data-controller="dropdown" class="ml-3 relative">
-          <div>
-            <button data-action="dropdown#toggle click@window->dropdown#hide" type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-              <span class="sr-only">Open user menu</span>
-              <%= image_tag(@user.gravatar_url, alt: @user.name, class: "h-8 w-8 rounded-full") %>
-            </button>
-          </div>
-
-          <div class="z-10 origin-top-right absolute right-0 mt-2 w-80 overflow-clip rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-100 hidden transition" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" data-dropdown-target="menu" data-transition-enter-active="transition ease-out duration-100" data-transition-enter-from="transform opacity-0 scale-95" data-transition-enter-to="transform opacity-100 scale-100" data-transition-leave-active="transition ease-in duration-75" data-transition-leave-from="transform opacity-100 scale-100" data-transition-leave-to="transform opacity-0 scale-95">
-            <div class="py-1" role="none">
-              <span class="block px-4 py-2 text-sm text-gray-700" role="none" tabindex="-1"><%= @user.email %></span>
-            </div>
-            <div class="py-1" role="none">
-              <%= link_to "Profile", settings_profile_path, class: "block px-4 py-2 text-sm text-gray-700", role: "menuitem", tabindex: "-1", id: "user-menu-item-0" %>
-              <%= link_to "Organization", settings_organization_path, class: "block px-4 py-2 text-sm text-gray-700", role: "menuitem", tabindex: "-1", id: "user-menu-item-1" %>
-              <%= button_to destroy_user_session_path, method: :delete, class:"block px-4 py-2 text-sm text-gray-700 w-full text-left", role: "menuitem", tabindex: "-1", id: "user-menu-item-2" do %>
-                Sign out
-              <% end %>
-            </div>
-          </div>
-        </div>
+        <%= render Navbar::ProfileMenuComponent.new(user: @user) %>
       </div>
     </div>
   </div>
-
-  <!-- Mobile menu, show/hide based on menu state. -->
-  <div data-mobile-menu-target="menu" class="hidden sm:hidden" id="mobile-menu" data-transition-enter="transition ease-out duration-100" data-transition-enter-start="transform opacity-0 scale-95" data-transition-enter-end="transform opacity-100 scale-100" data-transition-leave="transition ease-in duration-75" data-transition-leave-start="transform opacity-100 scale-100" data-transition-leave-end="transform opacity-0 scale-95">
-    <div class="px-2 pt-2 pb-3 space-y-1">
-      <%= render NavbarLinkComponent.new(title: 'Links', link: links_path, is_active: current_page?(links_path), is_mobile: true) %>
-      <%= render NavbarLinkComponent.new(title: 'Scans', link: scans_path, is_active: current_page?(scans_path), is_mobile: true) %>
-      <%= render NavbarLinkComponent.new(title: 'Styles', link: styles_path, is_active: current_page?(styles_path), is_mobile: true) %>
-    </div>
-  </div>
+  <%= render Navbar::MobileMenuComponent.new %>
 </nav>
