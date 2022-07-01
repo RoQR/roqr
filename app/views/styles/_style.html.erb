@@ -2,10 +2,17 @@
   <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
     <div class="px-4 py-5 sm:px-6 flex justify-between items-center">
       <%= style.name %>
-      <%= link_to 'Edit this style', edit_style_path(style), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= render InlineButtonGroupComponent.new do |c| %>
+        <% if can? :update, style %>
+          <% c.with_button(link: edit_style_path(style), style: 'white').with_content("Edit this style") %>
+        <% end %>
+        <% if can? :destroy, style %>
+          <% c.with_button(link: style_path(style), style: 'red', method: :delete).with_content("Delete this style") %>
+        <% end %>
+      <% end %>
     </div>
     <div class="px-4 py-5 sm:p-6 flex justify-center">
-      <%= image_tag style_path(style, format: :svg), size: '250' %>
+      <%= image_tag(qr_path(data: "https://roqr.app", fill: style.fill, color: style.color, format: :svg), "data-qr-target": "image") %>
     </div>
   </div>
 

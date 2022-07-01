@@ -9,25 +9,27 @@ class StylesController < ApplicationController
   # GET /styles/1 or /styles/1.json
   def show
     respond_to do |format|
-      format.svg do
-        @params = params.permit(:id, :format, :fill, :color)
-        render inline: QrGenerator.gen('https://roqr.app', fill: params[:fill] || @style.fill,
-                                                           color: params[:color] || @style.color)
-      end
-
       format.html do
         authenticate_user!
         authorize! :show, @style
         render :show
       end
+      format.json do
+      end
     end
   end
 
   # GET /styles/new
-  def new; end
+  def new
+    add_breadcrumb 'All styles', styles_path
+    add_breadcrumb 'New style', new_style_path
+  end
 
   # GET /styles/1/edit
-  def edit; end
+  def edit
+    add_breadcrumb 'All styles', styles_path
+    add_breadcrumb @style.name, edit_style_path(@style)
+  end
 
   # POST /styles or /styles.json
   def create

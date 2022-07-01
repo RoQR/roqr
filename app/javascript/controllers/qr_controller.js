@@ -2,7 +2,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static values = { id: String }
+  static values = { barcodeData: String }
   static targets = [ "fill", "color", "image" ]
 
   updateImage() {
@@ -10,6 +10,6 @@ export default class extends Controller {
     var color = this.colorTarget
     var image = this.imageTarget
 
-    image.src = `/links/${this.idValue}.svg?fill=${encodeURIComponent(fill.value)}&color=${encodeURIComponent(color.value)}`
+    image.src = `/qr.svg?data=${encodeURIComponent(this.barcodeDataValue)}&fill=${encodeURIComponent(fill.value)}&color=${encodeURIComponent(color.value)}`
   }
 }

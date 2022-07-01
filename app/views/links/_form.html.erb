@@ -28,16 +28,19 @@
               </div>
             </div>
           </div>
-          <div data-controller="style">
-            <%= form.select(:style, options_for_select(@styles.map{|t| [t.name, t.id]}), {include_blank: :true}, {data: {action: "style#apply"}}) %>
-            <div class="flex flex-row">
+          <div class="mt-5" data-controller="style">
+            <div class="flex flex-col">
+              <%= form.label :style, class: "text-sm font-medium text-gray-700" %>
+              <%= form.select :style, options_for_select(@styles.map{|t| [t.name, t.id]}), {include_blank: :true}, {data: {action: "style#apply"}} %>
+            </div>
+            <div class="flex flex-row mt-3 gap-3">
               <div class="flex flex-col">
                 <%= form.label :fill, class: "text-sm font-medium text-gray-900" %>
-                <%= form.color_field :fill, value: link.fill, data: {style: {target: "fill"}} %>
+                <%= form.color_field :fill, value: link.fill, "data-style-target": "fill" %>
               </div>
               <div class="flex flex-col">
                 <%= form.label :color, class: "text-sm font-medium text-gray-900" %>
-                <%= form.color_field :color, value: link.color, data: {style: {target: "color"}} %>
+                <%= form.color_field :color, value: link.color, "data-style-target": "color" %>
               </div>
             </div>
           </div>

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
   get :plans, to: 'plans#index'
   get :marketing, to: 'marketing#index'
+  get :qr, to: 'qr#show', format: :svg
 
   authenticated :user do
     root to: 'links#index', as: :authenticated_root

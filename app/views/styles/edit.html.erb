@@ -1,8 +1,1 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing style</h1>
-
-  <%= render "form", style: @style %>
-
-  <%= link_to "Delete this style", @style, data: {turbo_method: :delete}, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to styles", styles_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-</div>
+<%= render "form", style: @style %>

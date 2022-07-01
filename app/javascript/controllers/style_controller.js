@@ -9,24 +9,25 @@ export default class extends Controller {
     console.log("Connected")
   }
 
-  getStyleValues(id) {
-    const response = get(`/styles/${id}.json`);
+  async getStyleValues(id) {
+    const response = await get(`/styles/${id}.json`);
     if (response.ok) {
-      return response.json;
+      return await response.json;
     }
   }
 
-  apply() {
+  async apply() {
     let id = event.target.value;
     if (id) {
-      let values = getStyleValues(id);
-      applyStyleValues(values);
+      let values = await this.getStyleValues(id);
+      console.log(values)
+      this.applyStyleValues(values);
     }
   }
 
-
   applyStyleValues(values) {
-
+    this.colorTarget.value = values['color']
+    this.fillTarget.value = values['fill']
   }
 }
 
