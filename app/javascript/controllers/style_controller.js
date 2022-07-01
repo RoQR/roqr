@@ -10,7 +10,7 @@ export default class extends Controller {
   }
 
   async getStyleValues(id) {
-    const response = await get(`/styles/${id}.json`);
+    const response = await get(`/api/v0/styles/${id}`);
     if (response.ok) {
       return await response.json;
     }

@@ -10,15 +10,15 @@
 <% end %>
 
 <% unless @links.empty? %>
-<div class="bg-white shadow overflow-hidden sm:rounded-md">
-  <ul role="list" class="divide-y divide-gray-200">
-    <% @links.each do |link| %>
-    <li>
-      <%= render LinkCardComponent.new(link: link, can_edit: can?(:update, link), can_delete: can?(:destroy, link)) %>
-    </li>
-    <% end %>
-  </ul>
-</div>
+  <div class="bg-white shadow overflow-hidden sm:rounded-md">
+    <ul role="list" class="divide-y divide-gray-200">
+      <% @links.each do |link| %>
+      <li>
+        <%= render LinkCardComponent.new(link: link, can_edit: can?(:update, link), can_delete: can?(:destroy, link)) %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
 <% else %>
   <div class="text-center">
     <div class="mx-auto h-12 w-12 text-gray-400 flex items-center justify-center">

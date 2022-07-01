@@ -36,7 +36,7 @@ Rails.application.routes.draw do
       defaults format: :json do
         resources :scans, only: :index
         resources :links, only: %i[index create show update destroy]
-        resources :styles
+        resources :styles, only: %i[index show]
         resources :users, only: %i[show update destroy]
       end
     end

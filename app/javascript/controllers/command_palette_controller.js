@@ -6,7 +6,7 @@ export default class extends Controller {
     this.element.data = [
       {
         id: 'Links',
-        title: 'Open Links',
+        title: 'Links',
         hotkey: 'ctrl+L',
         section: 'Links',
         handler: () => {
@@ -15,11 +15,20 @@ export default class extends Controller {
       },
       {
         id: 'Scans',
-        title: 'Open Scans',
+        title: 'Scans',
         hotkey: 'ctrl+S',
         section: 'Scans',
         handler: () => {
             Turbo.visit("/scans")
+        }
+      },
+      {
+        id: 'Styles',
+        title: 'Styles',
+        hotkey: 'ctrl+T',
+        section: 'Styles',
+        handler: () => {
+          Turbo.visit("/styles")
         }
       }
     ]
