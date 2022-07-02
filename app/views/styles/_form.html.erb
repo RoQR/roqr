@@ -25,6 +25,14 @@
                     <%= form.label :color, class: "text-sm font-medium text-gray-900" %>
                     <%= form.color_field :color, value: style.color, "data-action": "input->qr#updateImage", "data-qr-target": "color" %>
                   </div>
+                  <div class="flex flex-col">
+                    <%= form.label :position_border_color, class: "text-sm font-medium text-gray-900" %>
+                    <%= form.color_field :position_border_color, value: style.position_border_color, "data-action": "input->qr#updateImage", "data-qr-target": "positionBorder" %>
+                  </div>
+                  <div class="flex flex-col">
+                    <%= form.label :position_core_color, class: "text-sm font-medium text-gray-900" %>
+                    <%= form.color_field :position_core_color, value: style.position_core_color, "data-action": "input->qr#updateImage", "data-qr-target": "positionCore" %>
+                  </div>
                 </div>
               </div>
             </div>

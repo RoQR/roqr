@@ -19,6 +19,14 @@
             <%= form.label :color, class: "text-sm font-medium text-gray-900" %>
             <%= form.color_field :color, value: link.color, "data-style-target": "color" %>
           </div>
+          <div class="flex flex-col">
+            <%= form.label :position_border_color, class: "text-sm font-medium text-gray-900" %>
+            <%= form.color_field :position_border_color, value: link.position_border_color, "data-style-target": "positionBorder" %>
+          </div>
+          <div class="flex flex-col">
+            <%= form.label :position_core_color, class: "text-sm font-medium text-gray-900" %>
+            <%= form.color_field :position_core_color, value: link.position_core_color, "data-style-target": "positionCore" %>
+          </div>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { Controller } from '@hotwired/stimulus'
 import { get } from '@rails/request.js'
 
 export default class extends Controller {
-  static targets = ['color', 'fill']
+  static targets = ['color', 'fill', 'positionBorder', 'positionCore']
 
   connect() {
     console.log("Connected")
@@ -28,6 +28,8 @@ export default class extends Controller {
   applyStyleValues(values) {
     this.colorTarget.value = values['color']
     this.fillTarget.value = values['fill']
+    this.positionBorderTarget.value = values['position_border_color']
+    this.positionCoreTarget.value = values['position_core_color']
   }
 }
 

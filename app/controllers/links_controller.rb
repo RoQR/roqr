@@ -11,9 +11,8 @@ class LinksController < ApplicationController
   def show
     respond_to do |format|
       format.svg do
-        @params = params.permit(:id, :format, :fill, :color)
-        render inline: QrGenerator.gen(barcode_data(@link), fill: params[:fill] || @link.fill,
-                                                            color: params[:color] || @link.color)
+        render inline: QrGenerator.gen(barcode_data(@link), fill: @link.fill, color: @link.color, position_border: @link.position_border_color,
+                                                            position_core: @link.position_core_color)
       end
 
       format.html do
@@ -94,7 +93,7 @@ class LinksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def link_params
-    link_params = params.require(:link).permit(:id, :name, :dynamic, :password, :fill, :color,
+    link_params = params.require(:link).permit(:id, :name, :dynamic, :password, :fill, :color, :position_border_color, :position_core_color,
                                                contact_link_attributes: %i[id first_name last_name phone email website company title address birthday note],
                                                email_link_attributes: %i[id email_address subject body],
                                                sms_link_attributes: %i[number body],
