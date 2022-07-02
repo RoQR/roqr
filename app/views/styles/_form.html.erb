@@ -16,7 +16,7 @@
                     <%= form.text_field :name, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", required: true %>
                   </div>
                 </div>
-                <div class="flex flex-row gap-3">
+                <div class="grid grid-cols-2 space-y-2">
                   <div class="flex flex-col">
                     <%= form.label :fill, class: "text-sm font-medium text-gray-900" %>
                     <%= form.color_field :fill, value: style.fill, "data-action": "input->qr#updateImage", "data-qr-target": "fill" %>
@@ -46,7 +46,7 @@
       <% end %>	
     </div>
     <div class="flex justify-center md:col-span-1">
-      <%= image_tag(qr_path(data: "https://roqr.app", fill: style.fill, color: style.color, format: :svg), "data-qr-target": "image") %>
+      <%= image_tag(qr_path(data: "https://roqr.app", fill: style.fill, color: style.color, format: :svg), class: "aspect-square", "data-qr-target": "image") %>
     </div>
   </div>
 </div>
