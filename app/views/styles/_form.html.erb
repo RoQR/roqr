@@ -1,6 +1,6 @@
 <div>
-  <div data-controller="qr" data-qr-barcode-data-value="https://roqr.app" class="md:grid md:grid-cols-3 md:gap-6 flex flex-col-reverse space-y-5 md:space-y-0">
-    <div class="md:col-span-2">
+  <div data-controller="qr" data-qr-barcode-data-value="https://roqr.app" class="md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 flex flex-col-reverse space-y-5 md:space-y-0">
+    <div class="md:col-span-1 lg:col-span-2">
       <%= form_with(model: style) do |form| %>
         <div class="space-y-6">
           <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
@@ -46,7 +46,7 @@
       <% end %>	
     </div>
     <div class="flex justify-center md:col-span-1">
-      <%= image_tag(qr_path(data: "https://roqr.app", fill: style.fill, color: style.color, format: :svg), class: "aspect-square", "data-qr-target": "image") %>
+      <%= image_tag(qr_path(data: "https://roqr.app", fill: style.fill, color: style.color, position_border: style.position_border_color, position_core: style.position_core_color, format: :svg), "data-qr-target": "image") %>
     </div>
   </div>
 </div>
