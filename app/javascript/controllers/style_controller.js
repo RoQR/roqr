@@ -5,10 +5,6 @@ import { get } from '@rails/request.js'
 export default class extends Controller {
   static targets = ['color', 'fill', 'positionBorder', 'positionCore']
 
-  connect() {
-    console.log("Connected")
-  }
-
   async getStyleValues(id) {
     const response = await get(`/api/v0/styles/${id}`);
     if (response.ok) {
@@ -20,7 +16,6 @@ export default class extends Controller {
     let id = event.target.value;
     if (id) {
       let values = await this.getStyleValues(id);
-      console.log(values)
       this.applyStyleValues(values);
     }
   }
