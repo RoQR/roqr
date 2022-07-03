@@ -4,10 +4,8 @@ class LinkCardComponent < ViewComponent::Base
   include IconsHelper
   include LinksHelper
 
-  def initialize(link:, can_edit: false, can_delete: false)
+  def initialize(link)
     @link = link
-    @can_edit = can_edit
-    @can_delete = can_delete
   end
 
   def name

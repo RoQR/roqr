@@ -14,7 +14,7 @@
     <ul role="list" class="divide-y divide-gray-200">
       <% @links.each do |link| %>
       <li>
-        <%= render LinkCardComponent.new(link: link, can_edit: can?(:update, link), can_delete: can?(:destroy, link)) %>
+        <%= render LinkCardComponent.new(link) %>
       </li>
       <% end %>
     </ul>
