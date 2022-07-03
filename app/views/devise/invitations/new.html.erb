@@ -1,23 +1,23 @@
-<h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Send invitation</h2>
+<h2 class="mt-6 text-center text-3xl font-extrabold text-slate-900">Send invitation</h2>
 <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post, class: "mt-8 space-y-6" }) do |f| %>
   <div class="rounded-md shadow-sm">
     <div class="-space-y-px">
       <div class="field">
-        <%= f.text_field :name, class: "appearance-none rounded-t-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Name" %>
+        <%= f.text_field :name, class: "appearance-none rounded-t-md relative block w-full px-3 py-2 border border-slate-300 placeholder-slate-500 text-slate-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Name" %>
       </div>
 
       <% resource.class.invite_key_fields.each do |field| %>
         <div class="field">
-          <%= f.text_field field, class: "appearance-none rounded-b-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: field %>
+          <%= f.text_field field, class: "appearance-none rounded-b-md relative block w-full px-3 py-2 border border-slate-300 placeholder-slate-500 text-slate-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: field %>
         </div>
       <% end %>
     </div>
 
     <fieldset class="space-y-3 mt-5">
-      <legend class="text-lg font-medium text-gray-900">Links / styles permissions</legend>
+      <legend class="text-lg font-medium text-slate-900">Links / styles permissions</legend>
       <div class="relative flex items-start">
         <div class="flex items-center h-5">
-          <%= f.check_box :can_create_links, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+          <%= f.check_box :can_create_links, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-slate-300 rounded" %>
         </div>
         <div class="ml-3 text-sm">
           <%= f.label :can_create_links, "Create new" %>
@@ -25,7 +25,7 @@
       </div>
       <div class="relative flex items-start">
         <div class="flex items-center h-5">
-          <%= f.check_box :can_edit_links, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+          <%= f.check_box :can_edit_links, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-slate-300 rounded" %>
         </div>
         <div class="ml-3 text-sm">
           <%= f.label :can_edit_links, "Edit existing" %>
@@ -33,7 +33,7 @@
       </div>
       <div class="relative flex items-start">
         <div class="flex items-center h-5">
-          <%= f.check_box :can_delete_links, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+          <%= f.check_box :can_delete_links, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-slate-300 rounded" %>
         </div>
         <div class="ml-3 text-sm">
           <%= f.label :can_delete_links, "Delete existing" %>
@@ -41,10 +41,10 @@
       </div>
     </fieldset>
     <fieldset class="space-y-3 mt-5">
-      <legend class="text-lg font-medium text-gray-900">Organization permissions</legend>
+      <legend class="text-lg font-medium text-slate-900">Organization permissions</legend>
       <div class="relative flex items-start">
         <div class="flex items-center h-5">
-          <%= f.check_box :can_edit_organization, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+          <%= f.check_box :can_edit_organization, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-slate-300 rounded" %>
         </div>
         <div class="ml-3 text-sm">
           <%= f.label :can_edit_organization, "Edit" %>
@@ -52,7 +52,7 @@
       </div>
       <div class="relative flex items-start">
         <div class="flex items-center h-5">
-          <%= f.check_box :can_delete_organization, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+          <%= f.check_box :can_delete_organization, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-slate-300 rounded" %>
         </div>
         <div class="ml-3 text-sm">
           <%= f.label :can_delete_organization, "Delete" %>
@@ -60,10 +60,10 @@
       </div>
     </fieldset>
     <fieldset class="space-y-3 mt-5">
-      <legend class="text-lg font-medium text-gray-900">Team member permissions</legend>
+      <legend class="text-lg font-medium text-slate-900">Team member permissions</legend>
       <div class="relative flex items-start">
         <div class="flex items-center h-5">
-          <%= f.check_box :can_invite_users, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+          <%= f.check_box :can_invite_users, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-slate-300 rounded" %>
         </div>
         <div class="ml-3 text-sm">
           <%= f.label :can_invite_users, "Invite members" %>
@@ -71,7 +71,7 @@
       </div>
       <div class="relative flex items-start">
         <div class="flex items-center h-5">
-          <%= f.check_box :can_edit_users, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+          <%= f.check_box :can_edit_users, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-slate-300 rounded" %>
         </div>
         <div class="ml-3 text-sm">
           <%= f.label :can_edit_users, "Edit member profiles" %>
@@ -79,7 +79,7 @@
       </div>
       <div class="relative flex items-start">
         <div class="flex items-center h-5">
-          <%= f.check_box :can_delete_users, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+          <%= f.check_box :can_delete_users, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-slate-300 rounded" %>
         </div>
         <div class="ml-3 text-sm">
           <%= f.label :can_delete_users, "Delete members" %>

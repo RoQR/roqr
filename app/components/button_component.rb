@@ -59,7 +59,7 @@ class ButtonComponent < ViewComponent::Base
     when 'primary'
       'border-transparent text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500'
     when 'white'
-      'border-gray-300 text-gray-700 bg-white hover:bg-gray-50 focus:ring-indigo-500'
+      'border-slate-300 text-slate-700 bg-white hover:bg-slate-50 focus:ring-indigo-500'
     when 'red'
       'border-transparent text-white bg-red-600 hover:bg-red-700 focus:ring-red-500'
     end

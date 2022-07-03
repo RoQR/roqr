@@ -45,7 +45,7 @@
   }
   ```
 -->
-<div data-controller="dropdown" class="relative bg-gray-800 bg-texture overflow-hidden">
+<div data-controller="dropdown" class="relative bg-slate-800 bg-texture overflow-hidden">
   <div class="relative pt-6 pb-16 sm:pb-24">
     <div>
       <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6" aria-label="Global">
@@ -56,7 +56,7 @@
                 <%= show_svg("solid/bolt") %>
               </div>
             <div class="-mr-2 flex items-center md:hidden">
-              <button data-action="dropdown#toggle click@window->dropdown#hide" type="button" class="bg-transparent rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-700 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white" aria-expanded="false">
+              <button data-action="dropdown#toggle click@window->dropdown#hide" type="button" class="bg-transparent rounded-md p-2 inline-flex items-center justify-center text-slate-400 hover:bg-slate-700 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white" aria-expanded="false">
                 <span class="sr-only">Open main menu</span>
                 <!-- Heroicon name: outline/menu -->
                 <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -66,13 +66,13 @@
             </div>
           </div>
           <div class="hidden space-x-10 md:flex md:ml-10">
-            <%= link_to 'Features', marketing_path(anchor: 'Features'), class: 'font-medium text-white hover:text-gray-300' %>
-            <%= link_to 'Pricing', marketing_path(anchor: 'Pricing'), class: 'font-medium text-white hover:text-gray-300' %>
-            <%= link_to 'FAQ', marketing_path(anchor: 'FAQ'), class: 'font-medium text-white hover:text-gray-300' %>
+            <%= link_to 'Features', marketing_path(anchor: 'Features'), class: 'font-medium text-white hover:text-slate-300' %>
+            <%= link_to 'Pricing', marketing_path(anchor: 'Pricing'), class: 'font-medium text-white hover:text-slate-300' %>
+            <%= link_to 'FAQ', marketing_path(anchor: 'FAQ'), class: 'font-medium text-white hover:text-slate-300' %>
           </div>
         </div>
         <div class="hidden md:flex">
-          <%= link_to 'Log in', new_user_session_path, class: 'inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700' %>
+          <%= link_to 'Log in', new_user_session_path, class: 'inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-slate-600 hover:bg-slate-700' %>
         </div>
       </nav>
 
@@ -92,7 +92,7 @@
                 <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="">
               </div>
         <div class="-mr-2">
-          <button data-action="dropdown#toggle" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+          <button data-action="dropdown#toggle" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-slate-400 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
             <span class="sr-only">Close menu</span>
             <!-- Heroicon name: outline/x -->
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -102,11 +102,11 @@
         </div>
             </div>
             <div class="px-2 pt-2 pb-3 space-y-1">
-              <%= link_to 'Features', marketing_path(anchor: 'Features'), class: 'block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50' %>
-              <%= link_to 'Pricing', marketing_path(anchor: 'Pricing'), class: 'block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50' %>
-              <%= link_to 'FAQ', marketing_path(anchor: 'FAQ'), class: 'block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50' %>
+              <%= link_to 'Features', marketing_path(anchor: 'Features'), class: 'block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-50' %>
+              <%= link_to 'Pricing', marketing_path(anchor: 'Pricing'), class: 'block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-50' %>
+              <%= link_to 'FAQ', marketing_path(anchor: 'FAQ'), class: 'block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-50' %>
             </div>
-            <%= link_to 'Log in', new_user_session_path, class: 'block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100' %>
+            <%= link_to 'Log in', new_user_session_path, class: 'block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-slate-50 hover:bg-slate-100' %>
           </div>
       </div>
     </div>
@@ -120,19 +120,19 @@
                 <span class="md:block">QR codes that will</span>
                 <span class="text-indigo-400 md:block">rock your world</span>
               </h1>
-              <p class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">Our supercharged QR codes let you manage, update and track behavior for all your marketing campaigns.</p>
+              <p class="mt-3 text-base text-slate-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">Our supercharged QR codes let you manage, update and track behavior for all your marketing campaigns.</p>
             </div>
           </div>
           <div class="mt-16 sm:mt-24 lg:mt-0 lg:col-span-6">
             <div class="bg-white sm:max-w-md sm:w-full sm:mx-auto sm:rounded-lg sm:overflow-hidden">
               <div class="px-4 py-8 sm:px-10">
                 <div>
-                  <p class="text-sm font-medium text-gray-700">Sign in with</p>
+                  <p class="text-sm font-medium text-slate-700">Sign in with</p>
 
                   <div class="mt-1 grid grid-cols-2 gap-3">
 
                     <div>
-                      <%= button_to user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: "w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" do %>
+                      <%= button_to user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: "w-full inline-flex justify-center py-2 px-4 border border-slate-300 rounded-md shadow-sm bg-white text-sm font-medium text-slate-500 hover:bg-slate-50" do %>
                         <span class="sr-only">Sign in with Google</span>
                         <svg class="w-5 h=5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <g transform="matrix(1, 0, 0, 1, 27.009001, -39.238998)">
@@ -145,7 +145,7 @@
                       <% end %>
                     </div>
                     <div>
-                      <%= button_to user_github_omniauth_authorize_path, data: { turbo: false }, class: "w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" do %>
+                      <%= button_to user_github_omniauth_authorize_path, data: { turbo: false }, class: "w-full inline-flex justify-center py-2 px-4 border border-slate-300 rounded-md shadow-sm bg-white text-sm font-medium text-slate-500 hover:bg-slate-50" do %>
                         <span class="sr-only">Sign in with GitHub</span>
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                           <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd" />
@@ -157,10 +157,10 @@
 
                 <div class="mt-6 relative">
                   <div class="absolute inset-0 flex items-center" aria-hidden="true">
-                    <div class="w-full border-t border-gray-300"></div>
+                    <div class="w-full border-t border-slate-300"></div>
                   </div>
                   <div class="relative flex justify-center text-sm">
-                    <span class="px-2 bg-white text-gray-500"> Or </span>
+                    <span class="px-2 bg-white text-slate-500"> Or </span>
                   </div>
                 </div>
 
@@ -170,11 +170,11 @@
                     <div class="rounded-md shadow-sm -space-y-px">
                       <div>
                         <%= f.label :name, class: "sr-only" %>
-                        <%= f.text_field :name, required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Name" %>
+                        <%= f.text_field :name, required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-slate-300 placeholder-slate-500 text-slate-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Name" %>
                       </div>
                       <div>
                         <%= f.label :email, class: "sr-only" %>
-                        <%= f.email_field :email, autocomplete: "email", required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Email address" %>
+                        <%= f.email_field :email, autocomplete: "email", required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-slate-300 placeholder-slate-500 text-slate-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Email address" %>
                       </div>
                     </div>
 
@@ -184,8 +184,8 @@
                   <% end %>
                 </div>
               </div>
-              <div class="px-4 py-6 bg-gray-50 border-t-2 border-gray-200 sm:px-10">
-                <p class="text-xs leading-5 text-gray-500">By signing up, you agree to our <a href="#" class="font-medium text-gray-900 hover:underline">Terms</a>, <a href="#" class="font-medium text-gray-900 hover:underline">Data Policy</a> and <a href="#" class="font-medium text-gray-900 hover:underline">Cookies Policy</a>.</p>
+              <div class="px-4 py-6 bg-slate-50 border-t-2 border-slate-200 sm:px-10">
+                <p class="text-xs leading-5 text-slate-500">By signing up, you agree to our <a href="#" class="font-medium text-slate-900 hover:underline">Terms</a>, <a href="#" class="font-medium text-slate-900 hover:underline">Data Policy</a> and <a href="#" class="font-medium text-slate-900 hover:underline">Cookies Policy</a>.</p>
               </div>
             </div>
           </div>
@@ -199,8 +199,8 @@
 <div class="relative bg-white py-16 sm:py-24 lg:py-32">
   <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
     <h2 class="text-base font-semibold uppercase tracking-wider text-indigo-600">Everything you need</h2>
-    <p class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Infinitely customizable</p>
-    <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">Turn it up to 11 with RoQR's dynamic QR codes. Gather feedback from your key customers, promote your brand, advertise your events and discounts and track user engagement - RoQR let's you do it all</p>
+    <p class="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Infinitely customizable</p>
+    <p class="mx-auto mt-5 max-w-prose text-xl text-slate-500">Turn it up to 11 with RoQR's dynamic QR codes. Gather feedback from your key customers, promote your brand, advertise your events and discounts and track user engagement - RoQR let's you do it all</p>
     <div class="mt-12">
       <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         <%= render FeatureCardComponent.new(title: 'Dynamic QR codes', icon: 'outline/qrcode') do %>
@@ -227,11 +227,11 @@
 </div>
 
 <!-- Footer -->
-<footer class="bg-gray-800" aria-labelledby="footer-heading">
+<footer class="bg-slate-800" aria-labelledby="footer-heading">
   <h2 id="footer-heading" class="sr-only">Footer</h2>
   <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-    <div class="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
-      <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">&copy; 2022 RoQR, LLC. All rights reserved.</p>
+    <div class="mt-8 border-t border-slate-700 pt-8 md:flex md:items-center md:justify-between">
+      <p class="mt-8 text-base text-slate-400 md:mt-0 md:order-1">&copy; 2022 RoQR, LLC. All rights reserved.</p>
     </div>
   </div>
 </footer>

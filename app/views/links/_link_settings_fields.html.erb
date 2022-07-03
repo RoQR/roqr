@@ -1,28 +1,28 @@
 <div class="bg-white shadow px-4 py-5 rounded-lg sm:p-6">
   <div class="md:grid md:grid-cols-3 md:gap-6">
     <div class="md:col-span-1">
-      <h3 class="text-lg font-medium leading-6 text-gray-900">Link settings</h3>
-      <p class="mt-1 text-sm text-gray-500">General settings for the link</p>
+      <h3 class="text-lg font-medium leading-6 text-slate-900">Link settings</h3>
+      <p class="mt-1 text-sm text-slate-500">General settings for the link</p>
     </div>
     <div data-controller="checkbox" class="md:col-span-2 md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-2">
-        <%= form.label :name, class: "block text-sm font-medium text-gray-700" %>
+        <%= form.label :name, class: "block text-sm font-medium text-slate-700" %>
         <div class="mt-1">
-          <%= form.text_field :name, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md", required: true %>
+          <%= form.text_field :name, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-slate-300 rounded-md", required: true %>
         </div>
       </div>
       <div class="flex justify-between flex-row items-center mt-5 md:mt-0 col-span-1">
         <span class="flex-grow flex flex-col">
-          <%= form.label :dynamic, class: "text-sm font-medium text-gray-900" %>
-          <span class="text-sm text-gray-500" id="availability-description">Dynamic links can be updated, and track scans</span>
+          <%= form.label :dynamic, class: "text-sm font-medium text-slate-900" %>
+          <span class="text-sm text-slate-500" id="availability-description">Dynamic links can be updated, and track scans</span>
         </span>
-        <%= form.check_box :dynamic, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded", data: {action: "checkbox#toggle"} %>
+        <%= form.check_box :dynamic, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-slate-300 rounded", data: {action: "checkbox#toggle"} %>
       </div>
       <div data-checkbox-target="detail" class="col-span-2" style="display: <%= link.dynamic ? ';' : 'none;' %>">
-        <%= form.label :password, class: "block text-sm font-medium text-gray-700" %>
-        <span class="text-sm text-gray-500">Adding a password to your link will prompt the scanner for the password before redirecting them to the link target.</span>
+        <%= form.label :password, class: "block text-sm font-medium text-slate-700" %>
+        <span class="text-sm text-slate-500">Adding a password to your link will prompt the scanner for the password before redirecting them to the link target.</span>
         <div class="mt-1">
-          <%= form.password_field :password, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"  %>
+          <%= form.password_field :password, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-slate-300 rounded-md"  %>
         </div>
       </div>
     </div>

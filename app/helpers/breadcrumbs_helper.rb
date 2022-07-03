@@ -4,7 +4,7 @@ module BreadcrumbsHelper
     include ERB::Util
 
     def chevron
-      @context.content_tag(:div, class: 'text-gray-500') do
+      @context.content_tag(:div, class: 'text-slate-500') do
         File.binread('app/assets/icons/solid/chevron-right.svg').html_safe
       end
     end
@@ -22,9 +22,9 @@ module BreadcrumbsHelper
       if element.path.nil?
         content = compute_name(element)
       else
-        element.options.merge!({ class: 'text-sm font-medium text-gray-500 hover:text-gray-700' })
+        element.options.merge!({ class: 'text-sm font-medium text-slate-500 hover:text-slate-700' })
         content = @context.link_to_unless_current(compute_name(element), compute_path(element), element.options) do
-          @context.content_tag(:p, class: 'text-sm font-medium text-gray-500') do
+          @context.content_tag(:p, class: 'text-sm font-medium text-slate-500') do
             compute_name(element)
           end
         end

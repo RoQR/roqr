@@ -5,7 +5,7 @@
     <% end %>
   <% end %>
   <div>
-    <ul role="list" class="divide-y divide-gray-200">
+    <ul role="list" class="divide-y divide-slate-200">
       <% link.versions.select {|v| !v.whodunnit.nil? }.sort_by {|v| v.created_at}.reverse.each do |v| %>
         <% user = User.find(v.whodunnit) %>
         <li class="py-4">
@@ -14,9 +14,9 @@
             <div class="flex-1 space-y-1">
               <div class="flex items-center justify-between">
                 <h3 class="text-sm font-medium"><%= user.display_name %></h3>
-                <p class="text-sm text-gray-500" title="<%= v.created_at %>"><%= time_ago_in_words(v.created_at) %> ago</p>
+                <p class="text-sm text-slate-500" title="<%= v.created_at %>"><%= time_ago_in_words(v.created_at) %> ago</p>
               </div>
-              <p class="text-sm text-gray-500"><%= v.event.titlecase %>d
+              <p class="text-sm text-slate-500"><%= v.event.titlecase %>d
               <% if v.event == 'update' && v.changeset %>
                 <%= humanize_version_change(v.changeset) %>
               <% end %>

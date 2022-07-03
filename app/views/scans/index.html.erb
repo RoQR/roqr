@@ -1,7 +1,7 @@
 <% if @scans.empty? %>
   <div class="text-center">
-    <h3 class="mt-2 text-sm font-medium text-gray-900">No scans</h3>
-    <p class="mt-1 text-sm text-gray-500">Share your QR codes to start generating scans.</p>
+    <h3 class="mt-2 text-sm font-medium text-slate-900">No scans</h3>
+    <p class="mt-1 text-sm text-slate-500">Share your QR codes to start generating scans.</p>
   </div>
 <% else %>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
@@ -34,23 +34,23 @@
     <% end %>
   <% end %>
   <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-md md:rounded-lg overflow-x-auto">
-    <table class="min-w-full divide-y divide-gray-300">
-      <thead class="bg-gray-50">
+    <table class="min-w-full divide-y divide-slate-300">
+      <thead class="bg-slate-50">
         <tr>
-          <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Datetime</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Link</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Browser name</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Browser version</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Bot name</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Device name</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Platform name</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Platform version</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Language</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">City</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Country</th>
+          <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-slate-900 sm:pl-6">Datetime</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Link</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Browser name</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Browser version</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Bot name</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Device name</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Platform name</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Platform version</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Language</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">City</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Country</th>
         </tr>
       </thead>
-      <tbody class="divide-y divide-gray-200 bg-white">
+      <tbody class="divide-y divide-slate-200 bg-white">
         <%= render partial: "row", collection: @scans.sort_by {|e| e.created_at }.reverse, as: :scan %>
       </tbody>
     </table>
