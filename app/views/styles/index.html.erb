@@ -1,22 +1,25 @@
 <div class="w-full">
   <%= render SectionHeaderComponent.new do |c| %>
     <%= c.with_title do %>
-      Styles
+      <%= link_to "New style", new_style_path, data: {turbo_frame: dom_id(Style.new) } %>
     <% end %>
     <% if can? :create, Style %>
       <%= c.with_button(link: new_style_path).with_content("New style") %>
     <% end %>
   <% end %>
 
-  <% if @styles.count.positive? %>
-    <%= render @styles %>
-  <% else %>
-    <div class="text-center">
-      <div class="mx-auto h-12 w-12 text-slate-400 flex items-center justify-center">
-        <%= show_svg("outline/color-swatch") %>
+  <%= turbo_frame_tag Style.new %>
+  <%= turbo_frame_tag "styles" do %>
+    <% if @styles.count.positive? %>
+      <%= render @styles %>
+    <% else %>
+      <div class="text-center">
+        <div class="mx-auto h-12 w-12 text-slate-400 flex items-center justify-center">
+          <%= show_svg("outline/color-swatch") %>
+        </div>
+        <h3 class="mt-2 text-sm font-medium text-slate-900">No styles</h3>
+        <p class="mt-1 text-sm text-slate-500">Get started by creating a new style.</p>
       </div>
-      <h3 class="mt-2 text-sm font-medium text-slate-900">No styles</h3>
-      <p class="mt-1 text-sm text-slate-500">Get started by creating a new style.</p>
-    </div>
+    <% end %>
   <% end %>
 </div>

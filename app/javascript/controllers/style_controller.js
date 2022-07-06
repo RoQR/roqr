@@ -3,7 +3,7 @@ import { Controller } from '@hotwired/stimulus'
 import { get } from '@rails/request.js'
 
 export default class extends Controller {
-  static targets = ['color', 'fill', 'positionBorder', 'positionCore']
+  static targets = ['newStyle', 'color', 'fill', 'positionBorder', 'positionCore']
 
   async getStyleValues(id) {
     const response = await get(`/api/v0/styles/${id}`);
@@ -14,6 +14,14 @@ export default class extends Controller {
 
   async apply() {
     let id = event.target.value;
+    if (id) {
+      let values = await this.getStyleValues(id);
+      this.applyStyleValues(values);
+    }
+  }
+
+  async newStyleTargetConnected(element) {
+    let id = element.value;
     if (id) {
       let values = await this.getStyleValues(id);
       this.applyStyleValues(values);

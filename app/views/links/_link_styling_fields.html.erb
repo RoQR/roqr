@@ -7,27 +7,35 @@
     <div class="md:col-span-2 md:grid-cols-3 md:gap-6">
       <div class="mt-5" data-controller="style">
         <div class="flex flex-col">
-          <%= form.label :style, class: "text-sm font-medium text-slate-700" %>
+          <%= form.label :style, "Choose from an existing style", class: "text-sm font-medium text-slate-700" %>
           <%= form.select :style, options_for_select(@styles.map{|t| [t.name, t.id]}),  {include_blank: :true}, {data: {action: "style#apply"}, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-slate-300 rounded-md"} %>
         </div>
-        <div class="grid mt-2 grid-cols-2 space-y-2">
-          <div class="flex flex-col">
-            <%= form.label :fill, class: "text-sm font-medium text-slate-900" %>
-            <%= form.color_field :fill, value: link.fill, "data-style-target": "fill" %>
+        <%= turbo_frame_tag Style.new do %>
+          <span class="text-sm font-medium text-slate-700">
+            or
+            <%= link_to "create a new style", new_style_path, data: {turbo_frame: "new_style"} %>
+          </span>
+        <% end %>
+        <fieldset hidden>
+          <div class="grid mt-2 grid-cols-2 space-y-2">
+            <div class="flex flex-col">
+              <%= form.label :fill, class: "text-sm font-medium text-slate-900" %>
+              <%= form.color_field :fill, value: link.fill, "data-style-target": "fill" %>
+            </div>
+            <div class="flex flex-col">
+              <%= form.label :color, class: "text-sm font-medium text-slate-900" %>
+              <%= form.color_field :color, value: link.color, "data-style-target": "color" %>
+            </div>
+            <div class="flex flex-col">
+              <%= form.label :position_border_color, class: "text-sm font-medium text-slate-900" %>
+              <%= form.color_field :position_border_color, value: link.position_border_color, "data-style-target": "positionBorder" %>
+            </div>
+            <div class="flex flex-col">
+              <%= form.label :position_core_color, class: "text-sm font-medium text-slate-900" %>
+              <%= form.color_field :position_core_color, value: link.position_core_color, "data-style-target": "positionCore" %>
+            </div>
           </div>
-          <div class="flex flex-col">
-            <%= form.label :color, class: "text-sm font-medium text-slate-900" %>
-            <%= form.color_field :color, value: link.color, "data-style-target": "color" %>
-          </div>
-          <div class="flex flex-col">
-            <%= form.label :position_border_color, class: "text-sm font-medium text-slate-900" %>
-            <%= form.color_field :position_border_color, value: link.position_border_color, "data-style-target": "positionBorder" %>
-          </div>
-          <div class="flex flex-col">
-            <%= form.label :position_core_color, class: "text-sm font-medium text-slate-900" %>
-            <%= form.color_field :position_core_color, value: link.position_core_color, "data-style-target": "positionCore" %>
-          </div>
-        </div>
+        </fieldset>
       </div>
     </div>
   </div>

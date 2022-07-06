@@ -37,6 +37,7 @@ class StylesController < ApplicationController
       if @style.save
         format.html { redirect_to styles_url, notice: 'Style was successfully created.' }
         format.json { render :show, status: :created, location: @style }
+        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @style.errors, status: :unprocessable_entity }
@@ -63,6 +64,7 @@ class StylesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to styles_url, notice: 'Style was successfully destroyed.' }
+      format.turbo_stream
       format.json { head :no_content }
     end
   end

@@ -1,5 +1,5 @@
-<div id="<%= dom_id style %>">
-  <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-slate-200">
+<%= turbo_frame_tag style do %>
+  <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
     <div class="px-4 py-5 sm:px-6 flex justify-between items-center">
       <%= style.name %>
       <%= render InlineButtonGroupComponent.new do |c| %>
@@ -19,4 +19,4 @@
   <% if action_name != "show" %>
     <hr class="mt-6">
   <% end %>
-</div>
+<% end %>
