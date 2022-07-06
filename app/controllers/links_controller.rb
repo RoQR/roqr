@@ -69,11 +69,8 @@ class LinksController < ApplicationController
   end
 
   def confirm_destroy
-    scans_text = @link.scans.count.positive? ? ", <b>including #{@link.scans.count.to_s + ' ' + 'scan'.pluralize(@link.scans.count)}</b>" : ''
-    render TurboModalComponent.new(title: 'Delete link', resource: @link).with_content(
-      'Are you sure you want to delete your link? All of your data will be permanently removed from our servers forever' \
-      "#{scans_text}. This action cannot be undone."
-    )
+    @scans_text = @link.scans.count.positive? ? ", <b>including #{@link.scans.count.to_s + ' ' + 'scan'.pluralize(@link.scans.count)}</b>" : ''
+    render TurboModalComponent.new(title: 'Delete link').with_content(render_to_string(partial: 'links/confirm_destroy'))
   end
 
   def destroy

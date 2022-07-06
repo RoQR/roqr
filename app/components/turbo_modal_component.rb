@@ -3,8 +3,7 @@
 class TurboModalComponent < ViewComponent::Base
   include Turbo::FramesHelper
   include IconsHelper
-  def initialize(title:, resource:)
+  def initialize(title:)
     @title = title
-    @resource = resource
   end
 end
