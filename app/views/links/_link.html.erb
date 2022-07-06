@@ -7,7 +7,7 @@
           <% c.with_button(link: edit_link_path(@link), style: 'white').with_content("Edit this link") %>
         <% end %>
         <% if can? :destroy, link %>
-          <% c.with_button(link: confirm_destroy_link_path(@link), style: 'red', data: { turbo_frame: 'destroy_modal' }).with_content("Delete this link") %>
+          <% c.with_button(link: confirm_destroy_link_path(@link), style: 'red', data: { turbo_frame: 'modal' }).with_content("Delete this link") %>
         <% end %>
       <% end %>
     </div>
