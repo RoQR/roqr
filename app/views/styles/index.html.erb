@@ -1,10 +1,10 @@
 <div class="w-full">
   <%= render SectionHeaderComponent.new do |c| %>
     <%= c.with_title do %>
-      <%= link_to "New style", new_style_path, data: {turbo_frame: dom_id(Style.new) } %>
+      Styles
     <% end %>
     <% if can? :create, Style %>
-      <%= c.with_button(link: new_style_path).with_content("New style") %>
+      <%= c.with_button(link: new_style_path, data: {turbo_frame: "modal" }).with_content("New style") %>
     <% end %>
   <% end %>
 

@@ -21,8 +21,8 @@ class StylesController < ApplicationController
 
   # GET /styles/new
   def new
-    add_breadcrumb 'All styles', styles_path
-    add_breadcrumb 'New style', new_style_path
+    render TurboModalComponent.new(title: 'New style').with_content(render_to_string(partial: 'styles/form',
+                                                                                     locals: { style: @style }))
   end
 
   # GET /styles/1/edit

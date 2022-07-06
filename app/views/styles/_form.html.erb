@@ -1,7 +1,7 @@
 <div>
   <div data-controller="qr" data-qr-barcode-data-value="https://roqr.app" class="md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 flex flex-col-reverse space-y-5 md:space-y-0">
     <div class="md:col-span-1 lg:col-span-2">
-      <%= form_with(model: style) do |form| %>
+      <%= form_with(model: style, format: :html) do |form| %>
         <div class="space-y-6">
           <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
             <div class="lg:grid lg:grid-cols-3 lg:gap-6">
@@ -40,7 +40,7 @@
       
           <div class="flex justify-end">
             <%= link_to 'Cancel', styles_path, class: "bg-white py-2 px-4 border border-slate-300 rounded-md shadow-sm text-sm font-medium text-slate-700 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-            <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+            <%= form.submit :Save, class: "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
           </div>
         </div>
       <% end %>	
