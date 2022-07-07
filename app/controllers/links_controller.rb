@@ -69,7 +69,7 @@ class LinksController < ApplicationController
   end
 
   def confirm_destroy
-    @scans_text = @link.scans.count.positive? ? ", <b>including #{@link.scans.count.to_s + ' ' + 'scan'.pluralize(@link.scans.count)}</b>" : ''
+    @scans_text = @link.scans.count.positive? ? ", <b>including #{@link.scans.count.to_s + ' ' + 'scan'.pluralize(@link.scans.count)}</b>".html_safe : ''
     render TurboModalComponent.new(title: 'Delete link').with_content(render_to_string(partial: 'links/confirm_destroy'))
   end
 
