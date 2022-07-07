@@ -7,7 +7,12 @@
       <div class="mt-5 md:mt-0 md:col-span-2">
         <div class="grid grid-cols-6 gap-6">
           <div class="col-span-6">
-            <%= wifi_form.label :ssid, "SSID", class: "block text-sm font-medium text-slate-700" %>
+            <div class="flex">
+              <%= wifi_form.label :ssid, "Network name", class: "block text-sm font-medium text-slate-700" %>
+              <%= render TooltipComponent.new do %>
+                Sometimes referred to as an SSID.
+              <% end %>
+            </div>
             <%= wifi_form.text_field :ssid, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md" %>
           </div>
 
@@ -19,8 +24,12 @@
           <div class="col-span-12">
             <div class="mb-3 flex flex-col justify-between sm:flex-row">
               <div>
-                <label class="text-base font-medium text-slate-900">Security protocol</label>
-                <p class="text-sm leading-5 text-slate-500">What type of security protocol does the WiFi network use?</p>
+                <div class="flex">
+                  <label class="text-base font-medium text-slate-900">Security protocol</label>
+                  <%= render TooltipComponent.new do %>
+                    Most WiFi networks have some form of protection through a security protocol. The most common form of security protocol is WEP, but WPA is also becoming more popular. To find out your settings, check your network settings through a device that is already connected to the network.
+                  <% end %>
+                </div>
               </div>
               <fieldset class="mt-4">
                 <legend class="sr-only">Wifi security protocol</legend>
