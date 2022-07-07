@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_02_214909) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_07_004243) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -59,7 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_02_214909) do
     t.uuid "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "dynamic", default: false, null: false
+    t.boolean "dynamic", default: true, null: false
     t.uuid "contact_link_id"
     t.uuid "email_link_id"
     t.uuid "sms_link_id"
