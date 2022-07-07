@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "modal", target: :_top do %>
-  <%= tag.div data: { controller: "turbo-modal" } do %>
+  <%= tag.div data: { controller: "turbo-modal", action: "keyup@document->turbo-modal#handleKeyup" } do %>
     <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
       <div 
         class="fixed inset-0 bg-slate-500 bg-opacity-75 transition-opacity"
