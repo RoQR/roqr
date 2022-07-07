@@ -1,14 +1,20 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  hideModal() {
-    this.element.parentElement.removeAttribute("src")
-    this.element.remove()
+  connect() {
+    document.addEventListener('turbo:submit-end', this.submitEnd)
   }
 
-  // hide modal on successful form submission
-  // action: "turbo:submit-end->turbo-modal#submitEnd"
-  submitEnd(e) {
+  disconnect() {
+    document.removeEventListener('turbo:submit-end', this.submitEnd)
+  }
+
+  hideModal() {
+    this.element.parentElement.removeAttribute("src");
+    this.element.remove();
+  }
+
+  submitEnd = (e) => {
     if (e.detail.success) {
       this.hideModal()
     }
