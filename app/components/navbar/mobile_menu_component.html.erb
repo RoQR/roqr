@@ -11,7 +11,7 @@
   >
     <div class="px-2 pt-2 pb-3 space-y-1">
       <%= render Navbar::LinkComponent.new(title: 'Links', link: links_path, is_active: current_page?(links_path), is_mobile: true) %>
-      <%= render Navbar::LinkComponent.new(title: 'Scans', link: scans_path, is_active: current_page?(scans_path), is_mobile: true) %>
+      <%= render Navbar::LinkComponent.new(title: 'Insights', link: scans_path, is_active: current_page?(scans_path), is_mobile: true) %>
       <%= render Navbar::LinkComponent.new(title: 'Styles', link: styles_path, is_active: current_page?(styles_path), is_mobile: true) %>
     </div>
   </div>
