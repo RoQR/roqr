@@ -1,4 +1,4 @@
-<%= turbo_stream.prepend "styles", @style %>
+<%= turbo_stream.append "styles", @style %>
 <%= turbo_stream.append "link_style", "<option data-style-target='newStyle' value=#{@style.id} selected>#{@style.name}</option>" %>
 <%= turbo_stream.append "flash_messages" do %>
   <%= render FlashComponent.new(type: 'notice', data: "#{@style.name} created") %>

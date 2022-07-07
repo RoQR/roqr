@@ -8,8 +8,12 @@
     <% end %>
   <% end %>
 
-  <%= turbo_frame_tag "styles" do %>
-    <%= render 'styles/empty_state' %>
+  <%= turbo_frame_tag Style.new do %>
+  <% if @styles.none? %>
+    <%= render 'empty_state' %>
+  <% end %>
+  <% end %>
+  <%= turbo_frame_tag "styles", role: "list", class:"grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" do %>
     <%= render @styles %>
   <% end %>
 </div>

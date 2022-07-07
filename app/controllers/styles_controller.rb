@@ -27,8 +27,8 @@ class StylesController < ApplicationController
 
   # GET /styles/1/edit
   def edit
-    add_breadcrumb 'All styles', styles_path
-    add_breadcrumb @style.name, edit_style_path(@style)
+    render TurboModalComponent.new(title: 'Edit style').with_content(render_to_string(partial: 'styles/form',
+                                                                                      locals: { style: @style }))
   end
 
   # POST /styles or /styles.json
