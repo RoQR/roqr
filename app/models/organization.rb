@@ -13,5 +13,6 @@ class Organization < ApplicationRecord
 
   def initialize_payment_processor
     set_payment_processor :stripe
+    payment_processor.subscribe(plan: 'price_1LJGVuKEEF3z117yBoHSZZuo', trial_period_days: 90)
   end
 end

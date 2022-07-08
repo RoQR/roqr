@@ -7,6 +7,9 @@ class Ability
     can :read, Scan, link: { organization: user.organization }
     can :read, Request, organization: user.organization
     can :read, [Style, Link], organization: user.organization
+
+    return unless user.organization.payment_processor.on_trial_or_subscribed?
+
     can :create, [Style, Link], organization: user.organization if user.confirmed? && user.can_create_links
     can :update, [Style, Link], organization: user.organization if user.confirmed? && user.can_edit_links
     can :confirm_destroy, Link, organization: user.organization if user.confirmed? && user.can_delete_links
