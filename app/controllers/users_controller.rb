@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def edit
-    @portal_session = current_user.organization.payment_processor.billing_portal
+    # @portal_session = current_user.organization.payment_processor.billing_portal
   end
 
   def create

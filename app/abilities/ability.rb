@@ -8,7 +8,7 @@ class Ability
     can :read, Request, organization: user.organization
     can :read, [Style, Link], organization: user.organization
 
-    return unless user.organization.payment_processor.on_trial_or_subscribed?
+    #return unless user.organization.payment_processor.on_trial_or_subscribed?
 
     can :create, [Style, Link], organization: user.organization if user.confirmed? && user.can_create_links
     can :update, [Style, Link], organization: user.organization if user.confirmed? && user.can_edit_links

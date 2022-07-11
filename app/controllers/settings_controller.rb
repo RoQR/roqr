@@ -4,10 +4,7 @@ class SettingsController < ApplicationController
 
   def profile; end
 
-  def organization
-    @portal_session = @organization.payment_processor.billing_portal
-    @subscription = @organization.payment_processor.subscription
-  end
+  def organization; end
 
   def settings; end
 

@@ -26,11 +26,11 @@ class LinksController < ApplicationController
   end
 
   def scan
-    if @link.organization.payment_processor.on_trial_or_subscribed?
-      scan = scan_from_browser
-      scan.save
-      @link.organization.payment_processor.subscription.create_usage_record(quantity: 1)
-    end
+    # if @link.organization.payment_processor.on_trial_or_subscribed?
+    scan = scan_from_browser
+    scan.save
+    # @link.organization.payment_processor.subscription.create_usage_record(quantity: 1)
+    # end
     redirect_to(@link.barcode_data, allow_other_host: true) and return
   end
 
