@@ -12,9 +12,17 @@ class Organization < ApplicationRecord
   def subscription
     @subscription ||= Stripe::Subscription.retrieve(stripe_subscription_id)
   end
-  
+
   def on_trial?
+    return false unless subscription.trial_end
+
     subscription.trial_end > Time.zone.now.to_i
+  end
+
+  def trial_days_remaining
+    return 0 unless on_trial?
+
+    (subscription.trial_end - Time.zone.now.to_i).seconds.in_days.ceil
   end
 
   private

@@ -27,7 +27,8 @@ class StripeService
       items: [{
         price: 'price_1LJGVuKEEF3z117yBoHSZZuo'
       }],
-      payment_behavior: 'default_incomplete'
+      payment_behavior: 'default_incomplete',
+      trial_period_days: 30
     )
   end
 end
