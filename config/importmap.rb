@@ -11,3 +11,4 @@ pin "@rails/request.js", to: "https://ga.jspm.io/npm:@rails/request.js@0.0.6/src
 pin "stimulus-use", to: "https://ga.jspm.io/npm:stimulus-use@0.50.0/dist/index.js"
 pin "@hotwired/stimulus", to: "https://ga.jspm.io/npm:@hotwired/stimulus@3.0.1/dist/stimulus.js"
 pin "hotkeys-js", to: "https://ga.jspm.io/npm:hotkeys-js@3.9.4/dist/hotkeys.esm.js"
+pin "stimulus-stripe-elements", to: "https://ga.jspm.io/npm:stimulus-stripe-elements@1.1.3/dist/stimulus-stripe-elements.min.js"
