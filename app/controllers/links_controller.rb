@@ -36,14 +36,14 @@ class LinksController < ApplicationController
 
   def new
     @link_type = request.query_parameters[:link_type]
-    @styles = allowed_styles
+    @styles = saved_styles
     add_breadcrumb 'All links', links_path
     add_breadcrumb 'New link', new_link_path
   end
 
   def edit
     @link_type = @link.link_data.class.to_s.underscore
-    @styles = allowed_styles
+    @styles = saved_styles
     add_breadcrumb 'All links', links_path
     add_breadcrumb @link.name, @link
     add_breadcrumb 'Edit', edit_link_path(@link)
@@ -87,7 +87,7 @@ class LinksController < ApplicationController
 
   private
 
-  def allowed_styles
+  def saved_styles
     Style.accessible_by(current_ability)
   end
 
