@@ -30,6 +30,10 @@ class Link < ApplicationRecord
     errors.add(:password, "can't exist for static links") unless dynamic || password.nil?
   end
 
+  def report_scan_to_stripe
+    organization.payment_processor.subscription.create_usage_record(quantity: 1)
+  end
+
   # HERE BE MULTIBLE TABLE INHERITANCE
   # https://danchak99.wordpress.com/enterprise-rails/chapter-10-multiple-table-inheritance/
 

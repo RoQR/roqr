@@ -1,6 +1,6 @@
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -13,7 +13,9 @@ module Roqr
 
     config.view_component.default_preview_layout = 'empty'
 
-    config.exceptions_app = self.routes
+    config.exceptions_app = routes
+
+    config.active_job.queue_adapter = :delayed_job
 
     # Configuration for the application, engines, and railties goes here.
     #
