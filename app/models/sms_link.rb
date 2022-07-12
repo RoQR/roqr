@@ -8,6 +8,6 @@ class SmsLink < LinkData
   end
 
   def barcode_data
-    "sms:" + "#{u number}?body=#{u body}"
+    "sms:#{u number}?body=#{u body}"
   end
 end

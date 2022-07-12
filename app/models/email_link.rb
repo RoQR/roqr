@@ -8,6 +8,6 @@ class EmailLink < LinkData
   end
 
   def barcode_data
-    "mailto:" + "#{u email_address}?subject=#{u subject}&body=#{u body}"
+    "mailto:#{u email_address}?subject=#{u subject}&body=#{u body}"
   end
 end

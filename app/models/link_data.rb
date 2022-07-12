@@ -1,6 +1,6 @@
 class LinkData < ApplicationRecord
   def self.new_link_data(link_data_type)
-	case link_data_type
+    case link_data_type
     when 'contact'
       ContactLink.new
     when 'email'
@@ -9,17 +9,17 @@ class LinkData < ApplicationRecord
       SmsLink.nw
     when 'telephone'
       TelephoneLink.new
-	when 'url'
-	  UrlLink.new
+    when 'url'
+      UrlLink.new
     when 'wifi'
       WifiLink.new
-	end
+    end
   end
 end
 
-require 'contact_link.rb'
-require 'email_link.rb'
-require 'sms_link.rb'
-require 'telephone_link.rb'
-require 'url_link.rb'
-require 'wifi_link.rb'
+require 'contact_link'
+require 'email_link'
+require 'sms_link'
+require 'telephone_link'
+require 'url_link'
+require 'wifi_link'
