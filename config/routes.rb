@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get :developer, to: 'developer'
   end
   get :plans, to: 'plans#index'
+  get :subscribe, to: 'plans#subscribe'
   get :marketing, to: 'marketing#index'
   get :qr, to: 'qr#show', format: :svg
 

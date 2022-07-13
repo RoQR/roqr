@@ -47,10 +47,20 @@
                     <% end %>
                     <%= link_to "Manage subscription", @portal_session.url, class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
                   </div>
-                  <div class="col-span-4 sm:col-span-2">
-                  </div>
                 <% else %>
-                  <div class="col-span-4 sm:col-span-2">
+                  <div class="col-span-4">
+                    <div class="flow-root mt-6">
+                      <ul role="list" class="-my-5 divide-y divide-gray-200">
+                        <%= render 'plan', scans:    1000, price:   9, plan_name:   'monthly1k' %>
+                        <%= render 'plan', scans:   10000, price:  19, plan_name:  'monthly10k' %>
+                        <%= render 'plan', scans:   20000, price:  29, plan_name:  'monthly20k' %>
+                        <%= render 'plan', scans:   50000, price:  49, plan_name:  'monthly50k' %>
+                        <%= render 'plan', scans:  100000, price:  69, plan_name: 'monthly100k' %>
+                        <%= render 'plan', scans:  200000, price:  89, plan_name: 'monthly200k' %>
+                        <%= render 'plan', scans:  500000, price: 129, plan_name: 'monthly500k' %>
+                        <%= render 'plan', scans: 1000000, price: 169, plan_name:   'monthly1m' %>
+                      </ul>
+                    </div>
                   </div>
                 <% end %>
               </div>
