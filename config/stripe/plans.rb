@@ -30,20 +30,85 @@
 # This will export any new plans to stripe.com so that you can
 # begin using them in your API calls.
 
-Stripe.plan :one_hit_wonder do |plan|
-  plan.name = 'One Hit Wonder'
-  plan.amount = 500
+Stripe.plan :monthly do |plan|
+  plan.name = 'Monthly'
   plan.interval = 'month'
+  plan.trial_period_days = 30
+  plan.billing_scheme = 'tiered'
+  plan.tiers_mode = 'volume'
+  plan.tiers = [
+    {
+      flat_amount: 900,
+      up_to: 1000
+    },
+    {
+      flat_amount: 1900,
+      up_to: 10_000
+    },
+    {
+      flat_amount: 2900,
+      up_to: 20_000
+    },
+    {
+      flat_amount: 4900,
+      up_to: 50_000
+    },
+    {
+      flat_amount: 6900,
+      up_to: 100_000
+    },
+    {
+      flat_amount: 8900,
+      up_to: 200_000
+    },
+    {
+      flat_amount: 12_900,
+      up_to: 500_000
+    },
+    {
+      flat_amount: 16_900,
+      up_to: 'inf'
+    }
+  ]
 end
 
-Stripe.plan :solo_artist do |plan|
-  plan.name = 'Solo Artist'
-  plan.amount = 1000
-  plan.interval = 'month'
-end
-
-Stripe.plan :rock_band do |plan|
-  plan.name = 'Rock Band'
-  plan.amount = 3000
-  plan.interval = 'month'
+Stripe.plan :yearly do |plan|
+  plan.name = 'Yearly'
+  plan.interval = 'year'
+  plan.billing_scheme = 'tiered'
+  plan.tiers_mode = 'volume'
+  plan.tiers = [
+    {
+      flat_amount: 9000,
+      up_to: 1000
+    },
+    {
+      flat_amount: 19_000,
+      up_to: 10_000
+    },
+    {
+      flat_amount: 29_000,
+      up_to: 20_000
+    },
+    {
+      flat_amount: 49_000,
+      up_to: 50_000
+    },
+    {
+      flat_amount: 69_000,
+      up_to: 100_000
+    },
+    {
+      flat_amount: 89_000,
+      up_to: 200_000
+    },
+    {
+      flat_amount: 129_000,
+      up_to: 500_000
+    },
+    {
+      flat_amount: 169_000,
+      up_to: 'inf'
+    }
+  ]
 end
