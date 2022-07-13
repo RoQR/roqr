@@ -12,7 +12,8 @@ class Organization < ApplicationRecord
   private
 
   def initialize_payment_processor
-    set_payment_processor :stripe
-    payment_processor.subscribe(plan: 'price_1LJGVuKEEF3z117yBoHSZZuo', trial_period_days: 90)
+    time = 30.days.from_now
+    set_payment_processor :fake_processor, allow_fake: true
+    payment_processor.subscribe(trial_ends_at: time, ends_at: time)
   end
 end

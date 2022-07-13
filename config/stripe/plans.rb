@@ -30,20 +30,98 @@
 # This will export any new plans to stripe.com so that you can
 # begin using them in your API calls.
 
-Stripe.plan :one_hit_wonder do |plan|
-  plan.name = 'One Hit Wonder'
-  plan.amount = 500
+Stripe.plan :monthly1k do |plan|
+  plan.name = 'Monthly billing - 1,000 scans / month'
+  plan.amount = 900
   plan.interval = 'month'
 end
 
-Stripe.plan :solo_artist do |plan|
-  plan.name = 'Solo Artist'
-  plan.amount = 1000
+Stripe.plan :monthly10k do |plan|
+  plan.name = 'Monthly billing - 10,000 scans / month'
+  plan.amount = 1900
   plan.interval = 'month'
 end
 
-Stripe.plan :rock_band do |plan|
-  plan.name = 'Rock Band'
-  plan.amount = 3000
+Stripe.plan :monthly20k do |plan|
+  plan.name = 'Monthly billing - 20,000 scans / month'
+  plan.amount = 2900
   plan.interval = 'month'
+end
+
+Stripe.plan :monthly50k do |plan|
+  plan.name = 'Monthly billing - 50,000 scans / month'
+  plan.amount = 4900
+  plan.interval = 'month'
+end
+
+Stripe.plan :monthly100k do |plan|
+  plan.name = 'Monthly billing - 100,000 scans / month'
+  plan.amount = 6900
+  plan.interval = 'month'
+end
+
+Stripe.plan :monthly200k do |plan|
+  plan.name = 'Monthly billing - 200,000 scans / month'
+  plan.amount = 8900
+  plan.interval = 'month'
+end
+
+Stripe.plan :monthly500k do |plan|
+  plan.name = 'Monthly billing - 500,000 scans / month'
+  plan.amount = 12_900
+  plan.interval = 'month'
+end
+
+Stripe.plan :monthly1m do |plan|
+  plan.name = 'Monthly billing - 1,000,000 scans / month'
+  plan.amount = 16_900
+  plan.interval = 'month'
+end
+
+Stripe.plan :yearly1k do |plan|
+  plan.name = 'Yearly billing - 1,000 scans / month'
+  plan.amount = 9000
+  plan.interval = 'year'
+end
+
+Stripe.plan :yearly10k do |plan|
+  plan.name = 'Yearly billing - 10,000 scans / month'
+  plan.amount = 19_000
+  plan.interval = 'year'
+end
+
+Stripe.plan :yearly20k do |plan|
+  plan.name = 'Yearly billing - 20,000 scans / month'
+  plan.amount = 29_000
+  plan.interval = 'year'
+end
+
+Stripe.plan :yearly50k do |plan|
+  plan.name = 'Yearly billing - 50,000 scans / month'
+  plan.amount = 49_000
+  plan.interval = 'year'
+end
+
+Stripe.plan :yearly100k do |plan|
+  plan.name = 'Yearly billing - 100,000 scans / month'
+  plan.amount = 69_000
+  plan.interval = 'year'
+end
+
+Stripe.plan :yearly200k do |plan|
+  plan.name = 'Yearly billing - 200,000 scans / month'
+  plan.amount = 89_000
+  plan.interval = 'year'
+end
+
+Stripe.plan :yearly500k do |plan|
+  plan.name = 'Yearly billing - 500,000 scans / month'
+  plan.amount = 129_000
+  plan.interval = 'year'
+end
+
+Stripe.plan :yearly1m do |plan|
+  plan.name = 'Yearly billing - 1,000,000 scans / month'
+  plan.amount = 169_000
+  plan.interval = 'year'
 end
