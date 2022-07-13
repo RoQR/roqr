@@ -9,11 +9,16 @@ class Organization < ApplicationRecord
     billing_email
   end
 
+  def trial_days_remaining
+    return 0 unless payment_processor.subscription.on_trial?
+
+    (payment_processor.subscription.trial_ends_at - Time.zone.now).seconds.in_days.ceil
+  end
+
   private
 
   def initialize_payment_processor
-    time = 30.days.from_now
-    set_payment_processor :fake_processor, allow_fake: true
-    payment_processor.subscribe(trial_ends_at: time, ends_at: time)
+    set_payment_processor :stripe
+    payment_processor.subscribe(plan: 'monthly1k', trial_period_days: 30)
   end
 end
