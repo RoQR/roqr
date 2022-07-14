@@ -45,7 +45,9 @@
                     <% else %>
                       <p>Subscribed</p>
                     <% end %>
-                    <%= link_to "Manage subscription", @portal_session.url, class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+                    <% unless @organization.payment_processor.on_generic_trial? %>
+                      <%= link_to "Manage subscription", @portal_session.url, class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+                    <% end %>
                   </div>
                 <% else %>
                   <div class="col-span-4">
