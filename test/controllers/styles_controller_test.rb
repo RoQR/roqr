@@ -1,8 +1,14 @@
 require 'test_helper'
 
 class StylesControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+  include Warden::Test::Helpers
+
   setup do
-    @style = styles(:one)
+    @user = create(:user)
+    @user.confirm
+    sign_in @user
+    @style = create(:style, organization: @user.organization)
   end
 
   test 'should get index' do
@@ -22,12 +28,7 @@ class StylesControllerTest < ActionDispatch::IntegrationTest
                               organization_id: @style.organization_id } }
     end
 
-    assert_redirected_to style_url(Style.last)
-  end
-
-  test 'should show style' do
-    get style_url(@style)
-    assert_response :success
+    assert_redirected_to styles_url
   end
 
   test 'should get edit' do
@@ -39,7 +40,7 @@ class StylesControllerTest < ActionDispatch::IntegrationTest
     patch style_url(@style),
           params: { style: { color: @style.color, fill: @style.fill, name: @style.name,
                              organization_id: @style.organization_id } }
-    assert_redirected_to style_url(@style)
+    assert_redirected_to styles_url
   end
 
   test 'should destroy style' do

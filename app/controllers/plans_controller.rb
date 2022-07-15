@@ -2,10 +2,6 @@ class PlansController < ApplicationController
   before_action :authenticate_user!
   before_action :continue_if_active
 
-  def index
-    @processor = current_user.organization.payment_processor
-  end
-
   def subscribe
     checkout_session = current_user.organization.payment_processor.checkout(
       mode: 'subscription',

@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :style do
-    name { 'MyString' }
-    organization { nil }
-    color { 'MyString' }
-    fill { 'MyString' }
+    name { 'MyStyle' }
+    organization
+    color { '#ffffff' }
+    fill { '#000000' }
   end
 end

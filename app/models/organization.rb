@@ -18,7 +18,12 @@ class Organization < ApplicationRecord
   private
 
   def initialize_payment_processor
-    set_payment_processor :stripe
-    payment_processor.subscribe(plan: 'monthly1k', trial_period_days: 30)
+    if Rails.env.production?
+      set_payment_processor :stripe
+      payment_processor.subscribe(plan: 'monthly1k', trial_period_days: 30)
+    else
+      set_payment_processor :fake_processor, allow_fake: true
+      payment_processor.subscribe(trial_ends_at: 30.days.from_now, ends_at: 30.days.from_now)
+    end
   end
 end

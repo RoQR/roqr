@@ -14,10 +14,4 @@ class PlansControllerTest < ActionDispatch::IntegrationTest
     get plans_url
     assert_response :not_found
   end
-
-  test 'should load with feature flag' do
-    Flipper.enable :stripe, @user
-    get plans_url
-    assert_response :success
-  end
 end
