@@ -1,5 +1,5 @@
 class Link < ApplicationRecord
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { scope: :organization_id }
   belongs_to :organization
   belongs_to :contact_link, dependent: :destroy, optional: true
   belongs_to :email_link, dependent: :destroy, optional: true

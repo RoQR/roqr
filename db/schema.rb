@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_12_214930) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_17_225050) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -89,6 +89,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_12_214930) do
     t.string "position_core_color", default: "#000000", null: false
     t.index ["contact_link_id"], name: "index_links_on_contact_link_id"
     t.index ["email_link_id"], name: "index_links_on_email_link_id"
+    t.index ["name", "organization_id"], name: "index_links_on_name_and_organization_id", unique: true
     t.index ["organization_id"], name: "index_links_on_organization_id"
     t.index ["sms_link_id"], name: "index_links_on_sms_link_id"
     t.index ["telephone_link_id"], name: "index_links_on_telephone_link_id"
