@@ -52,7 +52,7 @@ class LinksController < ApplicationController
   def create
     respond_to do |format|
       if @link.save
-        format.html { redirect_to links_url, success: 'Link was successfully created.' }
+        format.html { redirect_to @link, success: 'Link was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
       end

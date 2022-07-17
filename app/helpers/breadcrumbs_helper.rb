@@ -20,7 +20,9 @@ module BreadcrumbsHelper
 
     def render_element(element)
       if element.path.nil?
-        content = compute_name(element)
+        content = @context.content_tag(:p, class: 'text-sm font-medium text-slate-500') do
+          compute_name(element)
+        end
       else
         element.options.merge!({ class: 'text-sm font-medium text-slate-500 hover:text-slate-700' })
         content = @context.link_to_unless_current(compute_name(element), compute_path(element), element.options) do
