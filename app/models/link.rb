@@ -34,6 +34,10 @@ class Link < ApplicationRecord
     organization.payment_processor.subscription.create_usage_record(quantity: 1)
   end
 
+  def link_type
+    link_data.class.to_s.underscore
+  end
+
   # HERE BE MULTIBLE TABLE INHERITANCE
   # https://danchak99.wordpress.com/enterprise-rails/chapter-10-multiple-table-inheritance/
 

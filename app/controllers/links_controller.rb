@@ -29,7 +29,7 @@ class LinksController < ApplicationController
     if @link.organization.payment_processor.on_trial_or_subscribed?
       scan = scan_from_browser
       scan.save
-      @link.delay.report_scan_to_stripe
+      @link.delay.report_scan_to_stripe if link.organization.payment_processor.stripe?
     end
     redirect_to(@link.barcode_data, allow_other_host: true) and return
   end
@@ -54,7 +54,10 @@ class LinksController < ApplicationController
       if @link.save
         format.html { redirect_to @link, success: 'Link was successfully created.' }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        @link_type = @link.link_type
+        @styles = saved_styles
+        flash[:error] = @link.errors.full_messages.first
+        format.html { render partial: 'form', status: :unprocessable_entity, locals: { link: @link } }
       end
     end
   end
@@ -65,13 +68,13 @@ class LinksController < ApplicationController
         format.html { redirect_to link_url(@link), success: 'Link was successfully updated.' }
       else
         @link_type = @link.link_data.class.to_s.underscore
+        @styles = saved_styles
         flash[:error] = @link.errors.full_messages.first
         format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end
-
-  def confirm_destroy
+def confirm_destroy
     @scans_text = @link.scans.count.positive? ? ", <b>including #{@link.scans.count.to_s + ' ' + 'scan'.pluralize(@link.scans.count)}</b>".html_safe : ''
     render TurboModalComponent.new(title: 'Delete link').with_content(render_to_string(partial: 'links/confirm_destroy'))
   end
