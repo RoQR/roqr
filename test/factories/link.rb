@@ -4,7 +4,7 @@ FactoryBot.define do
   end
 
   factory :link do
-    name { 'Link' }
+    sequence(:name) { |n| "Link#{n}" }
     dynamic { false }
     password { nil }
     organization

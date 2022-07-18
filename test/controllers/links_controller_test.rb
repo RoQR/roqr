@@ -52,14 +52,14 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create link' do
-    @link = build(:link, :url)
+    link = build(:link, :url)
     assert_difference('Link.count') do
       assert_difference('UrlLink.count') do
-        post links_url, params: { link: { name: @link.name, url_link_attributes: { url: @link.url_link } } }
+        post links_url, params: { link: { name: link.name, url_link_attributes: { url: link.url_link } } }
       end
     end
 
-    assert_redirected_to links_url
+    assert_redirected_to Link.last
   end
 
   test 'should update link' do
