@@ -29,7 +29,7 @@ class LinksController < ApplicationController
     if @link.organization.payment_processor.on_trial_or_subscribed?
       scan = scan_from_browser
       scan.save
-      @link.delay.report_scan_to_stripe if link.organization.payment_processor.stripe?
+      @link.delay.report_scan_to_stripe if @link.organization.payment_processor.stripe?
     end
     redirect_to(@link.barcode_data, allow_other_host: true) and return
   end
@@ -74,7 +74,8 @@ class LinksController < ApplicationController
       end
     end
   end
-def confirm_destroy
+
+  def confirm_destroy
     @scans_text = @link.scans.count.positive? ? ", <b>including #{@link.scans.count.to_s + ' ' + 'scan'.pluralize(@link.scans.count)}</b>".html_safe : ''
     render TurboModalComponent.new(title: 'Delete link').with_content(render_to_string(partial: 'links/confirm_destroy'))
   end
