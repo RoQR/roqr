@@ -14,12 +14,27 @@ class Link < ApplicationRecord
   validates_length_of :password,
                       maximum: ActiveModel::SecurePassword::MAX_PASSWORD_LENGTH_ALLOWED
   validate :no_password_on_static_link
+  scope :active, -> { where('deleted_at IS NULL') }
+  scope :archived, -> { where('deleted_at IS NOT NULL') }
 
   has_paper_trail
   delegate :summary, :barcode_data, to: :link_data
 
+  def active?
+    deleted_at.nil?
+  end
+
   def public?
     password_digest.nil?
+  end
+
+  def archive!
+    self.deleted_at = Time.zone.now
+    save
+  end
+
+  def archived?
+    !deleted_at.nil?
   end
 
   def cleanup_password
@@ -32,6 +47,10 @@ class Link < ApplicationRecord
 
   def report_scan_to_stripe
     organization.payment_processor.subscription.create_usage_record(quantity: 1)
+  end
+
+  def should_record_scan?
+    active? && organization.payment_processor.on_trial_or_subscribed?
   end
 
   def link_type

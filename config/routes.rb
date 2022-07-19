@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :links do
     get :scan, on: :member
     get :confirm_destroy, on: :member
+    get :archive, on: :member
   end
   resources :styles
   resources :users, only: %i[show edit create update destroy]

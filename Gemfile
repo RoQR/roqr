@@ -60,4 +60,4 @@ group :test do
   gem 'webdrivers'
 end
 
-gem "delayed_job_active_record", "~> 4.1"
+gem 'delayed_job_active_record', '~> 4.1'

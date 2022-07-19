@@ -4,7 +4,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, Scan, link: { organization: user.organization }
+    can :read, Scan, link: { organization: user.organization, deleted_at: nil }
     can :read, Request, organization: user.organization
     can :read, [Style, Link], organization: user.organization
     can :manage, user
@@ -16,7 +16,10 @@ class Ability
 
     can :create, [Style, Link], organization: user.organization if user.confirmed? && user.can_create_links
     can :update, [Style, Link], organization: user.organization if user.confirmed? && user.can_edit_links
-    can :confirm_destroy, Link, organization: user.organization if user.confirmed? && user.can_delete_links
+    can :archive, Link, organization: user.organization, deleted_at: nil if user.confirmed? && user.can_delete_links
+    can :confirm_destroy, Link do |link|
+      link.organization == user.organization && link.deleted_at? && user.confirmed? && user.can_delete_links
+    end
     can :destroy, [Style, Link], organization: user.organization if user.confirmed? && user.can_delete_links
     can :create, [ContactLink, EmailLink, SmsLink, TelephoneLink, UrlLink, WifiLink] if user.confirmed?
     can :manage, [ContactLink, EmailLink, SmsLink, UrlLink, TelephoneLink, WifiLink],

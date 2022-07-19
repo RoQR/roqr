@@ -6,7 +6,10 @@ class LinksController < ApplicationController
   skip_authorize_resource only: %i[scan show]
   before_action :authenticate_before_scan, only: :scan
 
-  def index; end
+  def index
+    @links = Link.active.accessible_by(current_ability)
+    @archived_links = Link.archived.accessible_by(current_ability)
+  end
 
   def show
     respond_to do |format|
@@ -26,7 +29,7 @@ class LinksController < ApplicationController
   end
 
   def scan
-    if @link.organization.payment_processor.on_trial_or_subscribed?
+    if @link.should_record_scan?
       scan = scan_from_browser
       scan.save
       @link.delay.report_scan_to_stripe if @link.organization.payment_processor.stripe?
@@ -72,6 +75,15 @@ class LinksController < ApplicationController
         flash[:error] = @link.errors.full_messages.first
         format.html { render :edit, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def archive
+    @link.archive!
+
+    respond_to do |format|
+      flash[:success] = 'Link was successfully archived.'
+      format.html { redirect_to links_url }
     end
   end
 
