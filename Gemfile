@@ -61,3 +61,5 @@ group :test do
 end
 
 gem 'delayed_job_active_record', '~> 4.1'
+
+gem "rack-attack", "~> 6.6"
