@@ -36,12 +36,14 @@ class Api::V0::LinksController < Api::V0::BaseController
   private
 
   def link_params
-    params.require(:link).permit(:id, :name, :dynamic,
-                                 contact_link_attributes: %i[id first_name last_name phone email website company title address birthday note],
-                                 email_link_attributes: %i[id email_address subject body],
-                                 sms_link_attributes: %i[number body],
-                                 telephone_link_attributes: [:number],
-                                 url_link_attributes: %i[id url],
-                                 wifi_link_attributes: %i[id ssid password hidden protocol])
+    params.require(:link).permit(
+      :id, :name, :dynamic,
+      contact_link_attributes: %i[id first_name last_name phone email website company title address birthday note],
+      email_link_attributes: %i[id email_address subject body],
+      sms_link_attributes: %i[number body],
+      telephone_link_attributes: [:number],
+      url_link_attributes: %i[id url],
+      wifi_link_attributes: %i[id ssid password hidden protocol]
+    )
   end
 end
