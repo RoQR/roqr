@@ -59,13 +59,23 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
       end
     end
 
-    assert_redirected_to Link.last
+    assert_redirected_to Link.find_by_name(link.name)
   end
 
   test 'should update link' do
     patch link_url(@link),
           params: { link: { id: @link.id, name: @link.name, url_link_attributes: { url: @link.url_link } } }
     assert_redirected_to link_url(@link)
+  end
+
+  test 'should archive link' do
+    assert_difference('Link.active.count', -1) do
+      assert_difference('Link.archived.count', 1) do
+        get archive_link_url(@link)
+      end
+    end
+
+    assert_redirected_to links_url
   end
 
   test 'should destroy link' do
