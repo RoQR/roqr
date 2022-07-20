@@ -1,0 +1,11 @@
+<% if current_page.first? %>
+  <span class="border-t-2 border-transparent pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
+    <%= show_svg('solid/arrow-narrow-left') %>
+    Previous
+  </span>
+<% else %>
+  <%= link_to url, class: "border-t-2 border-transparent pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300" do %>
+    <%= show_svg('solid/arrow-narrow-left') %>
+    Previous
+  <% end %>
+<% end %>

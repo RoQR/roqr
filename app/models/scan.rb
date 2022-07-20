@@ -1,4 +1,5 @@
 class Scan < ApplicationRecord
+  paginates_per 25
   belongs_to :link
 
   def self.to_csv

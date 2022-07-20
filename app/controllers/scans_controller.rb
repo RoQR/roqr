@@ -1,8 +1,9 @@
 class ScansController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
 
   def index
+    @all_scans = Scan.accessible_by(current_ability)
+    @scans = @all_scans.page params[:page]
     respond_to do |format|
       format.html
       format.csv { send_data @scans.to_csv, filename: "roqr-scans-#{Date.today}.csv" }

@@ -1,4 +1,4 @@
-<% if @scans.empty? %>
+<% if @all_scans.empty? %>
   <div class="text-center">
     <h3 class="mt-2 text-sm font-medium text-slate-900">No insights at this time</h3>
     <p class="mt-1 text-sm text-slate-500">Share your QR codes to start generating insights from scans.</p>
@@ -7,19 +7,19 @@
   <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
     <div>
       <p>Scans by country</p>
-      <%= geo_chart @scans.group(:country).count %>
+      <%= geo_chart @all_scans.group(:country).count %>
     </div>
     <div>
       <p>Scans by day</p> 
-      <%= line_chart @scans.group(:link_id).group_by_day(:created_at).count  %>
+      <%= line_chart @all_scans.group(:link_id).group_by_day(:created_at).count  %>
     </div>
     <div>
       <p>Scans by browser</p>
-      <%= pie_chart @scans.group(:browser_name).count %>
+      <%= pie_chart @all_scans.group(:browser_name).count %>
     </div>
     <div>
       <p>Scans by platform</p>
-      <%= pie_chart @scans.group(:platform_name).count %>
+      <%= pie_chart @all_scans.group(:platform_name).count %>
     </div>
   </div>
   <%= render SectionHeaderComponent.new do |c| %>
@@ -50,6 +50,13 @@
           <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Country</th>
         </tr>
       </thead>
+      <tfoot>
+        <tr>
+          <td colspan='100%'> 
+            <%= paginate @scans, window: 2, outer_window: 2 %>
+          </td>
+        </tr>
+      </tfoot>
       <tbody class="divide-y divide-slate-200 bg-white">
         <%= render partial: "row", collection: @scans.sort_by {|e| e.created_at }.reverse, as: :scan %>
       </tbody>
