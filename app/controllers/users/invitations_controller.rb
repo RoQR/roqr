@@ -18,7 +18,7 @@ class Users::InvitationsController < Devise::InvitationsController
 
   def update
     super do |user|
-      Notification.create(recipient: user.invited_by, actor: user, action: 'joined', notifiable: user)
+      InvitedUserAcceptedPing.with(user:).deliver_later(user.invited_by)
     end
   end
 

@@ -12,6 +12,7 @@ gem 'browser'
 gem 'cancancan'
 gem 'chartkick', '~> 4.2'
 gem 'csv', '~> 3.2'
+gem 'delayed_job_active_record', '~> 4.1'
 gem 'devise', '~> 4.8'
 gem 'devise_invitable', '~> 2.0'
 gem 'flipper', '~> 0.25.0'
@@ -20,6 +21,7 @@ gem 'geocoder'
 gem 'groupdate', '~> 6.1'
 gem 'importmap-rails'
 gem 'jbuilder'
+gem 'kaminari', '~> 1.2'
 gem 'lockbox', '~> 1.0'
 gem 'omniauth'
 gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
@@ -29,6 +31,7 @@ gem 'paper_trail', '~> 12.3'
 gem 'pay', '~> 4.0'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
+gem 'rack-attack', '~> 6.6'
 gem 'rails', '~> 7.0.3'
 gem 'rqrcode', '~> 2.1'
 gem 'sass-rails'
@@ -60,8 +63,4 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'delayed_job_active_record', '~> 4.1'
-
-gem "rack-attack", "~> 6.6"
-
-gem "kaminari", "~> 1.2"
+gem "noticed", "~> 1.5"

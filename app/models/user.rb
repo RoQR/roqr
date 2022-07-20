@@ -12,7 +12,7 @@ class User < ApplicationRecord
   validates :private_api_key, uniqueness: true, allow_blank: true
   before_create :set_private_api_key
   has_many :requests, dependent: :destroy
-  has_many :notifications, dependent: :destroy, foreign_key: :recipient_id
+  has_many :notifications, as: :recipient
 
   before_validation :maybe_create_org
 

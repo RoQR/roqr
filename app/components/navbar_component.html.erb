@@ -35,8 +35,13 @@
           <% end %> 
         <% end %>
         <button type="button" class="bg-slate-800 p-1 rounded-full text-slate-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-white">
-          <span class="sr-only">View notifications</span>
-          <%= show_svg('outline/bell') %>
+          <span class="relative flex">
+            <span class="sr-only">View notifications</span>
+            <%= show_svg('outline/bell') %>
+            <% unless @user.notifications.unread.empty? %>
+                <span class="absolute top-0 right-0 inline-block w-2 h-2 transform translate-x-1/4 -translate-y-1/4 bg-red-600 rounded-full"></span>
+            <% end %>
+          </span>
         </button>
         <%= render Navbar::ProfileMenuComponent.new(user: @user) %>
       </div>
