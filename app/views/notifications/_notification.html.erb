@@ -1,5 +1,8 @@
 <li>
   <div class="relative pb-8">
+    <% unless notification_iteration.last? %>
+    <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-slate-200" aria-hidden="true"></span>
+    <% end %>
     <div class="relative flex space-x-3">
       <div>
         <span class="h-8 w-8 rounded-full text-white bg-slate-400 flex items-center justify-center ring-8 ring-white">
