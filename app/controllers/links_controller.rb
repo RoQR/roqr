@@ -31,7 +31,8 @@ class LinksController < ApplicationController
   def scan
     if @link.should_record_scan?
       scan = scan_from_browser
-      scan.save
+      scan.save!
+      FirstScanNotification.with(link_name: @link.name).deliver_later(@link.organization.users) if @link.scans.size == 1
       @link.delay.report_scan_to_stripe if @link.organization.payment_processor.stripe?
     end
     redirect_to(@link.barcode_data, allow_other_host: true) and return
