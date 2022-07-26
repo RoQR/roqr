@@ -17,9 +17,9 @@ class InvitedUserAcceptedPing < Noticed::Base
 
   # Define helper methods to make rendering easier.
   #
-  # def message
-  #   t(".message")
-  # end
+  def message
+    "#{params[:user].name} accepted your invitation"
+  end
   #
   # def url
   #   post_path(params[:post])

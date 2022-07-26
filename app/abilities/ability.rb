@@ -5,6 +5,7 @@ class Ability
 
   def initialize(user)
     can :read, Scan, link: { organization: user.organization, deleted_at: nil }
+    can :read, Notification, recipient_type: 'User', recipient_id: user.id
     can :read, Request, organization: user.organization
     can :read, [Style, Link], organization: user.organization
     can :manage, user

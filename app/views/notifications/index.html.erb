@@ -1,0 +1,11 @@
+<%= render SectionHeaderComponent.new do |c| %>
+  <%= c.with_title do %>
+    Notifications
+  <% end %>
+<% end %>
+
+<div class="flow-root">
+<ul role="list" class="-mb-8">
+<%= render @notifications.sort_by(&:created_at).reverse %>
+</ul>
+</div>
