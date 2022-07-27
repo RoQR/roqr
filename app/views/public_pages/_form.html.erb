@@ -1,0 +1,18 @@
+<%= form_with(model: public_page, class: "contents") do |form| %>
+  <% if public_page.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(public_page.errors.count, "error") %> prohibited this public_page from being saved:</h2>
+
+      <ul>
+        <% public_page.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="inline">
+    <%= form.text_field :name %>
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>

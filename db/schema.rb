@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_20_123806) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_27_010557) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -99,6 +99,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_20_123806) do
     t.index ["user_id"], name: "index_links_on_user_id"
     t.index ["wifi_link_id"], name: "index_links_on_wifi_link_id"
     t.check_constraint "((contact_link_id IS NOT NULL)::integer + (email_link_id IS NOT NULL)::integer + (sms_link_id IS NOT NULL)::integer + (telephone_link_id IS NOT NULL)::integer + (url_link_id IS NOT NULL)::integer + (wifi_link_id IS NOT NULL)::integer) = 1", name: "link_data_xor"
+  end
+
+  create_table "links_public_pages", id: false, force: :cascade do |t|
+    t.uuid "link_id", null: false
+    t.uuid "public_page_id", null: false
+    t.index ["link_id", "public_page_id"], name: "index_links_public_pages_on_link_id_and_public_page_id"
   end
 
   create_table "notifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -196,6 +202,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_20_123806) do
     t.jsonb "event"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "public_pages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.uuid "organization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_public_pages_on_organization_id"
   end
 
   create_table "requests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -322,6 +336,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_20_123806) do
   add_foreign_key "pay_charges", "pay_subscriptions", column: "subscription_id"
   add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"
   add_foreign_key "pay_subscriptions", "pay_customers", column: "customer_id"
+  add_foreign_key "public_pages", "organizations"
   add_foreign_key "requests", "users"
   add_foreign_key "styles", "organizations"
 end

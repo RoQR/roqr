@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render 'layouts/common_header' %>
+  </head>
+
+  <body class="min-h-full h-screen bg-slate-50">
+    <div>
+      <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+  <%= turbo_frame_tag "modal", target: :_top %>
+  <%= render 'layouts/flash' %>
+</html>

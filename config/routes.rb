@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[show edit create update destroy]
   resources :organizations, only: %i[edit update]
   resources :notifications, only: :index
+  resources :public_pages
   resources :scans, only: :index
   namespace :settings do
     get :profile, to: 'user'

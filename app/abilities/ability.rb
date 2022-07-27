@@ -4,6 +4,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    user = user ||= User.new
+    can :show, PublicPage
     can :read, Scan, link: { organization: user.organization, deleted_at: nil }
     can :read, Notification, recipient_type: 'User', recipient_id: user.id
     can :read, Request, organization: user.organization
@@ -13,7 +15,7 @@ class Ability
     can :update, Organization, id: user.organization.id if user.confirmed? && user.can_edit_organization
     can :destroy, Organization, id: user.organization.id if user.confirmed? && user.can_delete_organization
 
-    return unless user.organization.payment_processor.on_trial_or_subscribed?
+    return unless user&.organization&.payment_processor&.on_trial_or_subscribed?
 
     can :create, [Style, Link], organization: user.organization if user.confirmed? && user.can_create_links
     can :update, [Style, Link], organization: user.organization if user.confirmed? && user.can_edit_links
@@ -30,5 +32,6 @@ class Ability
     can :create, User, organization: user.organization if user.can_invite_users
     can :update, User, organization: user.organization if user.can_edit_users
     can :destroy, User, organization: user.organization if user.can_delete_users
+    can :manage, PublicPage, organization: user.organization
   end
 end

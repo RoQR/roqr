@@ -7,6 +7,7 @@ class Link < ApplicationRecord
   belongs_to :telephone_link, dependent: :destroy, optional: true
   belongs_to :url_link, dependent: :destroy, optional: true
   belongs_to :wifi_link, dependent: :destroy, optional: true
+  has_and_belongs_to_many :public_pages
   accepts_nested_attributes_for :contact_link, :email_link, :sms_link, :telephone_link, :url_link, :wifi_link
   before_save :cleanup_password
   has_many :scans, dependent: :destroy
