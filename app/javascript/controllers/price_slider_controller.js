@@ -7,7 +7,7 @@ export default class extends Controller {
 
   updatePrice() {
     let index = this.sliderTarget.value;
-    const tiers = [{volume: '1k', price: '9'}, {volume: '10k', price: '19'}, {volume: '20k', price: '29'}, {volume: '50k', price: '49'}, {volume: '100k', price: '69'}, {volume: '200k', price: '89'}, {volume: '500k', price: '129'}, {volume: '1m', price: '169'}];
+    const tiers = [{volume: '10k', price: '9'}, {volume: '100k', price: '19'}, {volume: '200k', price: '29'}, {volume: '500k', price: '49'}, {volume: '1m', price: '69'}, {volume: '2m', price: '89'}, {volume: '5m', price: '129'}, {volume: '10m', price: '169'}];
     let tier = tiers[index]
     this.volumeTarget.textContent = tier['volume']
     this.priceTarget.textContent = tier['price']
