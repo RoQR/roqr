@@ -22,21 +22,11 @@
         <%= form.check_box :dynamic, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-slate-300 rounded", data: {action: "checkbox#toggle"} %>
       </div>
       <div data-checkbox-target="detail" class="mt-3 col-span-2 <%= link.dynamic? ? 'flex flex-col' : 'hidden' %>">
-        <turbo-frame id="pw">
-          <div class="flex items-center">
-            <% if form.object.password_digest %>
-              <%= link_to "Remove password", remove_password_link_path, class: "text-sm font-medium text-indigo-500" %>
-            <% else %>
-              <%= form.label :password, class: "block text-sm font-medium text-slate-700" %>
-              <%= render TooltipComponent.new do %>
-                Adding a password to your link will prompt the scanner for the password before redirecting them to the link target.
-              <% end %>
-              <div class="mt-1">
-                <%= form.password_field :password, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-slate-300 rounded-md"  %>
-              </div>
-            <% end %>
-          </div>
-        </turbo-frame>
+        <% if form.object.password_digest %>
+          <%= render 'links/password/remove_password_link' %>
+        <% else %>
+          <%= render 'links/password/password_field', form: form %>
+        <% end %>
       </div>
     </div>
   </div>

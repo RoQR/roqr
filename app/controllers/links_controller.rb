@@ -107,8 +107,7 @@ class LinksController < ApplicationController
     @link.save!
     respond_to do |format|
       format.html do
-        flash[:success] = 'Password was removed from link.'
-        redirect_to link_url(@link)
+        flash.now[:success] = 'Password was removed from link.'
       end
       format.turbo_stream
     end
