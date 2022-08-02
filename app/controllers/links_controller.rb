@@ -102,6 +102,18 @@ class LinksController < ApplicationController
     end
   end
 
+  def remove_password
+    @link.password_digest = nil
+    @link.save!
+    respond_to do |format|
+      format.html do
+        flash[:success] = 'Password was removed from link.'
+        redirect_to link_url(@link)
+      end
+      format.turbo_stream
+    end
+  end
+
   private
 
   def saved_styles

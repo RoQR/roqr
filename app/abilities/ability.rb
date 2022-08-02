@@ -19,6 +19,7 @@ class Ability
 
     can :create, [Style, Link], organization: user.organization if user.confirmed? && user.can_create_links
     can :update, [Style, Link], organization: user.organization if user.confirmed? && user.can_edit_links
+    can :remove_password, Link, organization: user.organization if user.confirmed? && user.can_edit_links
     can :archive, Link, organization: user.organization, deleted_at: nil if user.confirmed? && user.can_delete_links
     can :confirm_destroy, Link do |link|
       link.organization == user.organization && link.deleted_at? && user.confirmed? && user.can_delete_links

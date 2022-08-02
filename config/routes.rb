@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get :scan, on: :member
     get :confirm_destroy, on: :member
     get :archive, on: :member
+    get :remove_password, on: :member
   end
   resources :styles
   resources :users, only: %i[show edit create update destroy]
