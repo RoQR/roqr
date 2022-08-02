@@ -4,9 +4,11 @@ Rails.application.routes.draw do
              controllers: { sessions: 'users/sessions', passwords: 'users/passwords', registrations: 'users/registrations',
                             confirmations: 'users/confirmations', omniauth_callbacks: 'users/omniauth_callbacks', invitations: 'users/invitations' }
   resources :links do
-    get :scan, on: :member
-    get :confirm_destroy, on: :member
-    get :archive, on: :member
+    member do
+      get :scan
+      get :confirm_destroy
+      get :archive
+    end
   end
   resources :styles
   resources :users, only: %i[show edit create update destroy]
