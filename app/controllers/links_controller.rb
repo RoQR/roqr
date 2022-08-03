@@ -107,9 +107,8 @@ class LinksController < ApplicationController
     @link.save!
     respond_to do |format|
       format.html do
-        flash.now[:success] = 'Password was removed from link.'
+        render partial: 'links/password/password_field'
       end
-      format.turbo_stream
     end
   end
 
