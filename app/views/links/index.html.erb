@@ -11,8 +11,8 @@
 
 <div>
   <% unless @links.empty? %>
-    <div class="bg-white shadow overflow-hidden sm:rounded-md">
-      <ul role="list" class="divide-y divide-slate-200">
+    <div class="bg-gray-700 shadow overflow-hidden rounded-md">
+      <ul role="list" class="divide-y divide-gray-600">
         <% @links.each do |link| %>
           <li>
             <%= render LinkCardComponent.new(link) %>
@@ -22,11 +22,11 @@
     </div>
   <% else %>
     <div class="text-center">
-      <div class="mx-auto h-12 w-12 text-slate-400 flex items-center justify-center">
+      <div class="mx-auto h-12 w-12 text-gray-500 flex items-center justify-center">
         <%= show_svg("outline/link") %>
       </div>
-      <h3 class="mt-2 text-sm font-medium text-slate-900">No links</h3>
-      <p class="mt-1 text-sm text-slate-500">Get started by creating a new link.</p>
+      <h3 class="mt-2 text-sm font-medium text-gray-200">No active links</h3>
+      <p class="mt-1 text-sm text-gray-500">Get started by creating a new link.</p>
     </div>
   <% end %>
 
@@ -38,8 +38,8 @@
         Archived links
       <% end %>
     <% end %>
-    <div class="bg-white shadow overflow-hidden sm:rounded-md">
-      <ul role="list" class="divide-y divide-slate-200">
+    <div class="bg-gray-700 shadow overflow-hidden rounded-md">
+      <ul role="list" class="divide-y divide-gray-600">
         <% @archived_links.each do |link| %>
           <li>
             <%= render LinkCardComponent.new(link) %>

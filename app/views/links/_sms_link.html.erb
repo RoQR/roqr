@@ -1,19 +1,23 @@
 <%= form.fields_for :sms_link, @link.link_data || SmsLink.new do |sms_form| %>
-  <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
+  <div class="bg-gray-700 px-4 py-5 rounded-lg sm:p-6">
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
-        <h3 class="text-lg font-medium leading-6 text-slate-900">Link target</h3>
+        <h3 class="text-lg font-medium leading-6 text-gray-100">Link target</h3>
       </div>
       <div class="mt-5 md:mt-0 md:col-span-2">
         <div class="grid grid-cols-6 gap-6">
           <div class="col-span-12 sm:col-span-5 lg:col-span-3">
-            <%= sms_form.label :number, class: "block text-sm font-medium text-slate-700" %>
-            <%= sms_form.phone_field :number, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md" %>
+            <%= sms_form.label :number, class: "block text-sm font-medium text-gray-300" %>
+            <div class="mt-1">
+              <%= sms_form.phone_field :number, class: "bg-gray-800 focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-100 block w-full sm:text-sm rounded-md" %>
+            </div>
           </div>
 
           <div class="col-span-12">
-            <%= sms_form.label :body, class: "block text-sm font-medium text-slate-700" %>
-            <%= sms_form.text_area :body, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md" %>
+            <%= sms_form.label :body, class: "block text-sm font-medium text-gray-300" %>
+            <div class="mt-1">
+              <%= sms_form.text_area :body, class: "bg-gray-800 focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-100 block w-full sm:text-sm rounded-md" %>
+            </div>
           </div>
         </div>
       </div>

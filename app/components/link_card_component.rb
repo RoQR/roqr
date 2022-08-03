@@ -39,7 +39,7 @@ class LinkCardComponent < ViewComponent::Base
     when 'telephone'
       'text-amber-800 bg-amber-100'
     when 'sms'
-      'text-slate-800 bg-slate-100'
+      'text-gray-800 bg-gray-100'
     when 'contact'
       'text-rose-800 bg-rose-100'
     end

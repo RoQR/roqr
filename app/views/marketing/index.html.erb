@@ -1,4 +1,4 @@
-<div data-controller="dropdown" class="relative bg-slate-800 bg-texture overflow-hidden">
+<div data-controller="dropdown" class="relative bg-gray-800 bg-texture overflow-hidden">
   <div class="relative pt-6 pb-16 sm:pb-24">
     <div>
       <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6" aria-label="Global">
@@ -9,7 +9,7 @@
                 <%= show_svg("solid/bolt") %>
               </div>
             <div class="-mr-2 flex items-center md:hidden">
-              <button data-action="dropdown#toggle click@window->dropdown#hide" type="button" class="bg-transparent rounded-md p-2 inline-flex items-center justify-center text-slate-400 hover:bg-slate-700 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white" aria-expanded="false">
+              <button data-action="dropdown#toggle click@window->dropdown#hide" type="button" class="bg-transparent rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-700 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white" aria-expanded="false">
                 <span class="sr-only">Open main menu</span>
                 <!-- Heroicon name: outline/menu -->
                 <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -19,13 +19,13 @@
             </div>
           </div>
           <div class="hidden space-x-10 md:flex md:ml-10">
-            <%= link_to 'Features', marketing_path(anchor: 'Features'), class: 'font-medium text-white hover:text-slate-300' %>
-            <%= link_to 'Pricing', marketing_path(anchor: 'Pricing'), class: 'font-medium text-white hover:text-slate-300' %>
-            <%= link_to 'Documentation', docs_path, class: 'font-medium text-white hover:text-slate-300' %>
+            <%= link_to 'Features', marketing_path(anchor: 'Features'), class: 'font-medium text-white hover:text-gray-300' %>
+            <%= link_to 'Pricing', marketing_path(anchor: 'Pricing'), class: 'font-medium text-white hover:text-gray-300' %>
+            <%= link_to 'Documentation', docs_path, class: 'font-medium text-white hover:text-gray-300' %>
           </div>
         </div>
         <div class="hidden md:flex">
-          <%= link_to 'Log in', new_user_session_path, data: {turbo: false}, class: 'inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-slate-600 hover:bg-slate-700' %>
+          <%= link_to 'Log in', new_user_session_path, data: {turbo: false}, class: 'inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700' %>
         </div>
       </nav>
 
@@ -45,7 +45,7 @@
                 <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="">
               </div>
         <div class="-mr-2">
-          <button data-action="dropdown#toggle" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-slate-400 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+          <button data-action="dropdown#toggle" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
             <span class="sr-only">Close menu</span>
             <!-- Heroicon name: outline/x -->
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -55,11 +55,11 @@
         </div>
             </div>
             <div class="px-2 pt-2 pb-3 space-y-1">
-              <%= link_to 'Features', marketing_path(anchor: 'Features'), class: 'block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-50' %>
-              <%= link_to 'Pricing', marketing_path(anchor: 'Pricing'), class: 'block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-50' %>
-              <%= link_to 'FAQ', marketing_path(anchor: 'FAQ'), class: 'block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-50' %>
+              <%= link_to 'Features', marketing_path(anchor: 'Features'), class: 'block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50' %>
+              <%= link_to 'Pricing', marketing_path(anchor: 'Pricing'), class: 'block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50' %>
+              <%= link_to 'FAQ', marketing_path(anchor: 'FAQ'), class: 'block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50' %>
             </div>
-            <%= link_to 'Log in', new_user_session_path, data: {turbo: false}, class: 'block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-slate-50 hover:bg-slate-100' %>
+            <%= link_to 'Log in', new_user_session_path, data: {turbo: false}, class: 'block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100' %>
           </div>
       </div>
     </div>

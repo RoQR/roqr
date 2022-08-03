@@ -8,7 +8,6 @@ class SettingsController < ApplicationController
     return unless @organization.payment_processor.on_trial_or_subscribed?
 
     unless @organization.payment_processor.on_generic_trial?
-      @portal_session = @organization.payment_processor.billing_portal
     end
     @subscription = @organization.payment_processor.subscription
   end

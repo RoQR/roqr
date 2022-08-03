@@ -1,8 +1,8 @@
-<div class="bg-white shadow overflow-hidden rounded-lg mb-5">
+<div class="bg-gray-700 overflow-hidden rounded-lg mb-5">
   <div class="px-4 py-5 sm:px-6 flex flex-row items-center">
     <div class="flex items-center">
       
-    <h3 class="text-lg leading-6 font-medium text-slate-900"><%= user.name %></h3>
+    <h3 class="text-lg leading-6 font-medium text-gray-100"><%= user.name %></h3>
     <%= image_tag(user.gravatar_url, class: "h-10 w-10 rounded-full ml-3") %>
     </div>
     <div class="mt-6 ml-auto flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
@@ -16,11 +16,11 @@
       <% end %>
     </div>
   </div>
-  <div class="border-t border-slate-200 px-4 py-5 sm:p-0">
-    <dl class="sm:divide-y sm:divide-slate-200">
+  <div class="border-t border-gray-600 px-4 py-5 sm:p-0">
+    <dl class="sm:divide-y sm:divide-gray-:00">
       <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-slate-500">Email</dt>
-        <dd class="mt-1 text-sm text-slate-900 sm:mt-0 sm:col-span-2">
+        <dt class="text-sm font-medium text-gray-300">Email</dt>
+        <dd class="mt-1 text-sm text-gray-200 sm:mt-0 sm:col-span-2">
           <%= user.email %>
         </dd>
       </div>
