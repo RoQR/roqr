@@ -1,27 +1,27 @@
 <%= form.fields_for :wifi_link, @link.link_data || WifiLink.new do |wifi_form| %>
-  <div class="bg-slate-700 px-4 py-5 rounded-lg sm:p-6">
+  <div class="bg-gray-700 px-4 py-5 rounded-lg sm:p-6">
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
-        <h3 class="text-lg font-medium leading-6 text-slate-100">Link target</h3>
+        <h3 class="text-lg font-medium leading-6 text-gray-100">Link target</h3>
       </div>
       <div class="mt-5 md:mt-0 md:col-span-2">
         <div class="grid grid-cols-6 gap-6">
           <div class="col-span-6">
             <div class="flex">
-              <%= wifi_form.label :ssid, "Network name", class: "block text-sm font-medium text-slate-300" %>
+              <%= wifi_form.label :ssid, "Network name", class: "block text-sm font-medium text-gray-300" %>
               <%= render TooltipComponent.new do %>
                 Sometimes referred to as an SSID.
               <% end %>
             </div>
             <div class="mt-1">
-              <%= wifi_form.text_field :ssid, class: "bg-slate-800 focus:bg-slate-700 border-transparent focus:border-slate-100 text-slate-100 block w-full sm:text-sm rounded-md" %>
+              <%= wifi_form.text_field :ssid, class: "bg-gray-800 focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-100 block w-full sm:text-sm rounded-md" %>
             </div>
           </div>
 
           <div class="col-span-6">
-            <%= wifi_form.label :password, class: "block text-sm font-medium text-slate-300" %>
+            <%= wifi_form.label :password, class: "block text-sm font-medium text-gray-300" %>
             <div class="mt-1">
-              <%= wifi_form.password_field :password, class: "bg-slate-800 focus:bg-slate-700 border-transparent focus:border-slate-100 text-slate-100 block w-full sm:text-sm rounded-md" %>
+              <%= wifi_form.password_field :password, class: "bg-gray-800 focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-100 block w-full sm:text-sm rounded-md" %>
             </div>
           </div>
 
@@ -29,7 +29,7 @@
             <div class="mb-3 flex flex-col justify-between sm:flex-row">
               <div>
                 <div class="flex">
-                  <label class="text-base font-medium text-slate-300">Security protocol</label>
+                  <label class="text-base font-medium text-gray-300">Security protocol</label>
                   <%= render TooltipComponent.new do %>
                     Most WiFi networks have some form of protection through a security protocol. The most common form of security protocol is WEP, but WPA is also becoming more popular. To find out your settings, check your network settings through a device that is already connected to the network.
                   <% end %>
@@ -39,18 +39,18 @@
                 <legend class="sr-only">Wifi security protocol</legend>
                 <div class="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
                   <div class="flex items-center">
-                    <%= wifi_form.radio_button :protocol, nil, class: "focus:ring-slate-700 bg-slate-800 h-4 w-4 text-slate-800 border-slate-300" %>
-                    <%= wifi_form.label :protocol, "None", class:"ml-3 block text-sm font-medium text-slate-200"  %>
+                    <%= wifi_form.radio_button :protocol, nil, class: "focus:ring-gray-700 bg-gray-800 h-4 w-4 text-gray-800 border-gray-300" %>
+                    <%= wifi_form.label :protocol, "None", class:"ml-3 block text-sm font-medium text-gray-200"  %>
                   </div>
 
                   <div class="flex items-center">
-                    <%= wifi_form.radio_button :protocol, "WEP", class: "focus:ring-slate-700 bg-slate-800 h-4 w-4 text-slate-800 border-slate-300" %>
-                    <%= wifi_form.label :protocol, "WEP", class:"ml-3 block text-sm font-medium text-slate-200"  %>
+                    <%= wifi_form.radio_button :protocol, "WEP", class: "focus:ring-gray-700 bg-gray-800 h-4 w-4 text-gray-800 border-gray-300" %>
+                    <%= wifi_form.label :protocol, "WEP", class:"ml-3 block text-sm font-medium text-gray-200"  %>
                   </div>
 
                   <div class="flex items-center">
-                    <%= wifi_form.radio_button :protocol, "WPA", class: "focus:ring-slate-700 bg-slate-800 h-4 w-4 text-slate-800 border-slate-300" %>
-                    <%= wifi_form.label :protocol, "WPA", class:"ml-3 block text-sm font-medium text-slate-200"  %>
+                    <%= wifi_form.radio_button :protocol, "WPA", class: "focus:ring-gray-700 bg-gray-800 h-4 w-4 text-gray-800 border-gray-300" %>
+                    <%= wifi_form.label :protocol, "WPA", class:"ml-3 block text-sm font-medium text-gray-200"  %>
                   </div>
                 </div>
               </fieldset>

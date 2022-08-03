@@ -5,7 +5,7 @@
     <% end %>
   <% end %>
   <div>
-    <ul role="list" class="divide-y divide-slate-600 px-4 py-4 bg-slate-700 rounded-lg">
+    <ul role="list" class="divide-y divide-gray-600 px-4 py-4 bg-gray-700 rounded-lg">
       <% link.versions.select {|v| !v.whodunnit.nil? }.sort_by {|v| v.created_at}.reverse.each do |v| %>
         <% user = User.find(v.whodunnit) %>
         <li class="py-4">
@@ -13,10 +13,10 @@
             <%= image_tag(user.gravatar_url, alt: user.name, class: "h-6 w-6 rounded-full") %>
             <div class="flex-1 space-y-1">
               <div class="flex items-center justify-between">
-                <h3 class="text-sm font-medium text-slate-100"><%= user.display_name %></h3>
-                <p class="text-sm text-slate-400" title="<%= v.created_at %>"><%= time_ago_in_words(v.created_at) %> ago</p>
+                <h3 class="text-sm font-medium text-gray-100"><%= user.display_name %></h3>
+                <p class="text-sm text-gray-400" title="<%= v.created_at %>"><%= time_ago_in_words(v.created_at) %> ago</p>
               </div>
-              <p class="text-sm text-slate-400"><%= v.event.titlecase %>d
+              <p class="text-sm text-gray-400"><%= v.event.titlecase %>d
               <% if v.event == 'update' && v.changeset %>
                 <%= humanize_version_change(v.changeset) %>
               <% end %>

@@ -9,7 +9,7 @@ class Navbar::LinkComponent < ViewComponent::Base
   end
 
   def html_class
-    (@is_active ? 'text-slate-50' : 'text-slate-300 hover:text-slate-50') +
+    (@is_active ? 'text-gray-50' : 'text-gray-300 hover:text-gray-50') +
       (@is_mobile ? ' text-base block' : ' text-sm') +
       ' px-3 py-2 rounded-md font-medium'
   end

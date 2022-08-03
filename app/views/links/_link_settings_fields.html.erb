@@ -1,35 +1,35 @@
-<div class="bg-slate-700 px-4 py-5 rounded-lg sm:p-6">
+<div class="bg-gray-750 px-4 py-5 rounded-lg sm:p-6">
   <div class="md:grid md:grid-cols-3 md:gap-6">
     <div class="md:col-span-1">
-      <h3 class="text-lg font-medium leading-6 text-slate-100">Link settings</h3>
+      <h3 class="text-lg font-medium leading-6 text-gray-100">Link settings</h3>
     </div>
     <div data-controller="checkbox" class="mt-5 md:col-span-2 md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-2">
-        <%= form.label :name, class: "block text-sm font-medium text-slate-300" %>
+        <%= form.label :name, class: "block text-sm font-medium text-gray-300" %>
         <div class="mt-1">
-          <%= form.text_field :name, class: "bg-slate-800 focus:bg-slate-700 border-transparent focus:border-slate-100 text-slate-100 block w-full sm:text-sm rounded-md", required: true %>
+          <%= form.text_field :name, class: "bg-gray-800 focus:bg-gray-750 border-transparent focus:border-gray-100 text-gray-100 block w-full sm:text-sm rounded-md", required: true %>
         </div>
       </div>
       <div class="flex justify-between flex-row items-center mt-5 md:mt-0 col-span-1">
         <span class="flex-grow flex flex-col">
           <div class="flex">
-            <%= form.label :dynamic, class: "text-sm font-medium text-slate-300" %>
+            <%= form.label :dynamic, class: "text-sm font-medium text-gray-300" %>
             <%= render TooltipComponent.new do %>
               Dynamic links can be updated, and track scans.
             <% end %>
           </div>
         </span>
-        <%= form.check_box :dynamic, class: "focus:ring-slate-700 h-4 w-4 bg-slate-800 text-slate-800 rounded", data: {action: "checkbox#toggle"} %>
+        <%= form.check_box :dynamic, class: "focus:ring-gray-750 h-4 w-4 bg-gray-800 text-gray-800 rounded", data: {action: "checkbox#toggle"} %>
       </div>
       <div data-checkbox-target="detail" class="mt-3 col-span-2 <%= link.dynamic? ? 'flex flex-col' : 'hidden' %>">
         <div class="flex">
-          <%= form.label :password, class: "block text-sm font-medium text-slate-300" %>
+          <%= form.label :password, class: "block text-sm font-medium text-gray-300" %>
           <%= render TooltipComponent.new do %>
             Adding a password to your link will prompt the scanner for the password before redirecting them to the link target.
           <% end %>
         </div>
         <div class="mt-1">
-          <%= form.password_field :password, class: "bg-slate-800 focus:bg-slate-700 border-transparent focus:border-slate-100 text-slate-100 block w-full sm:text-sm rounded-md" %>
+          <%= form.password_field :password, class: "bg-gray-800 focus:bg-gray-750 border-transparent focus:border-gray-100 text-gray-100 block w-full sm:text-sm rounded-md" %>
         </div>
       </div>
     </div>

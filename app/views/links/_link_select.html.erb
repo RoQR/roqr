@@ -1,130 +1,130 @@
-<div class="rounded-lg overflow-hidden divide-y divide-slate-600 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px">
-  <div class="rounded-tl-lg rounded-tr-lg sm:rounded-tr-none relative group bg-slate-700 p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-400">
+<div class="rounded-lg overflow-hidden divide-y divide-gray-600 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px">
+  <div class="rounded-tl-lg rounded-tr-lg sm:rounded-tr-none relative group bg-gray-750 p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-400">
     <div>
-      <span class="rounded-lg inline-flex p-3 bg-green-100 text-green-800 ring-4 ring-slate-500">
+      <span class="rounded-lg inline-flex p-3 bg-green-100 text-green-800 ring-4 ring-gray-500">
         <%= show_svg('outline/globe-alt') %>
       </span>
     </div>
     <div class="mt-8">
-      <h3 class="text-lg font-medium text-slate-100">
+      <h3 class="text-lg font-medium text-gray-100">
         <%= link_to new_link_path({link_type: :url_link}), class: "focus:outline-none" do %>
           <span class="absolute inset-0" aria-hidden="true"></span>
           URL link
         <% end %>
       </h3>
-      <p class="mt-2 text-sm text-slate-400">Link to any website on the internet.</p>
+      <p class="mt-2 text-sm text-gray-400">Link to any website on the internet.</p>
     </div>
-    <span class="pointer-events-none absolute top-6 right-6 text-slate-500 group-hover:text-slate-400" aria-hidden="true">
+    <span class="pointer-events-none absolute top-6 right-6 text-gray-500 group-hover:text-gray-400" aria-hidden="true">
       <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
         <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
       </svg>
     </span>
   </div>
 
-  <div class="sm:rounded-tr-lg relative group bg-slate-700 p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-400">
+  <div class="sm:rounded-tr-lg relative group bg-gray-750 p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-400">
     <div>
-      <span class="rounded-lg inline-flex p-3 bg-blue-100 text-blue-800 ring-4 ring-slate-500">
+      <span class="rounded-lg inline-flex p-3 bg-blue-100 text-blue-800 ring-4 ring-gray-500">
         <%= show_svg('outline/inbox') %>
       </span>
     </div>
     <div class="mt-8">
-      <h3 class="text-lg font-medium text-slate-100">
+      <h3 class="text-lg font-medium text-gray-100">
         <%= link_to new_link_path({link_type: :email_link}), class: "focus:outline-none" do %>
           <span class="absolute inset-0" aria-hidden="true"></span>
           Email link
         <% end %>
       </h3>
-      <p class="mt-2 text-sm text-slate-400">Link to a prepopulated email with an address, subject and body text. All the scanner has to do is hit send.</p>
+      <p class="mt-2 text-sm text-gray-400">Link to a prepopulated email with an address, subject and body text. All the scanner has to do is hit send.</p>
     </div>
-    <span class="pointer-events-none absolute top-6 right-6 text-slate-500 group-hover:text-slate-400" aria-hidden="true">
+    <span class="pointer-events-none absolute top-6 right-6 text-gray-500 group-hover:text-gray-400" aria-hidden="true">
       <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
         <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
       </svg>
     </span>
   </div>
 
-  <div class="sm:rounded-tr-none relative group bg-slate-700 p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-400">
+  <div class="sm:rounded-tr-none relative group bg-gray-750 p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-400">
     <div>
-      <span class="rounded-lg inline-flex p-3 bg-fuchsia-100 text-fuchsia-800 ring-4 ring-slate-500">
+      <span class="rounded-lg inline-flex p-3 bg-fuchsia-100 text-fuchsia-800 ring-4 ring-gray-500">
         <%= show_svg('outline/wifi') %>
       </span>
     </div>
     <div class="mt-8">
-      <h3 class="text-lg font-medium text-slate-100">
+      <h3 class="text-lg font-medium text-gray-100">
         <%= link_to new_link_path({link_type: :wifi_link}), class: "focus:outline-none" do %>
           <span class="absolute inset-0" aria-hidden="true"></span>
           WiFi link
         <% end %>
       </h3>
-      <p class="mt-2 text-sm text-slate-400">Share the settings for a WiFi network so that the user only has to scan the code to connect.</p>
+      <p class="mt-2 text-sm text-gray-400">Share the settings for a WiFi network so that the user only has to scan the code to connect.</p>
     </div>
-    <span class="pointer-events-none absolute top-6 right-6 text-slate-500 group-hover:text-slate-400" aria-hidden="true">
+    <span class="pointer-events-none absolute top-6 right-6 text-gray-500 group-hover:text-gray-400" aria-hidden="true">
       <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
         <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
       </svg>
     </span>
   </div>
 
-  <div class="sm:rounded-tr-none relative group bg-slate-700 p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-400">
+  <div class="sm:rounded-tr-none relative group bg-gray-750 p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-400">
     <div>
-      <span class="rounded-lg inline-flex p-3 bg-amber-100 text-amber-800 ring-4 ring-slate-500">
+      <span class="rounded-lg inline-flex p-3 bg-amber-100 text-amber-800 ring-4 ring-gray-500">
         <%= show_svg('outline/phone') %>
       </span>
     </div>
     <div class="mt-8">
-      <h3 class="text-lg font-medium text-slate-100">
+      <h3 class="text-lg font-medium text-gray-100">
         <%= link_to new_link_path({link_type: :telephone_link}), class: "focus:outline-none" do %>
           <span class="absolute inset-0" aria-hidden="true"></span>
           Telephone link
         <% end %>
       </h3>
-      <p class="mt-2 text-sm text-slate-400">Link to a phone number for the scanner to call.</p>
+      <p class="mt-2 text-sm text-gray-400">Link to a phone number for the scanner to call.</p>
     </div>
-    <span class="pointer-events-none absolute top-6 right-6 text-slate-500 group-hover:text-slate-400" aria-hidden="true">
+    <span class="pointer-events-none absolute top-6 right-6 text-gray-500 group-hover:text-gray-400" aria-hidden="true">
       <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
         <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
       </svg>
     </span>
   </div>
 
-  <div class="sm:rounded-tr-none relative group bg-slate-700 p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-400">
+  <div class="sm:rounded-tr-none relative group bg-gray-750 p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-400">
     <div>
-      <span class="rounded-lg inline-flex p-3 bg-slate-100 text-slate-800 ring-4 ring-slate-500">
+      <span class="rounded-lg inline-flex p-3 bg-gray-100 text-gray-800 ring-4 ring-gray-500">
         <%= show_svg('outline/chat-alt') %>
       </span>
     </div>
     <div class="mt-8">
-      <h3 class="text-lg font-medium text-slate-100">
+      <h3 class="text-lg font-medium text-gray-100">
         <%= link_to new_link_path({link_type: :sms_link}), class: "focus:outline-none" do %>
           <span class="absolute inset-0" aria-hidden="true"></span>
           SMS link
         <% end %>
       </h3>
-      <p class="mt-2 text-sm text-slate-400">Link to a pre-specified SMS for the scanner to send.</p>
+      <p class="mt-2 text-sm text-gray-400">Link to a pre-specified SMS for the scanner to send.</p>
     </div>
-    <span class="pointer-events-none absolute top-6 right-6 text-slate-500 group-hover:text-slate-400" aria-hidden="true">
+    <span class="pointer-events-none absolute top-6 right-6 text-gray-500 group-hover:text-gray-400" aria-hidden="true">
       <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
         <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
       </svg>
     </span>
   </div>
 
-  <div class="sm:rounded-tr-none relative group bg-slate-700 p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-400">
+  <div class="sm:rounded-tr-none relative group bg-gray-750 p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-400">
     <div>
-      <span class="rounded-lg inline-flex p-3 bg-rose-100 text-rose-800 ring-4 ring-slate-500">
+      <span class="rounded-lg inline-flex p-3 bg-rose-100 text-rose-800 ring-4 ring-gray-500">
         <%= show_svg('outline/user') %>
       </span>
     </div>
     <div class="mt-8">
-      <h3 class="text-lg font-medium text-slate-100">
+      <h3 class="text-lg font-medium text-gray-100">
         <%= link_to new_link_path({link_type: :contact_link}), class: "focus:outline-none" do %>
           <span class="absolute inset-0" aria-hidden="true"></span>
           Contact link
         <% end %>
       </h3>
-      <p class="mt-2 text-sm text-slate-400">Specify contact details for quick entry into the scanners contact list.</p>
+      <p class="mt-2 text-sm text-gray-400">Specify contact details for quick entry into the scanners contact list.</p>
     </div>
-    <span class="pointer-events-none absolute top-6 right-6 text-slate-500 group-hover:text-slate-400" aria-hidden="true">
+    <span class="pointer-events-none absolute top-6 right-6 text-gray-500 group-hover:text-gray-400" aria-hidden="true">
       <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
         <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
       </svg>
