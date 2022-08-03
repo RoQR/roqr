@@ -1,17 +1,17 @@
-<%= link_to @link, class: "block hover:bg-slate-50" do %>
+<%= link_to @link, class: "block hover:bg-slate-600" do %>
   <div class="px-4 py-4 sm:px-6">
     <div class="flex items-center justify-between">
-      <p class="text-sm font-medium text-indigo-600 truncate"><%= @link.name %></p>
+      <p class="text-sm font-medium text-slate-100 truncate"><%= @link.name %></p>
       <div class="ml-2 flex-shrink-0 flex">
         <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <%= badge_color %>"><%= badge_text %></p>
       </div>
     </div>
     <div class="mt-2 sm:flex sm:justify-between">
       <div class="sm:flex">
-        <p class="flex items-center text-sm text-slate-500"><%= @link.summary %></p>
+        <p class="flex items-center text-sm text-slate-400"><%= @link.summary %></p>
       </div>
-      <div class="mt-2 flex items-center text-sm text-slate-500 sm:mt-0">
-        <span class="flex-shrink-0 mr-1.5 h-5 w-5 text-slate-400">
+      <div class="mt-2 flex items-center text-sm text-slate-400 sm:mt-0">
+        <span class="flex-shrink-0 mr-1.5 h-5 w-5 text-slate-500">
         <%= show_svg('solid/camera') %>
         </span>
         <p>Scans: <%= @link.scans.count %></p>

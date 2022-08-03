@@ -57,11 +57,11 @@ class ButtonComponent < ViewComponent::Base
   def styling
     case @style
     when 'primary'
-      'border-transparent text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500'
+      'border-transparent text-slate-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500'
     when 'white'
-      'border-slate-300 text-slate-700 bg-white hover:bg-slate-50 focus:ring-indigo-500'
+      'border-slate-500 text-slate-400 bg-transparent'
     when 'red'
-      'border-transparent text-white bg-red-600 hover:bg-red-700 focus:ring-red-500'
+      'border-transparent text-slate-50 bg-red-600 hover:bg-red-700 focus:ring-red-500'
     end
   end
 end

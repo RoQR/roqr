@@ -1,24 +1,24 @@
 <% if @all_scans.empty? %>
   <div class="text-center">
-    <h3 class="mt-2 text-sm font-medium text-slate-900">No insights at this time</h3>
+    <h3 class="mt-2 text-sm font-medium text-slate-200">No insights at this time</h3>
     <p class="mt-1 text-sm text-slate-500">Share your QR codes to start generating insights from scans.</p>
   </div>
 <% else %>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
     <div>
-      <p>Scans by country</p>
+      <p class="text-slate-100">Scans by country</p>
       <%= geo_chart @all_scans.group(:country).count %>
     </div>
     <div>
-      <p>Scans by day</p> 
+      <p class="text-slate-100">Scans by day</p> 
       <%= line_chart @all_scans.group(:link_id).group_by_day(:created_at).count  %>
     </div>
     <div>
-      <p>Scans by browser</p>
+      <p class="text-slate-100">Scans by browser</p>
       <%= pie_chart @all_scans.group(:browser_name).count %>
     </div>
     <div>
-      <p>Scans by platform</p>
+      <p class="text-slate-100">Scans by platform</p>
       <%= pie_chart @all_scans.group(:platform_name).count %>
     </div>
   </div>
@@ -26,28 +26,28 @@
     <%= c.with_title do %>
       Scan log
     <% end %>
-    <%= c.with_button(style: :white, link: scans_path(format: :csv)) do %>
+    <%= c.with_button(style: 'white', link: scans_path(format: :csv)) do %>
       <span class="flex">
         <%= show_svg('outline/cloud-download') %>
         <p class="ml-2">Download as CSV</p>
       </span>
     <% end %>
   <% end %>
-  <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-md md:rounded-lg overflow-x-auto">
-    <table class="min-w-full divide-y divide-slate-300">
-      <thead class="bg-slate-50">
+  <div class="overflow-hidden rounded-md md:rounded-lg overflow-x-auto">
+    <table class="min-w-full divide-y divide-slate-600">
+      <thead class="bg-slate-700">
         <tr>
-          <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-slate-900 sm:pl-6">Datetime</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Link</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Browser name</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Browser version</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Bot name</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Device name</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Platform name</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Platform version</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Language</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">City</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Country</th>
+          <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-slate-100 sm:pl-6">Datetime</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-100">Link</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-100">Browser name</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-100">Browser version</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-100">Bot name</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-100">Device name</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-100">Platform name</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-100">Platform version</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-100">Language</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-100">City</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-slate-100">Country</th>
         </tr>
       </thead>
       <tfoot>
@@ -57,7 +57,7 @@
           </td>
         </tr>
       </tfoot>
-      <tbody class="divide-y divide-slate-200 bg-white">
+      <tbody class="divide-y divide-slate-600">
         <%= render partial: "row", collection: @scans.sort_by {|e| e.created_at }.reverse, as: :scan %>
       </tbody>
     </table>
