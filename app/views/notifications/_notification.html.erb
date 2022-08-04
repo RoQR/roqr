@@ -1,17 +1,17 @@
 <li>
   <div class="relative pb-8">
     <% unless notification_iteration.last? %>
-    <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-700" aria-hidden="true"></span>
+    <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200 dark:bg-gray-700" aria-hidden="true"></span>
     <% end %>
     <div class="relative flex space-x-3">
       <div>
-        <span class="h-8 w-8 rounded-full text-white bg-gray-700 flex items-center justify-center ring-8 ring-gray-800">
+        <span class="h-8 w-8 rounded-full text-white bg-gray-200 dark:bg-gray-700 flex items-center justify-center ring-8 ring-gray-800">
           <%= show_svg('solid/user') %>
         </span>
       </div>
       <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
         <div>
-          <p class="text-sm text-gray-200"><%= notification.to_notification.message %></p>
+          <p class="text-sm text-gray-700 dark:text-gray-200"><%= notification.to_notification.message %></p>
         </div>
         <div title="<%= notification.created_at %>" class="text-right text-sm whitespace-nowrap text-gray-500">
           <time><%= time_ago_in_words(notification.created_at) %> ago</time>
