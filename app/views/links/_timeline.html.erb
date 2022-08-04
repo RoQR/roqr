@@ -14,9 +14,9 @@
             <div class="flex-1 space-y-1">
               <div class="flex items-center justify-between">
                 <h3 class="text-sm font-medium text-gray-800 dark:text-gray-100"><%= user.display_name %></h3>
-                <p class="text-sm text-gray-400" title="<%= v.created_at %>"><%= time_ago_in_words(v.created_at) %> ago</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400" title="<%= v.created_at %>"><%= time_ago_in_words(v.created_at) %> ago</p>
               </div>
-              <p class="text-sm text-gray-400"><%= v.event.titlecase %>d
+              <p class="text-sm text-gray-500 dark:text-gray-400"><%= v.event.titlecase %>d
               <% if v.event == 'update' && v.changeset %>
                 <%= humanize_version_change(v.changeset) %>
               <% end %>

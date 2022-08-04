@@ -59,7 +59,7 @@ class ButtonComponent < ViewComponent::Base
     when 'primary'
       'border-transparent text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500'
     when 'white'
-      'border-gray-500 text-gray-400 bg-transparent'
+      'border-gray-400 dark:border-gray-500 text-gray-500 dark:text-gray-400 bg-transparent'
     when 'red'
       'border-transparent text-gray-50 bg-red-600 hover:bg-red-700 focus:ring-red-500'
     end
