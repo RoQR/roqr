@@ -12,7 +12,7 @@
 <div>
   <% unless @links.empty? %>
     <div class="bg-gray-200 dark:bg-gray-700 shadow overflow-hidden rounded-md">
-      <ul role="list" class="divide-y divide-gray-600">
+      <ul role="list" class="divide-y divide-gray-300 dark:divide-gray-600">
         <% @links.each do |link| %>
           <li>
             <%= render LinkCardComponent.new(link) %>
