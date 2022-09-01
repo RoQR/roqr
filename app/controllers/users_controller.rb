@@ -2,9 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
-  def edit
-    @portal_session = current_user.organization.payment_processor.billing_portal
-  end
+  def edit; end
 
   def create
     respond_to do |format|
@@ -42,6 +40,10 @@ class UsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:name, :email, organization_attributes: %i[name])
+    params.require(:user).permit(
+      :name, :email, :can_create_links, :can_edit_links, :can_delete_links, :can_edit_organization,
+      :can_delete_organization, :can_invite_users, :can_edit_users, :can_delete_users,
+      organization_attributes: %i[name]
+    )
   end
 end
