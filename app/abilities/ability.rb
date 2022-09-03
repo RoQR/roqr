@@ -10,6 +10,7 @@ class Ability
     can :read, Notification, recipient_type: 'User', recipient_id: user.id
     can :read, Request, organization: user.organization
     can :read, [Style, Link], organization: user.organization
+    can :download, Link, organization: user.organization
     can :manage, user
     can :create, Organization
     can :update, Organization, id: user.organization.id if user.confirmed? && user.can_edit_organization

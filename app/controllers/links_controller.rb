@@ -112,6 +112,17 @@ class LinksController < ApplicationController
     end
   end
 
+  def download
+    qr = QrGenerator.gen(
+      barcode_data(@link),
+      fill: @link.fill,
+      color: @link.color,
+      position_border: @link.position_border_color,
+      position_core: @link.position_core_color
+    )
+    send_data qr, filename: "#{@link.name}.svg", type: 'image/svg+xml', disposition: :attachment
+  end
+
   private
 
   def saved_styles

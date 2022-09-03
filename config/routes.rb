@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get :confirm_destroy
       get :archive
       get :remove_password
+      get :download
     end
   end
   resources :styles
