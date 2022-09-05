@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :public_page do
-    name { "MyString" }
-    organization { nil }
+    name { "Public page" }
+    organization
   end
 end

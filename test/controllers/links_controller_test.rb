@@ -41,6 +41,14 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
     assert_equal "Basic realm=\"link-#{@link.id}\"", response.header['WWW-Authenticate']
   end
 
+  test 'should redirect on link with correct password' do
+    @link = create(:link, :url, dynamic: true, password: 'pass')
+    get scan_link_url(@link), params: nil, headers: {
+      HTTP_AUTHORIZATION: ActionController::HttpAuthentication::Basic.encode_credentials('', 'pass')
+    }
+    assert_redirected_to @link.link_data.url
+  end
+
   test 'should get new' do
     get new_link_url
     assert_response :success

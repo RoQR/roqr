@@ -46,6 +46,7 @@ class PublicPagesController < ApplicationController
 
   # DELETE /public_pages/1 or /public_pages/1.json
   def destroy
+    @public_page.destroy
     respond_to do |format|
       format.html { redirect_to public_pages_url, notice: 'Public page was successfully destroyed.' }
       format.json { head :no_content }
