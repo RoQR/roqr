@@ -1,0 +1,8 @@
+<% @style.errors.full_messages.each do |message| %>
+  <%= turbo_stream.append "flash_messages" do %>
+    <%= render FlashComponent.new(type: 'error', data: message) %>
+  <% end %>
+<% end %>
+<%= turbo_stream.update 'form-body' do %>
+  <%= render 'form', style: @style  %>
+<% end %>
