@@ -1,11 +1,10 @@
-<% content_for(:title, "Profile") %>
 <div class="h-full">
-  <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
+  <%= turbo_frame_tag 'settings', class: 'flex flex-col' do %>
     <%= render 'settings/nav' %>
-    <div class="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
+    <div class="space-y-6">
       <section aria-labelledby="payment-details-heading">
         <%= render 'users/form', user: @user %>
       </section>
-	</div>
-  </div>
+    </div>
+  <% end %>
 </div>

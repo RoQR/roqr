@@ -1,6 +1,4 @@
-<%= link_to path, class: "#{style_if_active(path, "text-gray-900 dark:text-gray-50", "text-gray-600 dark:text-gray-300 text-gray-900 dark:hover:text-gray-50") } group rounded-md px-3 py-2 flex items-center text-sm font-medium" do %>
-  <div class="<%= style_if_active(path, "text-gray-900 dark:text-gray-50", "text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-gray-50") %> flex-shrink-0 -ml-1 mr-3">
-    <%= show_svg(icon) %>
-  </div>
-  <span class="truncate"> <%= name %> </span>
+<%= link_to path, class: class_names('border-transparent text-gray-300 hover:border-yellow-300 group inline-flex items-center py-4 px-1 border-b-2 font-medium text-sm', {"border-yellow-400 text-gray-100": current_page?(path)}) do %>
+  <%= heroicon icon, variant: 'mini', class: class_names('text-gray-300 -ml-0.5 mr-2 h-5 w-5', {"text-gray-100": current_page?(path)}) %>
+  <span><%= name %></span>
 <% end %>
