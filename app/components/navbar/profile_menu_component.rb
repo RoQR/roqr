@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Navbar::ProfileMenuComponent < ViewComponent::Base
+class Navbar::ProfileMenuComponent < ApplicationComponent
   def initialize(user:)
     @user = user
   end

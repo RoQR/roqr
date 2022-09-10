@@ -1,11 +1,13 @@
 <% content_for :title, "Links" %>
 
-<%= render SectionHeaderComponent.new do |c| %>
-  <%= c.with_title do %>
+<%= render_component "section_header" do |c| %>
+  <%= c.title do %>
     Active links
   <% end %>
   <% if can?(:create, Link) %>
-    <%= c.with_button(link: new_link_path).with_content("New link") %>
+    <%= c.button(link: new_link_path) do %>
+      New link
+    <% end %>
   <% end %>
 <% end %>
 
@@ -22,8 +24,8 @@
     </div>
   <% else %>
     <div class="text-center">
-      <div class="mx-auto h-12 w-12 text-gray-500 flex items-center justify-center">
-        <%= show_svg("outline/link") %>
+      <div class="mx-auto h-12 w-12 flex items-center justify-center">
+        <%= heroicon 'link', class: 'text-gray-500' %>
       </div>
       <h3 class="mt-2 text-sm font-medium text-gray-700 dark:text-gray-200">No active links</h3>
       <p class="mt-1 text-sm text-gray-500">Get started by creating a new link.</p>

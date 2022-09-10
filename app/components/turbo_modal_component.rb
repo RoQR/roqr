@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TurboModalComponent < ViewComponent::Base
+class TurboModalComponent < ApplicationComponent
   include Turbo::FramesHelper
   include IconsHelper
   def initialize(title:)

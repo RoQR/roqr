@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class InlineButtonGroupComponent < ViewComponent::Base
+class InlineButtonGroupComponent < ApplicationComponent
   renders_many :buttons, ButtonComponent
 end

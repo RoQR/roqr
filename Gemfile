@@ -64,3 +64,5 @@ group :test do
 end
 
 gem "noticed", "~> 1.5"
+
+gem "rails_heroicon", "~> 2.0"

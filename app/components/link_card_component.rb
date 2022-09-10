@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class LinkCardComponent < ViewComponent::Base
+class LinkCardComponent < ApplicationComponent
   include IconsHelper
   include LinksHelper
 

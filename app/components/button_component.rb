@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ButtonComponent < ViewComponent::Base
+class ButtonComponent < ApplicationComponent
   def initialize(link:, method: :get, size: 'md', style: 'primary', data: {}, **attrs)
     @link = link
     @size = size

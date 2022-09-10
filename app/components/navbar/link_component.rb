@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Navbar::LinkComponent < ViewComponent::Base
+class Navbar::LinkComponent < ApplicationComponent
   def initialize(title:, link:, is_active: false, is_mobile: false)
     @title = title
     @link = link

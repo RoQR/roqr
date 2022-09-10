@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class Navbar::MobileMenuComponent < ViewComponent::Base
+class Navbar::MobileMenuComponent < ApplicationComponent
   def initialize; end
 end
