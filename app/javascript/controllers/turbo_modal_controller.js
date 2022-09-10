@@ -1,10 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
 import {enter, leave} from "el-transition"
+import { useClickOutside } from 'stimulus-use'
 
 export default class extends Controller {
   static targets = ["backdrop", "body"]
   connect() {
     document.addEventListener('turbo:submit-end', this.handleSubmit)
+    useClickOutside(this, { element: this.bodyTarget });
     enter(this.backdropTarget);
     enter(this.bodyTarget);
   }
@@ -32,5 +34,10 @@ export default class extends Controller {
     if (e.code == "Escape") {
       this.hideModal()
     }
+  }
+
+  clickOutside(event) {
+    event.preventDefault()
+    this.hideModal()
   }
 }
