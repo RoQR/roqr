@@ -4,115 +4,107 @@
     <div class="space-y-6">
       <section>
         <%= form_with(model: @organization) do |form| %>
-          <div class="shadow sm:rounded-md sm:overflow-hidden">
-            <div class="bg-gray-200 dark:bg-gray-700 py-6 px-4 sm:p-6">
-              <div>
-                <h2 id="payment-details-heading" class="text-lg leading-6 font-medium text-gray-800 dark:text-gray-100">Organization settings</h2>
-              </div>
-              <div class="mt-6 grid grid-cols-4 gap-6">
-                <div class="col-span-4 sm:col-span-2">
-                  <%= form.label :name, "Organization name", class: "block text-sm font-medium text-gray-600 dark:text-gray-300"  %>
-                  <% if can? :edit, @organization %>
-                    <%= form.text_field :name, class: "mt-1 bg-gray-100 focus:bg-gray-200 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
-                  <% else %>
-                    <%= form.text_field :name, class: "mt-1 bg-gray-100 focus:bg-gray-200 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md", disabled: true%>
-                  <% end %>
-                </div>
-              </div>
+          <%= render_component 'card' do %>
+            <div>
+              <h2 id="payment-details-heading" class="text-lg leading-6 font-medium text-gray-800 dark:text-gray-100">Organization settings</h2>
             </div>
-          </div>
-            <div class="py-3 text-right">
-              <% if can? :edit, @organization %>
-                <%= form.submit "Save", class: "inline-flex items-center px-4 py-2 border border-transparent text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500 text-sm font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2", data: { turbo: false } %>
-              <% else %>
-                <%= form.submit "Save", class: "inline-flex items-center px-4 py-2 border border-transparent text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500 text-sm font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2", disabled: true %>
-              <% end %>
-            </div>
-        <% end %>
-        <% if Flipper.enabled? :stripe, current_user %>
-          <div class="shadow sm:rounded-md sm:overflow-hidden mt-6">
-            <div class="bg-gray-200 dark:bg-gray-700 py-6 px-4 sm:p-6">
-              <div>
-                <h2 id="payment-details-heading" class="text-lg leading-6 font-medium text-gray-800 dark:text-gray-100">Subscription</h2>
-              </div>
-
-              <div class="mt-6 grid grid-cols-4 gap-6">
-                <% if @organization.payment_processor.on_trial_or_subscribed? %>
-                  <div class="col-span-4">
-                    <% if @organization.payment_processor.on_trial? %>
-                      <p>Free trial until <%= @organization.payment_processor.subscription.trial_ends_at.strftime("%B %-d, %Y") %></p>
-                    <% else %>
-                      <p>Subscribed</p>
-                    <% end %>
-                    <% unless @organization.payment_processor.on_generic_trial? %>
-                      <%= link_to "Manage subscription", @portal_session.url, class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-                    <% end %>
-                  </div>
+            <div class="mt-6 grid grid-cols-4 gap-6">
+              <div class="col-span-4 sm:col-span-2">
+                <%= form.label :name, "Organization name", class: "block text-sm font-medium text-gray-600 dark:text-gray-300"  %>
+                <% if can? :edit, @organization %>
+                  <%= form.text_field :name, class: "mt-1 bg-gray-100 focus:bg-gray-200 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
                 <% else %>
-                  <div class="col-span-4">
-                    <div class="flow-root mt-6">
-                      <ul role="list" class="-my-5 divide-y divide-gray-200">
-                        <%= render 'plan', scans:    1000, price:   9, plan_name:   'monthly1k' %>
-                        <%= render 'plan', scans:   10000, price:  19, plan_name:  'monthly10k' %>
-                        <%= render 'plan', scans:   20000, price:  29, plan_name:  'monthly20k' %>
-                        <%= render 'plan', scans:   50000, price:  49, plan_name:  'monthly50k' %>
-                        <%= render 'plan', scans:  100000, price:  69, plan_name: 'monthly100k' %>
-                        <%= render 'plan', scans:  200000, price:  89, plan_name: 'monthly200k' %>
-                        <%= render 'plan', scans:  500000, price: 129, plan_name: 'monthly500k' %>
-                        <%= render 'plan', scans: 1000000, price: 169, plan_name:   'monthly1m' %>
-                      </ul>
-                    </div>
-                  </div>
+                  <%= form.text_field :name, class: "mt-1 bg-gray-100 focus:bg-gray-200 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md", disabled: true%>
                 <% end %>
               </div>
             </div>
+          <% end %>
+          <div class="py-3 text-right">
+            <% if can? :edit, @organization %>
+              <%= form.submit "Save", class: "inline-flex items-center px-4 py-2 border border-transparent text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500 text-sm font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2", data: { turbo: false } %>
+            <% else %>
+              <%= form.submit "Save", class: "inline-flex items-center px-4 py-2 border border-transparent text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500 text-sm font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2", disabled: true %>
+            <% end %>
           </div>
         <% end %>
-        <div class="shadow sm:rounded-md sm:overflow-hidden mt-6">
-          <div class="bg-gray-200 dark:bg-gray-700 px-4 py-5 border-b border-gray-300 dark:border-gray-600 sm:px-6">
-            <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
-              <div class="ml-4 mt-2">
-                <h3 class="text-lg leading-6 font-medium text-gray-800 dark:text-gray-100">Team members</h3>
-              </div>
+        <% if Flipper.enabled? :stripe, current_user %>
+          <%= render_component 'card' do %>
+            <div>
+              <h2 id="payment-details-heading" class="text-lg leading-6 font-medium text-gray-800 dark:text-gray-100">Subscription</h2>
+            </div>
+
+            <div class="mt-6 grid grid-cols-4 gap-6">
+              <% if @organization.payment_processor.on_trial_or_subscribed? %>
+                <div class="col-span-4">
+                  <% if @organization.payment_processor.on_trial? %>
+                    <p>Free trial until <%= @organization.payment_processor.subscription.trial_ends_at.strftime("%B %-d, %Y") %></p>
+                  <% else %>
+                    <p>Subscribed</p>
+                  <% end %>
+                  <% unless @organization.payment_processor.on_generic_trial? %>
+                    <%= link_to "Manage subscription", @portal_session.url, class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+                  <% end %>
+                </div>
+              <% else %>
+                <div class="col-span-4">
+                  <div class="flow-root mt-6">
+                    <ul role="list" class="-my-5 divide-y divide-gray-200">
+                      <%= render 'plan', scans:    1000, price:   9, plan_name:   'monthly1k' %>
+                      <%= render 'plan', scans:   10000, price:  19, plan_name:  'monthly10k' %>
+                      <%= render 'plan', scans:   20000, price:  29, plan_name:  'monthly20k' %>
+                      <%= render 'plan', scans:   50000, price:  49, plan_name:  'monthly50k' %>
+                      <%= render 'plan', scans:  100000, price:  69, plan_name: 'monthly100k' %>
+                      <%= render 'plan', scans:  200000, price:  89, plan_name: 'monthly200k' %>
+                      <%= render 'plan', scans:  500000, price: 129, plan_name: 'monthly500k' %>
+                      <%= render 'plan', scans: 1000000, price: 169, plan_name:   'monthly1m' %>
+                    </ul>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+        <%= render_component 'card' do %>
+          <div class="border-b border-gray-300 dark:border-gray-600 pb-5">
+            <div class="flex items-center justify-between flex-wrap sm:flex-nowrap">
+              <h3 class="text-lg leading-6 font-medium text-gray-800 dark:text-gray-100">Team members</h3>
               <% if can? :invite, User %>
-                <div class="ml-4 mt-2 flex-shrink-0">
+                <div class="flex-shrink-0">
                   <%= link_to "Invite team member", new_user_invitation_path, data: {turbo: false}, class: "ml-5 bg-gray-200 dark:bg-gray-700 py-2 px-3 border border-gray-500 dark:border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
                 </div>
               <% end %>
             </div>
           </div>
-          <div class="bg-gray-200 dark:bg-gray-700 py-6 px-4 sm:p-6">
-            <% if @organization.users.count == 1 %>
-              <div class="text-center">
-                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 48 48" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M34 40h10v-4a6 6 0 00-10.712-3.714M34 40H14m20 0v-4a9.971 9.971 0 00-.712-3.714M14 40H4v-4a6 6 0 0110.713-3.714M14 40v-4c0-1.313.253-2.566.713-3.714m0 0A10.003 10.003 0 0124 26c4.21 0 7.813 2.602 9.288 6.286M30 14a6 6 0 11-12 0 6 6 0 0112 0zm12 6a4 4 0 11-8 0 4 4 0 018 0zm-28 0a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-                <h2 class="mt-2 text-lg font-medium text-gray-700 dark:text-gray-200">Add team members</h2>
-                <p class="mt-1 text-sm text-gray-500">You haven’t added any team members to your organization yet.</p>
-              </div>
-            <% else %>
-              <ul role="list" class="divide-y divide-gray-600">
-                <% for user in @organization.users %>
-                  <% unless user == current_user %>
-                    <%= link_to user_path(user) do %>
-                      <li class="px-6 py-4 flex hover:bg-gray-600 items-center justify-between">
-                        <div class="flex">
-                          <%= image_tag(user.gravatar_url, class: "h-10 w-10 rounded-full") %>
-                          <div class="ml-3">
-                            <p class="text-sm font-medium text-gray-800 dark:text-gray-100"><%= user.name %></p>
-                            <p class="text-sm text-gray-600 dark:text-gray-300"><%= user.email %></p>
-                          </div>
+          <% if @organization.users.count == 1 %>
+            <div class="text-center">
+              <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 48 48" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M34 40h10v-4a6 6 0 00-10.712-3.714M34 40H14m20 0v-4a9.971 9.971 0 00-.712-3.714M14 40H4v-4a6 6 0 0110.713-3.714M14 40v-4c0-1.313.253-2.566.713-3.714m0 0A10.003 10.003 0 0124 26c4.21 0 7.813 2.602 9.288 6.286M30 14a6 6 0 11-12 0 6 6 0 0112 0zm12 6a4 4 0 11-8 0 4 4 0 018 0zm-28 0a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+              <h2 class="mt-2 text-lg font-medium text-gray-700 dark:text-gray-200">Add team members</h2>
+              <p class="mt-1 text-sm text-gray-500">You haven’t added any team members to your organization yet.</p>
+            </div>
+          <% else %>
+            <ul role="list" class="divide-y divide-gray-600">
+              <% for user in @organization.users %>
+                <% unless user == current_user %>
+                  <%= link_to user_path(user) do %>
+                    <li class="px-6 py-4 flex hover:bg-gray-600 items-center justify-between">
+                      <div class="flex">
+                        <%= image_tag(user.gravatar_url, class: "h-10 w-10 rounded-full") %>
+                        <div class="ml-3">
+                          <p class="text-sm font-medium text-gray-800 dark:text-gray-100"><%= user.name %></p>
+                          <p class="text-sm text-gray-600 dark:text-gray-300"><%= user.email %></p>
                         </div>
-                        <%= heroicon 'chevron-right', class: 'text-gray-400' %>
-                      </li>
-                    <% end %>
+                      </div>
+                      <%= heroicon 'chevron-right', class: 'text-gray-400' %>
+                    </li>
                   <% end %>
                 <% end %>
-              </ul>
-            <% end %>
-          </div>
-        </div>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end %>
       </section>
     </div>
-    <% end %>
+  <% end %>
 </div>

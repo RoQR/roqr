@@ -1,10 +1,6 @@
 <div class="h-full">
   <%= turbo_frame_tag 'settings', class: 'flex flex-col' do %>
     <%= render 'settings/nav' %>
-    <div class="space-y-6">
-      <section aria-labelledby="payment-details-heading">
-        <%= render 'users/form', user: @user %>
-      </section>
-    </div>
+    <%= render 'users/form', user: @user %>
   <% end %>
 </div>

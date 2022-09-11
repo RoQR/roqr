@@ -1,5 +1,5 @@
-<%= form.fields_for :contact_link, @link.link_data || ContactLink.new do |contact_form| %>
-  <div class="bg-gray-200 dark:bg-gray-700 px-4 py-5 rounded-lg sm:p-6">
+<%= render_component 'card' do %>
+  <%= form.fields_for :contact_link, @link.link_data || ContactLink.new do |contact_form| %>
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
         <h3 class="text-lg font-medium leading-6 text-gray-800 dark:text-gray-100">Link target</h3>
@@ -78,5 +78,5 @@
         </div>
       </div>
     </div>
-  </div>
-<% end %>	
+  <% end %>	
+<% end %>

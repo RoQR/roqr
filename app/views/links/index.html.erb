@@ -13,7 +13,7 @@
 
 <div>
   <% unless @links.empty? %>
-    <div class="bg-gray-200 dark:bg-gray-700 shadow overflow-hidden rounded-md">
+    <%= render_component "card" do %>
       <ul role="list" class="divide-y divide-gray-300 dark:divide-gray-600">
         <% @links.each do |link| %>
           <li>
@@ -21,7 +21,7 @@
           </li>
         <% end %>
       </ul>
-    </div>
+    <% end %>
   <% else %>
     <div class="text-center">
       <div class="mx-auto h-12 w-12 flex items-center justify-center">
@@ -40,7 +40,7 @@
         Archived links
       <% end %>
     <% end %>
-    <div class="bg-gray-200 dark:bg-gray-700 shadow overflow-hidden rounded-md">
+    <%= render_component 'card' do %>
       <ul role="list" class="divide-y divide-gray-600">
         <% @archived_links.each do |link| %>
           <li>
@@ -48,6 +48,6 @@
           </li>
         <% end %>
       </ul>
-    </div>
+      <% end %>
   </div>
 <% end %>

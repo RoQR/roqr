@@ -4,8 +4,8 @@
       Timeline
     <% end %>
   <% end %>
-  <div>
-    <ul role="list" class="divide-y divide-gray-600 px-4 py-4 bg-gray-200 dark:bg-gray-700 rounded-lg">
+  <%= render_component 'card' do %>
+    <ul role="list" class="divide-y divide-gray-600">
       <% link.versions.select {|v| !v.whodunnit.nil? }.sort_by {|v| v.created_at}.reverse.each do |v| %>
         <% user = User.find(v.whodunnit) %>
         <li class="py-4">
@@ -26,5 +26,5 @@
         </li>
       <% end %>
     </ul>
-  </div>
+  <% end %>
 </div>
