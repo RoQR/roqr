@@ -1,5 +1,5 @@
 <%= turbo_frame_tag style do %>
-  <li data-controller="qr" data-qr-size-value="222" data-qr-barcode-data-value="https://roqr.app" class="col-span-1 flex flex-col text-center bg-gray-200 dark:bg-gray-700 rounded-lg divide-y divide-gray-400 dark:divide-gray-500">
+  <li data-controller="qr" data-qr-barcode-data-value="https://roqr.app" class="col-span-1 flex flex-col text-center bg-gray-200 dark:bg-gray-700 rounded-lg divide-y divide-gray-400 dark:divide-gray-500">
 	<div class="flex-1 flex flex-col p-8">
       <%= render 'links/hidden_qr_fields', link: style  %>
       <div data-qr-target="canvas" class="flex-shrink-0 mx-auto"></div>

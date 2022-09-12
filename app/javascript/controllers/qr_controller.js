@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import QRCodeStyling from "qr-code-styling"
 
 export default class extends Controller {
-  static values = { barcodeData: String, size: Number }
+  static values = { barcodeData: String }
   static targets = [ "canvas", "fill", "color", "positionBorder", "positionCore", "image" ]
   
   connect() {
@@ -19,7 +19,7 @@ export default class extends Controller {
   }
 
   options() {
-    let size = this.sizeValue || 300;
+    let size = 300;
     return {
       data: this.barcodeDataValue,
       height: size,
