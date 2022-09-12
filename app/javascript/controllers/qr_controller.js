@@ -19,7 +19,7 @@ export default class extends Controller {
   }
 
   options() {
-    let size = 300;
+    let size = 500;
     return {
       data: this.barcodeDataValue,
       height: size,
