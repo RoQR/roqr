@@ -1,19 +1,15 @@
-<div class="w-full">
-  <%= render SectionHeaderComponent.new do |c| %>
-    <%= c.with_title do %>
-      Styles
-    <% end %>
-    <% if can? :create, Style %>
-      <%= c.with_button(link: new_style_path, data: {turbo_frame: "modal" }).with_content("New style") %>
-    <% end %>
+<%= render_component 'section_header' do |c| %>
+  <%= c.title { 'Styles' } %>
+  <% if can? :create, Style %>
+    <%= c.button(link: new_style_path, data: {turbo_frame: "modal" }).with_content("New style") %>
   <% end %>
+<% end %>
 
-  <%= turbo_frame_tag Style.new do %>
+<%= turbo_frame_tag Style.new do %>
   <% if @styles.none? %>
     <%= render 'empty_state' %>
   <% end %>
-  <% end %>
-  <%= turbo_frame_tag "styles", role: "list", class:"grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" do %>
-    <%= render @styles %>
-  <% end %>
-</div>
+<% end %>
+<%= turbo_frame_tag "styles", role: "list", class:"grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" do %>
+  <%= render @styles %>
+<% end %>

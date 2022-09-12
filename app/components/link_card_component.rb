@@ -4,8 +4,9 @@ class LinkCardComponent < ApplicationComponent
   include IconsHelper
   include LinksHelper
 
-  def initialize(link)
+  def initialize(link:, **options)
     @link = link
+    @options = options
   end
 
   def name
