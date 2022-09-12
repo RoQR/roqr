@@ -14,27 +14,26 @@
               <div class="grid grid-cols-2 space-y-2">
                 <div class="flex flex-col">
                   <%= form.label :fill, class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
-                  <%= form.color_field :fill, value: style.fill, "data-action": "input->qr#updateImage", "data-qr-target": "fill" %>
+                  <%= form.color_field :fill, value: style.fill, "data-action": "input->qr#update", "data-qr-target": "fill" %>
                 </div>
                 <div class="flex flex-col">
                   <%= form.label :color, class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
-                  <%= form.color_field :color, value: style.color, "data-action": "input->qr#updateImage", "data-qr-target": "color" %>
+                  <%= form.color_field :color, value: style.color, "data-action": "input->qr#update", "data-qr-target": "color" %>
                 </div>
                 <div class="flex flex-col">
                   <%= form.label :position_border_color, class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
-                  <%= form.color_field :position_border_color, value: style.position_border_color, "data-action": "input->qr#updateImage", "data-qr-target": "positionBorder" %>
+                  <%= form.color_field :position_border_color, value: style.position_border_color, "data-action": "input->qr#update", "data-qr-target": "positionBorder" %>
                 </div>
                 <div class="flex flex-col">
                   <%= form.label :position_core_color, class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
-                  <%= form.color_field :position_core_color, value: style.position_core_color, "data-action": "input->qr#updateImage", "data-qr-target": "positionCore" %>
+                  <%= form.color_field :position_core_color, value: style.position_core_color, "data-action": "input->qr#update", "data-qr-target": "positionCore" %>
                 </div>
               </div>
             </div>
           <% end %>
         </div>
       </div>
-      <div class="flex justify-center md:col-span-1">
-        <%= image_tag(qr_path(data: "https://roqr.app", fill: style.fill, color: style.color, position_border: style.position_border_color, position_core: style.position_core_color, format: :svg), "data-qr-target": "image") %>
+      <div data-qr-target="canvas" class="flex justify-center md:col-span-1">
       </div>
     </div>
     <div class="mt-3 gap-x-3 flex justify-end">

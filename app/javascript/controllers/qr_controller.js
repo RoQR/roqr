@@ -1,17 +1,49 @@
-
 import { Controller } from "@hotwired/stimulus"
+import QRCodeStyling from "qr-code-styling"
 
 export default class extends Controller {
-  static values = { barcodeData: String }
-  static targets = [ "fill", "color", "positionBorder", "positionCore", "image" ]
+  static values = { barcodeData: String, size: Number }
+  static targets = [ "canvas", "fill", "color", "positionBorder", "positionCore", "image" ]
+  
+  connect() {
+    this.qrCode = new QRCodeStyling(this.options());
+    this.qrCode.append(this.canvasTarget);
+  }
 
-  updateImage() {
-    var fill = this.fillTarget
-    var color = this.colorTarget
-    var positionBorder = this.positionBorderTarget
-    var positionCore = this.positionCoreTarget
-    var image = this.imageTarget
+  update() {
+    this.qrCode.update(this.options())
+  }
 
-    image.src = `/qr.svg?data=${encodeURIComponent(this.barcodeDataValue)}&fill=${encodeURIComponent(fill.value)}&color=${encodeURIComponent(color.value)}&position_border=${encodeURIComponent(positionBorder.value)}&position_core=${encodeURIComponent(positionCore.value)}`
+  download() {
+    this.qrCode.download(this.downloadOptions())
+  }
+
+  options() {
+    let size = this.sizeValue || 300;
+    return {
+      data: this.barcodeDataValue,
+      height: size,
+      width: size,
+      margin: 20,
+      dotsOptions: {
+        color: this.colorTarget.value,
+        type: "rounded"
+      },
+      cornersSquareOptions: {
+        color: this.positionBorderTarget.value
+      },
+      cornersDotOptions: {
+        color: this.positionCoreTarget.value
+      },
+      backgroundOptions: {
+        color: this.fillTarget.value
+      }
+    }
+  }
+
+  downloadOptions() {
+    return {
+      extension: 'png'
+    }
   }
 }

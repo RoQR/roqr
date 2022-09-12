@@ -22,11 +22,6 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should show svg link' do
-    get link_url(@link, format: :svg)
-    assert_response :success
-  end
-
   test 'should scan link' do
     assert_difference('Scan.count') do
       get scan_link_url(@link)

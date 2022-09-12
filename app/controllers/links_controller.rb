@@ -13,11 +13,6 @@ class LinksController < ApplicationController
 
   def show
     respond_to do |format|
-      format.svg do
-        render inline: QrGenerator.gen(barcode_data(@link), fill: @link.fill, color: @link.color, position_border: @link.position_border_color,
-                                                            position_core: @link.position_core_color)
-      end
-
       format.html do
         authenticate_user!
         authorize! :show, @link
@@ -110,17 +105,6 @@ class LinksController < ApplicationController
         render partial: 'links/password/password_field'
       end
     end
-  end
-
-  def download
-    qr = QrGenerator.gen(
-      barcode_data(@link),
-      fill: @link.fill,
-      color: @link.color,
-      position_border: @link.position_border_color,
-      position_core: @link.position_core_color
-    )
-    send_data qr, filename: "#{@link.name}.svg", type: 'image/svg+xml', disposition: :attachment
   end
 
   private

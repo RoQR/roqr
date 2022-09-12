@@ -24,7 +24,7 @@ class StylesControllerTest < ActionDispatch::IntegrationTest
   test 'should create style' do
     assert_difference('Style.count') do
       post styles_url,
-           params: { style: { color: @style.color, fill: @style.fill, name: @style.name,
+           params: { style: { color: @style.color, fill: @style.fill, name: @style.name + 'a',
                               organization_id: @style.organization_id } }
     end
 

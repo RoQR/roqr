@@ -9,7 +9,6 @@ Rails.application.routes.draw do
       get :confirm_destroy
       get :archive
       get :remove_password
-      get :download
     end
   end
   resources :styles
@@ -26,7 +25,6 @@ Rails.application.routes.draw do
   get :subscribe, to: 'plans#subscribe'
   get :marketing, to: 'marketing#index'
   get 'terms-of-service', to: 'marketing#terms_of_service'
-  get :qr, to: 'qr#show', format: :svg
 
   authenticated :user do
     root to: 'links#index', as: :authenticated_root
