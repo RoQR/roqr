@@ -6,6 +6,7 @@
   <%= form.hidden_field :corner_dots_shape, value: link.corner_dots_shape, data: {style_target: "cornerDotsShape", qr_target: "cornerDotsShape"} %>
   <%= form.hidden_field :corner_squares_color, value: link.corner_squares_color, data: {style_target: "cornerSquaresColor", qr_target: "cornerSquaresColor"} %>
   <%= form.hidden_field :corner_squares_shape, value: link.corner_squares_shape, data: {style_target: "cornerSquaresShape", qr_target: "cornerSquaresShape"} %>
+  <%= form.hidden_field :image_url, value: link.image_url, data: {style_target: "imageUrl", qr_target: "imageUrl"} %>
 <% else %>
   <input type="hidden" data-style-target="dotsColor" data-qr-target="dotsColor" value=<%= link.dots_color %>>
   <input type="hidden" data-style-target="dotsShape" data-qr-target="dotsShape" value=<%= link.dots_shape %>>
@@ -14,4 +15,5 @@
   <input type="hidden" data-style-target="cornerDotsShape" data-qr-target="cornerDotsShape" value=<%= link.corner_dots_shape %>>
   <input type="hidden" data-style-target="cornerSquaresColor" data-qr-target="cornerSquaresColor" value=<%= link.corner_squares_color %>>
   <input type="hidden" data-style-target="cornerSquaresShape" data-qr-target="cornerSquaresShape" value=<%= link.corner_squares_shape %>>
+  <input type="hidden" data-style-target="imageUrl" data-qr-target="imageUrl" value=<%= link.image_url %>>
 <% end %>

@@ -76,7 +76,7 @@ class StylesController < ApplicationController
   def style_params
     params.require(:style).permit(
       :name, :organization_id, :dots_color, :dots_shape, :background_color, :corner_dots_color,
-      :corner_dots_shape, :corner_squares_color, :corner_squares_shape
+      :corner_dots_shape, :corner_squares_color, :corner_squares_shape, :image_url
     )
   end
 end

@@ -3,7 +3,7 @@ import QRCodeStyling from "qr-code-styling"
 
 export default class extends Controller {
   static values = { barcodeData: String }
-  static targets = [ "canvas", "dotsColor", "dotsShape", "backgroundColor", "cornerSquaresColor", "cornerSquaresShape", "cornerDotsColor", "cornerDotsShape", "image" ]
+  static targets = [ "canvas", "dotsColor", "dotsShape", "backgroundColor", "cornerSquaresColor", "cornerSquaresShape", "cornerDotsColor", "cornerDotsShape", "imageUrl" ]
   
   connect() {
     this.copyCornerSquares = (this.dotsColorTarget.value == this.cornerSquaresColorTarget.value)
@@ -41,6 +41,7 @@ export default class extends Controller {
       height: size,
       width: size,
       margin: 20,
+      image: this.imageUrlTarget.value,
       dotsOptions: {
         color: this.dotsColorTarget.value,
         type: this.dotsShapeTarget.value

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_13_211714) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_13_214631) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -91,6 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_13_211714) do
     t.string "dots_shape", default: "square", null: false
     t.string "corner_squares_shape", default: "", null: false
     t.string "corner_dots_shape", default: "", null: false
+    t.string "image_url"
     t.index ["contact_link_id"], name: "index_links_on_contact_link_id"
     t.index ["deleted_at"], name: "index_links_on_deleted_at"
     t.index ["email_link_id"], name: "index_links_on_email_link_id"
@@ -259,6 +260,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_13_211714) do
     t.string "dots_shape", default: "square", null: false
     t.string "corner_squares_shape", default: "", null: false
     t.string "corner_dots_shape", default: "", null: false
+    t.string "image_url"
     t.index ["organization_id"], name: "index_styles_on_organization_id"
   end
 
