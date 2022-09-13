@@ -32,7 +32,7 @@ class LinksController < ApplicationController
     end
     case @link.link_type
     when 'contact_link'
-      send_data @link.barcode_data, type: :vcf
+      send_data @link.barcode_data, type: :vcf, disposition: :inlinme
     else
       redirect_to(@link.barcode_data, allow_other_host: true) and return
     end
