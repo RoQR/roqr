@@ -30,7 +30,12 @@ class LinksController < ApplicationController
       FirstScanNotification.with(link_name: @link.name).deliver_later(@link.organization.users) if @link.scans.size == 1
       @link.delay.report_scan_to_stripe if @link.organization.payment_processor.stripe?
     end
-    redirect_to(@link.barcode_data, allow_other_host: true) and return
+    case @link.link_type
+    when 'contact_link'
+      send_data @link.barcode_data, type: :vcf
+    else
+      redirect_to(@link.barcode_data, allow_other_host: true) and return
+    end
   end
 
   def new
