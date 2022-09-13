@@ -3,7 +3,7 @@ import QRCodeStyling from "qr-code-styling"
 
 export default class extends Controller {
   static values = { barcodeData: String }
-  static targets = [ "canvas", "fill", "color", "positionBorder", "positionCore", "image" ]
+  static targets = [ "canvas", "dotsColor", "backgroundColor", "cornerSquaresColor", "cornerDotsColor", "image" ]
   
   connect() {
     this.qrCode = new QRCodeStyling(this.options());
@@ -26,16 +26,16 @@ export default class extends Controller {
       width: size,
       margin: 20,
       dotsOptions: {
-        color: this.colorTarget.value
+        color: this.dotsColorTarget.value
       },
       cornersSquareOptions: {
-        color: this.positionBorderTarget.value
+        color: this.cornerSquaresColorTarget.value
       },
       cornersDotOptions: {
-        color: this.positionCoreTarget.value
+        color: this.cornerDotsColorTarget.value
       },
       backgroundOptions: {
-        color: this.fillTarget.value
+        color: this.backgroundColorTarget.value
       }
     }
   }

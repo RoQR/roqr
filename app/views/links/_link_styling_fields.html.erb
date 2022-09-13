@@ -21,16 +21,16 @@
         <fieldset hidden>
           <div class="grid mt-2 grid-cols-2 space-y-2">
             <div class="flex flex-col">
-              <%= form.color_field :fill, value: link.fill, "data-style-target": "fill" %>
+              <%= form.color_field :background_color, value: link.background_color, "data-style-target": "backgroundColor" %>
             </div>
             <div class="flex flex-col">
-              <%= form.color_field :color, value: link.color, "data-style-target": "color" %>
+              <%= form.color_field :dots_color, value: link.dots_color, "data-style-target": "dotsColor" %>
             </div>
             <div class="flex flex-col">
-              <%= form.color_field :position_border_color, value: link.position_border_color, "data-style-target": "positionBorder" %>
+              <%= form.color_field :corner_squares_color, value: link.corner_squares_color, "data-style-target": "cornerSquaresColor" %>
             </div>
             <div class="flex flex-col">
-              <%= form.color_field :position_core_color, value: link.position_core_color, "data-style-target": "positionCore" %>
+              <%= form.color_field :corner_dots_color, value: link.corner_dots_color, "data-style-target": "cornerDotsColor" %>
             </div>
           </div>
         </fieldset>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_27_010557) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_13_013612) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -82,11 +82,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_010557) do
     t.uuid "url_link_id"
     t.uuid "wifi_link_id"
     t.uuid "organization_id"
-    t.string "color", default: "#000000", null: false
-    t.string "fill", default: "#ffffff", null: false
+    t.string "dots_color", default: "#000000", null: false
+    t.string "background_color", default: "#ffffff", null: false
     t.string "password_digest"
-    t.string "position_border_color", default: "#000000", null: false
-    t.string "position_core_color", default: "#000000", null: false
+    t.string "corner_squares_color", default: "#000000", null: false
+    t.string "corner_dots_color", default: "#000000", null: false
     t.datetime "deleted_at"
     t.index ["contact_link_id"], name: "index_links_on_contact_link_id"
     t.index ["deleted_at"], name: "index_links_on_deleted_at"
@@ -247,12 +247,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_010557) do
   create_table "styles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.uuid "organization_id", null: false
-    t.string "color", default: "#000000", null: false
-    t.string "fill", default: "#ffffff", null: false
+    t.string "dots_color", default: "#000000", null: false
+    t.string "background_color", default: "#ffffff", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "position_border_color", default: "#000000", null: false
-    t.string "position_core_color", default: "#000000", null: false
+    t.string "corner_squares_color", default: "#000000", null: false
+    t.string "corner_dots_color", default: "#000000", null: false
     t.index ["organization_id"], name: "index_styles_on_organization_id"
   end
 
