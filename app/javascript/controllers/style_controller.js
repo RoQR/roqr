@@ -3,7 +3,7 @@ import { Controller } from '@hotwired/stimulus'
 import { get } from '@rails/request.js'
 
 export default class extends Controller {
-  static targets = ['newStyle', 'dotsColor', 'backgroundColor', 'cornerSquaresColor', 'cornerDotsColor']
+  static targets = ['newStyle', 'dotsColor', 'dotsShape', 'backgroundColor', 'cornerSquaresColor', 'cornerDotsColor']
 
   async getStyleValues(id) {
     const response = await get(`/api/v0/styles/${id}`);
@@ -30,6 +30,7 @@ export default class extends Controller {
 
   applyStyleValues(values) {
     this.dotsColorTarget.value = values['dots_color']
+    this.dotsShapeTarget.value = values['dots_shape']
     this.backgroundColorTarget.value = values['background_color']
     this.cornerSquaresColorTarget.value = values['corner_squares_color']
     this.cornerDotsColorTarget.value = values['corner_dots_color']

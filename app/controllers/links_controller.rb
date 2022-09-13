@@ -115,7 +115,8 @@ class LinksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def link_params
-    link_params = params.require(:link).permit(:id, :name, :dynamic, :password, :background_color, :dots_color, :corner_dots_color, :corner_squares_color,
+    link_params = params.require(:link).permit(:id, :name, :dynamic, :password, :background_color, :dots_color,
+                                               :dots_shape, :corner_dots_color, :corner_squares_color,
                                                contact_link_attributes: %i[id first_name last_name phone email website company title address birthday note],
                                                email_link_attributes: %i[id email_address subject body],
                                                sms_link_attributes: %i[number body],

@@ -74,7 +74,7 @@ class StylesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def style_params
-    params.require(:style).permit(:name, :organization_id, :dots_color, :background_color, :corner_dots_color,
+    params.require(:style).permit(:name, :organization_id, :dots_color, :dots_shape, :background_color, :corner_dots_color,
                                   :corner_squares_color)
   end
 end

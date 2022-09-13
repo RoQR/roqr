@@ -1,4 +1,13 @@
-<input type="hidden" data-qr-target="dotsColor" value=<%= link.dots_color %>>
-<input type="hidden" data-qr-target="backgroundColor" value=<%= link.background_color %>>
-<input type="hidden" data-qr-target="cornerDotsColor" value=<%= link.corner_dots_color %>>
-<input type="hidden" data-qr-target="cornerSquaresColor" value=<%= link.corner_squares_color %>>
+<% if defined?(form) %>
+  <%= form.hidden_field :dots_color, value: link.dots_color, data: {style_target: "dotsColor", qr_target: "dotsColor"} %>
+  <%= form.hidden_field :dots_shape, value: link.dots_shape, data: {style_target: "dotsShape", qr_target: "dotsShape"} %>
+  <%= form.hidden_field :background_color, value: link.background_color, data: {style_target: "backgroundColor", qr_target: "backgroundColor"} %>
+  <%= form.hidden_field :corner_dots_color, value: link.corner_dots_color, data: {style_target: "cornerDotsColor", qr_target: "cornerDotsColor"} %>
+  <%= form.hidden_field :corner_squares_color, value: link.corner_squares_color, data: {style_target: "cornerSquaresColor", qr_target: "cornerSquaresColor"} %>
+<% else %>
+  <input type="hidden" data-style-target="dotsColor" data-qr-target="dotsColor" value=<%= link.dots_color %>>
+  <input type="hidden" data-style-target="dotsShape" data-qr-target="dotsShape" value=<%= link.dots_shape %>>
+  <input type="hidden" data-style-target="backgroundColor" data-qr-target="backgroundColor" value=<%= link.background_color %>>
+  <input type="hidden" data-style-target="cornerDotsColor" data-qr-target="cornerDotsColor" value=<%= link.corner_dots_color %>>
+  <input type="hidden" data-style-target="cornerSquaresColor" data-qr-target="cornerSquaresColor" value=<%= link.corner_squares_color %>>
+<% end %>

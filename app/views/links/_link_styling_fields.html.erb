@@ -18,22 +18,7 @@
             <%= link_to "create a new style", new_style_path, class: "text-yellow-600 dark:text-yellow-400", data: {turbo_frame: "modal"} %>
           </span>
         <% end %>
-        <fieldset hidden>
-          <div class="grid mt-2 grid-cols-2 space-y-2">
-            <div class="flex flex-col">
-              <%= form.color_field :background_color, value: link.background_color, "data-style-target": "backgroundColor" %>
-            </div>
-            <div class="flex flex-col">
-              <%= form.color_field :dots_color, value: link.dots_color, "data-style-target": "dotsColor" %>
-            </div>
-            <div class="flex flex-col">
-              <%= form.color_field :corner_squares_color, value: link.corner_squares_color, "data-style-target": "cornerSquaresColor" %>
-            </div>
-            <div class="flex flex-col">
-              <%= form.color_field :corner_dots_color, value: link.corner_dots_color, "data-style-target": "cornerDotsColor" %>
-            </div>
-          </div>
-        </fieldset>
+        <%= render 'hidden_qr_fields', form: form, link: link %>
       </div>
     </div>
   </div>
