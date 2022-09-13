@@ -1,6 +1,7 @@
 class WifiLink < LinkData
   self.table_name = 'wifi_links'
   has_one :link
+  include ERB::Util
 
   def summary
     ssid
