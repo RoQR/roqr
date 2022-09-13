@@ -26,8 +26,7 @@ export default class extends Controller {
       width: size,
       margin: 20,
       dotsOptions: {
-        color: this.colorTarget.value,
-        type: "classy-rounded"
+        color: this.colorTarget.value
       },
       cornersSquareOptions: {
         color: this.positionBorderTarget.value
