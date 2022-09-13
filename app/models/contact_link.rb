@@ -19,6 +19,7 @@ class ContactLink < LinkData
     vcard.url website
     vcard.address address
     vcard.note note
+    puts vcard.to_s
     vcard.to_s
   end
 end
