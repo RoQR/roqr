@@ -37,7 +37,7 @@ export default class extends Controller {
   options() {
     let size = 500;
     return {
-      data: this.barcodeDataValue,
+      data: decodeURIComponent(this.barcodeDataValue),
       height: size,
       width: size,
       margin: 20,

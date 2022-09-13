@@ -7,6 +7,6 @@ class WifiLink < LinkData
   end
 
   def barcode_data
-    "WIFI:S:#{ssid};T:#{protocol};P:#{password};H:#{hidden};;"
+    "WIFI:S:#{u ssid};T:#{u protocol};P:#{u password};H:#{u hidden};;"
   end
 end
