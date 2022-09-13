@@ -14,8 +14,8 @@ export default class extends Controller {
     this.qrCode.update(this.options())
   }
 
-  download() {
-    this.qrCode.download(this.downloadOptions())
+  download({ params }) {
+    this.qrCode.download(params)
   }
 
   options() {
@@ -27,7 +27,7 @@ export default class extends Controller {
       margin: 20,
       dotsOptions: {
         color: this.colorTarget.value,
-        type: "rounded"
+        type: "classy-rounded"
       },
       cornersSquareOptions: {
         color: this.positionBorderTarget.value
@@ -38,12 +38,6 @@ export default class extends Controller {
       backgroundOptions: {
         color: this.fillTarget.value
       }
-    }
-  }
-
-  downloadOptions() {
-    return {
-      extension: 'png'
     }
   }
 }
