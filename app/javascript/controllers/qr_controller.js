@@ -56,6 +56,9 @@ export default class extends Controller {
       },
       backgroundOptions: {
         color: this.backgroundColorTarget.value
+      },
+      imageOptions: {
+        margin: 10
       }
     }
   }
