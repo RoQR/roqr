@@ -16,7 +16,7 @@ class Ability
     can :update, Organization, id: user.organization.id if user.confirmed? && user.can_edit_organization
     can :destroy, Organization, id: user.organization.id if user.confirmed? && user.can_delete_organization
 
-    return unless user&.organization&.payment_processor&.on_trial_or_subscribed?
+    return unless user&.organization&.on_trial_or_subscribed?
 
     can :create, [Style, Link], organization: user.organization if user.confirmed? && user.can_create_links
     can :update, [Style, Link], organization: user.organization if user.confirmed? && user.can_edit_links

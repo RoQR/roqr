@@ -4,13 +4,7 @@ class SettingsController < ApplicationController
 
   def profile; end
 
-  def organization
-    return unless @organization.payment_processor.on_trial_or_subscribed?
-
-    unless @organization.payment_processor.on_generic_trial?
-    end
-    @subscription = @organization.payment_processor.subscription
-  end
+  def organization; end
 
   def settings; end
 

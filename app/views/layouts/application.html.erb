@@ -7,7 +7,7 @@
   <body class="min-h-full h-full bg-gray-100 dark:bg-gray-800">
     <%= render_component 'navbar', user: current_user %>
     <header>
-      <% unless current_user.organization.payment_processor.on_trial_or_subscribed? %>
+      <% unless current_user.organization.on_trial_or_subscribed? %>
         <%= render 'layouts/inactive_subscription_banner' %>
       <% end %>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

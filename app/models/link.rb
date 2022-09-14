@@ -47,7 +47,7 @@ class Link < ApplicationRecord
   end
 
   def should_record_scan?
-    active? && organization.payment_processor.on_trial_or_subscribed?
+    active? && organization.on_trial_or_subscribed?
   end
 
   def link_type

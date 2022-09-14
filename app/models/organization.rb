@@ -1,25 +1,27 @@
 class Organization < ApplicationRecord
-  after_create :initialize_payment_processor
+  before_create :setup_trial
   has_many :users, dependent: :destroy
   has_many :links, dependent: :destroy
   has_many :public_pages, dependent: :destroy
   has_many :styles, dependent: :destroy
-  pay_customer
 
   def email
     billing_email
   end
 
   def trial_days_remaining
-    return 0 unless payment_processor.subscription.on_trial?
-
-    (payment_processor.subscription.trial_ends_at - Time.zone.now).seconds.in_days.ceil
+    [(trial_ends_at - Time.zone.now).seconds.in_days.ceil, 0].max
   end
 
-  private
+  def on_trial?
+    trial_days_remaining.positive?
+  end
 
-  def initialize_payment_processor
-    set_payment_processor :fake_processor, allow_fake: true
-    payment_processor.subscribe(trial_ends_at: 30.days.from_now, ends_at: 30.days.from_now)
+  def on_trial_or_subscribed?
+    on_trial?
+  end
+
+  def setup_trial
+    self.trial_ends_at = 30.days.from_now
   end
 end
