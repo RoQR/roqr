@@ -128,7 +128,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_011846) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "billing_email"
-    t.datetime "trial_ends_at"
+    t.datetime "trial_ends_at", default: -> { "(now() + 'P30D'::interval)" }, null: false
   end
 
   create_table "public_pages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
