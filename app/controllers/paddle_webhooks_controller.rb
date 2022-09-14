@@ -29,7 +29,7 @@ class PaddleWebhooksController < ApplicationController
   private
 
   def verify_webhook
-    public_key = Rails.application.credentials.dig(:paddle, :public_key)
+    public_key = ENV['PADDLE_PUBLIC_KEY']
     data = params.as_json
     signature = Base64.decode64(data['p_signature'])
     data.delete('p_signature')
