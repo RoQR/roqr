@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   end
   get :marketing, to: 'marketing#index'
   get 'terms-of-service', to: 'marketing#terms_of_service'
+  resources :paddle_webhooks, only: :create
 
   authenticated :user do
     root to: 'links#index', as: :authenticated_root
