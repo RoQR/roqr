@@ -17,6 +17,7 @@
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
       <%= yield %>
     </div>
+    <%= render 'layouts/paddle' %>
   </body>
   <%= turbo_frame_tag "modal", target: :_top %>
   <%= render 'layouts/flash' %>
