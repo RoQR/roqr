@@ -14,11 +14,23 @@ class Organization < ApplicationRecord
   end
 
   def on_trial?
-    trial_days_remaining.positive?
+    !subscribed? && trial_days_remaining.positive?
+  end
+
+  def subscribed?
+    %w[active trialing past_due].include?(paddle_status)
+  end
+
+  def past_due?
+    paddle_status == 'past_due'
+  end
+
+  def paused?
+    paddle_status == 'paused'
   end
 
   def on_trial_or_subscribed?
-    on_trial?
+    on_trial? || subscribed?
   end
 
   def setup_trial
