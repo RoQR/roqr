@@ -4,6 +4,7 @@ class Organization < ApplicationRecord
   has_many :links, dependent: :destroy
   has_many :public_pages, dependent: :destroy
   has_many :styles, dependent: :destroy
+  has_one :subscription, dependent: :destroy
 
   def email
     billing_email
@@ -17,8 +18,12 @@ class Organization < ApplicationRecord
     !subscribed? && trial_days_remaining.positive?
   end
 
+  def cancelled?
+    paddle_status == 'cancelled'
+  end
+
   def subscribed?
-    %w[active trialing past_due].include?(paddle_status)
+    %w[active trialing past_due].include?(paddle_status) || (cancelled? && cancellation_effective_date > Time.zone.now)
   end
 
   def past_due?
