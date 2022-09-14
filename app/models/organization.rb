@@ -21,7 +21,7 @@ class Organization < ApplicationRecord
   end
 
   def cancelled?
-    subscription_status == 'cancelled'
+    subscription_status == 'deleted'
   end
 
   def subscribed?
