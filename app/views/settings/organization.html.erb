@@ -19,7 +19,9 @@
               </div>
             </div>
             
-            <button data-action="paddle#checkout" type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500 text-sm font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2">Buy Now!</button>
+            <% if Flipper.enabled? :paddle, current_user %>
+              <button data-action="paddle#checkout" type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500 text-sm font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2">Buy Now!</button>
+            <% end %>
           <% end %>
           <div class="py-3 text-right">
             <% if can? :edit, @organization %>
