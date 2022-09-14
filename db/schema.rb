@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_14_011846) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_14_030637) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -129,6 +129,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_011846) do
     t.datetime "updated_at", null: false
     t.string "billing_email"
     t.datetime "trial_ends_at", default: -> { "(now() + 'P30D'::interval)" }, null: false
+    t.integer "paddle_subscription_id"
+    t.text "paddle_update_url"
+    t.text "paddle_cancel_url"
+    t.text "paddle_status"
+    t.datetime "paddle_next_bill_date"
   end
 
   create_table "public_pages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
