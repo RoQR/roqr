@@ -9,6 +9,7 @@ class PaddleWebhooksController < ApplicationController
     when 'subscription_updated'
       subscription_updated
     when 'subscription_cancelled'
+      subscription_cancelled
     when 'subscription_payment_succeeded'
     when 'subscription_payment_failed'
     when 'subscription_payment_refunded'
@@ -38,6 +39,17 @@ class PaddleWebhooksController < ApplicationController
     end
   end
 
+  def subscription_cancelled
+    organization = Organization.find(params[:passthrough])
+    respond_to do |format|
+      if organization.subscription.update(paddle_cancellation_params)
+        format.html { head 200 }
+      else
+        format.html { head 500 }
+      end
+    end
+  end
+
   private
 
   def verify_webhook
@@ -60,5 +72,9 @@ class PaddleWebhooksController < ApplicationController
   def paddle_subscription_params
     params.permit(:subscription_id, :subscription_plan_id, :update_url, :cancel_url, :status, :next_bill_date,
                   :paused_at, :paused_from, :paused_reason, :cancellation_effective_date)
+  end
+
+  def paddle_cancellation_params
+    params.permit(:subscription_id, :subscription_plan_id, :status, :cancellation_effective_date)
   end
 end
