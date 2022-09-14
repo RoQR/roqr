@@ -5,8 +5,8 @@ class Organization < ApplicationRecord
   has_many :public_pages, dependent: :destroy
   has_many :styles, dependent: :destroy
   has_one :subscription, dependent: :destroy
-  delegate :status, to: :subscription, prefix: :subscription
-  delegate :cancellation_effective_date, to: :subscription
+  delegate :status, to: :subscription, prefix: :subscription, allow_nil: true
+  delegate :cancellation_effective_date, to: :subscription, allow_nil: true
 
   def email
     billing_email
