@@ -63,3 +63,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+gem "php-serialize", "~> 1.3"
+
+gem "data_migrate", "~> 8.1"

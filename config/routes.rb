@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :subscriptions
   get 'notifications/index'
   devise_for :users,
              controllers: { sessions: 'users/sessions', passwords: 'users/passwords', registrations: 'users/registrations',

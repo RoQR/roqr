@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_14_030637) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_14_214149) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -28,6 +28,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_030637) do
     t.string "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -129,11 +132,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_030637) do
     t.datetime "updated_at", null: false
     t.string "billing_email"
     t.datetime "trial_ends_at", default: -> { "(now() + 'P30D'::interval)" }, null: false
-    t.integer "paddle_subscription_id"
-    t.text "paddle_update_url"
-    t.text "paddle_cancel_url"
-    t.text "paddle_status"
-    t.datetime "paddle_next_bill_date"
   end
 
   create_table "public_pages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -190,6 +188,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_030637) do
     t.string "corner_dots_shape", default: "", null: false
     t.string "image_url"
     t.index ["organization_id"], name: "index_styles_on_organization_id"
+  end
+
+  create_table "subscriptions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "paddle_subscription_id", null: false
+    t.integer "subscription_plan_id", null: false
+    t.uuid "organization_id", null: false
+    t.string "update_url", null: false
+    t.string "cancel_url", null: false
+    t.string "status", null: false
+    t.datetime "next_bill_date"
+    t.datetime "paused_at"
+    t.datetime "paused_from"
+    t.string "paused_reason"
+    t.datetime "cancellation_effective_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_subscriptions_on_organization_id"
   end
 
   create_table "telephone_links", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -268,4 +283,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_030637) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "subscriptions", "organizations"
 end
