@@ -349,11 +349,6 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
-    stripe (6.4.0)
-    stripe-rails (2.3.4)
-      rails (>= 5.1)
-      responders
-      stripe (>= 3.15.0)
     strscan (3.0.3)
     tailwindcss-rails (2.0.8-arm64-darwin)
       railties (>= 6.0.0)
@@ -443,8 +438,6 @@ DEPENDENCIES
   sentry-ruby
   sprockets-rails
   stimulus-rails
-  stripe (~> 6.4)
-  stripe-rails (~> 2.3)
   tailwindcss-rails (~> 2.0)
   turbo-rails
   tzinfo-data

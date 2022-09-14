@@ -22,7 +22,6 @@ Rails.application.routes.draw do
     get :organization, to: 'organization'
     get :developer, to: 'developer'
   end
-  get :subscribe, to: 'plans#subscribe'
   get :marketing, to: 'marketing#index'
   get 'terms-of-service', to: 'marketing#terms_of_service'
 

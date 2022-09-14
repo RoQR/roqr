@@ -23,6 +23,7 @@ gem 'importmap-rails'
 gem 'jbuilder'
 gem 'kaminari', '~> 1.2'
 gem 'lockbox', '~> 1.0'
+gem 'noticed', '~> 1.5'
 gem 'omniauth'
 gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 gem 'omniauth-google-oauth2'
@@ -33,14 +34,13 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rack-attack', '~> 6.6'
 gem 'rails', '~> 7.0.3'
+gem 'rails_heroicon', '~> 2.0'
 gem 'rqrcode', '~> 2.1'
 gem 'sass-rails'
 gem 'sentry-rails'
 gem 'sentry-ruby'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
-gem 'stripe', '~> 6.4'
-gem 'stripe-rails', '~> 2.3'
 gem 'tailwindcss-rails', '~> 2.0'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
@@ -63,7 +63,3 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
-
-gem "noticed", "~> 1.5"
-
-gem "rails_heroicon", "~> 2.0"

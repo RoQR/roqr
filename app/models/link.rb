@@ -46,10 +46,6 @@ class Link < ApplicationRecord
     errors.add(:password, "can't exist for static links") unless dynamic || password.nil?
   end
 
-  def report_scan_to_stripe
-    organization.payment_processor.subscription.create_usage_record(quantity: 1)
-  end
-
   def should_record_scan?
     active? && organization.payment_processor.on_trial_or_subscribed?
   end

@@ -28,7 +28,6 @@ class LinksController < ApplicationController
       scan = scan_from_browser
       scan.save!
       FirstScanNotification.with(link_name: @link.name).deliver_later(@link.organization.users) if @link.scans.size == 1
-      @link.delay.report_scan_to_stripe if @link.organization.payment_processor.stripe?
     end
     case @link.link_type
     when 'contact_link'
