@@ -16,7 +16,7 @@ class PaddleWebhooksController < ApplicationController
 
   def subscription_created
     organization = Organization.find(params[:passthrough])
-    organization.build_subscription(paddle_webhook_params)
+    organization.build_subscription(paddle_subscription_params)
     respond_to do |format|
       if organization.save
         format.html { head 200 }
@@ -45,7 +45,8 @@ class PaddleWebhooksController < ApplicationController
     return head(403) unless pub_key.verify(digest, signature, params_serialized)
   end
 
-  def paddle_webhook_params
-    params.permit!
+  def paddle_subscription_params
+    params.permit(:subscription_id, :subscription_plan_id, :update_url, :cancel_url, :status, :next_bill_date,
+                  :paused_at, :paused_from, :paused_reason, :cancellation_effective_date)
   end
 end
