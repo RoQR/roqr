@@ -11,7 +11,8 @@ class MoveSubscriptionsToSubscriptionTable < ActiveRecord::Migration[7.0]
           update_url: o.paddle_update_url,
           cancel_url: o.paddle_cancel_url,
           status: o.paddle_status,
-          next_bill_date: o.next_bill_date
+          next_bill_date: o.paddle_next_bill_date,
+          subscription_plan_id: 334_228
         }
       )
       o.save
