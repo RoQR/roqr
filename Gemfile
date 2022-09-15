@@ -12,6 +12,7 @@ gem 'browser'
 gem 'cancancan'
 gem 'chartkick', '~> 4.2'
 gem 'csv', '~> 3.2'
+gem 'data_migrate', '~> 8.1'
 gem 'delayed_job_active_record', '~> 4.1'
 gem 'devise', '~> 4.8'
 gem 'devise_invitable', '~> 2.0'
@@ -31,6 +32,7 @@ gem 'omniauth-rails_csrf_protection'
 gem 'paddle_pay', '~> 0.2.0'
 gem 'paper_trail', '~> 12.3'
 gem 'pg', '~> 1.1'
+gem 'php-serialize', '~> 1.3'
 gem 'puma', '~> 5.0'
 gem 'rack-attack', '~> 6.6'
 gem 'rails', '~> 7.0.3'
@@ -63,7 +65,3 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
-
-gem "php-serialize", "~> 1.3"
-
-gem "data_migrate", "~> 8.1"

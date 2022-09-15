@@ -35,6 +35,9 @@
           <% if @organization.subscribed? %>
             <p class="text-sm font-medium text-gray-600 dark:text-gray-300"><b>Status:</b> <%= @organization.subscription.status %></p>
             <p class="text-sm font-medium text-gray-600 dark:text-gray-300"><b>Next bill date:</b> <%= @organization.subscription.next_bill_date %></p>
+            <a class="text-sm font-medium text-gray-600 dark:text-gray-300"href=<%= @organization.subscription.update_url %>>Update billing information</a><br>
+            <a class="text-sm font-medium text-red-300"href=<%= @organization.subscription.cancel_url %>>Cancel subscription</a>
+            
           <% else %>
             <button data-action="paddle#checkout" type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500 text-sm font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2">Buy Now!</button>
           <% end %>
