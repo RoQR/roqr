@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
   resources :styles
   resources :users, only: %i[show edit create update destroy]
-  resources :organizations, only: %i[edit update]
+  resources :organizations, only: %i[update]
   resources :notifications, only: :index
   resources :public_pages
   resources :scans, only: :index
