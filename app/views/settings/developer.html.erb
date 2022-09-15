@@ -1,5 +1,5 @@
 <div class="h-full">
-  <%= turbo_frame_tag 'settings', class: 'flex flex-col' do %>
+  <div class="flex flex-col">
     <%= render 'settings/nav' %>
     <div class="space-y-6">
       <%= render_component 'card' do %>
@@ -30,5 +30,5 @@
         <% end %>
       <% end %>
     </div>
-  <% end %>
+  </div>
 </div>

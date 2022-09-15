@@ -1,5 +1,5 @@
 <div class="h-full">
-  <%= turbo_frame_tag 'settings', class: 'flex flex-col' do %>
+  <div class="flex flex-col">
     <%= render 'settings/nav' %>
     <section class="space-y-6" data-controller="paddle" data-paddle-product-id-value=34458  data-paddle-email-value=<%= current_user.email %> data-paddle-passthrough-value=<%= @organization.id %>>
       <%= form_with(model: @organization) do |form| %>
@@ -81,5 +81,5 @@
         <% end %>
       <% end %>
     </section>
-  <% end %>
+</div>
 </div>
