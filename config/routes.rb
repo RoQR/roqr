@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :subscriptions
   get 'notifications/index'
   devise_for :users,
              controllers: { sessions: 'users/sessions', passwords: 'users/passwords', registrations: 'users/registrations',
@@ -26,6 +25,8 @@ Rails.application.routes.draw do
   get :marketing, to: 'marketing#index'
   get 'terms-of-service', to: 'marketing#terms_of_service'
   resources :paddle_webhooks, only: :create
+  resources :subscription_payments
+  resources :subscriptions, except: %i[new show edit]
 
   authenticated :user do
     root to: 'links#index', as: :authenticated_root

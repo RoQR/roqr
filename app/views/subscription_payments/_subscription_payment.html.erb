@@ -1,0 +1,37 @@
+<div id="<%= dom_id subscription_payment %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Subscription:</strong>
+    <%= subscription_payment.subscription_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Currency:</strong>
+    <%= subscription_payment.currency %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Event time:</strong>
+    <%= subscription_payment.event_time %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Payment method:</strong>
+    <%= subscription_payment.payment_method %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Receipt url:</strong>
+    <%= subscription_payment.receipt_url %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Sale gross:</strong>
+    <%= subscription_payment.sale_gross %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this subscription payment", subscription_payment, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this subscription payment', edit_subscription_payment_path(subscription_payment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
