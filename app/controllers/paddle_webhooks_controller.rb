@@ -70,8 +70,7 @@ class PaddleWebhooksController < ApplicationController
   end
 
   def paddle_subscription_params
-    params.permit(:subscription_id, :subscription_plan_id, :update_url, :cancel_url, :status, :next_bill_date,
-                  :paused_at, :paused_from, :paused_reason, :cancellation_effective_date)
+    params.permit(:subscription_id, :subscription_plan_id, :status, :update_url, :cancel_url, :next_bill_date)
   end
 
   def paddle_cancellation_params
