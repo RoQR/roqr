@@ -23,7 +23,11 @@ class LinksController < ApplicationController
   end
 
   def scan
-    id = ShortUUID.expand params[:id]
+    id = if Flipper.enabled? :short_id, current_user
+           ShortUUID.expand params[:id]
+         else
+           params[:id]
+         end
     @link = Link.find(id)
     authenticate_before_scan
     if @link.should_record_scan?

@@ -55,7 +55,11 @@ class Link < ApplicationRecord
   end
 
   def url_id
-    ShortUUID.shorten id
+    if Flipper.enabled? :short_id, @current_user
+      ShortUUID.shorten id
+    else
+      id
+    end
   end
 
   # HERE BE MULTIBLE TABLE INHERITANCE
