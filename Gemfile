@@ -66,3 +66,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+gem "shortuuid", "~> 0.6.0"

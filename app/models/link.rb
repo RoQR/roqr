@@ -54,6 +54,10 @@ class Link < ApplicationRecord
     link_data.class.to_s.underscore
   end
 
+  def url_id
+    ShortUUID.shorten id
+  end
+
   # HERE BE MULTIBLE TABLE INHERITANCE
   # https://danchak99.wordpress.com/enterprise-rails/chapter-10-multiple-table-inheritance/
 
