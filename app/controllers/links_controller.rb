@@ -4,7 +4,6 @@ class LinksController < ApplicationController
   before_action :authenticate_user!, except: %i[scan show]
   load_and_authorize_resource
   skip_load_and_authorize_resource only: :scan
-  before_action :authenticate_before_scan, only: :scan
 
   def index
     @links = Link.active.accessible_by(current_ability).includes(LinkData::TYPES)
@@ -26,6 +25,7 @@ class LinksController < ApplicationController
   def scan
     id = ShortUUID.expand params[:id]
     @link = Link.find(id)
+    authenticate_before_scan
     if @link.should_record_scan?
       scan = scan_from_browser
       scan.save!
