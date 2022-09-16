@@ -1,6 +1,17 @@
 require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+    Bullet.add_footer = true
+    Bullet.add_safelist type: :n_plus_one_query, class_name: 'Notification', association: :recipient
+    Bullet.add_safelist type: :n_plus_one_query, class_name: 'PaperTrail::Version', association: :item
+  end
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time

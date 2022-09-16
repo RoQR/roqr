@@ -1,8 +1,23 @@
-ENV["RAILS_ENV"] ||= "test"
-require_relative "../config/environment"
-require "rails/test_help"
+ENV['RAILS_ENV'] ||= 'test'
+require_relative '../config/environment'
+require 'rails/test_help'
+
+module BulletHelper
+  def before_setup
+    Bullet.start_request
+    super if defined?(super)
+  end
+
+  def after_teardown
+    super if defined?(super)
+
+    Bullet.perform_out_of_channel_notifications if Bullet.notification?
+    Bullet.end_request
+  end
+end
 
 class ActiveSupport::TestCase
+  include BulletHelper
   include FactoryBot::Syntax::Methods
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)

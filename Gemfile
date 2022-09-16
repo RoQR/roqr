@@ -51,6 +51,7 @@ gem 'victor'
 gem 'view_component'
 
 group :development, :test do
+  gem 'bullet', '~> 7.0'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 6.2'
   gem 'rails_real_favicon'

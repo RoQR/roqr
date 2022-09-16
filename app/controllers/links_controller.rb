@@ -7,8 +7,8 @@ class LinksController < ApplicationController
   before_action :authenticate_before_scan, only: :scan
 
   def index
-    @links = Link.active.accessible_by(current_ability)
-    @archived_links = Link.archived.accessible_by(current_ability)
+    @links = Link.active.accessible_by(current_ability).includes(LinkData::TYPES)
+    @archived_links = Link.archived.accessible_by(current_ability).includes(LinkData::TYPES)
   end
 
   def show
