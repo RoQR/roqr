@@ -7,12 +7,12 @@ class User < ApplicationRecord
 
   belongs_to :organization
   accepts_nested_attributes_for :organization
-  has_encrypted :private_api_key
-  blind_index :private_api_key
   validates :private_api_key, uniqueness: true, allow_blank: true
   before_create :set_private_api_key
   has_many :requests, dependent: :destroy
   has_many :notifications, as: :recipient
+  has_encrypted :private_api_key
+  blind_index :private_api_key
 
   before_validation :maybe_create_org
 
