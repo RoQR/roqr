@@ -3,6 +3,7 @@ class LinksController < ApplicationController
   include VersionsHelper
   before_action :authenticate_user!, except: %i[scan show]
   load_and_authorize_resource
+  before_action :authenticate_before_scan, only: :scan
 
   def index
     @links = Link.active.accessible_by(current_ability).includes(LinkData::TYPES)
@@ -22,7 +23,6 @@ class LinksController < ApplicationController
   end
 
   def scan
-    authenticate_before_scan
     if @link.should_record_scan?
       scan = scan_from_browser
       scan.save!
@@ -135,7 +135,7 @@ class LinksController < ApplicationController
   def authenticate_before_scan
     return if @link.public?
 
-    realm = "link-#{@link.id}"
+    realm = "link-#{@link.hashid}"
     authenticate_or_request_with_http_basic(realm) do |_username, password|
       @link.authenticate(password)
     end

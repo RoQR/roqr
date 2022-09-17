@@ -6,7 +6,6 @@ ruby '3.1.2'
 gem 'bcrypt', '~> 3.1'
 gem 'blind_index', '~> 2.3'
 gem 'bootsnap', require: false
-gem 'bootstrap', '~> 5.1.3'
 gem 'breadcrumbs_on_rails', '~> 4.1'
 gem 'browser'
 gem 'cancancan'
