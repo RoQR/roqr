@@ -21,7 +21,7 @@ class PopulateNewIds < ActiveRecord::Migration[7.0]
       FROM public_pages WHERE links_public_pages.public_page_id = public_pages.id;
     SQL
     Notification.all.each do |n|
-      n.recipient_new_id = n.recipient.new_id
+      n.recipient_new_id = n.recipient&.new_id
       n.save
     end
     PublicPage.all.each do |p|
