@@ -3,7 +3,6 @@ class LinksController < ApplicationController
   include VersionsHelper
   before_action :authenticate_user!, except: %i[scan show]
   load_and_authorize_resource
-  skip_load_and_authorize_resource only: :scan
 
   def index
     @links = Link.active.accessible_by(current_ability).includes(LinkData::TYPES)
@@ -23,12 +22,6 @@ class LinksController < ApplicationController
   end
 
   def scan
-    id = if Flipper.enabled? :short_id, current_user
-           ShortUUID.expand params[:id]
-         else
-           params[:id]
-         end
-    @link = Link.find(id)
     authenticate_before_scan
     if @link.should_record_scan?
       scan = scan_from_browser

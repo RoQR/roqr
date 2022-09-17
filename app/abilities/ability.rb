@@ -6,6 +6,7 @@ class Ability
   def initialize(user)
     user = user ||= User.new
     can :show, PublicPage
+    can :scan, Link
     can :read, Scan, link: { organization: user.organization, deleted_at: nil }
     can :read, Notification, recipient_type: 'User', recipient_id: user.id
     can :read, Request, organization: user.organization

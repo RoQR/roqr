@@ -20,6 +20,8 @@ gem 'flipper', '~> 0.25.0'
 gem 'flipper-active_record', '~> 0.25.0'
 gem 'geocoder'
 gem 'groupdate', '~> 6.1'
+gem 'hashid-rails', '~> 1.4'
+gem 'hashids'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'kaminari', '~> 1.2'
@@ -66,5 +68,3 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
-
-gem "shortuuid", "~> 0.6.0"
