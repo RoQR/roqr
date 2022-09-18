@@ -14,6 +14,10 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def confirm_destroy
+    render TurboModalComponent.new(title: 'Delete account').with_content(render_to_string(partial: 'organizations/confirm_destroy'))
+  end
+
   private
 
   # Only allow a list of trusted parameters through.

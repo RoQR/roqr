@@ -46,7 +46,11 @@ Rails.application.routes.draw do
   end
   resources :styles
   resources :users, except: %i[index new]
-  resources :organizations, only: %i[update]
+  resources :organizations, only: %i[update] do
+    member do
+      get :confirm_destroy
+    end
+  end
   resources :notifications, only: :index
   resources :public_pages
   resources :scans, only: :index

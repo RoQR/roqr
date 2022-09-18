@@ -63,6 +63,9 @@
           </ul>
         <% end %>
       <% end %>
+      <div>
+        <%= link_to 'Delete organization', confirm_destroy_organization_path(@organization), data: {turbo_frame: :modal} %> 
+      </div>
     </section>
   </div>
 </div>

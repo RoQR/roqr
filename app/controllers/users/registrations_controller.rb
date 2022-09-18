@@ -2,7 +2,7 @@
 
 module Users
   class RegistrationsController < Devise::RegistrationsController
-    layout 'devise'
+    layout "devise"
     before_action :configure_sign_up_params, only: [:create]
     before_action :configure_account_update_params, only: [:update]
 
@@ -13,8 +13,13 @@ module Users
     # GET /resource/edit
 
     # PUT /resource
-
+    #
     # DELETE /resource
+    def destroy
+      super do |user|
+        user.organization.destroy
+      end
+    end
 
     # GET /resource/cancel
     # Forces the session data which is usually expired after sign
