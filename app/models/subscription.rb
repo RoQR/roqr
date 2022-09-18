@@ -1,5 +1,5 @@
 class Subscription < ApplicationRecord
-  before_destroy :cancel_paddle_subscription
+  after_destroy_commit :cancel_paddle_subscription
   belongs_to :organization
   alias_attribute :subscription_id, :paddle_subscription_id
 
