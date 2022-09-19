@@ -16,6 +16,10 @@ class LinkData < ApplicationRecord
       WifiLink.new
     end
   end
+
+  def self.static_only?
+    false
+  end
 end
 
 require 'contact_link'

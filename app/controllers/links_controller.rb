@@ -4,6 +4,7 @@ class LinksController < ApplicationController
   before_action :authenticate_user!, except: %i[scan show]
   load_and_authorize_resource
   before_action :authenticate_before_scan, only: :scan
+  before_action :set_instance_variables, only: %i[new edit]
 
   def index
     @links = Link.active.accessible_by(current_ability).includes(LinkData::TYPES)
@@ -37,14 +38,12 @@ class LinksController < ApplicationController
   end
 
   def new
-    @link_type = request.query_parameters[:link_type]
     @styles = saved_styles
     add_breadcrumb 'All links', links_path
     add_breadcrumb 'New link', new_link_path
   end
 
   def edit
-    @link_type = @link.link_data.class.to_s.underscore
     @styles = saved_styles
     add_breadcrumb 'All links', links_path
     add_breadcrumb @link.name, @link
@@ -153,5 +152,10 @@ class LinksController < ApplicationController
       city: request.location.city,
       country: request.location.country
     )
+  end
+
+  def set_instance_variables
+    @link_type = params[:link_type] || @link.link_data&.class&.to_s&.underscore
+    @static_only = @link_type.camelcase.constantize.static_only? if @link_type
   end
 end

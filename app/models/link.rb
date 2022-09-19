@@ -60,7 +60,7 @@ class Link < ApplicationRecord
   end
 
   def static_only?
-    link_type == 'wifi_link'
+    link_type.static_only?
   end
 
   # HERE BE MULTIBLE TABLE INHERITANCE

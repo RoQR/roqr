@@ -10,4 +10,8 @@ class WifiLink < LinkData
   def barcode_data
     "WIFI:S:#{u ssid};T:#{u protocol};P:#{u password};H:#{u hidden};;"
   end
+
+  def self.static_only?
+    true
+  end
 end

@@ -11,19 +11,19 @@
         </div>
       </div>
       <div class="flex justify-between flex-row items-center mt-5 md:mt-0 col-span-1">
-        <% unless link.static_only? %>
-        <span class="flex-grow flex flex-col">
-          <div class="flex">
-            <%= form.label :dynamic, class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
-            <%= render TooltipComponent.new do %>
-              Dynamic links can be updated, and track scans.
-            <% end %>
-          </div>
-        </span>
-        <%= form.check_box :dynamic, class: "focus:ring-gray-700 h-4 w-4 bg-gray-800 text-gray-800 rounded", data: {action: "reveal#toggle"} %>
+        <% unless @static_only %>
+          <span class="flex-grow flex flex-col">
+            <div class="flex">
+              <%= form.label :dynamic, class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
+              <%= render TooltipComponent.new do %>
+                Dynamic links can be updated, and track scans.
+              <% end %>
+            </div>
+          </span>
+          <%= form.check_box :dynamic, class: "focus:ring-gray-700 h-4 w-4 bg-gray-800 text-gray-800 rounded", data: {action: "reveal#toggle"} %>
         <% end %>
       </div>
-      <%= content_tag :div, class: class_names('mt-3 col-span-2 flex flex-col', { hidden: !link.dynamic? }), data: { reveal_target: 'item' } do %>
+      <%= content_tag :div, class: class_names('mt-3 col-span-2 flex flex-col', { hidden: @static_only }), data: { reveal_target: 'item' } do %>
         <turbo-frame id="pw">
           <% if form.object.password_digest %>
             <%= render 'links/password/remove_password_link' %>
