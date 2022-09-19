@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get :marketing, to: 'marketing#index'
   get 'terms-of-service', to: 'marketing#terms_of_service'
   resources :paddle_webhooks, only: :create
-  resources :subscription_payments
+  resources :subscription_payments, only: %i[index create]
   resources :subscriptions, except: %i[new show edit]
 
   authenticated :user do
