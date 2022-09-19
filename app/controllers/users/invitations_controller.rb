@@ -32,7 +32,6 @@ class Users::InvitationsController < Devise::InvitationsController
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:invite,
-                                      keys: %i[name can_create_links can_edit_links can_delete_links can_edit_organization can_delete_organization
-                                               can_invite_users can_edit_users can_delete_users organization_id])
+                                      keys: %i[name role organization_id])
   end
 end

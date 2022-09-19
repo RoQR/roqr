@@ -5,9 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: %i[github google_oauth2]
 
+  enum role: { reader: 'reader', user: 'user', administrator: 'administrator' }
   belongs_to :organization
-  accepts_nested_attributes_for :organization
   validates :private_api_key, uniqueness: true, allow_blank: true
+  validates :role, inclusion: { in: roles.keys }
   before_create :set_private_api_key
   has_many :requests, dependent: :destroy
   has_many :notifications, as: :recipient

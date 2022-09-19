@@ -10,9 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_19_131738) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_19_134243) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "user_role", ["reader", "user", "administrator"]
 
   create_table "contact_links", force: :cascade do |t|
     t.string "first_name"
@@ -234,7 +238,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_131738) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.boolean "can_create_links", default: true
     t.string "email", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -257,15 +260,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_131738) do
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
-    t.boolean "can_edit_links", default: true
-    t.boolean "can_delete_links", default: true
-    t.boolean "can_invite_users", default: true
-    t.boolean "can_edit_users", default: true
-    t.boolean "can_delete_users", default: true
-    t.boolean "can_edit_organization", default: true
-    t.boolean "can_delete_organization", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.enum "role", default: "administrator", null: false, enum_type: "user_role"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
