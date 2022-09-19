@@ -14,6 +14,6 @@ class SubscriptionPresenter
               'bg-gray-100 text-gray-800'
             end
     content_tag :span, @subscription.status.titlecase,
-                class: "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium #{color}"
+                class: "ml-3 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium #{color}"
   end
 end

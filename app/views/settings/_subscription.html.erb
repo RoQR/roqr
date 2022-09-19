@@ -1,7 +1,7 @@
 <% if Flipper.enabled? :paddle, current_user %>
   <%= render_component 'card' do %>
     <%= render_component 'section_header', classes: 'dark:border-gray-600' do |c| %>
-      <%= c.title do %>
+      <%= c.title classes: "flex items-center" do %>
         Subscription
         <%= SubscriptionPresenter.new(@organization.subscription).status_badge if @organization.subscribed? %>
       <% end %>
