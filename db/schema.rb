@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_17_201827) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_18_234153) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -190,6 +190,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_17_201827) do
     t.index ["organization_id"], name: "index_styles_on_organization_id"
   end
 
+  create_table "subscription_payments", force: :cascade do |t|
+    t.bigint "subscription_id"
+    t.string "currency"
+    t.datetime "event_time"
+    t.string "payment_method"
+    t.string "receipt_url"
+    t.string "sale_gross"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscription_id"], name: "index_subscription_payments_on_subscription_id"
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.integer "paddle_subscription_id", null: false
     t.integer "subscription_plan_id", null: false
@@ -293,6 +305,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_17_201827) do
   add_foreign_key "requests", "users"
   add_foreign_key "scans", "links"
   add_foreign_key "styles", "organizations"
+  add_foreign_key "subscription_payments", "subscriptions"
   add_foreign_key "subscriptions", "organizations"
   add_foreign_key "users", "organizations"
 end

@@ -1,6 +1,7 @@
 class Subscription < ApplicationRecord
   after_destroy_commit :cancel_paddle_subscription
   belongs_to :organization
+  has_many :subscription_payments, dependent: :destroy
   alias_attribute :subscription_id, :paddle_subscription_id
 
   def cancel_paddle_subscription

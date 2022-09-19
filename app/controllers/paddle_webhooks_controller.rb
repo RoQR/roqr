@@ -1,5 +1,5 @@
 class PaddleWebhooksController < ApplicationController
-  before_action :verify_webhook, unless: -> { Rails.env.test? }
+  before_action :verify_webhook, if: -> { Rails.env.prod? }
   skip_before_action :verify_authenticity_token
 
   def create
@@ -11,6 +11,7 @@ class PaddleWebhooksController < ApplicationController
     when 'subscription_cancelled'
       subscription_cancelled
     when 'subscription_payment_succeeded'
+      subscription_payment_succeeded
     when 'subscription_payment_failed'
     when 'subscription_payment_refunded'
     end
@@ -19,54 +20,63 @@ class PaddleWebhooksController < ApplicationController
   def subscription_created
     organization = Organization.find(params[:passthrough])
     organization.build_subscription(paddle_subscription_params)
-    respond_to do |format|
-      if organization.save
-        format.html { head 200 }
-      else
-        format.html { head 500 }
-      end
+    if organization.save
+      head 200
+    else
+      head 500
     end
   end
 
   def subscription_updated
     organization = Organization.find(params[:passthrough])
-    respond_to do |format|
-      if organization.subscription.update(paddle_subscription_params)
-        format.html { head 200 }
-      else
-        format.html { head 500 }
-      end
+    if organization.subscription.update(paddle_subscription_params)
+      head 200
+    else
+      head 500
     end
   end
 
   def subscription_cancelled
     organization = Organization.find(params[:passthrough])
-    respond_to do |format|
-      if organization.subscription.update(paddle_cancellation_params)
-        format.html { head 200 }
-      else
-        format.html { head 500 }
-      end
+    if organization.subscription.update(paddle_cancellation_params)
+      head 200
+    else
+      head 500
+    end
+  end
+
+  def subscription_payment_succeeded
+    organization = Organization.find(params[:passthrough])
+    subscription = organization.subscription
+    subscription.assign_attributes(paddle_subscription_params)
+    subscription.subscription_payments.build(paddle_subscription_payment_params)
+    if subscription.save
+      head 200
+    else
+      head 500
     end
   end
 
   private
 
   def verify_webhook
-    public_key = ENV['PADDLE_PUBLIC_KEY']
+    signature = Base64.decode64(params['p_signature'])
+    params_serialized = prepare_params
+
+    return head(403) unless pub_key.verify(OpenSSL::Digest.new('SHA1'), signature, params_serialized)
+  end
+
+  def prepare_params
     data = params.as_json
-    signature = Base64.decode64(data['p_signature'])
-    data.delete('p_signature')
-    data.delete('controller')
-    data.delete('action')
+    %w[p_signature controller action].each { |k| data.delete(k) }
     data.each { |key, value| data[key] = String(value) }
     params_sorted = data.sort_by { |key, _value| key }
-    params_serialized = PHP.serialize(params_sorted, true)
+    PHP.serialize(params_sorted, true)
+  end
 
-    digest = OpenSSL::Digest.new('SHA1')
-    pub_key = OpenSSL::PKey::RSA.new(public_key).public_key
-
-    return head(403) unless pub_key.verify(digest, signature, params_serialized)
+  def public_key
+    public_key = ENV['PADDLE_PUBLIC_KEY']
+    OpenSSL::PKey::RSA.new(public_key).public_key
   end
 
   def paddle_subscription_params
@@ -75,5 +85,9 @@ class PaddleWebhooksController < ApplicationController
 
   def paddle_cancellation_params
     params.permit(:subscription_id, :subscription_plan_id, :status, :cancellation_effective_date)
+  end
+
+  def paddle_subscription_payment_params
+    params.permit(:currency, :event_time, :payment_method, :receipt_url, :sale_gross)
   end
 end
