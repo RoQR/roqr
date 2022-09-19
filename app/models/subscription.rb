@@ -7,4 +7,21 @@ class Subscription < ApplicationRecord
   def cancel_paddle_subscription
     PaddlePay::Subscription::User.cancel(subscription_id) unless status == 'deleted'
   end
+
+  def cancelled?
+    status == 'deleted'
+  end
+
+  def past_due?
+    status == 'past_due'
+  end
+
+  def paused?
+    status == 'paused'
+  end
+
+  def subscribed?
+    %w[active trialing
+       past_due].include?(status) || (cancelled? && cancellation_effective_date > Time.zone.now)
+  end
 end

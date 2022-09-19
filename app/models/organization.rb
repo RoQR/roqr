@@ -6,6 +6,7 @@ class Organization < ApplicationRecord
   has_many :styles, dependent: :destroy
   has_one :subscription, dependent: :destroy
   delegate :status, to: :subscription, prefix: :subscription, allow_nil: true
+  delegate :subscribed?, to: :subscription, allow_nil: true
   delegate :cancellation_effective_date, to: :subscription, allow_nil: true
 
   def email
@@ -18,23 +19,6 @@ class Organization < ApplicationRecord
 
   def on_trial?
     !subscribed? && trial_days_remaining.positive?
-  end
-
-  def cancelled?
-    subscription_status == 'deleted'
-  end
-
-  def subscribed?
-    %w[active trialing
-       past_due].include?(subscription_status) || (cancelled? && cancellation_effective_date > Time.zone.now)
-  end
-
-  def past_due?
-    subscription_status == 'past_due'
-  end
-
-  def paused?
-    subscription_status == 'paused'
   end
 
   def on_trial_or_subscribed?

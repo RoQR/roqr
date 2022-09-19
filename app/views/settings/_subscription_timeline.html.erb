@@ -1,25 +1,27 @@
 <div class="flow-root mt-5">
   <ul role="list" class="-mb-8">
-    <li>
-      <div class="relative pb-8">
-        <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-300 dark:bg-gray-600" aria-hidden="true"></span>
-        <div class="relative flex space-x-3">
-          <div>
-            <span class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center ring-4 ring-gray-200 dark:ring-gray-700">
-              <%= heroicon 'calendar-days', variant: 'mini', class: 'h-5 w-5' %>
-            </span>
-          </div>
-          <div class="min-w-0 flex-1 flex justify-between space-x-4 items-center">
+    <% unless subscription.cancelled? %>
+      <li>
+        <div class="relative pb-8">
+          <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-300 dark:bg-gray-600" aria-hidden="true"></span>
+          <div class="relative flex space-x-3">
             <div>
-              <p class="text-sm text-gray-700 dark:text-gray-200">Upcoming payment</p>
+              <span class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center ring-4 ring-gray-200 dark:ring-gray-700">
+                <%= heroicon 'calendar-days', variant: 'mini', class: 'h-5 w-5' %>
+              </span>
             </div>
-            <div title="<%= subscription.next_bill_date %>" class="text-right text-sm whitespace-nowrap text-gray-400 dark:text-gray-500">
-              <time><%= time_ago_in_words(subscription.next_bill_date) %> from now</time>
+            <div class="min-w-0 flex-1 flex justify-between space-x-4 items-center">
+              <div>
+                <p class="text-sm text-gray-700 dark:text-gray-200">Upcoming payment</p>
+              </div>
+              <div title="<%= subscription.next_bill_date %>" class="text-right text-sm whitespace-nowrap text-gray-400 dark:text-gray-500">
+                <time><%= time_ago_in_words(subscription.next_bill_date) %> from now</time>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </li>
+      </li>
+    <% end %>
     <% subscription.subscription_payments.sort_by(&:created_at).reverse.each_with_index do |subscription_payment, i| %>
       <li>
         <div class="relative pb-8">
