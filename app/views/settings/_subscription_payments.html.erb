@@ -1,0 +1,29 @@
+<div class="flow-root mt-5">
+  <ul role="list" class="-mb-8">
+    <% subscription.subscription_payments.sort_by(&:created_at).reverse.each_with_index do |subscription_payment, i| %>
+      <li>
+        <div class="relative pb-8">
+          <% unless i == subscription.subscription_payments.size - 1 %>
+            <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-300 dark:bg-gray-600" aria-hidden="true"></span>
+          <% end %>
+          <div class="relative flex space-x-3">
+            <div>
+              <span class="h-8 w-8 rounded-full bg-green-500 flex items-center justify-center ring-4 dark:ring-gray-700">
+                <%= heroicon 'check', variant: 'mini', class: 'h-5 w-5' %>
+              </span>
+            </div>
+            <div class="min-w-0 flex-1 flex justify-between space-x-4 items-flex-start">
+              <div>
+                <p class="text-sm text-gray-700 dark:text-gray-200">Successful payment: <%= subscription_payment.currency %> <%= subscription_payment.sale_gross %></p>
+                <a href=<%= subscription_payment.receipt_url %> class="text-sm font-medium text-gray-800 dark:text-gray-100">View receipt</a>
+              </div>
+              <div title="<%= subscription_payment.created_at %>" class="text-right text-sm whitespace-nowrap text-gray-500">
+                <time><%= time_ago_in_words(subscription_payment.created_at) %> ago</time>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
