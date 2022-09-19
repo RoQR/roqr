@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_18_234153) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_19_131738) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -217,6 +217,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_18_234153) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_subscriptions_on_organization_id"
+    t.index ["paddle_subscription_id"], name: "index_subscriptions_on_paddle_subscription_id"
   end
 
   create_table "telephone_links", force: :cascade do |t|
