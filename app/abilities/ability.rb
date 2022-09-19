@@ -17,12 +17,13 @@ class Ability
     return unless %w[user administrator].include?(user.role)
 
     can :manage, PublicPage, organization: user.organization
-    can :manage, [Style, Link], organization: user.organization
+    can %i[read create update], [Style, Link], organization: user.organization
     can :remove_password, Link, organization: user.organization
     can :archive, Link, organization: user.organization, deleted_at: nil
-    can :confirm_destroy, Link do |link|
-      link.organization == user.organization && link.deleted_at?
+    can %i[confirm_destroy destroy], Link do |link|
+      link.organization == user.organization && !link.deleted_at.nil?
     end
+    can :destroy, Style, organization: user.organization
     can :create, [ContactLink, EmailLink, SmsLink, TelephoneLink, UrlLink, WifiLink]
     can :manage, [ContactLink, EmailLink, SmsLink, UrlLink, TelephoneLink, WifiLink],
         link: { organization: user.organization }
