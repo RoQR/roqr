@@ -1,5 +1,4 @@
 class Link < ApplicationRecord
-  validates :name, presence: true, uniqueness: { scope: :organization_id }
   belongs_to :organization
   belongs_to :contact_link, dependent: :destroy, optional: true
   belongs_to :email_link, dependent: :destroy, optional: true
@@ -14,7 +13,9 @@ class Link < ApplicationRecord
   has_secure_password validations: false
   validates_length_of :password,
                       maximum: ActiveModel::SecurePassword::MAX_PASSWORD_LENGTH_ALLOWED
+  validates :name, presence: true, uniqueness: { scope: :organization_id }
   validate :no_password_on_static_link
+  validate :static_only_links
   scope :active, -> { where('deleted_at IS NULL') }
   scope :archived, -> { where('deleted_at IS NOT NULL') }
 
@@ -46,12 +47,20 @@ class Link < ApplicationRecord
     errors.add(:password, "can't exist for static links") unless dynamic || password.nil?
   end
 
+  def static_only_links
+    errors.add(:dynamic, "can't be enabled for this type of link") if dynamic && link_type == 'wifi_link'
+  end
+
   def should_record_scan?
     active? && organization.on_trial_or_subscribed?
   end
 
   def link_type
     link_data.class.to_s.underscore
+  end
+
+  def static_only?
+    link_type == 'wifi_link'
   end
 
   # HERE BE MULTIBLE TABLE INHERITANCE

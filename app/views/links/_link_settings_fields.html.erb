@@ -3,7 +3,7 @@
     <div class="md:col-span-1">
       <h3 class="text-lg font-medium leading-6 text-gray-800 dark:text-gray-100">Link settings</h3>
     </div>
-    <div data-controller="checkbox" class="mt-5 md:col-span-2 md:grid md:grid-cols-3 md:gap-6">
+    <div data-controller="reveal" class="mt-5 md:col-span-2 md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-2">
         <%= form.label :name, class: "block text-sm font-medium text-gray-600 dark:text-gray-300" %>
         <div class="mt-1">
@@ -11,6 +11,7 @@
         </div>
       </div>
       <div class="flex justify-between flex-row items-center mt-5 md:mt-0 col-span-1">
+        <% unless link.static_only? %>
         <span class="flex-grow flex flex-col">
           <div class="flex">
             <%= form.label :dynamic, class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
@@ -19,9 +20,10 @@
             <% end %>
           </div>
         </span>
-        <%= form.check_box :dynamic, class: "focus:ring-gray-700 h-4 w-4 bg-gray-800 text-gray-800 rounded", data: {action: "checkbox#toggle"} %>
+        <%= form.check_box :dynamic, class: "focus:ring-gray-700 h-4 w-4 bg-gray-800 text-gray-800 rounded", data: {action: "reveal#toggle"} %>
+        <% end %>
       </div>
-      <div data-checkbox-target="detail" class="mt-3 col-span-2 flex flex-col">
+      <%= content_tag :div, class: class_names('mt-3 col-span-2 flex flex-col', { hidden: !link.dynamic? }), data: { reveal_target: 'item' } do %>
         <turbo-frame id="pw">
           <% if form.object.password_digest %>
             <%= render 'links/password/remove_password_link' %>
@@ -29,7 +31,7 @@
             <%= render 'links/password/password_field', form: form %>
           <% end %>
         </turbo-frame>
-      </div>
+      <% end %>
     </div>
   </div>
 <% end %>
