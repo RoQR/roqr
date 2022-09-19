@@ -30,10 +30,12 @@
       <% if Flipper.enabled? :paddle, current_user %>
         <%= render_component 'card' do %>
           <%= render_component 'section_header', classes: 'dark:border-gray-600' do |c| %>
-            <%= c.title { 'Subscription' } %>
+            <%= c.title do %>
+              Subscription
+              <%= SubscriptionPresenter.new(@organization.subscription).status_badge if @organization.subscribed? %>
+            <% end %>
           <% end %>
           <% if @organization.subscribed? %>
-            <p class="text-sm font-medium text-gray-600 dark:text-gray-300"><b>Status:</b> <%= @organization.subscription.status %></p>
             <p class="text-sm font-medium text-gray-600 dark:text-gray-300"><b>Next bill date:</b> <%= @organization.subscription.next_bill_date %></p>
             <a class="text-sm font-medium text-gray-600 dark:text-gray-300"href=<%= @organization.subscription.update_url %>>Update billing information</a><br>
             <a class="text-sm font-medium text-red-300"href=<%= @organization.subscription.cancel_url %>>Cancel subscription</a>
