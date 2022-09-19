@@ -28,8 +28,8 @@ class PaddleWebhooksController < ApplicationController
   end
 
   def subscription_updated
-    organization = Organization.find(params[:passthrough])
-    if organization.subscription.update(paddle_subscription_params)
+    subscription = Subscription.find_by_paddle_subscription_id(params[:subscription_id])
+    if subscription.update(paddle_subscription_params)
       head 200
     else
       head 500
@@ -37,8 +37,8 @@ class PaddleWebhooksController < ApplicationController
   end
 
   def subscription_cancelled
-    organization = Organization.find(params[:passthrough])
-    if organization.subscription.update(paddle_cancellation_params)
+    subscription = Subscription.find_by_paddle_subscription_id(params[:subscription_id])
+    if subscription.update(paddle_cancellation_params)
       head 200
     else
       head 500
@@ -46,8 +46,7 @@ class PaddleWebhooksController < ApplicationController
   end
 
   def subscription_payment_succeeded
-    organization = Organization.find(params[:passthrough])
-    subscription = organization.subscription
+    subscription = Subscription.find_by_paddle_subscription_id(params[:subscription_id])
     subscription.assign_attributes(paddle_subscription_params)
     subscription.subscription_payments.build(paddle_subscription_payment_params)
     if subscription.save
