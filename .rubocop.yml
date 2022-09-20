@@ -1,4 +1,10 @@
 Style/Documentation:
   Enabled: false
 AllCops:
+  Exclude:
+    - 'db/migrate/*'
+    - 'db/data/*'
+    - 'db/schema.rb'
+    - 'db/data_schema.rb'
+    - 'bin/bundle'
   NewCops: enable
