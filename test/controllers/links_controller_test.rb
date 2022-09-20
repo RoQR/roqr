@@ -82,6 +82,7 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should destroy link' do
+    get archive_link_url(@link)
     assert_difference('Link.count', -1) do
       assert_difference('UrlLink.count', -1) do
         delete link_url(@link)

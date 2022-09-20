@@ -6,5 +6,6 @@ FactoryBot.define do
     name { 'Test User' }
     email
     organization
+    role { 'administrator' }
   end
 end
