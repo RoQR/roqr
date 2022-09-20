@@ -74,7 +74,7 @@ class PaddleWebhooksController < ApplicationController
   end
 
   def public_key
-    public_key = ENV['PADDLE_PUBLIC_KEY']
+    public_key = ENV.fetch('PADDLE_PUBLIC_KEY', nil)
     OpenSSL::PKey::RSA.new(public_key).public_key
   end
 

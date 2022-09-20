@@ -6,10 +6,10 @@ class Api::V0::BaseController < ApplicationController
   private
 
   def unauthorized
-	render json: { message: "Unauthorized" }, status: :unauthorized
+    render json: { message: 'Unauthorized' }, status: :unauthorized
   end
 
   def handle_not_found
-	render json: { message: "Record not found" }, status: :not_found
+    render json: { message: 'Record not found' }, status: :not_found
   end
 end

@@ -18,11 +18,11 @@ class Api::V0::UsersController < Api::V0::BaseController
     @user.requests.create(method: :delete, requestable_type: :User)
     @user.destroy
     render :show, status: :ok
-  end 
-  
+  end
+
   private
 
-    def user_params
-      params.require(:user).permit(:id, :name, :email)
-    end
+  def user_params
+    params.require(:user).permit(:id, :name, :email)
+  end
 end
