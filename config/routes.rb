@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
   get 'notifications/index'
   devise_for :users,
-             controllers: { sessions: 'users/sessions', passwords: 'users/passwords', registrations: 'users/registrations',
-                            confirmations: 'users/confirmations', omniauth_callbacks: 'users/omniauth_callbacks', invitations: 'users/invitations' }
+             controllers: {
+               sessions: 'users/sessions',
+               passwords: 'users/passwords',
+               registrations: 'users/registrations',
+               confirmations: 'users/confirmations',
+               omniauth_callbacks: 'users/omniauth_callbacks',
+               invitations: 'users/invitations'
+             }
+
   resources :links do
     member do
       get :scan
@@ -12,15 +19,15 @@ Rails.application.routes.draw do
     end
   end
   resources :styles
-  resources :users, only: %i[show edit create update destroy]
+  resources :users, except: %i[index new]
   resources :organizations, only: %i[update]
   resources :notifications, only: :index
   resources :public_pages
   resources :scans, only: :index
   namespace :settings do
-    get :profile, to: 'user'
-    get :organization, to: 'organization'
-    get :developer, to: 'developer'
+    get :profile
+    get :organization
+    get :developer
   end
   get :marketing, to: 'marketing#index'
   get 'terms-of-service', to: 'marketing#terms_of_service'
@@ -44,7 +51,7 @@ Rails.application.routes.draw do
     namespace :v0 do
       defaults format: :json do
         resources :scans, only: :index
-        resources :links, only: %i[index create show update destroy]
+        resources :links, except: %i[new edit]
         resources :styles, only: %i[index show]
         resources :users, only: %i[show update destroy]
       end
