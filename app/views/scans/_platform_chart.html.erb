@@ -1,0 +1,15 @@
+<div class="flex flex-col col-span-1 w-full mt-6">
+  <div class="flex flex-col flex-grow bg-white shadow rounded p-4 relative">
+    <div class="w-full flex justify-between">
+      <h3 class="font-bold">Platforms</h3>
+      <ul class="flex font-medium text-xs text-gray-500 space-x-2">
+        <li class="hover:text-indigo-500 cursor-pointer">Top Pages</li>
+        <li class="hover:text-indigo-500 cursor-pointer">Entry Pages</li>
+        <li class="inline-block h-5 text-indigo-500 font-bold active-prop-heading">Exit Pages</li>
+      </ul>
+    </div>
+    <div class="flex flex-col flex-grow">
+      <%= render BarChartComponent.new(label_unit: 'Platform', data_unit: 'Scans', data: @platform_stats) %>
+    </div>
+  </div>
+</div>

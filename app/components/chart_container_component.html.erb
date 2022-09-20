@@ -1,0 +1,10 @@
+<%= render_component 'card' do %>
+  <div class="w-full flex justify-between">
+    <h3 class="font-medium text-gray-800 dark:text-gray-100"><%= title %></h3>
+  </div>
+  <div class="flex flex-col flex-grow">
+    <% charts.each do |chart| %>
+      <%= chart %>
+    <% end %>
+  </div>
+<% end %>

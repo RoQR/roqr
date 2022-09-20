@@ -4,30 +4,46 @@
     <p class="mt-1 text-sm text-gray-500">Share your QR codes to start generating insights from scans.</p>
   </div>
 <% else %>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
-    <div>
-      <p class="text-gray-800 dark:text-gray-100">Scans by country</p>
-      <%= geo_chart @all_scans.group(:country).count %>
-    </div>
-    <div>
-      <p class="text-gray-800 dark:text-gray-100">Scans by day</p> 
-      <%= line_chart @all_scans.group(:link_id).group_by_day(:created_at).count  %>
-    </div>
-    <div>
-      <p class="text-gray-800 dark:text-gray-100">Scans by browser</p>
-      <%= pie_chart @all_scans.group(:browser_name).count %>
-    </div>
-    <div>
-      <p class="text-gray-800 dark:text-gray-100">Scans by platform</p>
-      <%= pie_chart @all_scans.group(:platform_name).count %>
-    </div>
+  <%= render SectionHeaderComponent.new do |c| %>
+    <%= c.with_title do %>
+      Insights
+    <% end %>
+  <% end %>
+  <%= render_component 'card' do %>
+    <%= area_chart Scan.last_thirty_days, discrete: true, points: false, legend: false, min: 0, colors: ['#facc15'], library: { scales: { y: { grid: { display: false, drawBorder: false } } } }  %> 
+  <% end %>
+  <div class="my-5 grid grid-cols-1 md:grid-cols-2 gap-3">
+    <%= render ChartContainerComponent.new do |c| %>
+      <%= c.with_title do %>
+        Links
+      <% end %>
+      <%= c.with_chart(label_unit: 'Links', data_unit: 'Scans', data: @links_stats) %>
+    <% end %>
+    <%= render ChartContainerComponent.new do |c| %>
+      <%= c.with_title do %>
+        Platforms
+      <% end %>
+      <%= c.with_chart(label_unit: 'Platform', data_unit: 'Scans', data: @platform_stats) %>
+    <% end %>
+    <%= render ChartContainerComponent.new do |c| %>
+      <%= c.with_title do %>
+        Browsers
+      <% end %>
+      <%= c.with_chart(label_unit: 'Browsers', data_unit: 'Scans', data: @browser_stats) %>
+    <% end %>
+    <%= render ChartContainerComponent.new do |c| %>
+      <%= c.with_title do %>
+        Countries
+      <% end %>
+      <%= c.with_chart(label_unit: 'Browsers', data_unit: 'Scans', data: @countries_stats) %>
+    <% end %>
   </div>
   <%= render SectionHeaderComponent.new do |c| %>
     <%= c.with_title do %>
       Scan log
     <% end %>
     <%= c.with_button(style: 'white', link: scans_path(format: :csv)) do %>
-      <span class="flex">
+      <span class="flex items-center">
         <%= heroicon 'cloud-arrow-down' %>
         <p class="ml-2">Download as CSV</p>
       </span>
