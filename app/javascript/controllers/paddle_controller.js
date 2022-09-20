@@ -9,6 +9,10 @@ export default class extends Controller {
     Paddle.Setup({ vendor: 7904 });
   }
 
+  select(e) {
+    this.productIdValue = e.target.value
+  }
+
   checkout() {
     console.log(this.productIdValue)
     Paddle.Checkout.open({email: this.emailValue, product: this.productIdValue, passthrough: this.passthroughValue})
