@@ -4,7 +4,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user = user ||= User.new
+    user = user ||= User.new(role: 'reader')
     can :show, PublicPage
     can :scan, Link
     can :read, Scan, link: { organization: user.organization, deleted_at: nil }
@@ -32,6 +32,6 @@ class Ability
 
     can :invite, User
     can :manage, User, organization: user.organization
-    can :manage, Organization, id: user.organization.id
+    can :manage, Organization, id: user.organization&.id
   end
 end
