@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FirstScanNotification < Noticed::Base
   include ActionView::Helpers::UrlHelper
   deliver_by :database

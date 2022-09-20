@@ -2,5 +2,4 @@
 
 class TooltipComponent < ApplicationComponent
   include IconsHelper
-  def initialize; end
 end

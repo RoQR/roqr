@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WifiLink < LinkData
   self.table_name = 'wifi_links'
   has_one :link

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BreadcrumbsHelper
   class RoqrBreadcrumbs < BreadcrumbsOnRails::Breadcrumbs::Builder
     include ApplicationHelper

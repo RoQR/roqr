@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class StylesControllerTest < ActionDispatch::IntegrationTest
@@ -24,7 +26,7 @@ class StylesControllerTest < ActionDispatch::IntegrationTest
   test 'should create style' do
     assert_difference('Style.count') do
       post styles_url,
-           params: { style: { dots_color: @style.dots_color, background_color: @style.background_color, name: @style.name + 'a',
+           params: { style: { dots_color: @style.dots_color, background_color: @style.background_color, name: "#{@style.name}a",
                               organization_id: @style.organization_id } }
     end
 

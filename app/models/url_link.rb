@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UrlLink < LinkData
   self.table_name = 'url_links'
   validates :url, presence: true

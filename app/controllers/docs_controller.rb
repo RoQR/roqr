@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DocsController < ApplicationController
   include IconsHelper
   layout 'docs'

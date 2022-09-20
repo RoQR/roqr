@@ -1,6 +1,6 @@
-Rack::Attack.throttle('req/ip', limit: 300, period: 5.minutes) do |req|
-  req.ip
-end
+# frozen_string_literal: true
+
+Rack::Attack.throttle('req/ip', limit: 300, period: 5.minutes, &:ip)
 Rack::Attack.throttled_responder = lambda do |request|
   match_data = request.env['rack.attack.match_data']
   now = match_data[:epoch_time]

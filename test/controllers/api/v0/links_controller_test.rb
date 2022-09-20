@@ -1,7 +1,13 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
-class Api::V0::LinksControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+module Api
+  module V0
+    class LinksControllerTest < ActionDispatch::IntegrationTest
+      # test "the truth" do
+      #   assert true
+      # end
+    end
+  end
 end

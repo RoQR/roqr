@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def style_if_active(path, active, inactive)
     if current_page?(path)

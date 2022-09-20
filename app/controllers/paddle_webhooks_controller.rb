@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PaddleWebhooksController < ApplicationController
   before_action :verify_webhook, if: -> { Rails.env.prod? }
   skip_before_action :verify_authenticity_token

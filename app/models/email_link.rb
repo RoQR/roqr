@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EmailLink < LinkData
   self.table_name = 'email_links'
   has_one :link

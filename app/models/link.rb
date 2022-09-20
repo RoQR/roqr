@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Link < ApplicationRecord
   belongs_to :organization
   belongs_to :contact_link, dependent: :destroy, optional: true
@@ -97,7 +99,7 @@ class Link < ApplicationRecord
     end
 
     def reflection_assignment_method(klass)
-      Link.reflect_on_association(reflection_symbol(klass)).name.to_s + '='
+      "#{Link.reflect_on_association(reflection_symbol(klass)).name}="
     end
 
     send reflection_assignment_method(p.class), p

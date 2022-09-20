@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Style < ApplicationRecord
   DOTS_SHAPES = %w[square rounded extra-rounded dots classy classy-rounded].freeze
   CORNER_SQUARES_SHAPES = %w[square extra-rounded dot].freeze

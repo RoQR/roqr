@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LinkData < ApplicationRecord
   TYPES = %i[contact_link email_link sms_link telephone_link url_link wifi_link].freeze
   def self.new_link_data(link_data_type)

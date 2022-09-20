@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module VersionsHelper
   def humanize_version_change(changeset)
     changeset.reject do |k|

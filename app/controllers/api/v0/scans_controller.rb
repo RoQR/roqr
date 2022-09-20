@@ -1,7 +1,13 @@
-class Api::V0::ScansController < Api::V0::BaseController
-  load_and_authorize_resource
+# frozen_string_literal: true
 
-  def index
-    current_user.requests.create(method: :get, requestable_type: 'Event')
+module Api
+  module V0
+    class ScansController < Api::V0::BaseController
+      load_and_authorize_resource
+
+      def index
+        current_user.requests.create(method: :get, requestable_type: 'Event')
+      end
+    end
   end
 end

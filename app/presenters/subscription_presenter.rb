@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SubscriptionPresenter
   include ActionView::Helpers::TagHelper
   def initialize(subscription)

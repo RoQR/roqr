@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Subscription < ApplicationRecord
   after_destroy_commit :cancel_paddle_subscription
   belongs_to :organization

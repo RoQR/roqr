@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Scan < ApplicationRecord
   paginates_per 25
   belongs_to :link

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NavbarLinkComponentPreview < ViewComponent::Preview
   def standard
     render(NavbarLinkComponent.new(title: 'Title', link: '#'))

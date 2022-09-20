@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 PaddlePay.configure do |config|
   config.environment = :sandbox
   config.vendor_id = ENV.fetch('PADDLE_VENDOR_ID', nil)

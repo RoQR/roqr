@@ -14,17 +14,18 @@ class LinkCardComponent < ApplicationComponent
   end
 
   def type
-    if @link.link_data.is_a?(UrlLink)
+    case @link.link_data
+    when UrlLink
       'url'
-    elsif @link.link_data.is_a?(EmailLink)
+    when EmailLink
       'email'
-    elsif @link.link_data.is_a?(WifiLink)
+    when WifiLink
       'wifi'
-    elsif @link.link_data.is_a?(TelephoneLink)
+    when TelephoneLink
       'telephone'
-    elsif @link.link_data.is_a?(SmsLink)
+    when SmsLink
       'sms'
-    elsif @link.link_data.is_a?(ContactLink)
+    when ContactLink
       'contact'
     end
   end

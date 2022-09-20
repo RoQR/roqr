@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TelephoneLink < LinkData
   self.table_name = 'telephone_links'
   has_one :link

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Organization < ApplicationRecord
   before_create :setup_trial
   has_many :users, dependent: :destroy

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SubscriptionPaymentsController < ApplicationController
   before_action :set_subscription_payment, only: %i[show edit update destroy]
 

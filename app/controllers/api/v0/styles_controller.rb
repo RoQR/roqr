@@ -1,11 +1,17 @@
-class Api::V0::StylesController < Api::V0::BaseController
-  load_and_authorize_resource
+# frozen_string_literal: true
 
-  def index
-    current_user.requests.create(method: :get, requestable_type: 'Style')
-  end
+module Api
+  module V0
+    class StylesController < Api::V0::BaseController
+      load_and_authorize_resource
 
-  def show
-    current_user.requests.create(method: :get, requestable_type: 'Style')
+      def index
+        current_user.requests.create(method: :get, requestable_type: 'Style')
+      end
+
+      def show
+        current_user.requests.create(method: :get, requestable_type: 'Style')
+      end
+    end
   end
 end
