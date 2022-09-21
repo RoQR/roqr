@@ -7,7 +7,7 @@ class Subscription < ApplicationRecord
   alias_attribute :subscription_id, :paddle_subscription_id
 
   def cancel_paddle_subscription
-    PaddlePay::Subscription::User.cancel(subscription_id) unless status == 'deleted'
+    CancelPaddleSubscriptionJob.perform_later(subscription_id) unless status == 'deleted'
   end
 
   def cancelled?
