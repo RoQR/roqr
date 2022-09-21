@@ -40,7 +40,9 @@ class PaddleWebhooksController < ApplicationController
 
   def subscription_cancelled
     subscription = Subscription.find_by_paddle_subscription_id(params[:subscription_id])
-    if subscription.update(paddle_cancellation_params)
+    # If the user deleted their organization, the subscription will be gone too, but we will still receive the webhook.
+    # We should still be nice citizens and return 200 as otherwise Paddle will resend the webhook.
+    if subscription.nil? || subscription.update(paddle_cancellation_params)
       head 200
     else
       head 500
