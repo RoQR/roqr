@@ -5,18 +5,16 @@ class StylesController < ApplicationController
   load_and_authorize_resource
   skip_authorize_resource only: :show
 
-  # GET /styles or /styles.json
+  # GET /styles
   def index; end
 
-  # GET /styles/1 or /styles/1.json
+  # GET /styles/1
   def show
     respond_to do |format|
       format.html do
         authenticate_user!
         authorize! :show, @style
         render :show
-      end
-      format.json do
       end
     end
   end
@@ -33,42 +31,37 @@ class StylesController < ApplicationController
                                                                                       locals: { style: @style }))
   end
 
-  # POST /styles or /styles.json
+  # POST /styles
   def create
     respond_to do |format|
       if @style.save
         format.html { redirect_to styles_url, notice: 'Style was successfully created.' }
-        format.json { render :show, status: :created, location: @style }
         format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.turbo_stream { render :form_update, status: :unprocessable_entity }
-        format.json { render json: @style.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /styles/1 or /styles/1.json
+  # PATCH/PUT /styles/1
   def update
     respond_to do |format|
       if @style.update(style_params)
         format.html { redirect_to styles_url, notice: 'Style was successfully updated.' }
-        format.json { render :show, status: :ok, location: @style }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @style.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /styles/1 or /styles/1.json
+  # DELETE /styles/1
   def destroy
     @style.destroy
 
     respond_to do |format|
       format.html { redirect_to styles_url, notice: 'Style was successfully destroyed.' }
       format.turbo_stream
-      format.json { head :no_content }
     end
   end
 
