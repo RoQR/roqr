@@ -6,7 +6,9 @@ class Scan < ApplicationRecord
 
   scope :by_datetime, -> { order(created_at: :desc) }
 
-  after_create_commit -> { broadcast_prepend_to 'scans' }
+  after_create_commit lambda {
+                        broadcast_prepend_to 'scans', partial: 'scans/row'
+                      }
 
   def self.today(**options)
     group_by_hour(:created_at, range: Time.zone.now.midnight..Time.zone.now, format: '%l%p', **options).count
