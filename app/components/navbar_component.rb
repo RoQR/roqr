@@ -2,6 +2,7 @@
 
 class NavbarComponent < ApplicationComponent
   include IconsHelper
+  include Turbo::StreamsHelper
 
   def initialize(user:)
     @user = user
