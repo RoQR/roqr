@@ -69,3 +69,6 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+# Use Redis for Action Cable
+gem "redis", "~> 4.0"

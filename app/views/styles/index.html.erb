@@ -1,3 +1,4 @@
+<%= turbo_stream_from current_user.organization, "styles" %>
 <%= render_component 'section_header' do |c| %>
   <%= c.title { 'Styles' } %>
   <% if can? :create, Style %>
@@ -5,11 +6,8 @@
   <% end %>
 <% end %>
 
-<%= turbo_frame_tag Style.new do %>
-  <% if @styles.none? %>
-    <%= render 'empty_state' %>
-  <% end %>
-<% end %>
+<%= turbo_frame_tag Style.new %>
 <%= turbo_frame_tag "styles", role: "list", class:"grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" do %>
+  <%= render 'empty_state' %>
   <%= render @styles %>
 <% end %>

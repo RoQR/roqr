@@ -2,8 +2,3 @@
 <%= turbo_stream.append "flash_messages" do %>
   <%= render FlashComponent.new(type: 'notice', data: "#{@style.name} deleted") %>
 <% end %>
-<% unless current_user.organization.styles.exists?  %>
-  <%= turbo_stream.update Style.new do %>
-    <%= render 'styles/empty_state' %>
-  <% end %> 
-<% end %>

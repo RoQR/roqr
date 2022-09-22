@@ -1,3 +1,4 @@
+<%= turbo_stream_from "scans" %>
 <% if @all_scans.empty? %>
   <div class="text-center">
     <h3 class="mt-2 text-sm font-medium text-gray-700 dark:text-gray-200">No insights at this time</h3>
@@ -73,8 +74,8 @@
           </td>
         </tr>
       </tfoot>
-      <tbody class="divide-y divide-gray-600">
-        <%= render partial: "row", collection: @scans.sort_by {|e| e.created_at }.reverse, as: :scan %>
+      <tbody id="scans" class="divide-y divide-gray-600">
+        <%= render partial: "row", collection: @scans.by_datetime, as: :scan %>
       </tbody>
     </table>
   </div>

@@ -4,7 +4,7 @@ class ScansController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @all_scans = Scan.accessible_by(current_ability)
+    @all_scans = Scan.accessible_by(current_ability).includes(:link)
     @scans = @all_scans.page params[:page]
     @links_stats = @all_scans.joins(:link).group('links.name').count
     @platform_stats = @all_scans.group(:platform_name).count
