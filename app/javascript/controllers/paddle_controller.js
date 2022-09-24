@@ -1,4 +1,3 @@
-
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
@@ -7,10 +6,6 @@ export default class extends Controller {
   connect() {
     Paddle.Environment.set('sandbox');
     Paddle.Setup({ vendor: 7904 });
-  }
-
-  select(e) {
-    this.productIdValue = e.target.value
   }
 
   checkout() {

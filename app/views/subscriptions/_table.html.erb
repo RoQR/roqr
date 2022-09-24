@@ -1,0 +1,35 @@
+<%= render_component 'card' do %>
+  <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-600">
+    <thead>
+      <tr>
+        <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6">Monthly scans</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">Monthly price</th>
+        <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+          <span class="sr-only">Select</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @plans.each do |plan| %>
+        <tr>
+          <td class="relative py-4 pl-4 sm:pl-6 pr-3 text-sm">
+            <div class="font-medium text-gray-900 dark:text-gray-100">
+              <%= plan[:name] %>
+              <% if current_user.organization.subscription&.subscription_plan_id == plan[:id] %>
+                <span class="ml-1 text-yellow-300">(Current Plan)</span>
+              <% end %>
+            </div>
+          </td>
+          <td class="relative py-4 pl-4 sm:pl-6 pr-3 text-sm">
+            <div class="font-medium text-gray-900 dark:text-gray-100">$<%= plan.dig(:recurring_price, :usd) %></div>
+          </td>
+          <td class="relative py-3.5 pl-3 pr-4 sm:pr-6 text-right text-sm font-medium">
+            <%= button_tag class: "inline-flex items-center rounded-md border border-gray-300 dark:border-gray-600 bg-gray-200 dark:bg-gray-700 px-3 py-2 text-sm font-medium leading-4 text-gray-700 dark:text-gray-200 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30", disabled: current_user.organization.subscription&.subscription_plan_id == plan[:id], data: {controller: :paddle, action: "paddle#checkout", paddle_email_value: current_user.email, paddle_product_id_value: plan[:id], paddle_passthrough_value: current_user.organization.id} do %>
+              Select<span class="sr-only">, <%= plan[:name] %></span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

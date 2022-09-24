@@ -6,6 +6,4 @@ class Style < ApplicationRecord
   CORNER_DOTS_SHAPES = %w[square dot].freeze
   belongs_to :organization
   validates :name, presence: true, uniqueness: { scope: :organization_id }
-
-  broadcasts_to ->(style) { [style.organization, 'styles'] }, inserts_by: :append
 end

@@ -1,4 +1,3 @@
-<%= turbo_stream_from current_user.organization, "styles" %>
 <%= render_component 'section_header' do |c| %>
   <%= c.title { 'Styles' } %>
   <% if can? :create, Style %>
