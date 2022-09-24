@@ -40,6 +40,7 @@ gem 'puma', '~> 5.0'
 gem 'rack-attack', '~> 6.6'
 gem 'rails', '~> 7.0.3'
 gem 'rails_heroicon', '~> 2.0'
+gem 'redis', '~> 4.0'
 gem 'sass-rails'
 gem 'sentry-rails'
 gem 'sentry-ruby'
@@ -70,4 +71,3 @@ group :test do
 end
 
 # Use Redis for Action Cable
-gem "redis", "~> 4.0"
