@@ -3,9 +3,9 @@
     <%= render 'settings/nav' %>
     <div class="space-y-6">
       <%= render_component 'card' do %>
-        <div>
-          <h2 class="text-lg leading-6 font-medium text-gray-800 dark:text-gray-100">Developer settings</h2>
-        </div>
+        <%= render_component 'section_header', classes: 'dark:border-gray-600' do |c| %>
+          <%= c.title {'Developer settings' } %>
+        <% end %>
         <%= form_with model: current_user, url: user_private_api_keys_path, class: "mt-6" do |f| %>
           <div class="flex">
             <%= f.label :private_api_key, "API Key", class: "font-medium text-gray-600 dark:text-gray-300" %>

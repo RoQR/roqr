@@ -1,8 +1,8 @@
 <%= form_with(model: @user) do |form| %>
   <%= render_component 'card' do %>
-    <div>
-      <h2 class="text-lg leading-6 font-medium text-gray-800 dark:text-gray-100">Profile details</h2>
-    </div>
+    <%= render_component 'section_header', classes: 'dark:border-gray-600' do |c| %>
+      <%= c.title {'Profile details' } %>
+    <% end %>
 
     <div class="mt-6 grid grid-cols-12 gap-6">
       <div class="col-span-12 sm:col-span-6">
