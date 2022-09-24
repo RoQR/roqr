@@ -1,0 +1,51 @@
+<%= turbo_frame_tag "slideover", target: :_top do %>
+  <%= tag.div data: { controller: "turbo-modal", action: "keyup@document->turbo-modal#handleKeyup" } do %>
+    <div class="relative z-10" aria-labelledby="slideover-title" role="dialog" aria-modal="true">
+      <div 
+                                                                               class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity"
+                                                                               data-turbo-modal-target="backdrop"
+                                                                               data-transition-enter="ease-out duration-500"
+                                                                               data-transition-enter-start="opacity-0"
+                                                                               data-transition-enter-end="opacity-100"
+                                                                               data-transition-leave="ease-in duration-500"
+                                                                               data-transition-leave-start="opacity-100"
+                                                                               data-transition-leave-end="opacity-0"
+                                                                               ></div>
+
+      <div class="fixed inset-0 overflow-hidden">
+        <div class="absolute inset-0 overflow-hidden">
+          <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+            <div
+                class="pointer-events-auto w-screen max-w-md"
+                data-turbo-modal-target="body"
+                data-transition-enter="transform transition ease-in-out duration-500 sm:duration-700"
+                data-transition-enter-start="translate-x-full"
+                data-transition-enter-end="translate-x-0"
+                data-transition-leave="transform transition ease-in-out duration-500 sm:duration-700"
+                data-transition-leave-start="translate-x-0"
+                data-transition-leave-end="translate-x-full"
+                >
+                <div class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                  <div class="px-4 sm:px-6">
+                    <div class="flex items-start justify-between">
+                      <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Panel title</h2>
+                      <div class="ml-3 flex h-7 items-center">
+                        <button type="button" class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" data-action="turbo-modal#hideModal">
+                          <span class="sr-only">Close panel</span>
+                          <%= heroicon "x-mark", class: "h-6 w-6" %>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="relative mt-6 flex-1 px-4 sm:px-6">
+                    <%= content %>
+                  </div>
+                </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
