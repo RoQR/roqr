@@ -9,11 +9,11 @@ export default class extends Controller {
     // Display with transition
     setTimeout(() => {
       this.element.classList.remove('hidden');
-      this.element.classList.add('transform', 'ease-out', 'duration-300', 'transition', 'trangray-y-2', 'opacity-0', 'sm:trangray-y-0', 'sm:trangray-x-2');
+      this.element.classList.add('transform', 'ease-out', 'duration-300', 'transition', 'transform-y-2', 'opacity-0', 'sm:transform-y-0', 'sm:transform-x-2');
 
       // Trigger transition
       setTimeout(() => {
-        this.element.classList.add('trangray-y-0', 'opacity-100', 'sm:trangray-x-0');
+        this.element.classList.add('transform-y-0', 'opacity-100', 'sm:transform-x-0');
       }, 100);
 
       if (this.hasCountdownTarget) {
@@ -69,7 +69,7 @@ export default class extends Controller {
 
   close() {
     // Remove with transition
-    this.element.classList.remove('transform', 'ease-out', 'duration-300', 'trangray-y-2', 'opacity-0', 'sm:trangray-y-0', 'sm:trangray-x-2', 'trangray-y-0', 'sm:trangray-x-0');
+    this.element.classList.remove('transform', 'ease-out', 'duration-300', 'transform-y-2', 'opacity-0', 'sm:transform-y-0', 'sm:transform-x-2', 'transform-y-0', 'sm:transform-x-0');
     this.element.classList.add('ease-in', 'duration-100')
 
     // Trigger transition
