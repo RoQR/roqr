@@ -32,7 +32,7 @@
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
           
         <% if @user.organization.on_trial? %>
-          <%= link_to settings_organization_path, class: "hidden sm:inline bg-sky-200 text-sky-900 px-2 py-1 rounded mr-2" do %>
+          <%= link_to new_subscription_path, class: "hidden sm:inline bg-sky-200 text-sky-900 px-2 py-1 rounded mr-2" do %>
             <%= @user.organization.trial_days_remaining %> trial days left
           <% end %> 
         <% end %>
