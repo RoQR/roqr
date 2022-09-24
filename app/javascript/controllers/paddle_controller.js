@@ -14,7 +14,6 @@ export default class extends Controller {
   }
 
   checkout() {
-    console.log(this.productIdValue)
     Paddle.Checkout.open({email: this.emailValue, product: this.productIdValue, passthrough: this.passthroughValue})
   }
 }
