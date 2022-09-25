@@ -32,9 +32,9 @@ class FlashComponent < ApplicationComponent
     when 'info', 'notice'
       'text-blue-400'
     when 'warn', 'alert'
-      'text-red-400'
+      'text-yellow-400'
     when 'error'
-      'text-red-800'
+      'text-red-400'
     end
   end
 

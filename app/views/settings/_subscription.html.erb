@@ -5,7 +5,11 @@
         Subscription
         <%= SubscriptionPresenter.new(@organization.subscription).status_badge if @organization.subscribed? %>
       <% end %>
-      <%= c.button(link: new_subscription_path, style: 'white').with_content("Manage subscription") %>
+      <% if @organization.subscribed? %>
+        <%= c.button(link: edit_subscription_path(@organization.subscription), style: 'white').with_content("Manage subscription") %>
+      <% else %>
+        <%= c.button(link: new_subscription_path, style: 'white').with_content("Manage subscription") %>
+      <% end %>
     <% end %>
     <% if @organization.subscribed? && !@organization.subscription.cancelled?  %>
       <a class="text-sm font-medium text-gray-600 dark:text-gray-300"href=<%= @organization.subscription.update_url %>>Update billing information</a><br>
