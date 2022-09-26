@@ -31,6 +31,7 @@ jobs:
       PGHOST: localhost
       PGUSER: postgres
       PGPASSWORD: postgres
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_TEST_KEY }} 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
