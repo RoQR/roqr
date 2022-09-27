@@ -9,4 +9,8 @@ class FirstScanNotification < Noticed::Base
   def message
     link_to "#{params[:link_name]} got its first scan! View insights", scans_path
   end
+
+  def icon
+    'camera'
+  end
 end

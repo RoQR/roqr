@@ -10,4 +10,8 @@ class InvitedUserAcceptedNotification < Noticed::Base
   def message
     link_to "#{params[:user_name]} accepted your invitation", settings_organization_path
   end
+
+  def icon
+    'user-circle'
+  end
 end
