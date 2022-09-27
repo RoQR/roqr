@@ -1,3 +1,3 @@
-<%= turbo_frame_tag @style do %>
+<%= render_component 'turbo_modal', title: 'Edit style' do %>
   <%= render "form", style: @style %>
 <% end %>

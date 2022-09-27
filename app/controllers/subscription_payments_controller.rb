@@ -23,15 +23,11 @@ class SubscriptionPaymentsController < ApplicationController
   def create
     @subscription_payment = SubscriptionPayment.new(subscription_payment_params)
 
-    respond_to do |format|
-      if @subscription_payment.save
-        format.html do
-          redirect_to subscription_payment_url(@subscription_payment),
-                      notice: 'Subscription payment was successfully created.'
-        end
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+    if @subscription_payment.save
+      redirect_to subscription_payment_url(@subscription_payment),
+                  notice: 'Subscription payment was successfully created.'
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 

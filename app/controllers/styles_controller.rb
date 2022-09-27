@@ -20,16 +20,10 @@ class StylesController < ApplicationController
   end
 
   # GET /styles/new
-  def new
-    render TurboModalComponent.new(title: 'New style').with_content(render_to_string(partial: 'styles/form',
-                                                                                     locals: { style: @style }))
-  end
+  def new; end
 
   # GET /styles/1/edit
-  def edit
-    render TurboModalComponent.new(title: 'Edit style').with_content(render_to_string(partial: 'styles/form',
-                                                                                      locals: { style: @style }))
-  end
+  def edit; end
 
   # POST /styles
   def create
@@ -70,7 +64,7 @@ class StylesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def style_params
     params.require(:style).permit(
-      :name, :organization_id, :dots_color, :dots_shape, :background_color, :corner_dots_color,
+      :name, :dots_color, :dots_shape, :background_color, :corner_dots_color,
       :corner_dots_shape, :corner_squares_color, :corner_squares_shape, :image_url
     )
   end

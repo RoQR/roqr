@@ -26,8 +26,13 @@ class StylesControllerTest < ActionDispatch::IntegrationTest
   test 'should create style' do
     assert_difference('Style.count') do
       post styles_url,
-           params: { style: { dots_color: @style.dots_color, background_color: @style.background_color, name: "#{@style.name}a",
-                              organization_id: @style.organization_id } }
+           params: {
+             style: {
+               dots_color: @style.dots_color,
+               background_color: @style.background_color,
+               name: "#{@style.name} new"
+             }
+           }
     end
 
     assert_redirected_to styles_url
@@ -40,8 +45,13 @@ class StylesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should update style' do
     patch style_url(@style),
-          params: { style: { dots_color: @style.dots_color, background_color: @style.background_color, name: @style.name,
-                             organization_id: @style.organization_id } }
+          params: {
+            style: {
+              dots_color: @style.dots_color,
+              background_color: @style.background_color,
+              name: @style.name
+            }
+          }
     assert_redirected_to styles_url
   end
 

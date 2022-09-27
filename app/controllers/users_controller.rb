@@ -17,16 +17,14 @@ class UsersController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        if @user == current_user
-          format.html { redirect_to settings_profile_path, notice: 'Your acount has been updated' }
-        else
-          format.html { redirect_to user_path(@user), notice: "#{@user.display_name}'s acount has been updated" }
-        end
+    if @user.update(user_params)
+      if @user == current_user
+        redirect_to settings_profile_path, notice: 'Your acount has been updated'
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        redirect_to user_path(@user), notice: "#{@user.display_name}'s acount has been updated"
       end
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
