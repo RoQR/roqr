@@ -3,6 +3,8 @@
     Edit plan
   <% end %>
 <% end %>
+<a class="text-sm font-medium text-gray-600 dark:text-gray-300"href=<%= @subscription.update_url %>>Update billing information</a><br>
+<a class="text-sm font-medium text-red-600 dark:text-red-300"href=<%= @subscription.cancel_url %>>Cancel subscription</a>
 <p class="my-3 text-gray-700 dark:text-gray-200">Edit your subscription to a plan that better fits your needs. You can preview the changes to your billing before committing.</p>
 <%= render_component 'card' do %>
   <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-600">
