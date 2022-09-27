@@ -33,5 +33,8 @@ class Ability
     can :invite, User
     can :manage, User, organization: user.organization
     can :manage, Organization, id: user.organization&.id
+    can :create, Subscription, organization: user.organization
+    cannot :new, Subscription, organization: user.organization if user.organization.subscription
+    can :edit, Subscription, organization: user.organization
   end
 end
