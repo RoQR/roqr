@@ -2,9 +2,23 @@
 
 class Ability
   include CanCan::Ability
+  LINK_TYPES = [ContactLink, EmailLink, SmsLink, TelephoneLink, UrlLink, WifiLink].freeze
 
   def initialize(user)
     user = user ||= User.new(role: 'reader')
+
+    reader_abilities(user)
+    return unless %w[user administrator].include?(user.role)
+
+    user_abilities(user)
+    return unless user.role == 'administrator'
+
+    admin_abilities(user)
+  end
+
+  private
+
+  def reader_abilities(user)
     can :show, PublicPage
     can :scan, Link
     can :read, Scan, link: { organization: user.organization, deleted_at: nil }
@@ -14,8 +28,9 @@ class Ability
     can :download, Link, organization: user.organization
     can :manage, user
     can :create, Organization
-    return unless %w[user administrator].include?(user.role)
+  end
 
+  def user_abilities(user)
     can :manage, PublicPage, organization: user.organization
     can %i[read create update], [Style, Link], organization: user.organization
     can :remove_password, Link, organization: user.organization
@@ -24,12 +39,11 @@ class Ability
       link.organization == user.organization && !link.deleted_at.nil?
     end
     can :destroy, Style, organization: user.organization
-    can :create, [ContactLink, EmailLink, SmsLink, TelephoneLink, UrlLink, WifiLink]
-    can :manage, [ContactLink, EmailLink, SmsLink, UrlLink, TelephoneLink, WifiLink],
-        link: { organization: user.organization }
+    can :create, LINK_TYPES
+    can :manage, LINK_TYPES, link: { organization: user.organization }
+  end
 
-    return unless user.role == 'administrator'
-
+  def admin_abilities(user)
     can :invite, User
     can :manage, User, organization: user.organization
     can :manage, Organization, id: user.organization&.id
