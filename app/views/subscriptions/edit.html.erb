@@ -1,3 +1,9 @@
+<%= render SectionHeaderComponent.new do |c| %>
+  <%= c.with_title do %>
+    Edit plan
+  <% end %>
+<% end %>
+<p class="my-3 text-gray-700 dark:text-gray-200">Edit your subscription to a plan that better fits your needs. You can preview the changes to your billing before committing.</p>
 <%= render_component 'card' do %>
   <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-600">
     <thead>
@@ -17,7 +23,7 @@
               <%= plan[:name] %>
               <%= puts @subscription.subscription_plan_id %>
               <% if @subscription.subscription_plan_id == plan[:id] %>
-                <span class="ml-1 text-yellow-300">(Current Plan)</span>
+                <span class="ml-1 text-yellow-500 dark:text-yellow-300">(Current Plan)</span>
               <% end %>
             </div>
           </td>
@@ -27,7 +33,7 @@
           <td class="relative py-3.5 pl-3 pr-4 sm:pr-6 text-right text-sm font-medium">
             <%= form_for @subscription, url: { action: :preview } do |f| %>
               <%= f.hidden_field :plan_id, value: plan[:id] %>
-              <%= f.submit "Change plan", class: "inline-flex items-center rounded-md border border-gray-300 dark:border-gray-600 bg-gray-200 dark:bg-gray-700 px-3 py-2 text-sm font-medium leading-4 text-gray-700 dark:text-gray-200 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30", data: {turbo_frame: 'modal'}, disabled: @subscription.subscription_plan_id == plan[:id] %>
+              <%= f.submit "Preview changes", class: "inline-flex items-center rounded-md border border-gray-300 dark:border-gray-600 bg-gray-200 dark:bg-gray-700 px-3 py-2 text-sm font-medium leading-4 text-gray-700 dark:text-gray-200 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30", data: {turbo_frame: 'modal'}, disabled: @subscription.subscription_plan_id == plan[:id] %>
               <% end %>
           </td>
         </tr>
