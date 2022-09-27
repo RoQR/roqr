@@ -12,8 +12,6 @@
       <% end %>
     <% end %>
     <% if @organization.subscribed? && !@organization.subscription.cancelled?  %>
-      <a class="text-sm font-medium text-gray-600 dark:text-gray-300"href=<%= @organization.subscription.update_url %>>Update billing information</a><br>
-      <a class="text-sm font-medium text-red-600 dark:text-red-300"href=<%= @organization.subscription.cancel_url %>>Cancel subscription</a>
       <%= render 'subscription_timeline', subscription: @organization.subscription %>
 
     <% else %>
