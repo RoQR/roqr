@@ -16,7 +16,6 @@ class SubscriptionsController < ApplicationController
     @preview = PaddlePay::Subscription::User.preview_update(@subscription.paddle_subscription_id,
                                                             { plan_id: params.dig(:subscription, :plan_id),
                                                               prorate: true, bill_immediately: true })
-    puts @preview
   end
 
   def update
