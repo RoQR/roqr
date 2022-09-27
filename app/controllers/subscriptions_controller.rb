@@ -14,12 +14,15 @@ class SubscriptionsController < ApplicationController
 
   def preview
     @preview = PaddlePay::Subscription::User.preview_update(@subscription.paddle_subscription_id,
-                                                            { plan_id: params.dig(:subscription, :plan_id) })
+                                                            { plan_id: params.dig(:subscription, :plan_id),
+                                                              prorate: true, bill_immediately: true })
+    puts @preview
   end
 
   def update
     PaddlePay::Subscription::User.update(@subscription.paddle_subscription_id,
-                                         { plan_id: params.dig(:subscription, :plan_id) })
+                                         { plan_id: params.dig(:subscription, :plan_id), prorate: true,
+                                           bill_immediately: true })
     flash['success'] = 'Plan change request submitted successfully.'
     redirect_to settings_organization_path
   rescue PaddlePay::PaddlePayError

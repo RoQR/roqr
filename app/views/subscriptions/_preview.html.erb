@@ -1,4 +1,17 @@
 <div class="flex flex-col items-center">
+  <h3 class="mb-3 text-lg text-gray-800 dark:text-gray-100">Immediate payment</h3>
+  <div class="mb-3 rounded border border-gray-200 dark:border-gray-700">
+    <table class="w-96">
+      <thead class="border-b border-gray-200 dark:border-gray-700">
+        <td class="text-gray-600 dark:text-gray-300 px-5 py-3" align="right">Amount</td>
+        <td class="text-gray-600 dark:text-gray-300 px-5 py-3" align="right">Date</td>
+      </thead>
+      <tr>
+        <td class="text-gray-700 dark:text-gray-200 px-5 py-3" align="right"><%= number_to_currency preview[:immediate_payment][:amount] %>
+        <td class="text-gray-700 dark:text-gray-200 px-5 py-3" align="right"><%= preview[:immediate_payment][:date] %>
+      </tr>
+    </table>
+  </div>
   <h3 class="mb-3 text-lg text-gray-800 dark:text-gray-100">Next payment</h3>
   <div class="mb-3 rounded border border-gray-200 dark:border-gray-700">
     <table class="w-96">
