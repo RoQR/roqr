@@ -12,8 +12,13 @@ class SubscriptionsController < ApplicationController
     @plans = PaddlePay::Subscription::Plan.list
   end
 
+  def preview
+    @preview = PaddlePay::Subscription::User.preview_update(@subscription.paddle_subscription_id,
+                                                            { plan_id: params.dig(:subscription, :plan_id) })
+  end
+
   def update
-    PaddlePay::Subscription::User.update(subscription.paddle_subscription_id,
+    PaddlePay::Subscription::User.update(@subscription.paddle_subscription_id,
                                          { plan_id: params.dig(:subscription, :plan_id) })
     flash['success'] = 'Plan change request submitted successfully.'
     redirect_to settings_organization_path

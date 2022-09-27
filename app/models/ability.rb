@@ -35,6 +35,6 @@ class Ability
     can :manage, Organization, id: user.organization&.id
     can :create, Subscription, organization: user.organization
     cannot :new, Subscription, organization: user.organization if user.organization.subscription
-    can :edit, Subscription, organization: user.organization
+    can %i[preview edit], Subscription, organization: user.organization
   end
 end
