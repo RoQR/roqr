@@ -7,4 +7,5 @@ AllCops:
     - 'db/schema.rb'
     - 'db/data_schema.rb'
     - 'bin/bundle'
+    - 'config/routes.rb'
   NewCops: enable

@@ -15,6 +15,7 @@ class PaddleWebhooksController < ApplicationController
     when 'subscription_payment_succeeded'
       subscription_payment_succeeded
     when 'subscription_payment_failed'
+      subscription_payment_failed
     when 'subscription_payment_refunded'
     end
   end
@@ -52,7 +53,26 @@ class PaddleWebhooksController < ApplicationController
   def subscription_payment_succeeded
     subscription = Subscription.find_by_paddle_subscription_id(params[:subscription_id])
     subscription.assign_attributes(paddle_subscription_params)
-    subscription.subscription_payments.build(paddle_subscription_payment_params)
+    subscription.subscription_payments.find_or_initialize_by(
+      paddle_subscription_payment_id: params[:subscription_payment_id]
+    ) do |s|
+      s.assign_attributes(paddle_subscription_payment_params)
+    end
+    if subscription.save
+      head 200
+    else
+      head 500
+    end
+  end
+
+  def subscription_payment_failed
+    subscription = Subscription.find_by_paddle_subscription_id(params[:subscription_id])
+    subscription.assign_attributes(paddle_subscription_params)
+    subscription.subscription_payments.find_or_initialize_by(
+      paddle_subscription_payment_id: params[:subscription_payment_id]
+    ) do |s|
+      s.assign_attributes(paddle_subscription_payment_params)
+    end
     if subscription.save
       head 200
     else
