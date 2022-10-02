@@ -1,23 +1,23 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'notifications/index'
+  get "notifications/index"
   devise_for :users,
-             controllers: {
-               sessions: 'users/sessions',
-               passwords: 'users/passwords',
-               registrations: 'users/registrations',
-               confirmations: 'users/confirmations',
-               omniauth_callbacks: 'users/omniauth_callbacks',
-               invitations: 'users/invitations'
-             }
+    controllers: {
+      sessions: "users/sessions",
+      passwords: "users/passwords",
+      registrations: "users/registrations",
+      confirmations: "users/confirmations",
+      omniauth_callbacks: "users/omniauth_callbacks",
+      invitations: "users/invitations"
+    }
 
   resources :links do
     member do
       get :scan
       get :confirm_destroy
       get :archive
-      get :remove_password
+      patch :remove_password
     end
   end
   resources :styles
@@ -31,8 +31,8 @@ Rails.application.routes.draw do
     get :organization
     get :developer
   end
-  get :marketing, to: 'marketing#index'
-  get 'terms-of-service', to: 'marketing#terms_of_service'
+  get :marketing, to: "marketing#index"
+  get "terms-of-service", to: "marketing#terms_of_service"
   resources :paddle_webhooks, only: :create
   resources :subscription_payments, only: %i[index create]
   resources :subscriptions, except: %i[show] do
@@ -40,11 +40,11 @@ Rails.application.routes.draw do
   end
 
   authenticated :user do
-    root to: 'links#index', as: :authenticated_root
+    root to: "links#index", as: :authenticated_root
   end
 
   devise_scope :user do
-    root to: 'marketing#index'
+    root to: "marketing#index"
   end
 
   namespace :user do
@@ -62,10 +62,10 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'docs', to: 'docs#welcome'
-  get 'docs/welcome', to: 'docs#welcome'
-  get 'docs/getting-started/register', to: 'docs#register'
-  get 'docs/getting-started/create-link', to: 'docs#create_link'
+  get "docs", to: "docs#welcome"
+  get "docs/welcome", to: "docs#welcome"
+  get "docs/getting-started/register", to: "docs#register"
+  get "docs/getting-started/create-link", to: "docs#create_link"
 
-  get '404', to: 'application#page_not_found' if Rails.env.production?
+  get "404", to: "application#page_not_found" if Rails.env.production?
 end

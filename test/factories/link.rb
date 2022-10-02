@@ -5,6 +5,11 @@ FactoryBot.define do
     url { 'https://google.com' }
   end
 
+  factory :contact_link do
+    first_name { 'Jane' }
+    last_name { 'Doe' }
+  end
+
   factory :link do
     sequence(:name) { |n| "Link#{n}" }
     dynamic { false }
@@ -20,6 +25,10 @@ FactoryBot.define do
 
     trait :url do
       url_link
+    end
+
+    trait :contact do
+      contact_link
     end
   end
 end
