@@ -29,6 +29,14 @@ class PaddleWebhooksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'should cancel subscription' do
+    subscription = create(:subscription, organization: @org)
+    post paddle_webhooks_url, params: cancel_subscription_params
+    assert_response :success
+    subscription.reload
+    assert_not_nil subscription.cancellation_effective_date
+  end
+
   private
 
   def create_subscription_params
@@ -93,6 +101,29 @@ class PaddleWebhooksControllerTest < ActionDispatch::IntegrationTest
       subscription_id: '1',
       subscription_payment_id: '1',
       subscription_plan_id: '1',
+      unit_price: '9.00',
+      user_id: '1',
+      p_signature: 'long signature'
+    }
+  end
+
+  def cancel_subscription_params
+    {
+      alert_id: '3',
+      alert_name: 'subscription_cancelled',
+      cancellation_effective_date: Time.zone.now + 30.days,
+      checkout_id: '1',
+      currency: 'USD',
+      custom_data: '',
+      email: 'test@example.com',
+      event_time: Time.zone.now,
+      linked_subscriptions: '',
+      marketing_consent: 0,
+      passthrough: '1',
+      quantity: '1',
+      status: 'deleted',
+      subscription_id: '2',
+      subscription_plan_id: '2',
       unit_price: '9.00',
       user_id: '1',
       p_signature: 'long signature'
