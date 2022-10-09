@@ -25,4 +25,8 @@ class ApplicationController < ActionController::Base
       format.all { render nothing: true, status: 404 }
     end
   end
+
+  def do_not_track?
+    request.headers['DNT'] == '1'
+  end
 end

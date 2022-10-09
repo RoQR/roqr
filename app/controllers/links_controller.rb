@@ -26,9 +26,8 @@ class LinksController < ApplicationController
   end
 
   def scan
-    if @link.should_record_scan?
-      scan = scan_from_browser
-      scan.save!
+    if @link.should_record_scan? && !do_not_track?
+      record_scan
       FirstScanNotification.with(link_name: @link.name).deliver_later(@link.organization.users) if @link.scans.size == 1
     end
     case @link.link_type
@@ -142,8 +141,8 @@ class LinksController < ApplicationController
     end
   end
 
-  def scan_from_browser
-    @link.scans.new(
+  def record_scan
+    @link.scans.create(
       browser_name: browser.name,
       browser_version: browser.version,
       bot_name: browser.bot.name,
