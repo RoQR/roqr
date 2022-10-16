@@ -62,10 +62,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get "docs", to: "docs#welcome"
-  get "docs/welcome", to: "docs#welcome"
-  get "docs/getting-started/register", to: "docs#register"
-  get "docs/getting-started/create-link", to: "docs#create_link"
-
   get "404", to: "application#page_not_found" if Rails.env.production?
 end
