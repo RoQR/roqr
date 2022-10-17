@@ -52,6 +52,7 @@ class LinksController < ApplicationController
   end
 
   def create
+    debugger
     respond_to do |format|
       if @link.save
         format.html { redirect_to @link, success: 'Link was successfully created.' }

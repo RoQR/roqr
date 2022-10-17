@@ -11,7 +11,9 @@
         </div>
       </div>
       <div class="flex justify-between flex-row items-center mt-5 md:mt-0 col-span-1">
-        <% unless @static_only %>
+        <% if @static_only %>
+          <%= form.hidden_field :dynamic, value: false %>
+        <% else %>
           <span class="flex-grow flex flex-col">
             <div class="flex">
               <%= form.label :dynamic, class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
