@@ -33,7 +33,7 @@
           <%= c.title classes: "flex items-center" do %>
             Team members
           <% end %>
-          <%= c.button(link: new_user_invitation_path, style: 'white').with_content("Invite team member") %>
+          <%= c.button(href: new_user_invitation_path, style: :secondary).with_content("Invite team member") %>
         <% end %>
         <% if @organization.users.count == 1 %>
           <div class="mt-4 text-center">

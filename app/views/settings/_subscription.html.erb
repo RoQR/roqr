@@ -6,9 +6,9 @@
         <%= SubscriptionPresenter.new(@organization.subscription).status_badge if @organization.subscribed? %>
       <% end %>
       <% if @organization.subscribed? %>
-        <%= c.button(link: edit_subscription_path(@organization.subscription), style: 'white').with_content("Manage subscription") %>
+        <%= c.button(href: edit_subscription_path(@organization.subscription), style: :secondary).with_content("Manage subscription") %>
       <% else %>
-        <%= c.button(link: new_subscription_path, style: 'white').with_content("Manage subscription") %>
+        <%= c.button(href: new_subscription_path, style: :secondary).with_content("Manage subscription") %>
       <% end %>
     <% end %>
     <% if @organization.subscribed? && !@organization.subscription.cancelled?  %>

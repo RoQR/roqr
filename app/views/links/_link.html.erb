@@ -6,14 +6,20 @@
       <span class="relative z-0 inline-flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
         <%= render 'download_button' %>
       <% if can? :update, link %>
-        <%= link_to 'Edit', edit_link_path(@link), type: :button, class: "w-full inline-flex justify-center rounded-md border border-transparent px-4 py-2 bg-gray-300 dark:bg-gray-600 border-gray-400 dark:border-gray-500 font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:mt-0 sm:w-auto text-sm" %>
+        <%= render_component 'button', href: edit_link_path(@link), style: :secondary do %>
+          Edit
+        <% end %>
       <% end %>
       <% if can? :archive, link %>
-        <%= button_to 'Archive', archive_link_path(@link), method: :get,  class: "w-full inline-flex justify-center rounded-md border border-transparent px-4 py-2 bg-red-600 font-medium text-gray-50 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:w-auto text-sm" %>
+        <%= render_component 'button', href: archive_link_path(@link), style: :destructive do %>
+          Archive
+        <% end %>
       <% end %>
 
       <% if can? :confirm_destroy, link %>
-        <%= link_to 'Delete', confirm_destroy_link_path(@link), class: "w-full inline-flex justify-center rounded-md border border-transparent px-4 py-2 bg-red-600 font-medium text-gray-50 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:w-auto text-sm", data: { turbo_frame: :modal } %>
+        <%= render_component 'button', href: confirm_destroy_link_path(@link), style: :destructive, data: { turbo_frame: :modal } do %>
+          Delete
+        <% end %>
       <% end %>
       </span>
     </div>

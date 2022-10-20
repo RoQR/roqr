@@ -8,10 +8,10 @@
     <div class="mt-6 ml-auto flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
       <%= render InlineButtonGroupComponent.new do |c| %>
         <% if can? :update, user %>
-          <% c.with_button(link: edit_user_path(user), style: 'white').with_content("Edit account") %>
+          <% c.with_button(href: edit_user_path(user), style: 'secondary').with_content("Edit account") %>
         <% end %>
         <% if can? :destroy, user %>
-          <% c.with_button(link: user_path(user), method: :delete, style: 'red').with_content("Delete account") %>
+          <% c.with_button(href: user_path(user), method: :delete, style: 'destructive').with_content("Delete account") %>
         <% end %>
       <% end %>
     </div>

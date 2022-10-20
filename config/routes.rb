@@ -63,4 +63,6 @@ Rails.application.routes.draw do
   end
 
   get "404", to: "application#page_not_found" if Rails.env.production?
+  mount Lookbook::Engine, at: '/lookbook' if Rails.env.development?
+
 end

@@ -1,7 +1,7 @@
 <%= render_component 'section_header' do |c| %>
   <%= c.title { 'Active links' } %>
   <% if can?(:create, Link) %>
-    <%= c.button(link: new_link_path) do %>
+    <%= c.button(href: new_link_path) do %>
       New link
     <% end %>
   <% end %>

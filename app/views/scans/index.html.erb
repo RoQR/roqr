@@ -42,7 +42,7 @@
     <%= c.with_title do %>
       Scan log
     <% end %>
-    <%= c.with_button(style: 'white', link: scans_path(format: :csv)) do %>
+    <%= c.with_button(style: :secondary, link: scans_path(format: :csv)) do %>
       <span class="flex items-center">
         <%= heroicon 'cloud-arrow-down' %>
         <p class="ml-2">Download as CSV</p>
