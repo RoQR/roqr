@@ -54,7 +54,7 @@ class LinksController < ApplicationController
   def create
     respond_to do |format|
       if @link.save
-        track_event('Link created') if Rails.env.production?
+        ahoy.track 'Link created'
         format.html { redirect_to @link, success: 'Link was successfully created.' }
       else
         @link_type = @link.link_type

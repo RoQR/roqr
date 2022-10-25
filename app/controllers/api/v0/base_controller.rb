@@ -6,6 +6,7 @@ module Api
       rescue_from ActiveRecord::RecordNotFound, with: :handle_not_found
       rescue_from CanCan::AccessDenied, with: :unauthorized
       protect_from_forgery with: :null_session
+      skip_before_action :track_ahoy_visit
 
       private
 

@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   add_flash_types :info, :error, :success, :warn
   before_action :set_paper_trail_whodunnit
-  around_action :append_event_tracking_tags, if: -> { Rails.env.production? }
 
   def devise_current_user
     @devise_current_user ||= warden.authenticate(scope: :user)
@@ -29,13 +28,5 @@ class ApplicationController < ActionController::Base
 
   def do_not_track?
     request.headers['DNT'] == '1'
-  end
-
-  def mixpanel_distinct_id
-    current_user.id
-  end
-
-  def mixpanel_name_tag
-    current_user&.name
   end
 end

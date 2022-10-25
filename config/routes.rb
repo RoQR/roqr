@@ -43,6 +43,10 @@ Rails.application.routes.draw do
     root to: "links#index", as: :authenticated_root
   end
 
+  authenticated :user, -> (user) { user.email == 'seb@rollen.io' } do
+    mount Blazer::Engine, at: "blazer"
+  end
+
   devise_scope :user do
     root to: "marketing#index"
   end

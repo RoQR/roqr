@@ -52,10 +52,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'vcardigan', '~> 0.0.9'
 gem 'victor'
 gem 'view_component'
-
-group :production do
-  gem 'event_tracker', '~> 0.4.1'
-end
+gem "blazer", "~> 2.6"
 
 group :development, :test do
   gem 'bullet', '~> 7.0'
@@ -77,3 +74,6 @@ group :test do
 end
 
 # Use Redis for Action Cable
+
+
+gem "ahoy_matey", "~> 4.1"
