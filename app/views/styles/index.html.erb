@@ -1,7 +1,7 @@
 <%= render_component 'section_header' do |c| %>
   <%= c.title { 'Styles' } %>
   <% if can? :create, Style %>
-    <%= c.button(link: new_style_path, data: {turbo_frame: "modal" }).with_content("New style") %>
+    <%= c.button(href: new_style_path, data: {turbo_frame: "modal" }).with_content("New style") %>
   <% end %>
 <% end %>
 
