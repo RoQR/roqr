@@ -19,7 +19,7 @@
         <h3 class="mt-2 text-sm font-medium text-gray-700 dark:text-gray-200">Not subscribed</h3>
         <p class="mt-1 text-sm text-gray-500">Subscribe now to retain access to RoQR after your trial ends.</p>
         <div class="mt-6">
-          <%= render_component 'button', link: new_subscription_path do %>
+          <%= render_component 'button', href: new_subscription_path do %>
             <%= heroicon 'plus', variant: 'mini' %>
             Subscribe
           <% end %>
