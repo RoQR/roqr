@@ -53,6 +53,10 @@ gem 'vcardigan', '~> 0.0.9'
 gem 'victor'
 gem 'view_component'
 
+group :production do
+  gem 'event_tracker', '~> 0.4.1'
+end
+
 group :development, :test do
   gem 'bullet', '~> 7.0'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
@@ -61,8 +65,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'web-console'
   gem 'lookbook'
+  gem 'web-console'
 end
 
 group :test do
