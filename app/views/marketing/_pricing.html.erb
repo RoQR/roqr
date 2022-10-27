@@ -2,61 +2,61 @@
   <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
     <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-white sm:tet-4xl">Simple, volume-based pricing</h2>
     <p class="text-base text-gray-400">Try it risk-free with a 30 day free trial. No credit card needed.</p>
-    <div data-controller="price-slider" class="mt-3 bg-white shadow-lg px-10 py-6 rounded-lg">
+    <div data-controller="price-slider" class="mt-3 bg-gray-700 shadow-lg px-10 py-6 rounded-lg">
       <div class="flex justify-between text-left">
         <div class="flex flex-col">
-          <p class="text-sm uppercase text-gray-400 tracking-wide">Monthly scans</p>
-          <p data-price-slider-target="volume" class="font-bold text-2xl">10k</p>
+          <p class="text-sm uppercase text-gray-200 tracking-wide">Monthly scans</p>
+          <p data-price-slider-target="volume" class="font-bold text-2xl text-white">10k</p>
         </div>
         <div class="flex flex-col text-right">
-          <p class="text-sm uppercase text-gray-400 tracking-wide">Your price</p>
-          <p class="font-bold text-2xl">$<span data-price-slider-target="price">9</span> / mo</p>
+          <p class="text-sm uppercase text-gray-200 tracking-wide">Your price</p>
+          <p class="font-bold text-2xl text-white">$<span data-price-slider-target="price">9</span> / mo</p>
         </div>
       </div>
       <div class="mt-4">
-        <input data-price-slider-target="slider" data-action="price-slider#updatePrice" type="range" name="volume" value="0" min="0" max="7" class="w-full h-1 rounded-full bg-indigo-500 appearance-none"/>
+        <input data-price-slider-target="slider" data-action="price-slider#updatePrice" type="range" name="volume" value="0" min="0" max="7" class="w-full h-1 rounded-full bg-yellow-300 appearance-none"/>
       </div>
       <div class="mt-4 relative">
         <div class="absolute inset-0 flex items-center" aria-hidden="true">
-          <div class="w-full border-t border-gray-300"></div>
+          <div class="w-full border-t border-gray-600"></div>
         </div>
         <div class="relative flex justify-start">
-          <span class="pr-2 bg-white text-sm text-gray-500"> Always included </span>
+          <span class="pr-2 bg-gray-700 text-sm text-gray-200"> Always included </span>
         </div>
       </div>
       <div class="mt-4 sm:grid sm:grid-cols-3 sm:gap-4 space-y-3 sm:space-y-0 text-left">
-        <div class="flex flex-row items-center">
-          <div class="text-indigo-500 mr-3">
+        <div class="flex flex-row items-center text-gray-100">
+          <div class="text-yellow-300 mr-3">
             <%= heroicon 'check' %>
           </div>
           Unlimited QR codes
         </div>
-        <div class="flex flex-row items-center">
-          <div class="text-indigo-500 mr-3">
+        <div class="flex flex-row items-center text-gray-100">
+          <div class="text-yellow-300 mr-3">
             <%= heroicon 'check' %>
           </div>
           Insights and analytics
         </div>
-        <div class="flex flex-row items-center">
-          <div class="text-indigo-500 mr-3">
+        <div class="flex flex-row items-center text-gray-100">
+          <div class="text-yellow-300 mr-3">
             <%= heroicon 'check' %>
           </div>
           Unlimited team members
         </div>
-        <div class="flex flex-row items-center">
-          <div class="text-indigo-500 mr-3">
+        <div class="flex flex-row items-center text-gray-100">
+          <div class="text-yellow-300 mr-3">
             <%= heroicon 'check' %>
           </div>
           Unlimited data retention
         </div>
-        <div class="flex flex-row items-center">
-          <div class="text-indigo-500 mr-3">
+        <div class="flex flex-row items-center text-gray-100">
+          <div class="text-yellow-300 mr-3">
             <%= heroicon 'check' %>
           </div>
           100% data ownership
         </div>
-        <div class="flex flex-row items-center">
-          <div class="text-indigo-500 mr-3">
+        <div class="flex flex-row items-center text-gray-100">
+          <div class="text-yellow-300 mr-3">
             <%= heroicon 'check' %>
           </div>
           Webhook and API access
