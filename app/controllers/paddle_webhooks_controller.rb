@@ -24,6 +24,7 @@ class PaddleWebhooksController < ApplicationController
     organization = Organization.find(params[:passthrough])
     organization.build_subscription(paddle_subscription_params)
     if organization.save
+      ahoy.track 'Subscription created', { organization_id: organization.id }
       head 200
     else
       head 500
@@ -33,6 +34,7 @@ class PaddleWebhooksController < ApplicationController
   def subscription_updated
     subscription = Subscription.find_by_paddle_subscription_id(params[:subscription_id])
     if subscription.update(paddle_subscription_params)
+      ahoy.track 'Subscription updated', { organization_id: subscription.organization.id }
       head 200
     else
       head 500
@@ -44,6 +46,7 @@ class PaddleWebhooksController < ApplicationController
     # If the user deleted their organization, the subscription will be gone too, but we will still receive the webhook.
     # We should still be nice citizens and return 200 as otherwise Paddle will resend the webhook.
     if subscription.nil? || subscription.update(paddle_cancellation_params)
+      ahoy.track 'Subscription cancelled', { organization_id: subscription.organization.id }
       head 200
     else
       head 500
@@ -59,6 +62,7 @@ class PaddleWebhooksController < ApplicationController
       s.assign_attributes(paddle_subscription_payment_params)
     end
     if subscription.save
+      ahoy.track 'Subscription payment received', { organization_id: subscription.organization.id }
       head 200
     else
       head 500
@@ -74,6 +78,7 @@ class PaddleWebhooksController < ApplicationController
       s.assign_attributes(paddle_subscription_payment_params)
     end
     if subscription.save
+      ahoy.track 'Subscription payment failed', { organization_id: subscription.organization.id }
       head 200
     else
       head 500

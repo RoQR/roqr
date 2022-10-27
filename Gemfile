@@ -5,7 +5,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
 
+gem 'ahoy_matey', '~> 4.1'
 gem 'bcrypt', '~> 3.1'
+gem 'blazer', '~> 2.6'
 gem 'blind_index', '~> 2.3'
 gem 'bootsnap', require: false
 gem 'breadcrumbs_on_rails', '~> 4.1'
@@ -52,7 +54,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'vcardigan', '~> 0.0.9'
 gem 'victor'
 gem 'view_component'
-gem "blazer", "~> 2.6"
 
 group :development, :test do
   gem 'bullet', '~> 7.0'
@@ -74,6 +75,3 @@ group :test do
 end
 
 # Use Redis for Action Cable
-
-
-gem "ahoy_matey", "~> 4.1"
