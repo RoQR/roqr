@@ -19,10 +19,11 @@ class ButtonComponent < ApplicationComponent
   }
   SIZE_OPTIONS = SIZE_MAPPINGS.keys
 
-  def initialize(href: nil, size: :md, style: :primary, **options)
+  def initialize(href: nil, method: nil, size: :md, style: :primary, **options)
     @options = options
-    @options[:tag] ||= href.nil? ? :button : :a
+    @options[:tag] ||= href.nil? || (method.presence != :get) ? :button : :a
     @options[:href] = href
+    @options[:method] = method unless method.nil?
     @options[:classes] = class_names(
       'inline-flex items-center border font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2',
       STYLE_MAPPINGS[fetch_or_fallback(STYLE_OPTIONS, style, STYLE_DEFAULT)],
