@@ -1,3 +1,9 @@
-<%= render ApplicationComponent.new(**@options) do %>
-  <%= content %>
+<% if @button %>
+  <%= button_to @href, class: @classes, **@options do %>
+    <%= content %>
+  <% end %>
+<% else %>
+  <%= link_to @href, class: @classes, **@options do %> 
+    <%= content %>
+  <% end %>
 <% end %>

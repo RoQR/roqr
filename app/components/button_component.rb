@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-class ButtonComponent < ApplicationComponent
+class ButtonComponent < ViewComponent::Base
+  include ComponentHelper
   STYLE_DEFAULT = :primary
   STYLE_MAPPINGS = {
     STYLE_DEFAULT => 'border-transparent text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500',
@@ -21,10 +22,13 @@ class ButtonComponent < ApplicationComponent
 
   def initialize(href: nil, method: nil, size: :md, style: :primary, **options)
     @options = options
-    @options[:tag] ||= href.nil? || (method.presence != :get) ? :button : :a
-    @options[:href] = href
-    @options[:method] = method unless method.nil?
-    @options[:classes] = class_names(
+    # @options[:tag] ||= href.nil? ? :button : :a
+    @button = method.presence && method.to_sym != :get
+    @href = href
+    @options[:method] = method
+    @options[:data] ||= {}
+    @options[:data][:turbo_method] = method
+    @classes = class_names(
       'inline-flex items-center border font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2',
       STYLE_MAPPINGS[fetch_or_fallback(STYLE_OPTIONS, style, STYLE_DEFAULT)],
       SIZE_MAPPINGS[fetch_or_fallback(SIZE_OPTIONS, size, SIZE_DEFAULT)],
