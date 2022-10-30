@@ -7,8 +7,6 @@
     <%= render_component 'button', href: url_for(:back), style: :secondary do %>
       Cancel
     <% end %>
-    <%= render_component 'button', type: :submit do %>
-      Save
-    <% end %>
+    <%= form.submit nil, class: 'inline-flex items-center border font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 border-transparent text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500 px-4 py-2 text-sm' %>
   </div>
 <% end %>	
