@@ -5,9 +5,8 @@
   </head>
   <body class="h-full bg-gray-800">
     <div class="min-h-full flex items-center justify-center">
-      <div class="max-w-md w-full bg-white rounded-md py-12 px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="max-w-md w-full bg-gray-700 rounded-md py-12 px-4 sm:px-6 lg:px-8 space-y-8">
         <div>
-
           <% if resource.errors.any? %>
             <div class="mb-2 flex justify-center">
               <ul class='space-y-2'>
@@ -17,7 +16,7 @@
               </ul>
             </div>
           <% end %>
-          <div class="text-indigo-600 mx-auto flex h-8 w-8">
+          <div class="text-yellow-300 mx-auto flex h-8 w-8">
             <%= show_svg("solid/bolt") %>
           </div>
           <%= yield %>

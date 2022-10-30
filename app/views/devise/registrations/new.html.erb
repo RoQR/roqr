@@ -1,54 +1,53 @@
-<h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign up</h2>
-<p class="mt-2 text-center text-sm text-gray-600">
+<h2 class="mt-6 text-center text-3xl font-extrabold text-gray-100">Sign up</h2>
+<p class="mt-2 text-center text-sm text-gray-200">
 Or
-<%= link_to "sign in", new_user_session_path, class: "font-medium text-indigo-600 hover:text-indigo-500"  %>
+<%= link_to "sign in", new_user_session_path, class: "font-medium text-yellow-300 hover:text-yellow-400"  %>
 </p>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "mt-8 space-y-6" }) do |f| %>
   <input type="hidden" name="remember" value="true">
-  <div class="rounded-md shadow-sm -space-y-px">
+  <div class="rounded-md shadow-sm">
     <div>
-      <%= f.text_field :name, required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Name" %>
+      <%= f.label :name, class: "sr-only" %>
+      <%= f.text_field :name, autocomplete: "name", required: true, class: "bg-gray-100 focus:bg-gray-200 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-t-md", placeholder: "Name" %>
     </div>
     <div>
-      <%= f.email_field :email, autocomplete: "email", required: true, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Email address" %>
+      <%= f.label :email, class: "sr-only" %>
+      <%= f.email_field :email, autocomplete: "email", required: true, class: "bg-gray-100 focus:bg-gray-200 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-b-md", placeholder: "Email" %>
     </div>
-  </div>
-  <div>
   </div>
   <div class="text-sm">
-    <%= link_to "Resend confirmation email", new_user_confirmation_path, class: "font-medium text-indigo-600 hover:text-indigo-500" %>
+    <%= link_to "Resend confirmation email", new_user_confirmation_path, class: "font-medium text-yellow-300 hover:text-yellow-400" %>
   </div>
 
   <div>
-    <%= f.submit "Sign up", class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+    <%= f.submit "Sign up", class: "w-full inline-flex items-center border font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 border-transparent text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500 px-4 py-2 text-sm" %>
   </div>
 <% end %>
 <div class="mt-6">
   <div class="relative">
     <div class="absolute inset-0 flex items-center">
-      <div class="w-full border-t border-gray-300"></div>
+      <div class="w-full border-t border-gray-600"></div>
     </div>
     <div class="relative flex justify-center text-sm">
-        <span class="px-2 bg-white text-gray-500"> Or continue with </span>
-      </div>
-    </div>
-
-    <div class="mt-6 grid grid-cols-2 gap-3">
-      <div>
-        <%= button_to user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: "w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" do %>
-          <span class="sr-only">Sign in with Google</span>
-          <%= show_svg('google') %>
-        <% end %>
-      </div>
-      <div>
-        <%= button_to user_github_omniauth_authorize_path, data: { turbo: false }, class: "w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" do %>
-          <span class="sr-only">Sign in with GitHub</span>
-          <%= show_svg('github') %>
-        <% end %>
-      </div>
+      <span class="px-2 bg-gray-700 text-gray-400"> Or continue with </span>
     </div>
   </div>
-  <div class="mt-6 pt-6 border-t-2 border-gray-200">
-    <p class="text-xs leading-5 text-gray-500">By signing up, you agree to our <a href=<%= terms_of_service_path %> class="font-medium text-gray-900 hover:underline">Terms of Service</a>.</p>
-  </div>
 
+  <div class="mt-6 grid grid-cols-2 gap-3">
+    <div>
+      <%= render ButtonComponent.new(href: user_google_oauth2_omniauth_authorize_path, method: :post, classes: 'w-full justify-center', style: :secondary, data: { turbo: false }) do %>
+        <span class="sr-only">Sign in with Google</span>
+        <%= show_svg('google') %>
+      <% end %>
+    </div>
+    <div>
+      <%= render ButtonComponent.new(href: user_github_omniauth_authorize_path, method: :post, classes: 'w-full justify-center', style: :secondary, data: { turbo: false }) do %>
+        <span class="sr-only">Sign in with GitHub</span>
+        <%= show_svg('github') %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="mt-6 pt-6 border-t-2 border-gray-600">
+  <p class="text-xs leading-5 text-gray-400">By signing up, you agree to our <a href=<%= terms_of_service_path %> class="font-medium text-gray-300 hover:underline">Terms of Service</a>.</p>
+</div>
