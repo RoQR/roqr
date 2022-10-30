@@ -3,7 +3,7 @@
 class User::PrivateApiKeysController < ApplicationController
   before_action :authenticate_user!
   def update
-    if current_user.update(private_api_key: SecureRandom.hex)
+    if current_user.update(private_api_key: "roqr_#{SecureRandom.hex}")
       redirect_to settings_developer_path, success: 'API key updated'
     else
       redirect_to settings_developer_path,

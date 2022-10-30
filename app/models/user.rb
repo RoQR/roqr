@@ -51,6 +51,6 @@ class User < ApplicationRecord
   end
 
   def set_private_api_key
-    self.private_api_key = SecureRandom.hex if private_api_key.nil?
+    self.private_api_key = "roqr_#{SecureRandom.hex}" if private_api_key.nil?
   end
 end
