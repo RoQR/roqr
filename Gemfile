@@ -71,7 +71,7 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'simplecov'
-  gem 'webdrivers'
+  gem 'webdrivers', '~> 5.2'
 end
 
 # Use Redis for Action Cable
