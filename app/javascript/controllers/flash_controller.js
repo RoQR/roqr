@@ -1,29 +1,24 @@
 import {Controller} from "@hotwired/stimulus"
+import { useTransition } from 'stimulus-use'
 
 export default class extends Controller {
   static targets = ["buttons", "countdown"]
 
   connect() {
+    useTransition(this);
     const timeoutSeconds = parseInt(this.data.get("timeout"));
 
     // Display with transition
     setTimeout(() => {
-      this.element.classList.remove('hidden');
-      this.element.classList.add('transform', 'ease-out', 'duration-300', 'transition', 'transform-y-2', 'opacity-0', 'sm:transform-y-0', 'sm:transform-x-2');
-
-      // Trigger transition
-      setTimeout(() => {
-        this.element.classList.add('transform-y-0', 'opacity-100', 'sm:transform-x-0');
-      }, 100);
+      this.enter();
 
       if (this.hasCountdownTarget) {
         this.countdownTarget.style.animation = `flash-countdown linear ${timeoutSeconds}s`;
       }
     }, 500);
 
-    // Auto-hide
     this.timeoutId = setTimeout(() => {
-      this.close();
+      this.leave();
     }, timeoutSeconds * 1000 + 500);
   }
 
@@ -65,22 +60,6 @@ export default class extends Controller {
   stop() {
     clearTimeout(this.timeoutId)
     this.timeoutId = null
-  }
-
-  close() {
-    // Remove with transition
-    this.element.classList.remove('transform', 'ease-out', 'duration-300', 'transform-y-2', 'opacity-0', 'sm:transform-y-0', 'sm:transform-x-2', 'transform-y-0', 'sm:transform-x-0');
-    this.element.classList.add('ease-in', 'duration-100')
-
-    // Trigger transition
-    setTimeout(() => {
-      this.element.classList.add('opacity-0');
-    }, 100);
-
-    // Remove element after transition
-    setTimeout(() => {
-      this.element.remove();
-    }, 300);
   }
 
   get csrfToken() {
