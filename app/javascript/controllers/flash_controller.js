@@ -57,6 +57,10 @@ export default class extends Controller {
       });
   }
 
+  close() {
+    this.leave();
+  }
+
   stop() {
     clearTimeout(this.timeoutId)
     this.timeoutId = null

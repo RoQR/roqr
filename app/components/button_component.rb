@@ -29,7 +29,7 @@ class ButtonComponent < ViewComponent::Base
     @options[:data] ||= {}
     @options[:data][:turbo_method] = method
     @classes = class_names(
-      'inline-flex items-center border font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2',
+      'inline-flex justify-center items-center border font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2',
       STYLE_MAPPINGS[fetch_or_fallback(STYLE_OPTIONS, style, STYLE_DEFAULT)],
       SIZE_MAPPINGS[fetch_or_fallback(SIZE_OPTIONS, size, SIZE_DEFAULT)],
       options[:classes]
