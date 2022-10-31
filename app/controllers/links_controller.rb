@@ -18,7 +18,7 @@ class LinksController < ApplicationController
       format.html do
         authenticate_user!
         authorize! :show, @link
-        add_breadcrumb 'All links', links_path
+        add_breadcrumb "All links", links_path
         add_breadcrumb @link.name, @link
         render :show
       end
@@ -26,12 +26,12 @@ class LinksController < ApplicationController
   end
 
   def scan
-    if @link.should_record_scan? && !do_not_track?
+    if @link.should_record_scan?
       record_scan
       FirstScanNotification.with(link_name: @link.name).deliver_later(@link.organization.users) if @link.scans.size == 1
     end
     case @link.link_type
-    when 'contact_link'
+    when "contact_link"
       send_data @link.barcode_data, filename: @link.name, type: :vcf, disposition: :inline
     else
       redirect_to(@link.barcode_data, allow_other_host: true) and return
@@ -40,27 +40,27 @@ class LinksController < ApplicationController
 
   def new
     @styles = saved_styles
-    add_breadcrumb 'All links', links_path
-    add_breadcrumb 'New link', new_link_path
+    add_breadcrumb "All links", links_path
+    add_breadcrumb "New link", new_link_path
   end
 
   def edit
     @styles = saved_styles
-    add_breadcrumb 'All links', links_path
+    add_breadcrumb "All links", links_path
     add_breadcrumb @link.name, @link
-    add_breadcrumb 'Edit', edit_link_path(@link)
+    add_breadcrumb "Edit", edit_link_path(@link)
   end
 
   def create
     respond_to do |format|
       if @link.save
-        ahoy.track 'Link created', { name: @link.name, type: @link.link_type }
-        format.html { redirect_to @link, success: 'Link was successfully created.' }
+        ahoy.track "Link created", { name: @link.name, type: @link.link_type }
+        format.html { redirect_to @link, success: "Link was successfully created." }
       else
         @link_type = @link.link_type
         @styles = saved_styles
         flash[:error] = @link.errors.full_messages.first
-        format.html { render partial: 'form', status: :unprocessable_entity, locals: { link: @link } }
+        format.html { render partial: "form", status: :unprocessable_entity, locals: { link: @link } }
       end
     end
   end
@@ -68,7 +68,7 @@ class LinksController < ApplicationController
   def update
     respond_to do |format|
       if @link.update(link_params)
-        format.html { redirect_to link_url(@link), success: 'Link was successfully updated.' }
+        format.html { redirect_to link_url(@link), success: "Link was successfully updated." }
       else
         @link_type = @link.link_data.class.to_s.underscore
         @styles = saved_styles
@@ -82,21 +82,21 @@ class LinksController < ApplicationController
     @link.archive!
 
     respond_to do |format|
-      flash[:success] = 'Link was successfully archived.'
+      flash[:success] = "Link was successfully archived."
       format.html { redirect_to links_url }
     end
   end
 
   def confirm_destroy
-    @scans_text = @link.scans.count.positive? ? ", <b>including #{"#{@link.scans.count} #{'scan'.pluralize(@link.scans.count)}"}</b>".html_safe : ''
-    render TurboModalComponent.new(title: 'Delete link').with_content(render_to_string(partial: 'links/confirm_destroy'))
+    @scans_text = @link.scans.count.positive? ? ", <b>including #{"#{@link.scans.count} #{'scan'.pluralize(@link.scans.count)}"}</b>".html_safe : ""
+    render TurboModalComponent.new(title: "Delete link").with_content(render_to_string(partial: "links/confirm_destroy"))
   end
 
   def destroy
     @link.destroy
 
     respond_to do |format|
-      flash[:success] = 'Link was successfully destroyed.'
+      flash[:success] = "Link was successfully destroyed."
       format.html { redirect_to links_url }
     end
   end
@@ -106,7 +106,7 @@ class LinksController < ApplicationController
     @link.save!
     respond_to do |format|
       format.html do
-        render partial: 'links/password/password_field'
+        render partial: "links/password/password_field"
       end
     end
   end
@@ -143,6 +143,28 @@ class LinksController < ApplicationController
   end
 
   def record_scan
+    if do_not_track?
+      record_anonymized_scan
+    else
+      record_tracked_scan
+    end
+  end
+
+  def record_anonymized_scan
+    @link.scans.create(
+      browser_name: nil,
+      browser_version: nil,
+      bot_name: nil,
+      device_name: nil,
+      platform_name: nil,
+      platform_version: nil,
+      language: nil,
+      city: nil,
+      country: nil
+    )
+  end
+
+  def record_tracked_scan
     @link.scans.create(
       browser_name: browser.name,
       browser_version: browser.version,
