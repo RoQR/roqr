@@ -4,7 +4,7 @@
     <%= render 'layouts/common_header' %>
   </head>
 
-  <body class="flex flex-col min-h-screen h-full bg-gray-100 dark:bg-gray-800">
+  <body class="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-800">
     <header>
       <%= render_component 'navbar', user: current_user %>
       <% unless current_user.organization.on_trial_or_subscribed? %>
