@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to root_path, notice: "#{@user.display_name}'s account has been deleted" }
+      format.html { redirect_to settings_organization_path, notice: "#{@user.display_name}'s account has been deleted" }
     end
   end
 
