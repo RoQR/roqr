@@ -1,0 +1,4 @@
+<div class="flex py-4 justify-center bg-orange-300">
+  <span>Masquerading as <%= current_user.name %> (<%= current_user.email %>).</span>
+  <%= link_to "Log out", back_masquerade_path(current_user), class: "ml-3 underline" %>
+</div>

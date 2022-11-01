@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable, :omniauthable, omniauth_providers: %i[github google_oauth2]
+         :confirmable, :masqueradable, :omniauthable, omniauth_providers: %i[github google_oauth2]
 
   enum role: { viewer: "viewer", editor: "editor", administrator: "administrator" }
   belongs_to :organization

@@ -77,3 +77,5 @@ end
 # Use Redis for Action Cable
 
 gem "administrate", "~> 0.18.0"
+
+gem "devise_masquerade", "~> 2.0"

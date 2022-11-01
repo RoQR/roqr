@@ -6,6 +6,9 @@
 
   <body class="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-800">
     <header>
+      <% if user_masquerade? %>
+        <%= render 'layouts/masquerade_banner' %>
+      <% end %>
       <%= render_component 'navbar', user: current_user %>
       <% unless current_user.organization.on_trial_or_subscribed? %>
         <%= render 'layouts/inactive_subscription_banner' %>
