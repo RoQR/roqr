@@ -28,8 +28,13 @@ module Users
     end
 
     def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:invite,
-                                        keys: %i[name role organization_id])
+      devise_parameter_sanitizer.permit(
+        :invite, keys: %i[name role organization_id]
+      )
+    end
+
+    def after_invite_path_for(_invited, _invitee)
+      settings_organization_path
     end
   end
 end

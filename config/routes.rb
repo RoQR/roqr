@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   namespace :settings do
     get :profile
     get :organization
+    get :subscription
     get :developer
   end
   get :marketing, to: "marketing#index"
@@ -43,7 +44,7 @@ Rails.application.routes.draw do
     root to: "links#index", as: :authenticated_root
   end
 
-  authenticated :user, -> (user) { user.email == 'seb@rollen.io' } do
+  authenticated :user, ->(user) { user.email == "seb@rollen.io" } do
     mount Blazer::Engine, at: "blazer"
   end
 
@@ -67,6 +68,5 @@ Rails.application.routes.draw do
   end
 
   get "404", to: "application#page_not_found" if Rails.env.production?
-  mount Lookbook::Engine, at: '/lookbook' if Rails.env.development?
-
+  mount Lookbook::Engine, at: "/lookbook" if Rails.env.development?
 end

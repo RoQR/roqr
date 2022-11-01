@@ -1,11 +1,10 @@
-<div class="bg-gray-200 dark:bg-gray-700 overflow-hidden rounded-lg mb-5">
-  <div class="px-4 py-5 sm:px-6 flex flex-row items-center">
+<%= render_component 'card' do %>
+  <div class="px-4 py-5 sm:px-6 flex flex-col sm:flex-row items-center">
     <div class="flex items-center">
-      
-    <h3 class="text-lg leading-6 font-medium text-gray-800 dark:text-gray-100"><%= user.name %></h3>
-    <%= image_tag(user.gravatar_url, class: "h-10 w-10 rounded-full ml-3") %>
+      <h3 class="text-lg leading-6 font-medium text-gray-800 dark:text-gray-100"><%= user.name %></h3>
+      <%= image_tag(user.gravatar_url, class: "h-10 w-10 rounded-full ml-3") %>
     </div>
-    <div class="mt-6 ml-auto flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
+    <div class="sm:ml-auto w-full sm:w-auto mt-3 sm:mt-0">
       <%= render InlineButtonGroupComponent.new do |c| %>
         <% if can? :update, user %>
           <% c.with_button(href: edit_user_path(user), style: :secondary).with_content("Edit account") %>
@@ -26,4 +25,4 @@
       </div>
     </dl>
   </div>
-</div>
+<% end %>

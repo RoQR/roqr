@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: %i[github google_oauth2]
 
-  enum role: { reader: 'reader', user: 'user', administrator: 'administrator' }
+  enum role: { viewer: "viewer", editor: "editor", administrator: "administrator" }
   belongs_to :organization
   validates :private_api_key, uniqueness: true, allow_blank: true
   validates :role, inclusion: { in: roles.keys }

@@ -5,6 +5,7 @@
     <select id="tabs" name="tabs" class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
       <option>Profile</option>
       <option>Organization</option>
+      <option>Subscription</option>
       <option>Developer</option>
     </select>
   </div>
@@ -13,6 +14,7 @@
       <nav class="-mb-px flex justify-between sm:justify-start sm:space-x-8" aria-label="Tabs">
         <%= render 'settings/nav_item', path: settings_profile_path, name: 'Profile', icon: 'user-circle' %>
         <%= render 'settings/nav_item', path: settings_organization_path, name: 'Organization', icon: 'building-office' %>
+        <%= render 'settings/nav_item', path: settings_subscription_path, name: 'Subscription', icon: 'credit-card' %>
         <%= render 'settings/nav_item', path: settings_developer_path, name: 'Developer', icon: 'command-line' %>
       </nav>
     </div>

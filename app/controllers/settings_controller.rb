@@ -8,6 +8,8 @@ class SettingsController < ApplicationController
 
   def organization; end
 
+  def subscription; end
+
   def settings; end
 
   private

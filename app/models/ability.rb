@@ -5,24 +5,24 @@ class Ability
   LINK_TYPES = [ContactLink, EmailLink, SmsLink, TelephoneLink, UrlLink, WifiLink].freeze
 
   def initialize(user)
-    user = user ||= User.new(role: 'reader')
+    user ||= User.new(role: "viewer")
 
-    reader_abilities(user)
-    return unless %w[user administrator].include?(user.role)
+    viewer_abilities(user)
+    return unless %w[editor administrator].include?(user.role)
 
-    user_abilities(user)
-    return unless user.role == 'administrator'
+    editor_abilities(user)
+    return unless user.role == "administrator"
 
     admin_abilities(user)
   end
 
   private
 
-  def reader_abilities(user)
+  def viewer_abilities(user)
     can :show, PublicPage
     can :scan, Link
     can :read, Scan, link: { organization: user.organization, deleted_at: nil }
-    can :read, Notification, recipient_type: 'User', recipient_id: user.id
+    can :read, Notification, recipient_type: "User", recipient_id: user.id
     can :read, [Style, Link, Request], organization: user.organization
     can :read, User, organization: user.organization
     can :download, Link, organization: user.organization
@@ -30,7 +30,7 @@ class Ability
     can :create, Organization
   end
 
-  def user_abilities(user)
+  def editor_abilities(user)
     can :manage, PublicPage, organization: user.organization
     can %i[read create update], [Style, Link], organization: user.organization
     can :remove_password, Link, organization: user.organization

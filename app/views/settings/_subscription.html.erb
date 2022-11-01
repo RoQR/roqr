@@ -1,31 +1,28 @@
-<% if Flipper.enabled? :paddle, current_user %>
-  <%= render_component 'card' do %>
-    <%= render_component 'section_header', classes: 'dark:border-gray-600' do |c| %>
-      <%= c.title classes: "flex items-center" do %>
-        Subscription
-        <%= SubscriptionPresenter.new(@organization.subscription).status_badge if @organization.subscribed? %>
-      <% end %>
-      <% if @organization.subscribed? %>
-        <%= c.button(href: edit_subscription_path(@organization.subscription), style: :secondary).with_content("Manage subscription") %>
-      <% else %>
-        <%= c.button(href: new_subscription_path, style: :secondary).with_content("Manage subscription") %>
-      <% end %>
+<%= render_component 'card' do %>
+  <%= render_component 'section_header', classes: 'dark:border-gray-600' do |c| %>
+    <%= c.title classes: "flex items-center" do %>
+      Subscription
+      <%= SubscriptionPresenter.new(@organization.subscription).status_badge if @organization.subscribed? %>
     <% end %>
-    <% if @organization.subscribed? && !@organization.subscription.cancelled?  %>
-      <%= render 'subscription_timeline', subscription: @organization.subscription %>
-
+    <% if @organization.subscribed? %>
+      <%= c.button(href: edit_subscription_path(@organization.subscription), style: :secondary).with_content("Manage subscription") %>
     <% else %>
-      <div class="text-center">
-        <h3 class="mt-2 text-sm font-medium text-gray-700 dark:text-gray-200">Not subscribed</h3>
-        <p class="mt-1 text-sm text-gray-500">Subscribe now to retain access to RoQR after your trial ends.</p>
-        <div class="mt-6">
-          <%= render_component 'button', href: new_subscription_path do %>
-            <%= heroicon 'plus', variant: 'mini' %>
-            Subscribe
-          <% end %>
-        </div>
-      </div>
+      <%= c.button(href: new_subscription_path, style: :secondary).with_content("Manage subscription") %>
     <% end %>
+  <% end %>
+  <% if @organization.subscribed? && !@organization.subscription.cancelled?  %>
+    <%= render 'subscription_timeline', subscription: @organization.subscription %>
+  <% else %>
+    <div class="text-center">
+      <h3 class="mt-2 text-sm font-medium text-gray-700 dark:text-gray-200">Not subscribed</h3>
+      <p class="mt-1 text-sm text-gray-500">Subscribe now to retain access to RoQR after your trial ends.</p>
+      <div class="mt-6">
+        <%= render_component 'button', href: new_subscription_path do %>
+          <%= heroicon 'plus', variant: 'mini' %>
+          Subscribe
+        <% end %>
+      </div>
+    </div>
   <% end %>
 <% end %>
 
