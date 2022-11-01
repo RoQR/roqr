@@ -32,7 +32,7 @@ class LinkDashboard < Administrate::BaseDashboard
     versions: Field::HasMany,
     wifi_link: Field::BelongsTo,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -42,39 +42,37 @@ class LinkDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     id
-    background_color
-    contact_link
-    corner_dots_color
+    name
+    organization
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     id
+    name
+    organization
+    dynamic
+    public_pages
+    scans
     background_color
-    contact_link
     corner_dots_color
     corner_dots_shape
     corner_squares_color
     corner_squares_shape
-    deleted_at
     dots_color
     dots_shape
-    dynamic
-    email_link
     image_url
-    name
-    organization
     password_digest
-    public_pages
-    scans
+    contact_link
+    email_link
     sms_link
     telephone_link
     url_link
-    versions
     wifi_link
     created_at
     updated_at
+    deleted_at
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -95,13 +93,9 @@ class LinkDashboard < Administrate::BaseDashboard
     image_url
     name
     organization
-    password_digest
-    public_pages
-    scans
     sms_link
     telephone_link
     url_link
-    versions
     wifi_link
   ].freeze
 
