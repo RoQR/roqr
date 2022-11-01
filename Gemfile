@@ -75,3 +75,5 @@ group :test do
 end
 
 # Use Redis for Action Cable
+
+gem "administrate", "~> 0.18.0"

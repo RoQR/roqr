@@ -1,6 +1,26 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :subscription_payments
+      resources :subscriptions
+      resources :styles
+      resources :scans
+      resources :requests
+      resources :public_pages
+      resources :organizations
+      resources :notifications
+      resources :links
+      resources :users
+      resources :contact_links
+      resources :wifi_links
+      resources :url_links
+      resources :telephone_links
+      resources :sms_links
+      resources :email_links
+
+      root to: "subscription_payments#index"
+    end
   get "notifications/index"
   devise_for :users,
     controllers: {
