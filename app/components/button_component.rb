@@ -23,7 +23,7 @@ class ButtonComponent < ViewComponent::Base
   def initialize(href: nil, method: nil, size: :md, style: :primary, **options)
     @options = options
     # @options[:tag] ||= href.nil? ? :button : :a
-    @button = method.presence && method.to_sym != :get
+    @button = method.nil? || method.to_sym != :get
     @href = href
     @options[:method] = method
     @options[:data] ||= {}
