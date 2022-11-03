@@ -50,8 +50,8 @@
     <% end %>
   <% end %>
   <div class="overflow-hidden rounded-md md:rounded-lg overflow-x-auto">
-    <table class="min-w-full divide-y divide-gray-600">
-      <thead class="bg-gray-200 dark:bg-gray-700">
+    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
+      <thead class="bg-gray-100 dark:bg-gray-700">
         <tr>
           <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-800 dark:text-gray-100 sm:pl-6">Datetime</th>
           <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">Link</th>
@@ -73,7 +73,7 @@
           </td>
         </tr>
       </tfoot>
-      <tbody id="scans" class="divide-y divide-gray-600">
+      <tbody id="scans" class="divide-y divide-gray-200 dark:divide-gray-600">
         <%= render partial: "row", collection: @scans.by_datetime, as: :scan %>
       </tbody>
     </table>

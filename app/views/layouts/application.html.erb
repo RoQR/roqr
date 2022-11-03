@@ -4,7 +4,7 @@
     <%= render 'layouts/common_header' %>
   </head>
 
-  <body class="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-800">
+  <body class="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-800">
     <header>
       <% if user_masquerade? %>
         <%= render 'layouts/masquerade_banner' %>
@@ -28,7 +28,7 @@
     </article>
     <footer class="mt-auto">
       <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-        <div class="border-t border-gray-700 py-8 text-center text-sm text-gray-500 sm:text-left"><span class="block sm:inline">&copy; 2022 Overmuse, LLC.</span> <span class="block sm:inline text-sm">'QR Code' is a registered trademark of DENSO WAVE INCORPORATED</span></div>
+        <div class="border-t border-gray-300 dark:border-gray-700 py-8 text-center text-sm text-gray-400 dark:text-gray-500 sm:text-left"><span class="block sm:inline">&copy; 2022 Overmuse, LLC.</span> <span class="block sm:inline text-sm">'QR Code' is a registered trademark of DENSO WAVE INCORPORATED</span></div>
       </div>
     </footer>
   </body>

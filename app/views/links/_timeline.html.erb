@@ -5,7 +5,7 @@
     <% end %>
   <% end %>
   <%= render_component 'card' do %>
-    <ul role="list" class="divide-y divide-gray-600">
+    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-600">
       <% link.versions.select {|v| !v.whodunnit.nil? }.sort_by {|v| v.created_at}.reverse.each do |v| %>
         <% user = User.find(v.whodunnit) %>
         <li class="py-4">

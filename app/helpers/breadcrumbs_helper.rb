@@ -6,13 +6,13 @@ module BreadcrumbsHelper
     include ERB::Util
 
     def chevron
-      @context.content_tag(:div, class: 'text-gray-500') do
-        File.binread('app/assets/icons/solid/chevron-right.svg').html_safe
+      @context.content_tag(:div, class: "text-gray-500") do
+        File.binread("app/assets/icons/solid/chevron-right.svg").html_safe
       end
     end
 
     def render
-      @context.content_tag(:div, class: 'mt-6 flex items-center space-x-1 sm:space-x-3') do
+      @context.content_tag(:div, class: "mt-6 flex items-center space-x-1 sm:space-x-3") do
         separator = chevron
         @elements.collect do |element|
           html_escape(render_element(element))
@@ -40,15 +40,15 @@ module BreadcrumbsHelper
     end
 
     def content_no_path(element)
-      @context.content_tag(:p, class: 'text-sm font-medium text-gray-500') do
+      @context.content_tag(:p, class: "text-sm font-medium text-gray-500") do
         compute_name(element)
       end
     end
 
     def content_with_path(element)
-      element.options.merge!({ class: 'text-sm font-medium text-gray-500 hover:text-gray-700' })
+      element.options.merge!({ class: "text-sm font-medium text-gray-500 hover:text-gray-700" })
       @context.link_to_unless_current(compute_name(element), compute_path(element), element.options) do
-        @context.content_tag(:p, class: 'text-sm font-medium text-yellow-500 dark:text-yellow-400') do
+        @context.content_tag(:p, class: "text-sm font-medium text-yellow-500 dark:text-yellow-400") do
           compute_name(element)
         end
       end

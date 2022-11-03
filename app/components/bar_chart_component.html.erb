@@ -9,7 +9,7 @@
   <% @data.each do |title, count| %>
     <div class="flex items-center justify-between my-1 text-sm">
       <div class="w-full relative" style="max-width: calc(100% - 5rem);">
-        <div class="absolute top-0 left-0 h-full bg-gray-300 dark:bg-gray-600" style="width: <%= 100.0 * count / @max_count %>%;"></div>
+        <div class="absolute top-0 left-0 h-full bg-gray-200 dark:bg-gray-600" style="width: <%= 100.0 * count / @max_count %>%;"></div>
         <span class="flex px-2 py-1.5 group relative z-9 break-all">
           <p class="md:truncate block text-gray-800 dark:text-gray-100"><%= title || 'Unknown' %></p>
         </span>
