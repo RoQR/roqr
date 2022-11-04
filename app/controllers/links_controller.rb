@@ -3,7 +3,7 @@
 class LinksController < ApplicationController
   include LinksHelper
   include VersionsHelper
-  before_action :authenticate_user!, except: %i[scan show]
+  before_action :authenticate_user!, except: %i[scan challenge try_challenge]
   load_and_authorize_resource
   before_action :set_instance_variables, only: %i[new edit]
 
@@ -15,11 +15,8 @@ class LinksController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        authenticate_user!
-        authorize! :show, @link
         add_breadcrumb "All links", links_path
         add_breadcrumb @link.name, @link
-        render :show
       end
     end
   end
