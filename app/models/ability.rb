@@ -20,7 +20,7 @@ class Ability
 
   def viewer_abilities(user)
     can :show, PublicPage
-    can :scan, Link
+    can %i[challenge scan try_challenge], Link
     can :read, Scan, link: { organization: user.organization, deleted_at: nil }
     can :read, Notification, recipient_type: "User", recipient_id: user.id
     can :read, [Style, Link, Request], organization: user.organization

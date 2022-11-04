@@ -5,7 +5,6 @@ class LinksController < ApplicationController
   include VersionsHelper
   before_action :authenticate_user!, except: %i[scan show]
   load_and_authorize_resource
-  before_action :authenticate_before_scan, only: :scan
   before_action :set_instance_variables, only: %i[new edit]
 
   def index
@@ -26,15 +25,21 @@ class LinksController < ApplicationController
   end
 
   def scan
-    if @link.should_record_scan?
-      record_scan
-      FirstScanNotification.with(link_name: @link.name).deliver_later(@link.organization.users) if @link.scans.size == 1
-    end
-    case @link.link_type
-    when "contact_link"
-      send_data @link.barcode_data, filename: @link.name, type: :vcf, disposition: :inline
+    redirect_to [:challenge, @link] and return if @link.password_digest
+
+    process_scan
+  end
+
+  def challenge
+    render :challenge, layout: "empty"
+  end
+
+  def try_challenge
+    if @link.authenticate(params[:link][:password])
+      process_scan
     else
-      redirect_to(@link.barcode_data, allow_other_host: true) and return
+      flash[:error] = "Incorrect password"
+      render :challenge, layout: "empty", status: :unprocessable_entity
     end
   end
 
@@ -133,15 +138,6 @@ class LinksController < ApplicationController
     link_params
   end
 
-  def authenticate_before_scan
-    return if @link.public?
-
-    realm = "link-#{@link.hashid}"
-    authenticate_or_request_with_http_basic(realm) do |_username, password|
-      @link.authenticate(password)
-    end
-  end
-
   def record_scan
     if do_not_track?
       record_anonymized_scan
@@ -181,5 +177,18 @@ class LinksController < ApplicationController
   def set_instance_variables
     @link_type = params[:link_type] || @link.link_data&.class&.to_s&.underscore
     @static_only = @link_type.camelcase.constantize.static_only? if @link_type
+  end
+
+  def process_scan
+    if @link.should_record_scan?
+      record_scan
+      FirstScanNotification.with(link_name: @link.name).deliver_later(@link.organization.users) if @link.scans.size == 1
+    end
+    case @link.link_type
+    when "contact_link"
+      send_data @link.barcode_data, filename: @link.name, type: :vcf, disposition: :inline
+    else
+      redirect_to(@link.barcode_data, status: :see_other, allow_other_host: true) and return
+    end
   end
 end
