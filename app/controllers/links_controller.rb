@@ -32,7 +32,7 @@ class LinksController < ApplicationController
       if @link.authenticate(params[:link][:password])
         process_scan
       else
-        flash[:error] = "Incorrect password"
+        flash.now[:error] = "Incorrect password"
         render :challenge, layout: "empty", status: :unprocessable_entity
       end
     else
