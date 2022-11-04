@@ -3,7 +3,7 @@
 class LinksController < ApplicationController
   include LinksHelper
   include VersionsHelper
-  before_action :authenticate_user!, except: %i[scan challenge try_challenge]
+  before_action :authenticate_user!, except: %i[scan challenge]
   load_and_authorize_resource
   before_action :set_instance_variables, only: %i[new edit]
 
@@ -28,15 +28,15 @@ class LinksController < ApplicationController
   end
 
   def challenge
-    render :challenge, layout: "empty"
-  end
-
-  def try_challenge
-    if @link.authenticate(params[:link][:password])
-      process_scan
+    if request.patch?
+      if @link.authenticate(params[:link][:password])
+        process_scan
+      else
+        flash[:error] = "Incorrect password"
+        render :challenge, layout: "empty", status: :unprocessable_entity
+      end
     else
-      flash[:error] = "Incorrect password"
-      render :challenge, layout: "empty", status: :unprocessable_entity
+      render :challenge, layout: "empty"
     end
   end
 

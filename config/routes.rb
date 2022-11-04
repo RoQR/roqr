@@ -39,7 +39,7 @@ Rails.application.routes.draw do
       get :confirm_destroy
       get :archive
       get :challenge
-      patch :try_challenge
+      patch :challenge
       patch :remove_password
     end
   end

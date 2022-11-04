@@ -47,7 +47,7 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
 
   test "should redirect on link with correct password" do
     @link = create(:link, :url, dynamic: true, password: "pass")
-    patch try_challenge_link_url(@link), params: { link: { password: "pass" } }
+    patch challenge_link_url(@link), params: { link: { password: "pass" } }
     assert_redirected_to @link.link_data.url
   end
 
