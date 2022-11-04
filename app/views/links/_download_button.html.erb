@@ -1,5 +1,7 @@
 <div data-controller="dropdown" class="inline-flex rounded-md">
-  <button type="button" data-action="qr#download" data-qr-extension-param="png" class="inline-flex justify-center items-center border font-medium rounded-l-md focus:outline-none focus:ring-2 focus:ring-offset-2 border-gray-400 dark:border-gray-500 text-gray-500 dark:text-gray-400 bg-transparent hover:bg-transparent/5 px-4 py-2 text-sm w-full">Download PNG</button>
+  <%= render_component 'button', classes: 'rounded-r-none', style: :secondary, data: { action: 'qr#download', qr_extension_param: 'png'} do %>
+    Download PNG
+  <% end %>
   <div class="relative -ml-px block">
     <button data-action="dropdown#toggle click@window->dropdown#hide" type="button" class="relative inline-flex items-center rounded-r-md border bg-transparent border-gray-400 text-gray-600 dark:border-gray-500 dark:text-gray-300 px-2 py-2 text-sm font-medium focus:z-10 focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
       <span class="sr-only">Open options</span>

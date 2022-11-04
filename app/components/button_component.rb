@@ -23,7 +23,7 @@ class ButtonComponent < ViewComponent::Base
   def initialize(href: nil, method: nil, size: :md, style: :primary, **options)
     @options = options
     # @options[:tag] ||= href.nil? ? :button : :a
-    @button = method.presence && method.to_sym != :get
+    @button = href.nil? || (method.presence && method.to_sym != :get)
     @href = href
     @options[:method] = method
     @options[:data] ||= {}
@@ -32,7 +32,6 @@ class ButtonComponent < ViewComponent::Base
       "cursor-pointer inline-flex justify-center items-center border font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2",
       STYLE_MAPPINGS[fetch_or_fallback(STYLE_OPTIONS, style, STYLE_DEFAULT)],
       SIZE_MAPPINGS[fetch_or_fallback(SIZE_OPTIONS, size, SIZE_DEFAULT)],
-      { 'w-full': @button },
       options[:classes]
     )
   end
