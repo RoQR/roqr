@@ -37,8 +37,9 @@ Rails.application.routes.draw do
     member do
       get :scan
       get :confirm_destroy
-      get :archive
       get :challenge
+      post :archive
+      post :unarchive
       patch :challenge
       patch :remove_password
     end

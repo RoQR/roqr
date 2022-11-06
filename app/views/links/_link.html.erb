@@ -5,13 +5,18 @@
       <%= render 'hidden_qr_fields', link: link %>
       <span class="relative z-0 inline-flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
         <%= render 'download_button' %>
+      <% if can? :unarchive, link %>
+        <%= render_component 'button', method: :post, href: unarchive_link_path(@link), classes: 'w-full', style: :secondary do %>
+          Unarchive
+        <% end %>
+      <% end %>
       <% if can? :update, link %>
         <%= render_component 'button', href: edit_link_path(@link), style: :secondary do %>
           Edit
         <% end %>
       <% end %>
       <% if can? :archive, link %>
-        <%= render_component 'button', href: archive_link_path(@link), style: :destructive do %>
+        <%= render_component 'button', method: :post, href: archive_link_path(@link), classes: 'w-full', style: :destructive do %>
           Archive
         <% end %>
       <% end %>

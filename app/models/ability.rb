@@ -35,7 +35,7 @@ class Ability
     can %i[read create update], [Style, Link], organization: user.organization
     can :remove_password, Link, organization: user.organization
     can :archive, Link, organization: user.organization, deleted_at: nil
-    can %i[confirm_destroy destroy], Link do |link|
+    can %i[unarchive confirm_destroy destroy], Link do |link|
       link.organization == user.organization && !link.deleted_at.nil?
     end
     can :destroy, Style, organization: user.organization

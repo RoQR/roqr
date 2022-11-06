@@ -18,8 +18,8 @@ class Link < ApplicationRecord
   validates :name, presence: true, uniqueness: { scope: :organization_id }
   validate :no_password_on_static_link
   validate :static_only_links
-  scope :active, -> { where('deleted_at IS NULL') }
-  scope :archived, -> { where('deleted_at IS NOT NULL') }
+  scope :active, -> { where("deleted_at IS NULL") }
+  scope :archived, -> { where("deleted_at IS NOT NULL") }
 
   has_paper_trail
   delegate :summary, :barcode_data, to: :link_data
@@ -41,6 +41,11 @@ class Link < ApplicationRecord
     !deleted_at.nil?
   end
 
+  def unarchive!
+    self.deleted_at = nil
+    save
+  end
+
   def cleanup_password
     self.password_digest = nil unless dynamic
   end
@@ -50,7 +55,7 @@ class Link < ApplicationRecord
   end
 
   def static_only_links
-    errors.add(:dynamic, "can't be enabled for this type of link") if dynamic && link_type == 'wifi_link'
+    errors.add(:dynamic, "can't be enabled for this type of link") if dynamic && link_type == "wifi_link"
   end
 
   def should_record_scan?
@@ -72,7 +77,7 @@ class Link < ApplicationRecord
     # for a given class, returns the appropriate symbol
     # to pass to the ActiveRecord method reflect_on_association
     def reflection_symbol(klass)
-      klass.to_s.split('::').last.underscore.to_sym
+      klass.to_s.split("::").last.underscore.to_sym
     end
 
     # for all subclasses of the given base class, returns a
@@ -95,7 +100,7 @@ class Link < ApplicationRecord
 
   def link_data=(p)
     def reflection_symbol(klass)
-      klass.to_s.split('::').last.underscore.to_sym
+      klass.to_s.split("::").last.underscore.to_sym
     end
 
     def reflection_assignment_method(klass)

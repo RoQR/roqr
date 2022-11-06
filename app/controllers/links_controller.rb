@@ -89,6 +89,15 @@ class LinksController < ApplicationController
     end
   end
 
+  def unarchive
+    @link.unarchive!
+
+    respond_to do |format|
+      flash[:success] = "Link was successfully unarchived."
+      format.html { redirect_to links_url }
+    end
+  end
+
   def confirm_destroy
     @scans_text = @link.scans.count.positive? ? ", <b>including #{"#{@link.scans.count} #{'scan'.pluralize(@link.scans.count)}"}</b>".html_safe : ""
     render TurboModalComponent.new(title: "Delete link").with_content(render_to_string(partial: "links/confirm_destroy"))

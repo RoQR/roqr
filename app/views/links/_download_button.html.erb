@@ -1,5 +1,5 @@
-<div data-controller="dropdown" class="inline-flex rounded-md">
-  <%= render_component 'button', classes: 'rounded-r-none', style: :secondary, data: { action: 'qr#download', qr_extension_param: 'png'} do %>
+<div data-controller="dropdown" class="w-full inline-flex rounded-md">
+  <%= render_component 'button', form_class: 'w-full', classes: 'w-full rounded-r-none', style: :secondary, data: { action: 'qr#download', qr_extension_param: 'png'} do %>
     Download PNG
   <% end %>
   <div class="relative -ml-px block">
