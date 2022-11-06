@@ -1,6 +1,10 @@
 <% if @button %>
-  <%= button_to @href, class: @classes, **@options do %>
-    <%= content %>
+  <% if @href %>
+    <%= button_to @href, class: @classes, **@options do %>
+      <%= content %>
+    <% end %>
+  <% else %>
+    <%= button_tag content, class: @classes, **@options %>
   <% end %>
 <% else %>
   <%= link_to @href, class: @classes, **@options do %> 

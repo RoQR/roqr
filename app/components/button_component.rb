@@ -20,12 +20,13 @@ class ButtonComponent < ViewComponent::Base
   }.freeze
   SIZE_OPTIONS = SIZE_MAPPINGS.keys
 
-  def initialize(href: nil, method: nil, size: :md, style: :primary, **options)
+  def initialize(href: nil, method: nil, size: :md, style: :primary, type: nil, **options)
     @options = options
     # @options[:tag] ||= href.nil? ? :button : :a
     @button = href.nil? || (method.presence && method.to_sym != :get)
     @href = href
     @options[:method] = method
+    @options[:type] = type
     @options[:data] ||= {}
     @options[:data][:turbo_method] = method
     @classes = class_names(
