@@ -89,7 +89,18 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
   test "should archive link" do
     assert_difference("Link.active.count", -1) do
       assert_difference("Link.archived.count", 1) do
-        get archive_link_url(@link)
+        post archive_link_url(@link)
+      end
+    end
+
+    assert_redirected_to links_url
+  end
+
+  test "should unarchive link" do
+    post archive_link_url(@link)
+    assert_difference("Link.active.count", 1) do
+      assert_difference("Link.archived.count", -1) do
+        post unarchive_link_url(@link)
       end
     end
 
@@ -97,13 +108,13 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should confirm destroy link" do
-    get archive_link_url(@link)
+    post archive_link_url(@link)
     get confirm_destroy_link_url(@link)
     assert_response :success
   end
 
   test "should destroy link" do
-    get archive_link_url(@link)
+    post archive_link_url(@link)
     assert_difference("Link.count", -1) do
       assert_difference("UrlLink.count", -1) do
         delete link_url(@link)
