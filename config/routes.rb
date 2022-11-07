@@ -29,7 +29,8 @@ Rails.application.routes.draw do
       registrations: "users/registrations",
       confirmations: "users/confirmations",
       omniauth_callbacks: "users/omniauth_callbacks",
-      invitations: "users/invitations"
+      invitations: "users/invitations",
+      masquerades: "users/masquerades"
     }
   devise_for :admin_users
 
