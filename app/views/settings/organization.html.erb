@@ -63,9 +63,16 @@
           </ul>
         <% end %>
       <% end %>
-      <div>
-        <%= link_to 'Delete organization', confirm_destroy_organization_path(@organization), data: {turbo_frame: :modal} %> 
-      </div>
+      <%= render_component 'card' do %>
+        <%= render_component 'section_header', classes: 'dark:border-gray-600' do |c| %>
+          <%= c.title do %>
+            Danger zone
+          <% end %>
+        <% end %>
+        <div>
+          <%= link_to 'Delete organization', confirm_destroy_organization_path(@organization), class: 'text-red-500', data: {turbo_frame: :modal} %> 
+        </div>
+      <% end %>
     </section>
   </div>
 </div>
