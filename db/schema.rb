@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_01_220038) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_15_040428) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -296,6 +296,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_220038) do
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "corner_squares_copy_dots", default: true, null: false
+    t.boolean "corner_dots_copy_dots", default: true, null: false
     t.index ["organization_id"], name: "index_styles_on_organization_id"
   end
 

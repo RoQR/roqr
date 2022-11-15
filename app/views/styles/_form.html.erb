@@ -24,19 +24,31 @@
                   <%= form.label :dots_shape, 'Shape', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
                   <%= form.select :dots_shape, Style::DOTS_SHAPES.map{|x| [x.humanize, x]}, {}, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md", "data-action": "input->qr#update", "data-qr-target": "dotsShape" %>
                 </div>
-                <div class="flex flex-col">
+                <div class="flex flex-col" data-controller="reveal">
                   <h4 class="text-md font-medium leading-6 text-gray-700 dark:text-gray-200">Corner squares settings</h4>
-                  <%= form.label :corner_squares_color, 'Color', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
-                  <%= form.color_field :corner_squares_color, value: style.corner_squares_color, "data-action": "input->qr#stopCopyingCornerSquares input->qr#update", "data-qr-target": "cornerSquaresColor" %>
-                  <%= form.label :corner_squares_shape, 'Shape', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
-                  <%= form.select :corner_squares_shape, Style::CORNER_SQUARES_SHAPES.map{|x| [x.humanize, x]}, {include_blank: 'Default'}, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md", "data-action": "input->qr#update", "data-qr-target": "cornerSquaresShape" %>
+                  <div class="flex flex-row items-center mt-2">
+                    <%= form.check_box :corner_squares_copy_dots, class: "focus:ring-gray-700 h-4 w-4 bg-gray-300 text-gray-300 dark:bg-gray-800 dark:text-gray-800 rounded", data: { action: 'qr#update reveal#toggle', qr_target: 'copyCornerSquares' }  %>
+                    <%= form.label :corner_squares_copy_dots, 'Same as dots settings', class: "ml-3 text-sm font-medium text-gray-600 dark:text-gray-300"  %>
+                  </div>
+                  <div class="hidden flex flex-col" data-reveal-target="item">
+                    <%= form.label :corner_squares_color, 'Color', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
+                    <%= form.color_field :corner_squares_color, value: style.corner_squares_color, "data-action": "input->qr#update", "data-qr-target": "cornerSquaresColor" %>
+                    <%= form.label :corner_squares_shape, 'Shape', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
+                    <%= form.select :corner_squares_shape, Style::CORNER_SQUARES_SHAPES.map{|x| [x.humanize, x]}, {include_blank: 'Default'}, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md", "data-action": "input->qr#update", "data-qr-target": "cornerSquaresShape" %>
+                  </div>
                 </div>
-                <div class="flex flex-col">
+                <div class="flex flex-col" data-controller="reveal">
                   <h4 class="text-md font-medium leading-6 text-gray-700 dark:text-gray-200">Corner dots settings</h4>
-                  <%= form.label :corner_dots_color, 'Color', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
-                  <%= form.color_field :corner_dots_color, value: style.corner_dots_color, "data-action": "input->qr#stopCopyingCornerDots input->qr#update", "data-qr-target": "cornerDotsColor" %>
-                  <%= form.label :corner_dots_shape, 'Shape', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
-                  <%= form.select :corner_dots_shape, Style::CORNER_DOTS_SHAPES.map{|x| [x.humanize, x]}, {include_blank: 'Default'}, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md", "data-action": "input->qr#update", "data-qr-target": "cornerDotsShape" %>
+                  <div class="flex flex-row items-center mt-2">
+                    <%= form.check_box :corner_dots_copy_dots, class: "focus:ring-gray-700 h-4 w-4 bg-gray-300 text-gray-300 dark:bg-gray-800 dark:text-gray-800 rounded", data: { action: 'qr#update reveal#toggle', qr_target: 'copyCornerDots' } %>
+                    <%= form.label :corner_dots_copy_dots, 'Same as dots settings', class: "ml-3 text-sm font-medium text-gray-600 dark:text-gray-300"  %>
+                  </div>
+                  <div class="hidden flex flex-col" data-reveal-target="item">
+                    <%= form.label :corner_dots_color, 'Color', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
+                    <%= form.color_field :corner_dots_color, value: style.corner_dots_color, "data-action": "input->qr#update", "data-qr-target": "cornerDotsColor" %>
+                    <%= form.label :corner_dots_shape, 'Shape', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
+                    <%= form.select :corner_dots_shape, Style::CORNER_DOTS_SHAPES.map{|x| [x.humanize, x]}, {include_blank: 'Default'}, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md", "data-action": "input->qr#update", "data-qr-target": "cornerDotsShape" %>
+                  </div>
                 </div>
                 <div class="flex flex-col">
                   <h4 class="text-md font-medium leading-6 text-gray-700 dark:text-gray-200">Image settings</h4>

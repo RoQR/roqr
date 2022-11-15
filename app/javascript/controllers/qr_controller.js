@@ -3,29 +3,21 @@ import QRCodeStyling from "qr-code-styling"
 
 export default class extends Controller {
   static values = { barcodeData: String }
-  static targets = [ "canvas", "dotsColor", "dotsShape", "backgroundColor", "cornerSquaresColor", "cornerSquaresShape", "cornerDotsColor", "cornerDotsShape", "imageUrl" ]
+  static targets = [ "canvas", "dotsColor", "dotsShape", "backgroundColor", "copyCornerSquares", "cornerSquaresColor", "cornerSquaresShape", "copyCornerDots", "cornerDotsColor", "cornerDotsShape", "imageUrl" ]
   
   connect() {
-    this.copyCornerSquares = (this.dotsColorTarget.value == this.cornerSquaresColorTarget.value)
-    this.copyCornerDots = (this.dotsColorTarget.value == this.cornerDotsColorTarget.value)
     this.qrCode = new QRCodeStyling(this.options());
     this.qrCode.append(this.canvasTarget);
   }
 
-  stopCopyingCornerSquares() {
-    this.copyCornerSquares = false
-  }
-
-  stopCopyingCornerDots() {
-    this.copyCornerDots = false
-  }
-
   update() {
-    if (this.copyCornerSquares) {
-      this.cornerSquaresColorTarget.value = this.dotsColorTarget.value
+    if (this.copyCornerSquaresTarget.checked) {
+      this.cornerSquaresColorTarget.value = this.dotsColorTarget.value;
+      this.cornerSquaresShapeTarget.value = '';
     }
-    if (this.copyCornerDots) {
+    if (this.copyCornerDotsTarget.checked) {
       this.cornerDotsColorTarget.value = this.dotsColorTarget.value
+      this.cornerDotsShapeTarget.value = '';
     }
     this.qrCode.update(this.options())
   }
