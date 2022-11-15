@@ -10,7 +10,7 @@
     <% end %>
   <% end %>
   <%= render_component 'card' do %>
-    <%= area_chart Scan.includes(:link).last_thirty_days, discrete: true, points: false, legend: false, min: 0, colors: ['#facc15'], library: { scales: { y: { grid: { display: false, drawBorder: false } } } }  %> 
+    <%= area_chart Scan.accessible_by(current_ability).includes(:link).last_thirty_days, discrete: true, points: false, legend: false, min: 0, colors: ['#facc15'], library: { scales: { y: { grid: { display: false, drawBorder: false } } } }  %> 
   <% end %>
   <div class="my-5 grid grid-cols-1 md:grid-cols-2 gap-3">
     <%= render ChartContainerComponent.new do |c| %>
