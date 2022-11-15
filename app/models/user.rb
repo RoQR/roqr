@@ -21,7 +21,7 @@ class User < ApplicationRecord
 
   def gravatar_url
     gravatar_id = Digest::MD5.hexdigest(email.downcase)
-    "http://secure.gravatar.com/avatar/#{gravatar_id}?d=identicon"
+    "https://secure.gravatar.com/avatar/#{gravatar_id}?d=identicon"
   end
 
   def self.from_omniauth(auth)
