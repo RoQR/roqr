@@ -1,5 +1,5 @@
 <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
 <script type="text/javascript">
-  Paddle.Environment.set('sandbox');
-  Paddle.Setup({ vendor: 7904 });
+  Paddle.Environment.set(<%= PaddlePay.config.environment %>);
+  Paddle.Setup({ vendor: <%= PaddlePay.config.vendor_id %> });
 </script>
