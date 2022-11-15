@@ -1,6 +1,6 @@
 <%= render_component 'card' do %>
   <div class="px-4 py-5 sm:px-6 flex flex-col sm:flex-row items-center">
-    <div class="flex items-center">
+    <div class="flex items-center mr-auto">
       <h3 class="text-lg leading-6 font-medium text-gray-800 dark:text-gray-100"><%= user.name %></h3>
       <%= image_tag(user.gravatar_url, class: "h-10 w-10 rounded-full ml-3") %>
     </div>
@@ -10,23 +10,21 @@
           <% c.with_button(href: edit_user_path(user), style: :secondary).with_content("Edit account") %>
         <% end %>
         <% if can? :destroy, user %>
-          <% c.with_button(href: user_path(user), method: :delete, style: :destructive).with_content("Delete account") %>
+          <% c.with_button(href: user_path(user), method: :delete, style: :destructive, classes: 'w-full').with_content("Delete account") %>
         <% end %>
       <% end %>
     </div>
   </div>
   <div class="border-t border-gray-300 dark:border-gray-600 px-4 py-5 sm:p-0">
-    <dl class="sm:divide-y sm:divide-gray-:00">
-      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-medium text-gray-600 dark:text-gray-300">Email</dt>
-        <dd class="mt-1 text-sm text-gray-700 dark:text-gray-200 sm:mt-0 sm:col-span-2">
-          <%= user.email %>
-        </dd>
-        <dt class="text-sm font-medium text-gray-600 dark:text-gray-300">Role</dt>
-        <dd class="mt-1 text-sm text-gray-700 dark:text-gray-200 sm:mt-0 sm:col-span-2">
-          <%= user.role.humanize %>
-        </dd>
-      </div>
+    <dl class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-600 dark:text-gray-300">Email</dt>
+      <dd class="mt-1 text-sm text-gray-700 dark:text-gray-200 sm:mt-0 sm:col-span-2">
+        <%= user.email %>
+      </dd>
+      <dt class="mt-3 sm:mt-0 text-sm font-medium text-gray-600 dark:text-gray-300">Role</dt>
+      <dd class="mt-1 text-sm text-gray-700 dark:text-gray-200 sm:mt-0 sm:col-span-2">
+        <%= user.role.humanize %>
+      </dd>
     </dl>
   </div>
 <% end %>
