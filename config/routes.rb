@@ -62,7 +62,8 @@ Rails.application.routes.draw do
     get :developer
   end
   get :marketing, to: "marketing#index"
-  get "terms-of-service", to: "marketing#terms_of_service"
+  get "terms-of-service", to: redirect("https://docs.roqr.app/terms-of-service")
+  get "privacy-policy", to: redirect("https://docs.roqr.app/privacy-policy")
   resources :paddle_webhooks, only: :create
   resources :subscription_payments, only: %i[index create]
   resources :subscriptions, except: %i[show] do
