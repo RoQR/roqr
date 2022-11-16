@@ -6,7 +6,9 @@ class StylesController < ApplicationController
   skip_authorize_resource only: :show
 
   # GET /styles
-  def index; end
+  def index
+    @styles = @styles.includes(:organization)
+  end
 
   # GET /styles/1
   def show
@@ -27,6 +29,9 @@ class StylesController < ApplicationController
 
   # POST /styles
   def create
+    if truthy?(@style.transparent_background)
+      @style.background_color = 'transparent'
+    end
     respond_to do |format|
       if @style.save
         format.html { redirect_to styles_url, notice: 'Style was successfully created.' }
@@ -64,8 +69,9 @@ class StylesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def style_params
     params.require(:style).permit(
-      :name, :dots_color, :dots_shape, :background_color, :corner_dots_color,
-      :corner_dots_shape, :corner_squares_color, :corner_squares_shape, :image_url
+      :name, :dots_color, :dots_shape, :background_color, :transparent_background, :corner_dots_color,
+      :corner_dots_copy_dots, :corner_dots_shape, :corner_squares_color, :corner_squares_shape,
+      :corner_squares_copy_dots, :image_url
     )
   end
 end

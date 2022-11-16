@@ -3,7 +3,7 @@ import QRCodeStyling from "qr-code-styling"
 
 export default class extends Controller {
   static values = { barcodeData: String }
-  static targets = [ "canvas", "dotsColor", "dotsShape", "backgroundColor", "copyCornerSquares", "cornerSquaresColor", "cornerSquaresShape", "copyCornerDots", "cornerDotsColor", "cornerDotsShape", "imageUrl" ]
+  static targets = [ "canvas", "dotsColor", "dotsShape", "transparentBackground", "backgroundColor", "copyCornerSquares", "cornerSquaresColor", "cornerSquaresShape", "copyCornerDots", "cornerDotsColor", "cornerDotsShape", "imageUrl" ]
   
   connect() {
     this.qrCode = new QRCodeStyling(this.options());
@@ -28,6 +28,12 @@ export default class extends Controller {
 
   options() {
     let size = 500;
+    if ((this.transparentBackgroundTarget.type == 'hidden' && this.transparentBackgroundTarget.value == 'true') ||
+      (this.transparentBackgroundTarget.type == 'checkbox' && this.transparentBackgroundTarget.checked)) {
+      this.backgroundColor = 'transparent';
+    } else {
+      this.backgroundColor = this.backgroundColorTarget.value;
+    }
     return {
       data: decodeURIComponent(this.barcodeDataValue),
       height: size,
@@ -47,7 +53,7 @@ export default class extends Controller {
         type: this.cornerDotsShapeTarget.value
       },
       backgroundOptions: {
-        color: this.backgroundColorTarget.value
+        color: this.backgroundColor
       },
       imageOptions: {
         margin: 10
