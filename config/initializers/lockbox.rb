@@ -1,3 +1,4 @@
 # frozen_string_literal: true
 
-Lockbox.master_key = Rails.application.credentials.lockbox_master_key
+Dotenv.require_keys("LOCKBOX_MASTER_KEY")
+Lockbox.master_key = ENV.fetch("LOCKBOX_MASTER_KEY")

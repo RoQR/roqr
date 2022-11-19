@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Sentry.init do |config|
-  config.dsn = 'https://fbb1f70d628842af87504b368db90218@o1295260.ingest.sentry.io/6520504'
+  config.dsn = ENV.fetch("SENTRY_DSN")
   config.breadcrumbs_logger = %i[active_support_logger http_logger]
   config.enabled_environments = %w[production]
 
