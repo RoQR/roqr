@@ -5,9 +5,10 @@ FactoryBot.define do
     "test#{n}@example.com"
   end
   factory :user do
-    name { 'Test User' }
+    name { "Test User" }
     email
     organization
-    role { 'administrator' }
+    role { "administrator" }
+    password { "Aa1!xxxx" }
   end
 end
