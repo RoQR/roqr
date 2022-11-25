@@ -100,7 +100,7 @@ GEM
     blind_index (2.3.1)
       activesupport (>= 5.2)
       argon2-kdf (>= 0.1.1)
-    bootsnap (1.14.0)
+    bootsnap (1.15.0)
       msgpack (~> 1.2)
     breadcrumbs_on_rails (4.1.0)
       railties (>= 5.0)
@@ -236,7 +236,7 @@ GEM
     loofah (2.19.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    lookbook (1.4.0)
+    lookbook (1.4.1)
       actioncable
       activemodel
       css_parser
@@ -507,7 +507,7 @@ DEPENDENCIES
   sass-rails
   selenium-webdriver
   sentry-rails
-  sentry-ruby
+  sentry-ruby (~> 5.6)
   simplecov
   sprockets-rails
   stimulus-rails
