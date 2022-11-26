@@ -21,7 +21,7 @@ class Ability
   def viewer_abilities(user)
     can :show, PublicPage
     can %i[challenge scan], Link
-    can :read, Scan, link: { organization: user.organization, deleted_at: nil }
+    can :read, Scan, link: { organization: user.organization, archived_at: nil }
     can :read, Notification, recipient_type: "User", recipient_id: user.id
     can :read, [Style, Link, Request], organization: user.organization
     can :read, User, organization: user.organization
@@ -34,9 +34,9 @@ class Ability
     can :manage, PublicPage, organization: user.organization
     can %i[read create update], [Style, Link], organization: user.organization
     can :remove_password, Link, organization: user.organization
-    can :archive, Link, organization: user.organization, deleted_at: nil
+    can :archive, Link, organization: user.organization, archived_at: nil
     can %i[unarchive confirm_destroy destroy], Link do |link|
-      link.organization == user.organization && !link.deleted_at.nil?
+      link.organization == user.organization && !link.archived_at.nil?
     end
     can :destroy, Style, organization: user.organization
     can :create, LINK_TYPES

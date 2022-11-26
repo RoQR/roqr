@@ -9,13 +9,13 @@ class LinkDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
+    archived_at: Field::DateTime,
     background_color: Field::String,
     contact_link: Field::BelongsTo,
     corner_dots_color: Field::String,
     corner_dots_shape: Field::String,
     corner_squares_color: Field::String,
     corner_squares_shape: Field::String,
-    deleted_at: Field::DateTime,
     dots_color: Field::String,
     dots_shape: Field::String,
     dynamic: Field::Boolean,
@@ -72,20 +72,20 @@ class LinkDashboard < Administrate::BaseDashboard
     wifi_link
     created_at
     updated_at
-    deleted_at
+    archived_at
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
+    archived_at
     background_color
     contact_link
     corner_dots_color
     corner_dots_shape
     corner_squares_color
     corner_squares_shape
-    deleted_at
     dots_color
     dots_shape
     dynamic

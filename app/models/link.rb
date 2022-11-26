@@ -18,8 +18,8 @@ class Link < ApplicationRecord
   validates :name, presence: true, uniqueness: { scope: :organization_id }
   validate :no_password_on_static_link
   validate :static_only_links
-  scope :active, -> { where("deleted_at IS NULL") }
-  scope :archived, -> { where("deleted_at IS NOT NULL") }
+  scope :active, -> { where("archived_at IS NULL") }
+  scope :archived, -> { where("archived_at IS NOT NULL") }
   delegate :summary, :barcode_data, to: :link_data
 
   def style=(style_id)
@@ -37,7 +37,7 @@ class Link < ApplicationRecord
   end
 
   def active?
-    deleted_at.nil?
+    archived_at.nil?
   end
 
   def public?
@@ -45,16 +45,16 @@ class Link < ApplicationRecord
   end
 
   def archive!
-    self.deleted_at = Time.zone.now
+    self.archived_at = Time.zone.now
     save
   end
 
   def archived?
-    !deleted_at.nil?
+    !archived_at.nil?
   end
 
   def unarchive!
-    self.deleted_at = nil
+    self.archived_at = nil
     save
   end
 
