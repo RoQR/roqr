@@ -19,6 +19,7 @@ class User < ApplicationRecord
   belongs_to :organization
   validates :private_api_key, uniqueness: true, allow_blank: true
   validates :role, inclusion: { in: roles.keys }
+  validates :email, presence: true, email: true
   before_create :set_private_api_key
   has_many :requests, dependent: :destroy
   has_many :notifications, as: :recipient

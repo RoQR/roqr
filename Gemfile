@@ -79,3 +79,5 @@ end
 gem "administrate", "~> 0.18.0"
 
 gem "devise_masquerade", "~> 2.0"
+
+gem "email_validator", "~> 2.2"

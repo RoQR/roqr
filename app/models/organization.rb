@@ -10,7 +10,7 @@ class Organization < ApplicationRecord
   delegate :status, to: :subscription, prefix: :subscription, allow_nil: true
   delegate :subscribed?, to: :subscription, allow_nil: true
   delegate :cancellation_effective_date, to: :subscription, allow_nil: true
-  validates :billing_email, presence: true
+  validates :billing_email, presence: true, email: true
 
   def email
     billing_email
