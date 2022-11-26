@@ -4,7 +4,7 @@
   <% end %>
 <% end %>
 <div class="mb-5">
-  <dl class="mt-5 grid grid-cols-2 gap-5">
+  <dl class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-5">
     <%= render_component 'card' do %>
       <dt class="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">Total Scans</dt>
       <dd class="mt-1 text-3xl font-semibold text-gray-800 dark:text-gray-100"><%= link.scans.count %></dd>
