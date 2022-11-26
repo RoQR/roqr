@@ -61,7 +61,7 @@ class User < ApplicationRecord
   end
 
   def maybe_create_org
-    self.organization = Organization.new if organization.nil?
+    self.organization = Organization.new(billing_email: email) if organization.nil?
   end
 
   def set_private_api_key

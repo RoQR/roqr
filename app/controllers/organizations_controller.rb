@@ -7,15 +7,16 @@ class OrganizationsController < ApplicationController
   def update
     respond_to do |format|
       if @organization.update(organization_params)
-        format.html { redirect_to settings_organization_path, notice: 'Your organization has been updated.' }
+        format.html { redirect_to settings_organization_path, notice: "Your organization has been updated." }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        flash.now[:error] = @organization.errors.full_messages.first
+        format.html { render settings_organization_path, status: :unprocessable_entity }
       end
     end
   end
 
   def confirm_destroy
-    render TurboModalComponent.new(title: 'Delete account').with_content(render_to_string(partial: 'organizations/confirm_destroy'))
+    render TurboModalComponent.new(title: "Delete account").with_content(render_to_string(partial: "organizations/confirm_destroy"))
   end
 
   private

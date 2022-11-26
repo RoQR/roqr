@@ -10,11 +10,11 @@
           <div class="mt-6 grid grid-cols-4 gap-6">
             <div class="col-span-4 sm:col-span-2">
               <%= form.label :name, "Organization name", class: "block text-sm font-medium text-gray-600 dark:text-gray-300"  %>
-              <% if can? :edit, @organization %>
-                <%= form.text_field :name, class: "mt-1 bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
-              <% else %>
-                <%= form.text_field :name, class: "mt-1 bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md", disabled: true %>
-              <% end %>
+              <%= form.text_field :name, class: "mt-1 bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md", disabled: cannot?(:edit, @organization) %>
+            </div>
+            <div class="col-span-4 sm:col-span-2">
+              <%= form.label :billing_email, class: "block text-sm font-medium text-gray-600 dark:text-gray-300"  %>
+              <%= form.text_field :billing_email, class: "mt-1 bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md", disabled: cannot?(:edit, @organization) %>
             </div>
           </div>
 

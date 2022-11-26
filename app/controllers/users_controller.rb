@@ -33,6 +33,7 @@ class UsersController < ApplicationController
         redirect_to user_path(@user), notice: "#{@user.display_name}'s acount has been updated"
       end
     else
+      flash.now[:error] = @user.errors.full_messages.first
       render :edit, status: :unprocessable_entity
     end
   end
