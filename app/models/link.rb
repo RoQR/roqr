@@ -20,8 +20,6 @@ class Link < ApplicationRecord
   validate :static_only_links
   scope :active, -> { where("deleted_at IS NULL") }
   scope :archived, -> { where("deleted_at IS NOT NULL") }
-
-  has_paper_trail
   delegate :summary, :barcode_data, to: :link_data
 
   def style=(style_id)

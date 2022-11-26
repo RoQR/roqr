@@ -2,7 +2,6 @@
 
 class LinksController < ApplicationController
   include LinksHelper
-  include VersionsHelper
   before_action :authenticate_user!, except: %i[scan challenge]
   load_and_authorize_resource
   before_action :set_instance_variables, only: %i[new edit]
