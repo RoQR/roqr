@@ -5,11 +5,11 @@
       <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Customize the look of your link</p>
     </div>
     <div class="md:col-span-2 md:grid-cols-3 md:gap-6">
-      <div class="mt-5" data-controller="style">
+      <div class="mt-5">
         <div class="flex flex-col">
           <%= form.label :style, "Choose from an existing style", class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
           <div class="mt-1">
-            <%= select_tag :style, options_for_select(@styles.map{|t| [t.name, t.id]}),  include_blank: true, data: {action: "style#apply"}, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
+            <%= form.select :style, options_for_select(@styles.map{|t| [t.name, t.id]}), {include_blank: true}, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
           </div>
         </div>
         <%= turbo_frame_tag Style.new do %>
@@ -18,7 +18,6 @@
             <%= link_to "create a new style", new_style_path, class: "text-yellow-500 dark:text-yellow-400", data: {turbo_frame: "modal"} %>
           </span>
         <% end %>
-        <%= render 'hidden_qr_fields', form: form, link: link %>
       </div>
     </div>
   </div>

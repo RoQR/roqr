@@ -24,6 +24,20 @@ class Link < ApplicationRecord
   has_paper_trail
   delegate :summary, :barcode_data, to: :link_data
 
+  def style=(style_id)
+    style = Style.find(style_id)
+    assign_attributes(
+      dots_color: style.dots_color,
+      background_color: style.background_color,
+      corner_squares_color: style.corner_squares_color,
+      corner_dots_color: style.corner_dots_color,
+      dots_shape: style.dots_shape,
+      corner_squares_shape: style.corner_squares_shape,
+      corner_dots_shape: style.corner_dots_shape,
+      image_url: style.image_url
+    )
+  end
+
   def active?
     deleted_at.nil?
   end

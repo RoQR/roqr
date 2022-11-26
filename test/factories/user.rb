@@ -10,5 +10,9 @@ FactoryBot.define do
     organization
     role { "administrator" }
     password { "Aa1!xxxx" }
+    confirmed_at { Time.now }
+  end
+  trait :unconfirmed do
+    confirmed_at { nil }
   end
 end
