@@ -25,11 +25,11 @@ class User < ApplicationRecord
   has_encrypted :private_api_key
   blind_index :private_api_key
 
-  validates :password, presence: true, length: { in: Devise.password_length }, format: { with: PASSWORD_FORMAT },
-                       confirmation: true, on: :create
-
-  validates :password, allow_nil: true, length: { in: Devise.password_length }, format: { with: PASSWORD_FORMAT },
-                       confirmation: true, on: :update
+  validates :password,
+            allow_nil: true,
+            length: { in: Devise.password_length },
+            format: { with: PASSWORD_FORMAT },
+            confirmation: true
 
   before_validation :maybe_create_org
 
