@@ -67,6 +67,7 @@ Rails.application.routes.draw do
   resources :paddle_webhooks, only: :create
   resources :subscription_payments, only: %i[index create]
   resources :subscriptions, except: %i[show] do
+    get :subscribed, on: :collection
     patch :preview, on: :member
   end
 

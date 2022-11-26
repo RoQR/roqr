@@ -14,27 +14,27 @@ class FlashComponent < ApplicationComponent
 
   def icon
     case @type
-    when 'success'
-      show_svg('solid/check-circle')
-    when 'info', 'notice'
-      show_svg('solid/information-circle')
-    when 'warn', 'alert'
-      show_svg('solid/exclamation')
-    when 'error'
-      show_svg('solid/x-circle')
+    when "success"
+      show_svg("solid/check-circle")
+    when "info", "notice"
+      show_svg("solid/information-circle")
+    when "warn", "alert"
+      show_svg("solid/exclamation")
+    when "error"
+      show_svg("solid/x-circle")
     end
   end
 
   def icon_color
     case @type
-    when 'success'
-      'text-green-400'
-    when 'info', 'notice'
-      'text-blue-400'
-    when 'warn', 'alert'
-      'text-yellow-400'
-    when 'error'
-      'text-red-400'
+    when "success"
+      "text-green-400"
+    when "info", "notice"
+      "text-blue-400"
+    when "warn", "alert"
+      "text-yellow-400"
+    when "error"
+      "text-red-400"
     end
   end
 
