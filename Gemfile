@@ -5,8 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
-gem "dotenv-rails"
-
+gem "administrate", "~> 0.18.0"
 gem "ahoy_matey", "~> 4.1"
 gem "bcrypt", "~> 3.1"
 gem "blazer", "~> 2.6"
@@ -21,6 +20,9 @@ gem "data_migrate", "~> 8.1"
 gem "delayed_job_active_record", "~> 4.1"
 gem "devise", "~> 4.8"
 gem "devise_invitable", "~> 2.0"
+gem "devise_masquerade", "~> 2.0"
+gem "dotenv-rails"
+gem "email_validator", "~> 2.2"
 gem "flipper", "~> 0.25.0"
 gem "flipper-active_record", "~> 0.25.0"
 gem "geocoder"
@@ -73,11 +75,3 @@ group :test do
   gem "simplecov"
   gem "webdrivers", "~> 5.2"
 end
-
-# Use Redis for Action Cable
-
-gem "administrate", "~> 0.18.0"
-
-gem "devise_masquerade", "~> 2.0"
-
-gem "email_validator", "~> 2.2"
