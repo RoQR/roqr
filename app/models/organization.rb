@@ -8,6 +8,7 @@ class Organization < ApplicationRecord
   has_many :styles, dependent: :destroy
   has_one :subscription, dependent: :destroy
   delegate :status, to: :subscription, prefix: :subscription, allow_nil: true
+  delegate :cancelled?, to: :subscription, prefix: :subscription, allow_nil: true
   delegate :subscribed?, to: :subscription, allow_nil: true
   delegate :cancellation_effective_date, to: :subscription, allow_nil: true
   validates :billing_email, presence: true, email: true

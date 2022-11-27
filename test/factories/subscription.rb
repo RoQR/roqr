@@ -6,7 +6,7 @@ FactoryBot.define do
     subscription_plan_id { 2 }
     organization
     update_url { "https://sandbox-checkout.paddle.com/subscription/update?user=2&subscription=5&hash=c3305e89ab2ceaaf19813d586fc47edf5769bb63" }
-    cancel_url { "https://sandbox-checkout.paddle.com/subscription/cancel?user=8&subscription=8&hash=04745e68a1df96c15b11eb93a53b3381eae77fa9" }
+    cancel_url { "https://sandbox-checkout.paddle.com/subscription/cancel?user=2&subscription=5&hash=04745e68a1df96c15b11eb93a53b3381eae77fa9" }
     status { "active" }
     next_bill_date { Time.zone.now + 30.days }
     paused_at { nil }

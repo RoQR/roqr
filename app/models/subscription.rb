@@ -5,21 +5,10 @@ class Subscription < ApplicationRecord
   belongs_to :organization
   has_many :subscription_payments, dependent: :destroy
   alias_attribute :subscription_id, :paddle_subscription_id
+  enum status: { active: 'active', trialing: 'trialing', past_due: 'past_due', paused: 'paused', cancelled: 'deleted' }
 
   def cancel_paddle_subscription
-    CancelPaddleSubscriptionJob.perform_later(subscription_id) unless status == 'deleted'
-  end
-
-  def cancelled?
-    status == 'deleted'
-  end
-
-  def past_due?
-    status == 'past_due'
-  end
-
-  def paused?
-    status == 'paused'
+    CancelPaddleSubscriptionJob.perform_later(subscription_id) unless cancelled? 
   end
 
   def subscribed?
