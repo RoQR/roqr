@@ -6,6 +6,7 @@ module.exports = {
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
     './app/components/**/*',
+    './app/presenters/**/*',
     './app/assets/icons/*.svg',
     './app/views/**/*.{erb,haml,html,slim}'
   ],
