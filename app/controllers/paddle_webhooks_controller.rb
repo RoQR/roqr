@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PaddleWebhooksController < ApplicationController
-  before_action :verify_webhook, if: -> { Rails.env.prod? }
+  before_action :verify_webhook, unless: -> { Rails.env.test? }
   skip_before_action :verify_authenticity_token
 
   def create
@@ -91,7 +91,7 @@ class PaddleWebhooksController < ApplicationController
     signature = Base64.decode64(params['p_signature'])
     params_serialized = prepare_params
 
-    return head(403) unless pub_key.verify(OpenSSL::Digest.new('SHA1'), signature, params_serialized)
+    return head(403) unless public_key.verify(OpenSSL::Digest.new('SHA1'), signature, params_serialized)
   end
 
   def prepare_params
