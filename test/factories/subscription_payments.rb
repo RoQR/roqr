@@ -2,11 +2,11 @@
 
 FactoryBot.define do
   factory :subscription_payment do
-    subscription { nil }
-    currency { 'MyString' }
-    event_time { '2022-09-15 09:26:48' }
-    payment_method { 'MyString' }
-    receipt_url { 'MyString' }
-    sale_gross { 'MyString' }
+    subscription
+    currency { "USD" }
+    event_time { Time.zone.now }
+    payment_method { "card" }
+    receipt_url { "https://my.paddle.com/receipt/2/efa7376eb503e2f-34b1566919" }
+    sale_gross { "9.99" }
   end
 end
