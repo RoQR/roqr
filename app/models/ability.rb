@@ -48,7 +48,7 @@ class Ability
     can :manage, User, organization: user.organization
     can :manage, Organization, id: user.organization&.id
     can :manage, Subscription, organization: user.organization
-    cannot :new, Subscription, organization: user.organization if user.organization.subscribed?
-    cannot :edit, Subscription, organization: user.organization if user.organization.subscription_cancelled?
+    cannot :new, Subscription, organization: user.organization if user.organization&.subscribed?
+    cannot :edit, Subscription, organization: user.organization if user.organization&.subscription_cancelled?
   end
 end
