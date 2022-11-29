@@ -30,7 +30,7 @@ class User < ApplicationRecord
             allow_nil: true,
             length: { in: Devise.password_length },
             format: { with: PASSWORD_FORMAT },
-            confirmation: true
+            confirmation: true, if: -> { provider.blank? }
 
   before_validation :maybe_create_org
 
@@ -45,7 +45,7 @@ class User < ApplicationRecord
         name: auth.info.name,
         email: auth.info.email,
         password: Devise.friendly_token[0, 20],
-        organization: Organization.new
+        organization: Organization.new(billing_email: auth.info.email)
       )
       user.skip_confirmation!
     end
