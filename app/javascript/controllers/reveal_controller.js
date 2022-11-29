@@ -1,28 +1,24 @@
 import { Controller } from "@hotwired/stimulus"
+import {enter, leave, toggle} from 'el-transition'
 
 export default class extends Controller {
   static targets = [ 'item' ]
-  static classes = [ 'hidden' ]
-
-  connect() {
-    this.class = this.hasHiddenClass ? this.hiddenClass : 'hidden'
-  }
 
   toggle() {
     this.itemTargets.forEach(item => {
-      item.classList.toggle(this.class)
+      toggle(item)
     })
   }
 
   show() {
     this.itemTargets.forEach(item => {
-      item.classList.remove(this.class)
+      enter(item)
     })
   }
 
   hide() {
     this.itemTargets.forEach(item => {
-      item.classList.add(this.class)
+      leave(item)
     })
   }
 }
