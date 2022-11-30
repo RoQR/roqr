@@ -2,7 +2,7 @@
 
 module Users
   class RegistrationsController < Devise::RegistrationsController
-    layout "devise"
+    layout :resolve_layout
     before_action :configure_sign_up_params, only: [:create]
     before_action :configure_account_update_params, only: [:update]
 
@@ -13,7 +13,7 @@ module Users
     # GET /resource/edit
 
     # PUT /resource
-    #
+
     # DELETE /resource
     def destroy
       super do |user|
@@ -46,5 +46,14 @@ module Users
     # The path used after sign up.
 
     # The path used after sign up for inactive accounts.
+
+    def resolve_layout
+      case action_name
+      when "update"
+        "application"
+      else
+        "devise"
+      end
+    end
   end
 end
