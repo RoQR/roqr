@@ -23,6 +23,8 @@ class Link < ApplicationRecord
   delegate :summary, :barcode_data, to: :link_data
 
   def style=(style_id)
+    return if style_id.blank?
+
     style = Style.find(style_id)
     assign_attributes(
       dots_color: style.dots_color,
