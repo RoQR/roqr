@@ -39,6 +39,10 @@ module Users
       devise_parameter_sanitizer.permit(:account_update, keys: %i[attribute name])
     end
 
+    def update_resource(resource, params)
+      resource.update(params)
+    end
+
     # The path used after sign up.
 
     # The path used after sign up for inactive accounts.

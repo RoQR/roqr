@@ -28,9 +28,9 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       if @user == current_user
-        redirect_to settings_profile_path, notice: "Your acount has been updated"
+        redirect_to settings_profile_path
       else
-        redirect_to user_path(@user), notice: "#{@user.display_name}'s acount has been updated"
+        redirect_to user_path(@user)
       end
     else
       flash.now[:error] = @user.errors.full_messages.first
