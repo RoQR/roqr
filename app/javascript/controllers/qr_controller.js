@@ -42,7 +42,7 @@ export default class extends Controller {
       image: this.imageUrlTarget.value,
       dotsOptions: {
         color: this.dotsColorTarget.value,
-        type: this.dotsShapeTarget.value
+        type:  this.dotsShape()
       },
       cornersSquareOptions: {
         color: this.cornerSquaresColorTarget.value,
@@ -58,6 +58,14 @@ export default class extends Controller {
       imageOptions: {
         margin: 10
       }
+    }
+  }
+
+  dotsShape() {
+    if (this.dotsShapeTargets.length > 1) {
+      return this.dotsShapeTargets.find(x => x.checked).value;
+    } else {
+      return this.dotsShapeTarget.value;
     }
   }
 }

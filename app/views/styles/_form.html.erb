@@ -30,7 +30,17 @@
                   <%= form.label :dots_color, 'Color', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
                   <%= form.color_field :dots_color, value: style.dots_color, "data-action": "input->qr#update", "data-qr-target": "dotsColor" %>
                   <%= form.label :dots_shape, 'Shape', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
-                  <%= form.select :dots_shape, Style::DOTS_SHAPES.map{|x| [x.humanize, x]}, {}, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md", "data-action": "input->qr#update", "data-qr-target": "dotsShape" %>
+                  <fieldset>
+                    <legend></legend>
+                    <div class="grid grid-cols-3 gap-3 sm:grid-cols-6">
+                      <% Style::DOTS_SHAPES.each do |s| %>
+                        <label class="flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
+                          <%= form.radio_button :dots_shape, s, class: 'peer sr-only', data: { action: 'input->qr#update', qr_target: 'dotsShape' } %>
+                          <%= image_tag "dots-shapes/#{s}.svg", class: 'p-1 rounded peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
+                        </label>
+                      <% end %>
+                    </div>
+                  </fieldset>
                 </div>
                 <div class="flex flex-col" data-controller="reveal">
                   <h4 class="text-md font-medium leading-6 text-gray-700 dark:text-gray-200">Corner squares settings</h4>
