@@ -29,12 +29,10 @@ class StylesController < ApplicationController
 
   # POST /styles
   def create
-    if truthy?(@style.transparent_background)
-      @style.background_color = 'transparent'
-    end
+    @style.background_color = "transparent" if truthy?(@style.transparent_background)
     respond_to do |format|
       if @style.save
-        format.html { redirect_to styles_url, notice: 'Style was successfully created.' }
+        format.html { redirect_to styles_url, notice: "Style was successfully created." }
         format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -47,9 +45,10 @@ class StylesController < ApplicationController
   def update
     respond_to do |format|
       if @style.update(style_params)
-        format.html { redirect_to styles_url, notice: 'Style was successfully updated.' }
+        format.html { redirect_to styles_url, notice: "Style was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
+        format.turbo_stream { render :form_update, status: :unprocessable_entity }
       end
     end
   end
@@ -59,7 +58,7 @@ class StylesController < ApplicationController
     @style.destroy
 
     respond_to do |format|
-      format.html { redirect_to styles_url, notice: 'Style was successfully destroyed.' }
+      format.html { redirect_to styles_url, notice: "Style was successfully destroyed." }
       format.turbo_stream
     end
   end
