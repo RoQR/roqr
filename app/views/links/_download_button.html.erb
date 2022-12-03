@@ -1,5 +1,5 @@
 <div data-controller="dropdown" class="w-full inline-flex rounded-md">
-  <%= render_component 'button', form_class: 'w-full', classes: 'w-full rounded-r-none', style: :secondary, data: { action: 'qr#download', qr_extension_param: 'png'} do %>
+  <%= render_component 'button', form_class: 'w-full', classes: 'w-full rounded-r-none', style: :secondary, data: { action: 'qr#download', qr_name_param: link.name, qr_extension_param: 'png'} do %>
     Download PNG
   <% end %>
   <div class="relative -ml-px block">
@@ -10,9 +10,9 @@
 
     <div data-dropdown-target="menu" class="hidden absolute right-0 z-10 mt-2 -mr-1 w-36 origin-top-right rounded-md bg-gray-100 dark:bg-gray-700 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1" data-transition-enter-active="transition ease-out duration-100" data-transition-enter-from="transform opacity-0 scale-95" data-transition-enter-to="transform opacity-100 scale-100" data-transition-leave-active="transition ease-in duration-75" data-transition-leave-from="transform opacity-100 scale-100" data-transition-leave-to="transform opacity-0 scale-95">
       <div class="py-1" role="none">
-        <button data-action="qr#download" data-qr-extension-param="jpeg" class="text-left text-gray-600 dark:text-gray-300 hover:bg-transparent/5 block px-4 py-2 w-full text-sm" role="menuitem" tabindex="-1" id="option-menu-item-0">Download JPEG</button>
-        <button data-action="qr#download" data-qr-extension-param="webp" class="text-left text-gray-600 dark:text-gray-300 hover:bg-transparent/5 block px-4 py-2 w-full text-sm" role="menuitem" tabindex="-1" id="option-menu-item-1">Download WebP</button>
-        <button data-action="qr#download" data-qr-extension-param="svg" class="text-left text-gray-600 dark:text-gray-300 hover:bg-transparent/5 block px-4 py-2 w-full  text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">Download SVG</button>
+        <button data-action="qr#download" data-qr-name-param="<%= link.name %>" data-qr-extension-param="jpeg" class="text-left text-gray-600 dark:text-gray-300 hover:bg-transparent/5 block px-4 py-2 w-full text-sm" role="menuitem" tabindex="-1" id="option-menu-item-0">Download JPEG</button>
+        <button data-action="qr#download" data-qr-name-param="<%= link.name %>" data-qr-extension-param="webp" class="text-left text-gray-600 dark:text-gray-300 hover:bg-transparent/5 block px-4 py-2 w-full text-sm" role="menuitem" tabindex="-1" id="option-menu-item-1">Download WebP</button>
+        <button data-action="qr#download" data-qr-name-param="<%= link.name %>" data-qr-extension-param="svg" class="text-left text-gray-600 dark:text-gray-300 hover:bg-transparent/5 block px-4 py-2 w-full  text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">Download SVG</button>
       </div>
     </div>
   </div>

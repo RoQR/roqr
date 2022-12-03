@@ -4,7 +4,7 @@
     <div class="w-full mt-6 sm:ml-auto flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
       <%= render 'hidden_qr_fields', link: link %>
       <span class="relative z-0 inline-flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
-        <%= render 'download_button' %>
+        <%= render 'download_button', link: link %>
       <% if can? :unarchive, link %>
         <%= render_component 'button', method: :post, href: unarchive_link_path(@link), classes: 'w-full', style: :secondary do %>
           Unarchive
