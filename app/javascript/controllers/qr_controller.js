@@ -13,11 +13,16 @@ export default class extends Controller {
   update() {
     if (this.copyCornerSquaresTarget.checked) {
       this.cornerSquaresColorTarget.value = this.dotsColorTarget.value;
+      this.cornerSquaresShapeTargets.forEach((el, i) => {
+        el.checked = (el.value == '');
+      });
       this.cornerSquaresShapeTarget.value = '';
     }
     if (this.copyCornerDotsTarget.checked) {
       this.cornerDotsColorTarget.value = this.dotsColorTarget.value
-      this.cornerDotsShapeTarget.value = '';
+      this.cornerDotsShapeTargets.forEach((el, i) => {
+        el.checked = (el.value == '');
+      });
     }
     this.qrCode.update(this.options())
   }
@@ -46,11 +51,11 @@ export default class extends Controller {
       },
       cornersSquareOptions: {
         color: this.cornerSquaresColorTarget.value,
-        type: this.cornerSquaresShapeTarget.value
+        type: this.cornerSquaresShape()
       },
       cornersDotOptions: {
         color: this.cornerDotsColorTarget.value,
-        type: this.cornerDotsShapeTarget.value
+        type: this.cornerDotsShape()
       },
       backgroundOptions: {
         color: this.backgroundColor
@@ -66,6 +71,22 @@ export default class extends Controller {
       return this.dotsShapeTargets.find(x => x.checked).value;
     } else {
       return this.dotsShapeTarget.value;
+    }
+  }
+
+  cornerSquaresShape() {
+    if (this.cornerSquaresShapeTargets.length > 1) {
+      return this.cornerSquaresShapeTargets.find(x => x.checked).value;
+    } else {
+      return this.cornerSquaresShapeTarget.value;
+    }
+  }
+
+  cornerDotsShape() {
+    if (this.cornerDotsShapeTargets.length > 1) {
+      return this.cornerDotsShapeTargets.find(x => x.checked).value;
+    } else {
+      return this.cornerDotsShapeTarget.value;
     }
   }
 }

@@ -53,7 +53,21 @@
                     <%= form.label :corner_squares_color, 'Color', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
                     <%= form.color_field :corner_squares_color, value: style.corner_squares_color, "data-action": "input->qr#update", "data-qr-target": "cornerSquaresColor" %>
                     <%= form.label :corner_squares_shape, 'Shape', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
-                    <%= form.select :corner_squares_shape, Style::CORNER_SQUARES_SHAPES.map{|x| [x.humanize, x]}, {include_blank: 'Default'}, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md", "data-action": "input->qr#update", "data-qr-target": "cornerSquaresShape" %>
+                    <fieldset>
+                      <legend></legend>
+                      <div class="grid grid-cols-3 gap-3 sm:grid-cols-6">
+                        <label class="flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
+                          <%= form.radio_button :corner_squares_shape, '', class: 'peer sr-only', data: { action: 'input->qr#update', qr_target: 'cornerSquaresShape' } %>
+                          <%= image_tag "x.svg", class: 'p-1 rounded peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
+                        </label>
+                        <% Style::CORNER_SQUARES_SHAPES.each do |s| %>
+                          <label class="flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
+                            <%= form.radio_button :corner_squares_shape, s, class: 'peer sr-only', data: { action: 'input->qr#update', qr_target: 'cornerSquaresShape' } %>
+                            <%= image_tag "corner-squares-shapes/#{s}.svg", class: 'p-1 rounded peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
+                          </label>
+                        <% end %>
+                      </div>
+                    </fieldset>
                   </div>
                 </div>
                 <div class="flex flex-col" data-controller="reveal">
@@ -67,7 +81,21 @@
                     <%= form.label :corner_dots_color, 'Color', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
                     <%= form.color_field :corner_dots_color, value: style.corner_dots_color, "data-action": "input->qr#update", "data-qr-target": "cornerDotsColor" %>
                     <%= form.label :corner_dots_shape, 'Shape', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
-                    <%= form.select :corner_dots_shape, Style::CORNER_DOTS_SHAPES.map{|x| [x.humanize, x]}, {include_blank: 'Default'}, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md", "data-action": "input->qr#update", "data-qr-target": "cornerDotsShape" %>
+                    <fieldset>
+                      <legend></legend>
+                      <div class="grid grid-cols-3 gap-3 sm:grid-cols-6">
+                        <label class="flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
+                          <%= form.radio_button :corner_dots_shape, '', class: 'peer sr-only', data: { action: 'input->qr#update', qr_target: 'cornerDotsShape' } %>
+                          <%= image_tag "x.svg", class: 'p-1 rounded peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
+                        </label>
+                        <% Style::CORNER_DOTS_SHAPES.each do |s| %>
+                          <label class="flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
+                            <%= form.radio_button :corner_dots_shape, s, class: 'peer sr-only', data: { action: 'input->qr#update', qr_target: 'cornerDotsShape' } %>
+                            <%= image_tag "corner-dots-shapes/#{s}.svg", class: 'p-1 rounded peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
+                          </label>
+                        <% end %>
+                      </div>
+                    </fieldset>
                   </div>
                 </div>
                 <div class="flex flex-col">
