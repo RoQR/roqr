@@ -27,14 +27,8 @@ class Link < ApplicationRecord
 
     style = Style.find(style_id)
     assign_attributes(
-      dots_color: style.dots_color,
-      background_color: style.background_color,
-      corner_squares_color: style.corner_squares_color,
-      corner_dots_color: style.corner_dots_color,
-      dots_shape: style.dots_shape,
-      corner_squares_shape: style.corner_squares_shape,
-      corner_dots_shape: style.corner_dots_shape,
-      image_url: style.image_url
+      style.attributes.slice("dots_color", "background_color", "corner_squares_color", "corner_dots_color", "dots_shape",
+                             "corner_squares_shape", "corner_dots_shape", "image_url")
     )
   end
 
