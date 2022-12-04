@@ -58,7 +58,7 @@
                   <%= form.label :corner_squares_shape, 'Shape', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
                   <fieldset>
                     <legend></legend>
-                    <div class="grid grid-cols-3 gap-3 sm:grid-cols-6">
+                    <div class="grid grid-cols-4 gap-3 sm:grid-cols-6">
                       <label class="flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
                         <%= form.radio_button :corner_squares_shape, '', class: 'peer sr-only', data: { action: 'input->qr#update', qr_target: 'cornerSquaresShape' } %>
                         <%= image_tag "x.svg", class: 'p-1 rounded peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
@@ -86,7 +86,7 @@
                   <%= form.label :corner_dots_shape, 'Shape', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
                   <fieldset>
                     <legend></legend>
-                    <div class="grid grid-cols-3 gap-3 sm:grid-cols-6">
+                    <div class="grid grid-cols-4 gap-3 sm:grid-cols-6">
                       <label class="flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
                         <%= form.radio_button :corner_dots_shape, '', class: 'peer sr-only', data: { action: 'input->qr#update', qr_target: 'cornerDotsShape' } %>
                         <%= image_tag "x.svg", class: 'p-1 rounded peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
