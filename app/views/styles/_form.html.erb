@@ -34,7 +34,7 @@
                   <%= form.label :dots_shape, 'Shape', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
                   <fieldset>
                     <legend></legend>
-                    <div class="grid grid-cols-3 gap-3 sm:grid-cols-6">
+                    <div class="grid grid-cols-4 gap-3 sm:grid-cols-6">
                       <% Style::DOTS_SHAPES.each do |s| %>
                         <label class="flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
                           <%= form.radio_button :dots_shape, s, class: 'peer sr-only', data: { action: 'input->qr#update', qr_target: 'dotsShape' } %>
