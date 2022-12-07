@@ -1,20 +1,21 @@
 # frozen_string_literal: true
 
 class LinkData < ApplicationRecord
+  self.abstract_class = true
   TYPES = %i[contact_link email_link sms_link telephone_link url_link wifi_link].freeze
   def self.new_link_data(link_data_type)
     case link_data_type
-    when 'contact'
+    when "contact"
       ContactLink.new
-    when 'email'
+    when "email"
       EmailLink.new
-    when 'sms'
+    when "sms"
       SmsLink.nw
-    when 'telephone'
+    when "telephone"
       TelephoneLink.new
-    when 'url'
+    when "url"
       UrlLink.new
-    when 'wifi'
+    when "wifi"
       WifiLink.new
     end
   end
@@ -24,9 +25,9 @@ class LinkData < ApplicationRecord
   end
 end
 
-require 'contact_link'
-require 'email_link'
-require 'sms_link'
-require 'telephone_link'
-require 'url_link'
-require 'wifi_link'
+require "contact_link"
+require "email_link"
+require "sms_link"
+require "telephone_link"
+require "url_link"
+require "wifi_link"
