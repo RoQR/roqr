@@ -15,3 +15,4 @@ pin 'stimulus-use', to: 'https://ga.jspm.io/npm:stimulus-use@0.50.0/dist/index.j
 pin '@hotwired/stimulus', to: 'https://ga.jspm.io/npm:@hotwired/stimulus@3.0.1/dist/stimulus.js'
 pin 'hotkeys-js', to: 'https://ga.jspm.io/npm:hotkeys-js@3.9.4/dist/hotkeys.esm.js'
 pin 'qr-code-styling', to: 'https://ga.jspm.io/npm:qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js'
+pin "ahoy.js", to: "https://ga.jspm.io/npm:ahoy.js@0.4.0/dist/ahoy.esm.js"

@@ -1,8 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 import QRCodeStyling from "qr-code-styling"
+import ahoy from 'ahoy.js';
 
 export default class extends Controller {
-  static values = { barcodeData: String }
+  static values = { barcodeData: String, trackDownloads: { type: Boolean, default: false } }
   static targets = [ "canvas", "dotsColor", "dotsShape", "transparentBackground", "backgroundColor", "copyCornerSquares", "cornerSquaresColor", "cornerSquaresShape", "copyCornerDots", "cornerDotsColor", "cornerDotsShape", "imageUrl" ]
   
   connect() {
@@ -32,6 +33,9 @@ export default class extends Controller {
   }
 
   download({ params }) {
+    if (this.trackDownloadsValue) {
+      ahoy.track("Downloaded QR code");
+    }
     this.qrCode.download(params)
   }
 
