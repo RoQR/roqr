@@ -22,7 +22,7 @@ class User < ApplicationRecord
   validates :email, presence: true, email: true
   before_create :set_private_api_key
   has_many :requests, dependent: :destroy
-  has_many :notifications, as: :recipient
+  has_many :notifications, as: :recipient, dependent: :destroy
   has_encrypted :private_api_key
   blind_index :private_api_key
 
