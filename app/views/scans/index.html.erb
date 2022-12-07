@@ -17,7 +17,7 @@
       <%= c.with_title do %>
         Links
       <% end %>
-      <%= c.with_chart(label_unit: 'Links', data_unit: 'Scans', data: @links_stats) %>
+      <%= c.with_chart(label_unit: 'Link', data_unit: 'Scans', data: @links_stats) %>
     <% end %>
     <%= render ChartContainerComponent.new do |c| %>
       <%= c.with_title do %>
@@ -29,13 +29,13 @@
       <%= c.with_title do %>
         Browsers
       <% end %>
-      <%= c.with_chart(label_unit: 'Browsers', data_unit: 'Scans', data: @browser_stats) %>
+      <%= c.with_chart(label_unit: 'Browser', data_unit: 'Scans', data: @browser_stats) %>
     <% end %>
     <%= render ChartContainerComponent.new do |c| %>
       <%= c.with_title do %>
         Countries
       <% end %>
-      <%= c.with_chart(label_unit: 'Browsers', data_unit: 'Scans', data: @countries_stats) %>
+      <%= c.with_chart(label_unit: 'Country', data_unit: 'Scans', data: @countries_stats) %>
     <% end %>
   </div>
   <%= render SectionHeaderComponent.new do |c| %>
