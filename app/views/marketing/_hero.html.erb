@@ -1,8 +1,8 @@
 <div  class="relative bg-gray-800 bg-texture overflow-hidden">
   <div class="relative py-6">
     <main class="my-16 sm:my-24">
-      <div class="mx-auto max-w-7xl">
-        <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+      <div class="mx-auto px-2 max-w-7xl">
+        <div class="pb-6 lg:grid lg:grid-cols-12 lg:gap-8">
           <div class="px-4 sm:px-6 sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left lg:flex lg:items-center">
             <div>
               <h1 class="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:leading-none lg:mt-6 lg:text-5xl xl:text-6xl">
@@ -72,6 +72,11 @@
             </div>
           </div>
         </div>
+        <h2 class="my-4 text-2xl tracking-tight font-extrabold text-white text-center sm:my-5 sm:leading-none lg:my-6 lg:text-3xl xl:text-4xl">
+          Create free static QR codes without signing up
+        </h2>
+        <%= turbo_frame_tag :qr, src: "/marketing/qr/type" do %>
+        <% end %>
       </div>
     </main>
   </div>

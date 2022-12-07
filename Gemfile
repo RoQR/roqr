@@ -75,3 +75,5 @@ group :test do
   gem "simplecov"
   gem "webdrivers", "~> 5.2"
 end
+
+gem "wicked", "~> 2.0"

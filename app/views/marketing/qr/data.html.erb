@@ -1,0 +1,11 @@
+<%= turbo_frame_tag :qr do %>
+  <%= render 'steps', step: 2 %>
+  <div class="mt-5">
+    <%= render @link_type %>
+    <% for error in @qr.errors %>
+      <%= turbo_stream.append 'flash_messages' do %>
+	<%= render FlashComponent.new(type: 'error', data: error.full_message) %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,134 @@
+<%= turbo_frame_tag :qr do %>
+  <%= render 'steps', step: 3 %>
+  <div class="mt-5">
+    <%= form_with() do |form| %>
+      <div data-controller="qr" data-qr-barcode-data-value="<%= @data %>" class="md:grid md:grid-cols-2 md:gap-6 flex flex-col-reverse space-y-5 md:space-y-0">
+	<div class="md:col-span-1">
+	  <div class="space-y-6">
+	    <%= render_component 'card' do %>
+	      <div class="space-y-5 divide-y divide-gray-500">
+		<div class="flex flex-col space-y-3" data-controller="reveal">
+		  <h4 class="text-md font-medium leading-6 text-gray-700 dark:text-gray-200">Background settings</h4>
+		  <label class="inline-flex relative items-center cursor-pointer">
+		    <%= form.check_box :transparent_background, class: "sr-only peer", data: { qr_target: 'transparentBackground', action: 'reveal#toggle qr#update' } %>
+		    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-gray-100 rounded-full peer dark:bg-gray-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-yellow-300"></div>
+		    <span class="ml-3 text-sm font-medium text-gray-600 dark:text-gray-300">Transparent background?</span>
+		  </label>
+		  <div 
+      class='flex flex-col' data-reveal-target="item">
+		    <%= form.label :background_color, 'Color', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
+		    <%= form.color_field :background_color, value: '#ffffff', "data-action": "input->qr#update", "data-qr-target": "backgroundColor" %>
+		  </div>
+		</div>
+		<div class="flex flex-col pt-5 space-y-3">
+		  <h4 class="text-md font-medium leading-6 text-gray-700 dark:text-gray-200">Dots settings</h4>
+		  <div class="flex flex-col">
+		    <%= form.label :dots_color, 'Color', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
+		    <%= form.color_field :dots_color, value: '#000000', "data-action": "input->qr#update", "data-qr-target": "dotsColor" %>
+		  </div>
+		  <div>
+		    <%= form.label :dots_shape, 'Shape', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
+		    <fieldset>
+		      <legend></legend>
+		      <div class="grid grid-cols-4 gap-3 sm:grid-cols-6">
+			<% Style::DOTS_SHAPES.each do |s| %>
+			  <label class="flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
+			    <%= form.radio_button :dots_shape, s, checked: s == 'square', class: 'peer sr-only', data: { action: 'input->qr#update', qr_target: 'dotsShape' } %>
+			    <%= image_tag "dots-shapes/#{s}.svg", class: 'p-1 rounded peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
+			  </label>
+			<% end %>
+		      </div>
+		    </fieldset>
+		  </div>
+		</div>
+		<div class="flex flex-col pt-5" data-controller="reveal">
+		  <h4 class="text-md font-medium leading-6 text-gray-700 dark:text-gray-200">Corner squares settings</h4>
+		  <label class="inline-flex relative items-center cursor-pointer mt-2">
+		    <%= form.check_box :corner_squares_copy_dots, checked: true, class: "sr-only peer", data: { qr_target: 'copyCornerSquares', action: 'reveal#toggle qr#update' } %>
+		    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-gray-100 rounded-full peer dark:bg-gray-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-yellow-300"></div>
+		    <span class="ml-3 text-sm font-medium text-gray-600 dark:text-gray-300">Copy corner squares</span>
+		  </label>
+		  <div class='flex flex-col hidden' data-reveal-target="item">
+		    <%= form.label :corner_squares_color, 'Color', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
+		    <%= form.color_field :corner_squares_color, value: '#000000', "data-action": "input->qr#update", "data-qr-target": "cornerSquaresColor" %>
+		    <%= form.label :corner_squares_shape, 'Shape', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
+		    <fieldset>
+		      <legend></legend>
+		      <div class="grid grid-cols-4 gap-3 sm:grid-cols-6">
+			<label class="flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
+			  <%= form.radio_button :corner_squares_shape, '', checked: true, class: 'peer sr-only', data: { action: 'input->qr#update', qr_target: 'cornerSquaresShape' } %>
+			  <%= image_tag "x.svg", class: 'p-1 rounded peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
+			</label>
+			<% Style::CORNER_SQUARES_SHAPES.each do |s| %>
+			  <label class="flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
+			    <%= form.radio_button :corner_squares_shape, s, class: 'peer sr-only', data: { action: 'input->qr#update', qr_target: 'cornerSquaresShape' } %>
+			    <%= image_tag "corner-squares-shapes/#{s}.svg", class: 'p-1 rounded peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
+			  </label>
+			<% end %>
+		      </div>
+		    </fieldset>
+		  </div>
+		</div>
+		<div class="flex flex-col pt-5" data-controller="reveal">
+		  <h4 class="text-md font-medium leading-6 text-gray-700 dark:text-gray-200">Corner dots settings</h4>
+		  <label class="inline-flex relative items-center cursor-pointer mt-2">
+		    <%= form.check_box :corner_dots_copy_dots, checked: true, class: "sr-only peer", data: { qr_target: 'copyCornerDots', action: 'reveal#toggle qr#update' } %>
+		    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-gray-100 rounded-full peer dark:bg-gray-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-yellow-300"></div>
+		    <span class="ml-3 text-sm font-medium text-gray-600 dark:text-gray-300">Copy corner dots</span>
+		  </label>
+		  <div class='flex flex-col hidden' data-reveal-target="item">
+		    <%= form.label :corner_dots_color, 'Color', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
+		    <%= form.color_field :corner_dots_color, value: '#000000', "data-action": "input->qr#update", "data-qr-target": "cornerDotsColor" %>
+		    <%= form.label :corner_dots_shape, 'Shape', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
+		    <fieldset>
+		      <legend></legend>
+		      <div class="grid grid-cols-4 gap-3 sm:grid-cols-6">
+			<label class="flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
+			  <%= form.radio_button :corner_dots_shape, '', checked: true, class: 'peer sr-only', data: { action: 'input->qr#update', qr_target: 'cornerDotsShape' } %>
+			  <%= image_tag "x.svg", class: 'p-1 rounded peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
+			</label>
+			<% Style::CORNER_DOTS_SHAPES.each do |s| %>
+			  <label class="flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
+			    <%= form.radio_button :corner_dots_shape, s, class: 'peer sr-only', data: { action: 'input->qr#update', qr_target: 'cornerDotsShape' } %>
+			    <%= image_tag "corner-dots-shapes/#{s}.svg", class: 'p-1 rounded peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
+			  </label>
+			<% end %>
+		      </div>
+		    </fieldset>
+		  </div>
+		</div>
+		<div class="flex flex-col pt-5">
+		  <h4 class="text-md font-medium leading-6 text-gray-700 dark:text-gray-200">Image settings</h4>
+		  <%= form.label :image_url, 'Image URL', class: "mt-2 text-sm font-medium text-gray-600 dark:text-gray-300" %>
+		  <%= form.url_field :image_url, value: nil, class: 'bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md', "data-action": "qr#update", "data-qr-target": "imageUrl" %>
+		</div>
+	      </div>
+	    <% end %>
+	  </div>
+	</div>
+	<div class="flex flex-col">
+	  <div data-qr-target="canvas" style="aspect-ratio: 1" class="flex justify-center md:col-span-1"></div>
+	  <div data-controller="dropdown" class="my-3 w-48 inline-flex rounded-md">
+	    <%= render_component 'button', type: :button, form_class: 'w-full', classes: 'w-full rounded-r-none', style: :secondary, data: { action: 'qr#download', qr_extension_param: 'png'} do %>
+	      Download PNG
+	    <% end %>
+	    <div class="relative -ml-px block">
+	      <button data-action="dropdown#toggle click@window->dropdown#hide" type="button" class="relative inline-flex items-center rounded-r-md border bg-transparent border-gray-400 text-gray-600 dark:border-gray-500 dark:text-gray-300 px-2 py-2 text-sm font-medium focus:z-10 focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
+		<span class="sr-only">Open options</span>
+		<%= heroicon 'chevron-down', variant: 'mini' %>
+	      </button>
+
+	      <div data-dropdown-target="menu" class="hidden absolute right-0 z-10 mt-2 -mr-1 w-36 origin-top-right rounded-md bg-gray-100 dark:bg-gray-700 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1" data-transition-enter-active="transition ease-out duration-100" data-transition-enter-from="transform opacity-0 scale-95" data-transition-enter-to="transform opacity-100 scale-100" data-transition-leave-active="transition ease-in duration-75" data-transition-leave-from="transform opacity-100 scale-100" data-transition-leave-to="transform opacity-0 scale-95">
+		<div class="py-1" role="none">
+		  <button type="button" data-action="qr#download" data-qr-extension-param="jpeg" class="text-left text-gray-600 dark:text-gray-300 hover:bg-transparent/5 block px-4 py-2 w-full text-sm" role="menuitem" tabindex="-1" id="option-menu-item-0">Download JPEG</button>
+		  <button type="button" data-action="qr#download" data-qr-extension-param="webp" class="text-left text-gray-600 dark:text-gray-300 hover:bg-transparent/5 block px-4 py-2 w-full text-sm" role="menuitem" tabindex="-1" id="option-menu-item-1">Download WebP</button>
+		  <button type="button" data-action="qr#download" data-qr-extension-param="svg" class="text-left text-gray-600 dark:text-gray-300 hover:bg-transparent/5 block px-4 py-2 w-full  text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">Download SVG</button>
+		</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    <% end %>	
+  </div>
+<% end %>

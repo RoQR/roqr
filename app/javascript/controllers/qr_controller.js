@@ -10,6 +10,10 @@ export default class extends Controller {
     this.qrCode.append(this.canvasTarget);
   }
 
+  disconnect() {
+    this.canvasTarget.innerHTML = ''
+  }
+
   update() {
     if (this.copyCornerSquaresTarget.checked) {
       this.cornerSquaresColorTarget.value = this.dotsColorTarget.value;
