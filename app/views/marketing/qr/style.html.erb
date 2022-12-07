@@ -2,7 +2,7 @@
   <%= render 'steps', step: 3 %>
   <div class="mt-5">
     <%= form_with() do |form| %>
-      <div data-controller="qr" data-qr-track-downloads-value="true" data-qr-barcode-data-value="<%= @data %>" class="md:grid md:grid-cols-1 md:gap-6 flex flex-col-reverse space-y-5 md:space-y-0">
+      <div data-controller="qr" data-qr-track-downloads-value="true" data-qr-barcode-data-value="<%= @data %>" class="md:grid md:grid-cols-2 md:gap-6 flex flex-col-reverse space-y-5 md:space-y-0">
 	<div class="md:col-span-1">
 	  <div class="space-y-6">
 	    <%= render_component 'card' do %>
