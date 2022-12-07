@@ -16,7 +16,11 @@ namespace :db do
       return if model.count.zero?
 
       invalid = model.all.reject(&:valid?)
-      puts "  all valid" and return if invalid.size.zero?
+
+      if invalid.size.zero?
+        puts "  all valid"
+        return
+      end
 
       puts "  Some valid (#{model.count - invalid.size}), some invalid (#{invalid.size})"
 
