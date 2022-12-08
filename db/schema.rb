@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_26_214512) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_08_134433) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -137,6 +137,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_26_214512) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["created_at"], name: "contact_links_created_at"
+  end
+
+  create_table "custom_domains", force: :cascade do |t|
+    t.string "url"
+    t.bigint "organization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_custom_domains_on_organization_id"
   end
 
   create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
@@ -402,6 +410,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_26_214512) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "custom_domains", "organizations"
   add_foreign_key "links", "contact_links"
   add_foreign_key "links", "email_links"
   add_foreign_key "links", "organizations"
