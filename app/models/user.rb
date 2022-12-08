@@ -58,7 +58,7 @@ class User < ApplicationRecord
   private
 
   def password_required?
-    super && provider.blank?
+    confirmed? ? super && provider.blank? : false
   end
 
   def maybe_create_org
