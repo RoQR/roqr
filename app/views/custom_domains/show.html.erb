@@ -1,0 +1,21 @@
+<%= turbo_stream_from current_user.organization_id, :custom_domains %>
+<div class="mx-auto w-full flex">
+  <div class="mx-auto">
+    <%= render_component 'card', classes: 'w-full' do %>
+      <%= render_component 'section_header', classes: "dark:border-gray-600" do |c| %>
+        <%= c.title classes: "flex items-center" do %>
+          <%= @custom_domain.url %>
+        <% end %>
+      <% end %>
+      <%= render @custom_domain %>
+    <% end %>
+    <div class="mt-3 gap-x-2 flex flew-row justify-end">
+      <% unless @custom_domain.status == 'Ready' %>
+        <%= render 'custom_domains/check_button/default', custom_domain: @custom_domain %>
+      <% end %>
+      <% if can? :destroy, @custom_domain %>
+        <%= render ButtonComponent.new(href: @custom_domain, method: :delete, style: :destructive_inverted).with_content("Delete") %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -2,12 +2,12 @@
 
 class Organization < ApplicationRecord
   before_create :setup_trial
+  has_many :custom_domains, dependent: :destroy
   has_many :users, dependent: :destroy
   has_many :links, dependent: :destroy
   has_many :public_pages, dependent: :destroy
   has_many :styles, dependent: :destroy
   has_one :subscription, dependent: :destroy
-  has_one :custom_domain, dependent: :destroy
   delegate :status, to: :subscription, prefix: :subscription, allow_nil: true
   delegate :cancelled?, to: :subscription, prefix: :subscription, allow_nil: true
   delegate :subscribed?, to: :subscription, allow_nil: true

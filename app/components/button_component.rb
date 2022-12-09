@@ -6,7 +6,8 @@ class ButtonComponent < ViewComponent::Base
   STYLE_MAPPINGS = {
     STYLE_DEFAULT => "border-transparent text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500",
     :secondary => "border-gray-400 dark:border-gray-500 text-gray-500 dark:text-gray-400 bg-transparent hover:bg-transparent/5",
-    :destructive => "border-transparent text-gray-50 bg-red-600 hover:bg-red-700 focus:ring-red-500"
+    :destructive => "border-transparent text-gray-50 bg-red-600 hover:bg-red-700 focus:ring-red-500",
+    :destructive_inverted => "border-transparent bg-red-200 text-red-800 hover:bg-red-300 focus:ring-red-200"
   }.freeze
   STYLE_OPTIONS = STYLE_MAPPINGS.keys
 
@@ -20,7 +21,7 @@ class ButtonComponent < ViewComponent::Base
   }.freeze
   SIZE_OPTIONS = SIZE_MAPPINGS.keys
 
-  def initialize(href: nil, method: nil, size: :md, style: :primary, type: nil, **options)
+  def initialize(href: nil, method: nil, size: :md, style: :primary, type: nil, disabled: false, **options)
     @options = options
     # @options[:tag] ||= href.nil? ? :button : :a
     @button = href.nil? || (method.presence && method.to_sym != :get)
@@ -33,7 +34,11 @@ class ButtonComponent < ViewComponent::Base
       "cursor-pointer inline-flex justify-center items-center border font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2",
       STYLE_MAPPINGS[fetch_or_fallback(STYLE_OPTIONS, style, STYLE_DEFAULT)],
       SIZE_MAPPINGS[fetch_or_fallback(SIZE_OPTIONS, size, SIZE_DEFAULT)],
-      options[:classes]
+      options[:classes],
+      {
+        'cursor-pointer': !disabled,
+        'cursor-not-allowed': disabled
+      }
     )
   end
 end

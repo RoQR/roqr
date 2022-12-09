@@ -49,6 +49,9 @@ Rails.application.routes.draw do
   resources :styles
   resources :users, except: %i[index new]
   resources :organizations, only: %i[update] do
+    resources :custom_domains, shallow: true do
+      get :check, on: :member
+    end
     member do
       get :confirm_destroy
     end

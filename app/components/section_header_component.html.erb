@@ -1,4 +1,8 @@
 <%= render ApplicationComponent.new(**@options) do %>
   <%= title %>
-  <%= button %>
+  <div class="flex gap-x-3">
+    <% buttons.each do |button| %>
+      <%= button %>
+    <% end %>
+  </div>
 <% end %>

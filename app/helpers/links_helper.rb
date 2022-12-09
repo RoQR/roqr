@@ -3,7 +3,7 @@
 module LinksHelper
   def barcode_data(link)
     if link.dynamic?
-      custom_domain = link.organization.custom_domain
+      custom_domain = link.organization.custom_domains.first
       if custom_domain
         custom_domain.url + scan_link_path(id: link.hashid)
       else

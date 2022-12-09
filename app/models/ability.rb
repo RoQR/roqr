@@ -23,7 +23,7 @@ class Ability
     can %i[challenge scan], Link
     can :read, Scan, link: { organization: user.organization, archived_at: nil }
     can :read, Notification, recipient_type: "User", recipient_id: user.id
-    can :read, [Style, Link, Request], organization: user.organization
+    can :read, [CustomDomain, Style, Link, Request], organization: user.organization
     can :read, User, organization: user.organization
     can :download, Link, organization: user.organization
     can :manage, user
@@ -47,7 +47,7 @@ class Ability
     can :invite, User
     can :manage, User, organization: user.organization
     can :manage, Organization, id: user.organization&.id
-    can :manage, Subscription, organization: user.organization
+    can :manage, [CustomDomain, Subscription], organization: user.organization
     cannot :new, Subscription, organization: user.organization if user.organization&.subscribed?
     cannot :edit, Subscription, organization: user.organization if user.organization&.subscription_cancelled?
   end

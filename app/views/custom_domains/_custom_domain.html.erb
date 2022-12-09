@@ -1,0 +1,50 @@
+<%= turbo_frame_tag dom_id(custom_domain) do %>
+  <h3 class="text-lg dark:text-gray-200">Status</h3>
+  <p class="text-sm dark:text-gray-300"><%= custom_domain.status %></p>
+  <h3 class="mt-5 text-lg dark:text-gray-200">Confirmation instructions</h3>
+  <p class="text-sm dark:text-gray-300">To confirm that you own the domain, add the following DNS record with your DNS provider.</p>
+  <div class="mt-4 text-gray-600 dark:text-gray-300">
+    <div>
+      <span>Record type:</span>
+      <span>CNAME</span>
+    </div>
+    <div>
+      <span>Record name:</span>
+      <span><%= custom_domain.dns_validation_hostname %></span>
+    </div>
+    <div>
+      <span>Record value:</span>
+      <span><%= custom_domain.dns_validation_target %></span>
+    </div>
+  </div>
+
+  <div class="mt-4 text-gray-600 dark:text-gray-300">
+    <div>
+      <span>Record type:</span>
+      <span>A</span>
+    </div>
+    <div>
+      <span>Record name:</span>
+      <span><%= PublicSuffix.parse(custom_domain.url).trd %></span>
+    </div>
+    <div>
+      <span>Record value:</span>
+      <span><%= custom_domain.ipv4_target %></span>
+    </div>
+  </div>
+
+  <div class="mt-4 text-gray-600 dark:text-gray-300">
+    <div>
+      <span>Record type:</span>
+      <span>AAAA</span>
+    </div>
+    <div>
+      <span>Record name:</span>
+      <span><%= PublicSuffix.parse(custom_domain.url).trd %></span>
+    </div>
+    <div>
+      <span>Record value:</span>
+      <span><%= custom_domain.ipv6_target %></span>
+    </div>
+  </div>
+<% end %>

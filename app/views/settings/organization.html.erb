@@ -30,6 +30,31 @@
       <%= render_component 'card' do %>
         <%= render_component 'section_header', classes: 'dark:border-gray-600' do |c| %>
           <%= c.title classes: "flex items-center" do %>
+            Custom domains
+          <% end %>
+          <% if can? :create, CustomDomain %>
+            <%= c.button(href: new_organization_custom_domain_path(@organization), style: :secondary).with_content("Create new custom domain") %>
+          <% end %>
+        <% end %>
+        <ul role="list" class="divide-y divide-gray-600">
+          <% for custom_domain in @organization.custom_domains %>
+            <%= link_to custom_domain do %>
+              <li class="px-6 py-4 flex hover:bg-gray-200 dark:hover:bg-gray-600 items-center justify-between">
+                <div class="flex">
+                  <div class="ml-3">
+                    <p class="text-sm font-medium text-gray-800 dark:text-gray-100"><%= custom_domain.url %></p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300"><%= custom_domain.status %></p>
+                  </div>
+                </div>
+                <%= heroicon 'chevron-right', class: 'text-gray-400' %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      <% end %>
+      <%= render_component 'card' do %>
+        <%= render_component 'section_header', classes: 'dark:border-gray-600' do |c| %>
+          <%= c.title classes: "flex items-center" do %>
             Team members
           <% end %>
           <% if can? :invite, User %>
@@ -48,7 +73,7 @@
           <ul role="list" class="divide-y divide-gray-600">
             <% for user in @organization.users %>
               <% unless user == current_user %>
-                <%= link_to user_path(user) do %>
+                <%= link_to user do %>
                   <li class="px-6 py-4 flex hover:bg-gray-200 dark:hover:bg-gray-600 items-center justify-between">
                     <div class="flex">
                       <%= image_tag(user.gravatar_url, class: "h-10 w-10 rounded-full") %>

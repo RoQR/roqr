@@ -1,0 +1,3 @@
+<%= turbo_frame_tag 'check_button' do %>
+  <%= render ButtonComponent.new(disabled: true, style: :secondary).with_content("Loading...") %>
+<% end %>

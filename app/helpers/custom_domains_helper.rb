@@ -1,0 +1,2 @@
+module CustomDomainsHelper
+end
