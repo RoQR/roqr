@@ -2,24 +2,25 @@
 
 Rails.application.routes.draw do
   namespace :admin do
-    resources :subscription_payments
-    resources :subscriptions
+    resources :organizations
+    resources :users
+    resources :links
     resources :styles
     resources :scans
+    resources :contact_links
+    resources :email_links
+    resources :sms_links
+    resources :telephone_links
+    resources :url_links
+    resources :wifi_links
+    resources :subscriptions
+    resources :subscription_payments
+    resources :custom_domains
+    resources :notifications
     resources :requests
     resources :public_pages
-    resources :organizations
-    resources :notifications
-    resources :links
-    resources :users
-    resources :contact_links
-    resources :wifi_links
-    resources :url_links
-    resources :telephone_links
-    resources :sms_links
-    resources :email_links
 
-    root to: "links#index"
+    root to: "organizations#index"
   end
   get "notifications/index"
   devise_for :users,
