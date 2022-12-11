@@ -23,11 +23,10 @@
           <%= render TooltipComponent.new do %>
             Dynamic links can be updated, and track scans.
           <% end %>
-            
           </div>
         <% end %>
       </div>
-      <%= content_tag :div, class: class_names('mt-3 col-span-2 flex flex-col', { hidden: @static_only }), data: { reveal_target: 'item' } do %>
+      <%= content_tag :div, class: class_names('mt-3 col-span-2 flex flex-col', { hidden: @static_only || !form.object.dynamic }), data: { reveal_target: 'item' } do %>
         <turbo-frame id="pw">
           <% if form.object.password_digest %>
             <%= render 'links/password/remove_password_link' %>
