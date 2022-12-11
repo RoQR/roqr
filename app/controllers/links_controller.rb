@@ -53,6 +53,7 @@ class LinksController < ApplicationController
   end
 
   def create
+    # Convert from hashid to id
     respond_to do |format|
       if @link.save
         ahoy.track "Link created", { name: @link.name, type: @link.link_type }
@@ -97,6 +98,10 @@ class LinksController < ApplicationController
     end
   end
 
+  def confirm_remove_custom_domain
+    render TurboModalComponent.new(title: "Remove custom domain from link").with_content(render_to_string(partial: "links/custom_domain/confirm_remove"))
+  end
+
   def confirm_destroy
     @scans_text = @link.scans.count.positive? ? ", <b>including #{"#{@link.scans.count} #{'scan'.pluralize(@link.scans.count)}"}</b>".html_safe : ""
     render TurboModalComponent.new(title: "Delete link").with_content(render_to_string(partial: "links/confirm_destroy"))
@@ -109,6 +114,13 @@ class LinksController < ApplicationController
       flash[:success] = "Link was successfully destroyed."
       format.html { redirect_to links_url }
     end
+  end
+
+  def remove_custom_domain
+    @link.custom_domain = nil
+    @link.save
+    flash[:info] = "Custom domain was removed from link."
+    render partial: "links/password/password_field"
   end
 
   def remove_password
@@ -130,7 +142,7 @@ class LinksController < ApplicationController
   # Only allow a list of trusted parameters through.
   def link_params
     link_params = params.require(:link).permit(
-      :name, :dynamic, :password, :style,
+      :name, :dynamic, :password, :style, :custom_domain_id,
       contact_link_attributes: %i[id first_name last_name phone email website company title address birthday note],
       email_link_attributes: %i[id email_address subject body],
       sms_link_attributes: %i[id number body],
@@ -138,6 +150,9 @@ class LinksController < ApplicationController
       url_link_attributes: %i[id url],
       wifi_link_attributes: %i[id ssid password hidden protocol]
     )
+    if link_params[:custom_domain_id]
+      link_params[:custom_domain_id] = CustomDomain.find(link_params[:custom_domain_id]).id
+    end
     link_params.delete(:password) unless truthy?(link_params[:dynamic])
     link_params
   end

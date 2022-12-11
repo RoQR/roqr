@@ -40,10 +40,12 @@ Rails.application.routes.draw do
       get :scan
       get :confirm_destroy
       get :challenge
+      get :confirm_remove_custom_domain
       post :archive
       post :unarchive
       patch :challenge
       patch :remove_password
+      patch :remove_custom_domain
     end
   end
   resources :styles

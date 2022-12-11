@@ -1,0 +1,6 @@
+<% if @link.custom_domain %>
+  <div>
+    <p class="block text-sm font-medium text-gray-600 dark:text-gray-300">Custom domain</p>
+    <p class="text-gray-800 dark:text-gray-100 sm:text-sm"><%= @link.custom_domain.url %></p>
+  </div>
+<% end %>    

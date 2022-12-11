@@ -34,6 +34,7 @@ class Ability
     can :manage, PublicPage, organization: user.organization
     can %i[read create update], [Style, Link], organization: user.organization
     can :remove_password, Link, organization: user.organization
+    can %i[remove_custom_domain confirm_remove_custom_domain], Link, organization: user.organization
     can :archive, Link, organization: user.organization, archived_at: nil
     can %i[unarchive confirm_destroy destroy], Link do |link|
       link.organization == user.organization && !link.archived_at.nil?
