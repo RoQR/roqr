@@ -9,7 +9,7 @@ module Fly
       cert = client.add_cert("roqr", domain.host)
       domain.update!(
         dns_validation_target: cert["dnsValidationTarget"],
-        dns_validation_hostname: cert["dnsValidationHostname"],
+        dns_validation_hostname: PublicSuffix.parse(cert["dnsValidationHostname"]).trd,
         status: "Awaiting configuration"
       )
     end
