@@ -17,7 +17,7 @@ module Fly
     private
 
     def update_status
-      cert = @client.check_cert("roqr", @domain.url)
+      cert = @client.check_cert("roqr", @domain.host)
       @domain.status = cert["clientStatus"]
     end
 

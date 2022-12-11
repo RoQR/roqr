@@ -6,7 +6,7 @@ module Fly
 
     def perform(domain)
       client = Fly::Client.new
-      cert = client.add_cert("roqr", domain.url)
+      cert = client.add_cert("roqr", domain.host)
       domain.update!(
         dns_validation_target: cert["dnsValidationTarget"],
         dns_validation_hostname: cert["dnsValidationHostname"],
