@@ -24,7 +24,6 @@ class LinkDashboard < Administrate::BaseDashboard
     name: Field::Text,
     organization: Field::BelongsTo,
     password_digest: Field::String,
-    public_pages: Field::HasMany,
     scans: Field::HasMany,
     sms_link: Field::BelongsTo,
     telephone_link: Field::BelongsTo,
@@ -53,7 +52,6 @@ class LinkDashboard < Administrate::BaseDashboard
     name
     organization
     dynamic
-    public_pages
     scans
     background_color
     corner_dots_color

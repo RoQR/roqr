@@ -12,13 +12,12 @@ class OrganizationDashboard < Administrate::BaseDashboard
     billing_email: Field::String,
     links: Field::HasMany,
     name: Field::String,
-    public_pages: Field::HasMany,
     styles: Field::HasMany,
     subscription: Field::HasOne,
     trial_ends_at: Field::DateTime,
     users: Field::HasMany,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -40,7 +39,6 @@ class OrganizationDashboard < Administrate::BaseDashboard
     billing_email
     links
     name
-    public_pages
     styles
     subscription
     trial_ends_at
@@ -56,7 +54,6 @@ class OrganizationDashboard < Administrate::BaseDashboard
     billing_email
     links
     name
-    public_pages
     styles
     subscription
     trial_ends_at

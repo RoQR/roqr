@@ -19,7 +19,6 @@ class Ability
   private
 
   def viewer_abilities(user)
-    can :show, PublicPage
     can %i[challenge scan], Link
     can :read, Scan, link: { organization: user.organization, archived_at: nil }
     can :read, Notification, recipient_type: "User", recipient_id: user.id
@@ -31,7 +30,6 @@ class Ability
   end
 
   def editor_abilities(user)
-    can :manage, PublicPage, organization: user.organization
     can %i[read create update], [Style, Link], organization: user.organization
     can :remove_password, Link, organization: user.organization
     can %i[remove_custom_domain confirm_remove_custom_domain], Link, organization: user.organization

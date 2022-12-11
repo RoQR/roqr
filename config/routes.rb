@@ -18,7 +18,6 @@ Rails.application.routes.draw do
     resources :custom_domains
     resources :notifications
     resources :requests
-    resources :public_pages
 
     root to: "organizations#index"
   end
@@ -59,7 +58,6 @@ Rails.application.routes.draw do
     end
   end
   resources :notifications, only: :index
-  resources :public_pages
   resources :scans, only: :index
   namespace :settings do
     get :profile
