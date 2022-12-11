@@ -150,7 +150,7 @@ class LinksController < ApplicationController
       url_link_attributes: %i[id url],
       wifi_link_attributes: %i[id ssid password hidden protocol]
     )
-    if link_params[:custom_domain_id]
+    if link_params[:custom_domain_id].present?
       link_params[:custom_domain_id] = CustomDomain.find(link_params[:custom_domain_id]).id
     end
     link_params.delete(:password) unless truthy?(link_params[:dynamic])
