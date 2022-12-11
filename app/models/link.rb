@@ -17,6 +17,9 @@ class Link < ApplicationRecord
   validates_length_of :password,
                       maximum: ActiveModel::SecurePassword::MAX_PASSWORD_LENGTH_ALLOWED
   validates :name, presence: true, uniqueness: { scope: :organization_id }
+  validates :custom_domain_id,
+            inclusion: { in: ->(i) { [i.custom_domain_id_was] } },
+            on: :update
   validate :no_password_on_static_link
   validate :static_only_links
   scope :active, -> { where("archived_at IS NULL") }
