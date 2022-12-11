@@ -48,12 +48,13 @@ class CustomDomainsController < ApplicationController
 
   # DELETE /custom_domains/1 or /custom_domains/1.json
   def destroy
-    @custom_domain.destroy
-    respond_to do |format|
-      format.html do
-        redirect_to settings_organization_path, notice: "Custom domain was successfully destroyed."
-      end
-      format.json { head :no_content }
+    if @custom_domain.destroy
+      redirect_to settings_organization_path, notice: "Custom domain was successfully destroyed."
+    else
+      flash[:error] =
+        { title: "Cannot delete custom domain",
+          body: "This custom domain is actively used in at least one QR code. Deleting this domain would make the QR code unscannable. If you still wish to delete this domain, please first delete any QR codes that are using this domain.", timeout: 60, countdown: true }
+      render @custom_domain, status: :unprocessable_entity
     end
   end
 

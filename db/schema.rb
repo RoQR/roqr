@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_09_225254) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_11_174408) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -218,8 +218,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_09_225254) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "transparent_background", default: false, null: false
+    t.bigint "custom_domain_id"
     t.index ["archived_at"], name: "index_links_on_archived_at"
     t.index ["contact_link_id"], name: "index_links_on_contact_link_id"
+    t.index ["custom_domain_id"], name: "index_links_on_custom_domain_id"
     t.index ["email_link_id"], name: "index_links_on_email_link_id"
     t.index ["name", "organization_id"], name: "index_links_on_name_and_organization_id", unique: true
     t.index ["organization_id"], name: "index_links_on_organization_id"

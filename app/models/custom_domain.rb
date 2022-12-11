@@ -1,5 +1,6 @@
 class CustomDomain < ApplicationRecord
   belongs_to :organization
+  has_many :links, dependent: :restrict_with_error
   after_create_commit do
     Fly::CreateCustomDomainJob.perform_later(self)
   end
