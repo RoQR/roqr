@@ -27,12 +27,10 @@
         <% end %>
       </div>
       <%= content_tag :div, class: class_names('mt-3 col-span-2 flex flex-col gap-y-4', { hidden: @static_only || !form.object.dynamic }), data: { reveal_target: 'item' } do %>
-        <% if Flipper.enabled? :custom_domains, current_user %>
-          <% if @link.persisted? %>
-            <%= render 'links/custom_domain/value' %>
-          <% else %>
-            <%= render 'links/custom_domain/field' %>
-          <% end %>
+        <% if @link.persisted? %>
+          <%= render 'links/custom_domain/value' %>
+        <% else %>
+          <%= render 'links/custom_domain/field' %>
         <% end %>
         <turbo-frame id="pw">
           <% if form.object.password_digest %>
