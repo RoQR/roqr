@@ -98,7 +98,11 @@ Rails.application.routes.draw do
     namespace :v0 do
       defaults format: :json do
         resources :scans, only: :index
-        resources :links, except: %i[new edit]
+        resources :links, except: %i[new edit] do
+          member do
+            post :archive
+          end
+        end
         resources :styles, only: %i[index show]
         resources :users, only: %i[show update destroy]
       end

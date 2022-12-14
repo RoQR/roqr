@@ -6,15 +6,15 @@ module Api
       load_and_authorize_resource
 
       def index
-        current_user.requests.create(method: :get, requestable_type: 'Link')
+        current_user.requests.create(method: :get, requestable_type: "Link")
       end
 
       def show
-        current_user.requests.create(method: :get, requestable_type: 'Link')
+        current_user.requests.create(method: :get, requestable_type: "Link")
       end
 
       def create
-        current_user.requests.create(method: :post, requestable_type: 'Link')
+        current_user.requests.create(method: :post, requestable_type: "Link")
         if @link.save
           render :show, status: :created
         else
@@ -23,7 +23,7 @@ module Api
       end
 
       def update
-        current_user.requests.create(method: :put, requestable_type: 'Link')
+        current_user.requests.create(method: :put, requestable_type: "Link")
         if @link.update(link_params)
           render :show, status: :ok
         else
@@ -31,8 +31,14 @@ module Api
         end
       end
 
+      def archive
+        current_user.requests.create(method: :post, requestable_type: "Link")
+        @link.archive!
+        render :show, status: :ok
+      end
+
       def destroy
-        current_user.requests.create(method: :delete, requestable_type: 'Link')
+        current_user.requests.create(method: :delete, requestable_type: "Link")
         @link.destroy
         render :show, status: :ok
       end
@@ -40,14 +46,14 @@ module Api
       private
 
       def link_params
-        params.require(:link).permit(
-          :id, :name, :dynamic,
-          contact_link_attributes: %i[id first_name last_name phone email website company title address birthday note],
-          email_link_attributes: %i[id email_address subject body],
+        params.permit(
+          :name, :dynamic,
+          contact_link_attributes: %i[first_name last_name phone email website company title address birthday note],
+          email_link_attributes: %i[email_address subject body],
           sms_link_attributes: %i[number body],
           telephone_link_attributes: [:number],
-          url_link_attributes: %i[id url],
-          wifi_link_attributes: %i[id ssid password hidden protocol]
+          url_link_attributes: %i[url],
+          wifi_link_attributes: %i[ssid password hidden protocol]
         )
       end
     end
