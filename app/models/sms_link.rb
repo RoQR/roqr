@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class SmsLink < LinkData
-  self.table_name = 'sms_links'
+  self.table_name = "sms_links"
   has_one :link
+  has_encrypted :number, :body, migrating: true
   include ERB::Util
 
   def summary

@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class ContactLink < LinkData
-  self.table_name = 'contact_links'
+  self.table_name = "contact_links"
   has_one :link
+  has_encrypted :first_name, :last_name, :phone, :email, :website, :company, :title, :address, :note, migrating: true
+  has_encrypted :birthday, migrating: true, type: :date
   include ERB::Util
 
   def summary
-    [first_name, last_name].compact.join(' ')
+    [first_name, last_name].compact.join(" ")
   end
 
   def barcode_data

@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class EmailLink < LinkData
-  self.table_name = 'email_links'
+  self.table_name = "email_links"
   has_one :link
+  has_encrypted :email_address, :subject, :body, migrating: true
   include ERB::Util
 
   def summary
