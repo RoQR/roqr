@@ -95,22 +95,28 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    namespace :v0 do
+    namespace :v1 do
       defaults format: :json do
-        resources :scans, only: :index
         resources :links, except: %i[new edit] do
           member do
             post :archive
+            post :unarchive
           end
         end
-        resources :styles, only: %i[index show]
-        resources :users, only: %i[show update destroy]
+        unless Rails.env.production?
+          resources :scans, only: :index
+          resources :styles, only: %i[index show]
+          resources :users, only: %i[show update destroy]
+        end
       end
     end
   end
 
   resource :flash, only: :create
 
-  get "404", to: "application#page_not_found" if Rails.env.production?
+  if Rails.env.production?
+    get "404", to: "application#page_not_found"
+    get "500", to: "application#internal_error"
+  end
   mount Lookbook::Engine, at: "/lookbook" if Rails.env.development?
 end

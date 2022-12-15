@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Api
-  module V0
-    class LinksController < Api::V0::BaseController
+  module V1
+    class LinksController < Api::V1::BaseController
       load_and_authorize_resource
 
       def index
@@ -37,6 +37,12 @@ module Api
         render :show, status: :ok
       end
 
+      def unarchive
+        current_user.requests.create(method: :post, requestable_type: "Link")
+        @link.unarchive!
+        render :show, status: :ok
+      end
+
       def destroy
         current_user.requests.create(method: :delete, requestable_type: "Link")
         @link.destroy
@@ -45,16 +51,29 @@ module Api
 
       private
 
+      def link_data_params
+        case params[:data][:type]
+        when "contact"
+          { contact_link_attributes: params.require(:data).permit(
+            :first_name, :last_name, :birthday, :company, :title, :phone, :email, :website, :address, :note
+          ) }
+        when "email"
+          { email_link_attributes: params.require(:data).permit(:email_address, :subject, :body) }
+        when "sms"
+          { sms_link_attributes: params.require(:data).permit(:number, :body) }
+        when "telephone"
+          { telephone_link_attributes: params.require(:data).permit(:number) }
+        when "wifi"
+          { wifi_link_attributes: params.require(:data).permit(:ssid, :password, :protocol) }
+        when "url"
+          { url_link_attributes: params.require(:data).permit(:url) }
+        end
+      end
+
       def link_params
         params.permit(
-          :name, :dynamic,
-          contact_link_attributes: %i[first_name last_name phone email website company title address birthday note],
-          email_link_attributes: %i[email_address subject body],
-          sms_link_attributes: %i[number body],
-          telephone_link_attributes: [:number],
-          url_link_attributes: %i[url],
-          wifi_link_attributes: %i[ssid password hidden protocol]
-        )
+          :name, :dynamic
+        ).merge(link_data_params)
       end
     end
   end

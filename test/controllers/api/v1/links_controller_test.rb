@@ -3,7 +3,7 @@
 require "test_helper"
 
 module Api
-  module V0
+  module V1
     class LinksControllerTest < ActionDispatch::IntegrationTest
       setup do
         @org = create(:organization)
@@ -13,20 +13,21 @@ module Api
       end
 
       test "should get index" do
-        get api_v0_links_url, headers: { HTTP_AUTHORIZATION: api_key }
+        get api_v1_links_url, headers: { HTTP_AUTHORIZATION: api_key }
         assert_response :success
       end
 
       test "should create" do
         assert_difference(["Link.count", "UrlLink.count"]) do
-          post api_v0_links_url, headers: { HTTP_AUTHORIZATION: api_key },
-                                 params: { link: {
+          post api_v1_links_url, headers: { HTTP_AUTHORIZATION: api_key },
+                                 params: {
                                    name: "New link",
                                    dynamic: true,
-                                   url_link_attributes: {
+                                   data: {
+                                     type: "url",
                                      url: "https://roqr.app"
                                    }
-                                 } }
+                                 }
         end
         assert_response :success
       end

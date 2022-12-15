@@ -25,6 +25,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def internal_error
+    respond_to do |format|
+      format.html { render text: "internal error", status: 500 }
+      format.all { render nothing: true, status: 500 }
+    end
+  end
+
   def do_not_track?
     request.headers["DNT"] == "1"
   end
