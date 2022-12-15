@@ -136,6 +136,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_002643) do
     t.string "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "first_name_ciphertext"
+    t.text "last_name_ciphertext"
+    t.text "phone_ciphertext"
+    t.text "email_ciphertext"
+    t.text "website_ciphertext"
+    t.text "company_ciphertext"
+    t.text "title_ciphertext"
+    t.text "address_ciphertext"
+    t.text "birthday_ciphertext"
+    t.text "note_ciphertext"
     t.index ["created_at"], name: "contact_links_created_at"
   end
 
@@ -176,6 +186,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_002643) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "email_address_ciphertext"
+    t.text "subject_ciphertext"
+    t.text "body_ciphertext"
     t.index ["created_at"], name: "email_links_created_at"
   end
 
@@ -283,6 +296,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_002643) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "number_ciphertext"
+    t.text "body_ciphertext"
   end
 
   create_table "styles", force: :cascade do |t|
@@ -339,12 +354,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_002643) do
     t.string "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "number_ciphertext"
   end
 
   create_table "url_links", force: :cascade do |t|
     t.text "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "url_ciphertext"
   end
 
   create_table "users", force: :cascade do |t|
@@ -401,6 +418,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_002643) do
     t.string "protocol"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "ssid_ciphertext"
+    t.text "password_ciphertext"
+    t.text "hidden_ciphertext"
+    t.text "protocol_ciphertext"
   end
 
   add_foreign_key "custom_domains", "organizations"
