@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_16_022900) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_16_023943) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -124,16 +124,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_022900) do
   end
 
   create_table "contact_links", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "phone"
-    t.string "email"
-    t.string "website"
-    t.string "company"
-    t.string "title"
-    t.string "address"
-    t.date "birthday"
-    t.string "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "first_name_ciphertext"
@@ -181,9 +171,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_022900) do
   end
 
   create_table "email_links", force: :cascade do |t|
-    t.text "email_address"
-    t.text "subject"
-    t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "email_address_ciphertext"
@@ -292,8 +279,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_022900) do
   end
 
   create_table "sms_links", force: :cascade do |t|
-    t.text "number"
-    t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "number_ciphertext"
@@ -351,14 +336,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_022900) do
   end
 
   create_table "telephone_links", force: :cascade do |t|
-    t.string "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "number_ciphertext"
   end
 
   create_table "url_links", force: :cascade do |t|
-    t.text "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "url_ciphertext"
@@ -412,10 +395,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_022900) do
   end
 
   create_table "wifi_links", force: :cascade do |t|
-    t.string "ssid"
-    t.string "password"
-    t.boolean "hidden"
-    t.string "protocol"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "ssid_ciphertext"
