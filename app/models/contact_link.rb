@@ -3,8 +3,10 @@
 class ContactLink < LinkData
   self.table_name = "contact_links"
   has_one :link
-  has_encrypted :first_name, :last_name, :phone, :email, :website, :company, :title, :address, :note, migrating: true
-  has_encrypted :birthday, migrating: true, type: :date
+  has_encrypted :first_name, :last_name, :phone, :email, :website, :company, :title, :address, :note
+  has_encrypted :birthday, type: :date
+  self.ignored_columns = %w[first_name last_name phone email website company title address
+                            note birthday]
   include ERB::Util
 
   def summary

@@ -3,7 +3,8 @@
 class TelephoneLink < LinkData
   self.table_name = "telephone_links"
   has_one :link
-  has_encrypted :number, migrating: true
+  has_encrypted :number
+  self.ignored_columns = %w[number]
   include ERB::Util
 
   def summary
