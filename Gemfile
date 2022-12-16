@@ -84,3 +84,5 @@ gem "graphql-client", "~> 0.18.0"
 gem "redis", "~> 4.0"
 
 gem "public_suffix", "~> 5.0"
+
+gem "turnout", "~> 2.5"
