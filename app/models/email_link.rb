@@ -3,7 +3,6 @@
 class EmailLink < LinkData
   self.table_name = "email_links"
   has_one :link
-  encrypts :email_address, :subject, :body
   include ERB::Util
 
   def summary
