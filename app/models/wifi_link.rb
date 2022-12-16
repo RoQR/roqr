@@ -3,8 +3,7 @@
 class WifiLink < LinkData
   self.table_name = "wifi_links"
   has_one :link
-  has_encrypted :ssid, :password, :protocol, migrating: true
-  has_encrypted :hidden, migrating: true, type: :boolean
+  encrypts :ssid, :password, :protocol, :hidden
   include ERB::Util
 
   def summary
