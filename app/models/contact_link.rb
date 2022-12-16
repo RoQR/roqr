@@ -3,7 +3,6 @@
 class ContactLink < LinkData
   self.table_name = "contact_links"
   has_one :link
-  encrypts :first_name, :last_name, :phone, :email, :website, :company, :title, :address, :birthday, :note
   include ERB::Util
 
   def summary

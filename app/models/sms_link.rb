@@ -3,7 +3,6 @@
 class SmsLink < LinkData
   self.table_name = "sms_links"
   has_one :link
-  encrypts :number, :body
   include ERB::Util
 
   def summary

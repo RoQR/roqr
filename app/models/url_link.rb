@@ -4,7 +4,6 @@ class UrlLink < LinkData
   self.table_name = "url_links"
   validates :url, presence: true
   has_one :link
-  encrypts :url
 
   def summary
     url
