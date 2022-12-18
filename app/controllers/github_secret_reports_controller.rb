@@ -22,13 +22,13 @@ class GithubSecretReportsController < ApplicationController
   end
 
   def request_github_keys
-    raise "Need to define GITHUB_PRODUCTION_TOKEN environment variable" unless ENV["GITHUB_PRODUCTION_TOKEN"]
+    raise "Need to define GITHUB_SECRET_SCANNING_TOKEN environment variable" unless ENV["GITHUB_SECRET_SCANNING_TOKEN"]
 
     HTTParty.get(
       "https://api.github.com/meta/public_keys/secret_scanning",
       {
         headers: {
-          Authorization: "Bearer #{ENV.fetch('GITHUB_PRODUCTION_TOKEN', nil)}"
+          Authorization: "Bearer #{ENV.fetch('GITHUB_SECRET_SCANNING_TOKEN', nil)}"
         }
       }
     )
