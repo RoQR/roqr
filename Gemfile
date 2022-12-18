@@ -26,9 +26,11 @@ gem "email_validator", "~> 2.2"
 gem "flipper", "~> 0.25.0"
 gem "flipper-active_record", "~> 0.25.0"
 gem "geocoder"
+gem "graphql-client", "~> 0.18.0"
 gem "groupdate", "~> 6.1"
 gem "hashid-rails", "~> 1.4"
 gem "hashids"
+gem "httparty", "~> 0.20.0"
 gem "importmap-rails"
 gem "jbuilder"
 gem "kaminari", "~> 1.2"
@@ -41,10 +43,12 @@ gem "omniauth-rails_csrf_protection"
 gem "paddle_pay", "~> 0.2.0"
 gem "pg", "~> 1.1"
 gem "php-serialize", "~> 1.3"
+gem "public_suffix", "~> 5.0"
 gem "puma", "~> 5.0"
 gem "rack-attack", "~> 6.6"
 gem "rails", "~> 7.0.3"
 gem "rails_heroicon", "~> 2.0"
+gem "redis", "~> 4.0"
 gem "sass-rails"
 gem "sentry-rails"
 gem "sentry-ruby", "~> 5.6"
@@ -52,10 +56,11 @@ gem "sprockets-rails"
 gem "stimulus-rails"
 gem "tailwindcss-rails", "~> 2.0"
 gem "turbo-rails"
+gem "turnout", "~> 2.5"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "vcardigan", "~> 0.0.9"
-gem "victor"
 gem "view_component"
+gem "wicked", "~> 2.0"
 
 group :development, :test do
   gem "bullet", "~> 7.0"
@@ -76,16 +81,3 @@ group :test do
   gem "webdrivers", "~> 5.2"
   gem "webmock"
 end
-
-gem "wicked", "~> 2.0"
-
-gem "graphql-client", "~> 0.18.0"
-
-# Use Redis for Action Cable
-gem "redis", "~> 4.0"
-
-gem "public_suffix", "~> 5.0"
-
-gem "turnout", "~> 2.5"
-
-gem "httparty", "~> 0.20.0"

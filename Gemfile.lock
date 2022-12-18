@@ -443,7 +443,6 @@ GEM
     uniform_notifier (1.16.0)
     vcardigan (0.0.9)
     version_gem (1.1.1)
-    victor (0.3.4)
     view_component (2.77.0)
       activesupport (>= 5.0.0, < 8.0)
       concurrent-ruby (~> 1.0)
@@ -544,7 +543,6 @@ DEPENDENCIES
   turnout (~> 2.5)
   tzinfo-data
   vcardigan (~> 0.0.9)
-  victor
   view_component
   web-console
   webdrivers (~> 5.2)
