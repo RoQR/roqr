@@ -74,6 +74,7 @@ group :test do
   gem "selenium-webdriver"
   gem "simplecov"
   gem "webdrivers", "~> 5.2"
+  gem "webmock"
 end
 
 gem "wicked", "~> 2.0"
@@ -86,3 +87,5 @@ gem "redis", "~> 4.0"
 gem "public_suffix", "~> 5.0"
 
 gem "turnout", "~> 2.5"
+
+gem "httparty", "~> 0.20.0"

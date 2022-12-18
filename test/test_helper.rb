@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
-require 'simplecov'
-SimpleCov.start 'rails' do
-  add_group 'Components', 'app/components'
+require "simplecov"
+require "webmock/minitest"
+SimpleCov.start "rails" do
+  add_group "Components", "app/components"
 end
 
-ENV['RAILS_ENV'] ||= 'test'
-require_relative '../config/environment'
-require 'rails/test_help'
+ENV["RAILS_ENV"] ||= "test"
+require_relative "../config/environment"
+require "rails/test_help"
 
 module BulletHelper
   def before_setup

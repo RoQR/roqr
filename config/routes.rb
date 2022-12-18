@@ -114,6 +114,8 @@ Rails.application.routes.draw do
 
   resource :flash, only: :create
 
+  resource :github_secret_reports, only: :create
+
   if Rails.env.production?
     get "404", to: "application#page_not_found"
     get "500", to: "application#internal_error"

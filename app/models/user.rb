@@ -55,6 +55,14 @@ class User < ApplicationRecord
     name || email
   end
 
+  def rotate_api_key
+    update(private_api_key: "roqr_#{SecureRandom.hex}")
+  end
+
+  def rotate_api_key!
+    update!(private_api_key: "roqr_#{SecureRandom.hex}")
+  end
+
   private
 
   def password_required?
