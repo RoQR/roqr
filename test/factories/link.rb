@@ -15,7 +15,7 @@ FactoryBot.define do
     dynamic { false }
     password { nil }
     organization
-    custom_domain
+    custom_domain { nil }
     dots_color { "#000000" }
     dots_shape { "square" }
     corner_dots_color { "#000000" }
