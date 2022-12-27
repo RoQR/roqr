@@ -1,6 +1,7 @@
 class Marketing::QrController < ApplicationController
   layout "marketing"
   include Wicked::Wizard
+  skip_before_action :redirect_if_inactive_subscription
 
   steps :type, :data, :style
 

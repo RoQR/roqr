@@ -3,20 +3,21 @@
 class PaddleWebhooksController < ApplicationController
   before_action :verify_webhook, unless: -> { Rails.env.test? }
   skip_before_action :verify_authenticity_token
+  skip_before_action :redirect_if_inactive_subscription
 
   def create
     case params[:alert_name]
-    when 'subscription_created'
+    when "subscription_created"
       subscription_created
-    when 'subscription_updated'
+    when "subscription_updated"
       subscription_updated
-    when 'subscription_cancelled'
+    when "subscription_cancelled"
       subscription_cancelled
-    when 'subscription_payment_succeeded'
+    when "subscription_payment_succeeded"
       subscription_payment_succeeded
-    when 'subscription_payment_failed'
+    when "subscription_payment_failed"
       subscription_payment_failed
-    when 'subscription_payment_refunded'
+    when "subscription_payment_refunded"
     end
   end
 
@@ -24,7 +25,7 @@ class PaddleWebhooksController < ApplicationController
     organization = Organization.find(params[:passthrough])
     organization.build_subscription(paddle_subscription_params)
     if organization.save
-      ahoy.track 'Subscription created', { organization_id: organization.id }
+      ahoy.track "Subscription created", { organization_id: organization.id }
       head 200
     else
       head 500
@@ -34,7 +35,7 @@ class PaddleWebhooksController < ApplicationController
   def subscription_updated
     subscription = Subscription.find_by_paddle_subscription_id(params[:subscription_id])
     if subscription.update(paddle_subscription_params)
-      ahoy.track 'Subscription updated', { organization_id: subscription.organization.id }
+      ahoy.track "Subscription updated", { organization_id: subscription.organization.id }
       head 200
     else
       head 500
@@ -46,7 +47,7 @@ class PaddleWebhooksController < ApplicationController
     # If the user deleted their organization, the subscription will be gone too, but we will still receive the webhook.
     # We should still be nice citizens and return 200 as otherwise Paddle will resend the webhook.
     if subscription.nil? || subscription.update(paddle_cancellation_params)
-      ahoy.track 'Subscription cancelled', { organization_id: subscription.organization.id }
+      ahoy.track "Subscription cancelled", { organization_id: subscription.organization.id }
       head 200
     else
       head 500
@@ -62,7 +63,7 @@ class PaddleWebhooksController < ApplicationController
       s.assign_attributes(paddle_subscription_payment_params)
     end
     if subscription.save
-      ahoy.track 'Subscription payment received', { organization_id: subscription.organization.id }
+      ahoy.track "Subscription payment received", { organization_id: subscription.organization.id }
       head 200
     else
       head 500
@@ -78,7 +79,7 @@ class PaddleWebhooksController < ApplicationController
       s.assign_attributes(paddle_subscription_payment_params)
     end
     if subscription.save
-      ahoy.track 'Subscription payment failed', { organization_id: subscription.organization.id }
+      ahoy.track "Subscription payment failed", { organization_id: subscription.organization.id }
       head 200
     else
       head 500
@@ -88,10 +89,10 @@ class PaddleWebhooksController < ApplicationController
   private
 
   def verify_webhook
-    signature = Base64.decode64(params['p_signature'])
+    signature = Base64.decode64(params["p_signature"])
     params_serialized = prepare_params
 
-    return head(403) unless public_key.verify(OpenSSL::Digest.new('SHA1'), signature, params_serialized)
+    return head(403) unless public_key.verify(OpenSSL::Digest.new("SHA1"), signature, params_serialized)
   end
 
   def prepare_params
@@ -103,7 +104,7 @@ class PaddleWebhooksController < ApplicationController
   end
 
   def public_key
-    public_key = ENV.fetch('PADDLE_PUBLIC_KEY', nil)
+    public_key = ENV.fetch("PADDLE_PUBLIC_KEY", nil)
     OpenSSL::PKey::RSA.new(public_key).public_key
   end
 

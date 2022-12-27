@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  before_action :redirect_if_inactive_subscription
   include ApplicationHelper
   add_flash_types :info, :error, :success, :warn
 
@@ -34,5 +35,9 @@ class ApplicationController < ActionController::Base
 
   def do_not_track?
     request.headers["DNT"] == "1"
+  end
+
+  def redirect_if_inactive_subscription
+    redirect_to new_subscription_path unless current_user.organization.on_trial_or_subscribed?
   end
 end

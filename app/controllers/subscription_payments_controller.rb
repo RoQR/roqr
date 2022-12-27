@@ -2,6 +2,7 @@
 
 class SubscriptionPaymentsController < ApplicationController
   before_action :set_subscription_payment, only: %i[show edit update destroy]
+  skip_before_action :redirect_if_inactive_subscription
 
   # GET /subscription_payments
   def index
@@ -25,7 +26,7 @@ class SubscriptionPaymentsController < ApplicationController
 
     if @subscription_payment.save
       redirect_to subscription_payment_url(@subscription_payment),
-                  notice: 'Subscription payment was successfully created.'
+                  notice: "Subscription payment was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -37,7 +38,7 @@ class SubscriptionPaymentsController < ApplicationController
       if @subscription_payment.update(subscription_payment_params)
         format.html do
           redirect_to subscription_payment_url(@subscription_payment),
-                      notice: 'Subscription payment was successfully updated.'
+                      notice: "Subscription payment was successfully updated."
         end
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -50,7 +51,7 @@ class SubscriptionPaymentsController < ApplicationController
     @subscription_payment.destroy
 
     respond_to do |format|
-      format.html { redirect_to subscription_payments_url, notice: 'Subscription payment was successfully destroyed.' }
+      format.html { redirect_to subscription_payments_url, notice: "Subscription payment was successfully destroyed." }
     end
   end
 

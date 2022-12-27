@@ -1,5 +1,6 @@
 class GithubSecretReportsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :create
+  skip_before_action :redirect_if_inactive_subscription
   before_action :validate_signature
 
   def create

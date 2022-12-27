@@ -70,7 +70,7 @@ class Link < ApplicationRecord
   end
 
   def should_record_scan?
-    active? && organization.on_trial_or_subscribed?
+    active?
   end
 
   def link_type
