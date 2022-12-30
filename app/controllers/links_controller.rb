@@ -8,8 +8,8 @@ class LinksController < ApplicationController
   skip_before_action :redirect_if_inactive_subscription, only: %i[scan challenge]
 
   def index
-    @links = Link.active.accessible_by(current_ability).includes(LinkData::TYPES)
-    @archived_links = Link.archived.accessible_by(current_ability).includes(LinkData::TYPES)
+    @links = Link.accessible_by(current_ability).includes(LinkData::TYPES)
+    filter_links
   end
 
   def show
@@ -209,6 +209,28 @@ class LinksController < ApplicationController
       send_data @link.barcode_data, filename: @link.name, type: :vcf, disposition: :inline
     else
       redirect_to(@link.barcode_data, status: :see_other, allow_other_host: true) and return
+    end
+  end
+
+  def filter_links
+    filter_by_status
+    filter_by_search
+    filter_by_type
+  end
+
+  def filter_by_status
+    @show_archived = truthy?(params[:show_archived])
+    @links = @links.where("archived_at is NULL") unless @show_archived
+  end
+
+  def filter_by_search
+    @links = @links.where("name ILIKE :search", search: "%#{params[:search]}%")
+  end
+
+  def filter_by_type
+    types_filter = params[:types] || LinkData::TYPES
+    @links = @links.filter do |l|
+      types_filter.include?(l.link_type.to_sym)
     end
   end
 end

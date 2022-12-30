@@ -1,5 +1,5 @@
 <%= render_component 'section_header' do |c| %>
-  <%= c.title { 'Active links' } %>
+  <%= c.title { 'Links' } %>
   <% if can?(:create, Link) %>
     <%= c.button(href: new_link_path) do %>
       New link
@@ -8,32 +8,20 @@
 <% end %>
 
 <% unless @links.empty? %>
-  <%= render_component "card" do %>
-    <ul role="list" class="divide-y divide-gray-300 dark:divide-gray-600">
-      <% @links.each do |link| %>
-        <li>
-          <%= render_component 'link_card', link: link %>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
-<% else %>
-  <%= render 'empty_state' %>
-<% end %>
-
-<% unless @archived_links.empty? %>
-  <div class="mt-3">
-    <%= render_component 'section_header' do |c| %>
-      <%= c.title { 'Archived links' } %>
-    <% end %>
-    <%= render_component 'card' do %>
+  <%= render 'filters' %>
+  <%= turbo_frame_tag 'links' do %>
+    <%= render_component "card", classes: 'mt-3' do %>
       <ul role="list" class="divide-y divide-gray-300 dark:divide-gray-600">
-        <% @archived_links.each do |link| %>
+        <% @links.each do |link| %>
           <li>
             <%= render_component 'link_card', link: link %>
           </li>
         <% end %>
       </ul>
     <% end %>
-  </div>
+  <% end %>
+<% else %>
+  <%= turbo_frame_tag 'links' do %>
+    <%= render 'empty_state' %>
+  <% end %>
 <% end %>

@@ -16,3 +16,6 @@ pin '@hotwired/stimulus', to: 'https://ga.jspm.io/npm:@hotwired/stimulus@3.0.1/d
 pin 'hotkeys-js', to: 'https://ga.jspm.io/npm:hotkeys-js@3.9.4/dist/hotkeys.esm.js'
 pin 'qr-code-styling', to: 'https://ga.jspm.io/npm:qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js'
 pin "ahoy.js", to: "https://ga.jspm.io/npm:ahoy.js@0.4.0/dist/ahoy.esm.js"
+pin "stimulus-rails-autosave", to: "https://ga.jspm.io/npm:stimulus-rails-autosave@4.1.1/dist/stimulus-rails-autosave.es.js"
+pin "@hotwired/stimulus", to: "https://ga.jspm.io/npm:@hotwired/stimulus@3.2.1/dist/stimulus.js"
+pin "lodash.debounce", to: "https://ga.jspm.io/npm:lodash.debounce@4.0.8/index.js"

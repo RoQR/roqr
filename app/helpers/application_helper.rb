@@ -2,7 +2,7 @@
 
 module ApplicationHelper
   def truthy?(arg)
-    ActiveModel::Type::Boolean.new.cast(arg)
+    ActiveModel::Type::Boolean.new.cast(arg) || false
   end
 
   def render_component(component_path, collection: nil, **options, &block)
