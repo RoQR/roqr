@@ -2,7 +2,6 @@
 
 module Users
   class UnlocksController < Devise::UnlocksController
-    skip_before_action :redirect_if_inactive_subscription
     # GET /resource/unlock/new
     # def new
     #   super

@@ -2,7 +2,6 @@
 
 module Users
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-    skip_before_action :redirect_if_inactive_subscription
     # You should configure your model like this:
     # devise :omniauthable, omniauth_providers: [:twitter]
 

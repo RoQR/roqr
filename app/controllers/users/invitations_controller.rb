@@ -3,7 +3,6 @@
 module Users
   class InvitationsController < Devise::InvitationsController
     before_action :configure_permitted_parameters
-    skip_before_action :redirect_if_inactive_subscription
     def new
       authorize! :invite, User
       super

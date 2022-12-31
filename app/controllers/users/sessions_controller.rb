@@ -4,7 +4,6 @@ module Users
   class SessionsController < Devise::SessionsController
     layout "devise"
     before_action :configure_sign_in_params, only: [:create]
-    skip_before_action :redirect_if_inactive_subscription
 
     # GET /resource/sign_in
 

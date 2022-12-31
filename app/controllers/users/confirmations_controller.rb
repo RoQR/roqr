@@ -2,7 +2,6 @@
 
 module Users
   class ConfirmationsController < Devise::ConfirmationsController
-    skip_before_action :redirect_if_inactive_subscription
     # GET /resource/confirmation/new
 
     # POST /resource/confirmation

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  before_action :redirect_if_inactive_subscription
+  before_action :redirect_if_inactive_subscription, unless: :devise_controller?
   include ApplicationHelper
   add_flash_types :info, :error, :success, :warn
 

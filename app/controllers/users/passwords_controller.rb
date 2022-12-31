@@ -2,7 +2,6 @@
 
 module Users
   class PasswordsController < Devise::PasswordsController
-    skip_before_action :redirect_if_inactive_subscription
     layout "devise"
     # GET /resource/password/new
 
