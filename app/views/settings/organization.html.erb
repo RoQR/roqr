@@ -36,21 +36,30 @@
             <%= c.button(href: new_organization_custom_domain_path(@organization), style: :secondary).with_content("Create new custom domain") %>
           <% end %>
         <% end %>
-        <ul role="list" class="divide-y divide-gray-600">
-          <% for custom_domain in @organization.custom_domains %>
-            <%= link_to custom_domain do %>
-              <li class="px-6 py-4 flex hover:bg-gray-200 dark:hover:bg-gray-600 items-center justify-between">
-                <div class="flex">
-                  <div class="ml-3">
-                    <p class="text-sm font-medium text-gray-800 dark:text-gray-100"><%= custom_domain.url %></p>
-                    <p class="text-sm text-gray-600 dark:text-gray-300"><%= custom_domain.status %></p>
+        <% if @organization.custom_domains.empty? %>
+          <div class="text-center">
+          <%= heroicon 'check-badge', size: 48, class: 'mx-auto text-gray-400' %>
+          <h2 class="mt-2 text-lg font-medium text-gray-700 dark:text-gray-200">No custom domains</h2>
+          <p class="mt-1 text-sm text-gray-500">Custom domain let you embed your own web domain in your QR codes. <a class="text-yellow-400 dark:text-yellow-300" href="https://docs.roqr.app/blog/custom-domains/">Learn more</a></p>
+            
+          </div>
+        <% else %>
+          <ul role="list" class="divide-y divide-gray-600">
+            <% for custom_domain in @organization.custom_domains %>
+              <%= link_to custom_domain do %>
+                <li class="px-6 py-4 flex hover:bg-gray-200 dark:hover:bg-gray-600 items-center justify-between">
+                  <div class="flex">
+                    <div class="ml-3">
+                      <p class="text-sm font-medium text-gray-800 dark:text-gray-100"><%= custom_domain.url %></p>
+                      <p class="text-sm text-gray-600 dark:text-gray-300"><%= custom_domain.status %></p>
+                    </div>
                   </div>
-                </div>
-                <%= heroicon 'chevron-right', class: 'text-gray-400' %>
-              </li>
+                  <%= heroicon 'chevron-right', class: 'text-gray-400' %>
+                </li>
+              <% end %>
             <% end %>
-          <% end %>
-        </ul>
+          </ul>
+        <% end %>
       <% end %>
       <%= render_component 'card' do %>
         <%= render_component 'section_header', classes: 'dark:border-gray-600' do |c| %>
@@ -63,9 +72,7 @@
         <% end %>
         <% if @organization.users.count == 1 %>
           <div class="mt-4 text-center">
-            <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 48 48" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M34 40h10v-4a6 6 0 00-10.712-3.714M34 40H14m20 0v-4a9.971 9.971 0 00-.712-3.714M14 40H4v-4a6 6 0 0110.713-3.714M14 40v-4c0-1.313.253-2.566.713-3.714m0 0A10.003 10.003 0 0124 26c4.21 0 7.813 2.602 9.288 6.286M30 14a6 6 0 11-12 0 6 6 0 0112 0zm12 6a4 4 0 11-8 0 4 4 0 018 0zm-28 0a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
+            <%= heroicon 'user-group', size: 48, class: 'mx-auto text-gray-400' %>
             <h2 class="mt-2 text-lg font-medium text-gray-700 dark:text-gray-200">Add team members</h2>
             <p class="mt-1 text-sm text-gray-500">You haven’t added any team members to your organization yet.</p>
           </div>
