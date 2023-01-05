@@ -39,10 +39,14 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_if_inactive_subscription
+    return unless current_user
+
     redirect_to new_subscription_path unless current_user.organization.on_trial_or_subscribed?
   end
 
   def redirect_if_not_onboarded
+    return unless current_user
+
     redirect_to onboarding_index_path unless current_user.terms_accepted
   end
 end
