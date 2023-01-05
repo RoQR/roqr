@@ -20,6 +20,7 @@ class User < ApplicationRecord
   validates :private_api_key, uniqueness: true, allow_blank: true
   validates :role, inclusion: { in: roles.keys }
   validates :email, presence: true, email: true
+  validates :terms_accepted, acceptance: true
   before_create :set_private_api_key
   has_many :requests, dependent: :destroy
   has_many :notifications, as: :recipient, dependent: :destroy

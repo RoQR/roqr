@@ -1,0 +1,17 @@
+<%= render 'steps', step: 1 %>
+<p class="mt-4 text-gray-600 dark:text-gray-300">Please accept the Terms of Service to continue.</p>
+<%= render_component 'card', classes: 'mt-4' do %>
+  <%= form_with(url: wizard_path, model: current_user, method: :put) do |f| %>
+    <div class="flex flex-row items-center">
+      <%= f.check_box :terms_accepted, class: 'focus:ring-gray-700 h-4 w-4 bg-gray-800 text-gray-800 rounded' %>
+      <%= f.label :terms_accepted, class: "ml-3 block text-sm font-medium text-gray-600 dark:text-gray-300" do %>
+        I accept the <%= link_to 'Terms of Service', terms_of_service_url, class: 'text-yellow-300', target: :_blank %>
+      <% end %>
+      <div class="ml-auto">
+      <%= render_component 'button', type: :submit do %>
+        Save
+      <% end %>
+    </div>
+    </div>
+  <% end %>
+<% end %>

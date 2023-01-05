@@ -1,0 +1,30 @@
+<nav class="flex items-center justify-center" aria-label="Progress">
+  <p class="text-sm font-medium text-gray-200">Step <%= step %> of 3</p>
+  <ol role="list" class="ml-8 flex items-center space-x-5">
+    <% [:terms_of_service, :link, :scan].each.with_index(1) do |name, i| %>
+      <% if i < step %>
+	<li>
+	  <%= link_to wizard_path(name), class: "block h-2.5 w-2.5 rounded-full bg-yellow-300 hover:bg-yellow-400" do %>
+	    <span class="sr-only">Step <%= step %></span>
+	  <% end %>
+	</li>
+      <% elsif i == step %>
+	<li>
+	  <div class="relative flex items-center justify-center" aria-current="step">
+	    <span class="absolute flex h-5 w-5 p-px" aria-hidden="true">
+	      <span class="h-full w-full rounded-full bg-yellow-50"></span>
+	    </span>
+	    <span class="relative block h-2.5 w-2.5 rounded-full bg-yellow-300" aria-hidden="true"></span>
+	    <span class="sr-only">Step <%= step %></span>
+	  </div>
+	</li>
+      <% else %>
+	<li>
+	  <div class="block h-2.5 w-2.5 rounded-full bg-gray-200">
+	    <span class="sr-only">Step <%= step %></span>
+	  </div>
+	</li>
+      <% end %>
+    <% end %>
+  </ol>
+</nav>

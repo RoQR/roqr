@@ -4,6 +4,7 @@ class PaddleWebhooksController < ApplicationController
   before_action :verify_webhook, unless: -> { Rails.env.test? }
   skip_before_action :verify_authenticity_token
   skip_before_action :redirect_if_inactive_subscription
+  skip_before_action :redirect_if_not_onboarded
 
   def create
     case params[:alert_name]

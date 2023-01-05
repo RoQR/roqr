@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render 'layouts/common_header' %>
+  </head>
+
+  <body class="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-800">
+    <header>
+      <div class="bg-gray-900">
+	<div class="max-w-4xl mx-auto px-2 sm:px-6 lg:px-8">
+	  <div class="flex items-center h-16">
+	    <div class='text-yellow-400 mx-auto flex h-8 w-8'>
+	      <%= show_svg("solid/bolt") %>
+	    </div>
+	  </div>
+	</div>
+      </div>
+      <% if user_masquerade? %>
+	<%= render 'layouts/masquerade_banner' %>
+      <% end %>
+    </header>
+    <article>
+      <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+	<%= yield %>
+      </div>
+      <%= render 'layouts/flash' %>
+    </article>
+    <%= render 'layouts/footer' %>
+  </body>
+</html>

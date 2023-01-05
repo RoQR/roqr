@@ -3,6 +3,7 @@
 class SubscriptionPaymentsController < ApplicationController
   before_action :set_subscription_payment, only: %i[show edit update destroy]
   skip_before_action :redirect_if_inactive_subscription
+  skip_before_action :redirect_if_not_onboarded
 
   # GET /subscription_payments
   def index

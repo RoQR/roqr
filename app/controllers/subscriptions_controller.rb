@@ -3,6 +3,7 @@
 class SubscriptionsController < ApplicationController
   load_and_authorize_resource
   skip_before_action :redirect_if_inactive_subscription
+  skip_before_action :redirect_if_not_onboarded
 
   def new
     @plans = PaddlePay::Subscription::Plan.list

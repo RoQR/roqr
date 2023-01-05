@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     }
   devise_for :admin_users
 
+  resources :onboarding
+
   resources :links do
     member do
       get :scan

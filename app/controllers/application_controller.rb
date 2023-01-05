@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   before_action :redirect_if_inactive_subscription, unless: :devise_controller?
+  before_action :redirect_if_not_onboarded, unless: :devise_controller?
   include ApplicationHelper
   add_flash_types :info, :error, :success, :warn
 
@@ -39,5 +40,11 @@ class ApplicationController < ActionController::Base
 
   def redirect_if_inactive_subscription
     redirect_to new_subscription_path unless current_user.organization.on_trial_or_subscribed?
+  end
+
+  def redirect_if_not_onboarded
+    return unless Flipper.enabled? :onboarding
+
+    redirect_to onboarding_index_path unless current_user.terms_accepted
   end
 end
