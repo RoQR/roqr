@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_if_not_onboarded
-    return unless Flipper.enabled? :onboarding
+    return unless Flipper.enabled? :onboarding, current_user
 
     redirect_to onboarding_index_path unless current_user.terms_accepted
   end
