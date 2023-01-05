@@ -6,6 +6,7 @@ class LinksController < ApplicationController
   load_and_authorize_resource
   before_action :set_instance_variables, only: %i[new edit]
   skip_before_action :redirect_if_inactive_subscription, only: %i[scan challenge]
+  skip_before_action :redirect_if_not_onboarded, only: %i[scan challenge]
 
   def index
     @links = Link.accessible_by(current_ability).includes(LinkData::TYPES)
