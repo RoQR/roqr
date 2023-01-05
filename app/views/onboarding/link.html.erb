@@ -1,10 +1,10 @@
 <%= render 'steps', step: 2 %>
 <p class="mt-4 text-gray-600 dark:text-gray-300">Create your first RoQR QR code by specifying a URL to link to below. You'll be able to edit and customize this code later.</p>
-<%= render_component 'card', classes: 'mt-4' do %>
+<%= render_component 'card', classes: 'my-4' do %>
   <%= form_with(url: wizard_path, model: @link, method: :put) do |f| %>
     <%= f.fields_for :url_link, @link.link_data || UrlLink.new do |u| %>
       <div class="flex flex-row items-center">
-        <%= u.url_field :url, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-72 sm:text-sm rounded-md", placeholder: "https://" %>
+        <%= u.url_field :url, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-72 sm:text-sm rounded-md", placeholder: "https://", required: true %>
         <div class="ml-auto">
           <%= render_component 'button', type: :submit do %>
             Save
@@ -13,4 +13,10 @@
       </div>
     <% end %>
   <% end %>
+<% end %>
+<%= link_to links_path, class: 'text-gray-400 dark:text-gray-500' do %>
+  <span class="flex flex-row">
+    Skip the rest of onboarding
+    <%= heroicon 'arrow-long-right', class: 'ml-2' %>
+  </span>
 <% end %>

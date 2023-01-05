@@ -1,9 +1,15 @@
 <%= render 'steps', step: 3 %>
 <p class="mt-4 text-gray-600 dark:text-gray-300">Scan the code below to see how RoQR's codes provides you with real-time analytics.</p>
-<div data-controller="qr" data-qr-barcode-data-value=<%= u barcode_data(@link) %> class="mt-4 w-full overflow-hidden">
+<div data-controller="qr" data-qr-barcode-data-value=<%= u barcode_data(@link) %> class="my-4 w-full overflow-hidden">
   <%= render 'links/hidden_qr_fields', link: @link %>
   <div data-qr-target="canvas" class="flex justify-center p-2">
   </div>
 </div>
+<%= link_to links_path, class: 'text-gray-400 dark:text-gray-500' do %>
+  <span class="flex flex-row">
+    Skip the rest of onboarding
+    <%= heroicon 'arrow-long-right', class: 'ml-2' %>
+  </span>
+<% end %>
 <%= turbo_stream_from 'onboarding', @link.id %>
 <div id="scans"></div>
