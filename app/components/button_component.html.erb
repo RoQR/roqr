@@ -4,7 +4,7 @@
       <%= content %>
     <% end %>
   <% else %>
-    <%= button_tag content, class: @classes, **@options %>
+    <%= button_tag content, class: @classes, disabled: @disabled, **@options %>
   <% end %>
 <% else %>
   <%= link_to @href, class: @classes, **@options do %> 

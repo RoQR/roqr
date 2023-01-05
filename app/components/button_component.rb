@@ -26,19 +26,16 @@ class ButtonComponent < ViewComponent::Base
     # @options[:tag] ||= href.nil? ? :button : :a
     @button = href.nil? || (method.presence && method.to_sym != :get)
     @href = href
+    @disabled = disabled
     @options[:method] = method
     @options[:type] = type
     @options[:data] ||= {}
     @options[:data][:turbo_method] = method
     @classes = class_names(
-      "cursor-pointer inline-flex justify-center items-center border font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2",
+      "cursor-pointer inline-flex justify-center disabled:opacity-50 disabled:cursor-not-allowed items-center border font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2",
       STYLE_MAPPINGS[fetch_or_fallback(STYLE_OPTIONS, style, STYLE_DEFAULT)],
       SIZE_MAPPINGS[fetch_or_fallback(SIZE_OPTIONS, size, SIZE_DEFAULT)],
-      options[:classes],
-      {
-        'cursor-pointer': !disabled,
-        'cursor-not-allowed': disabled
-      }
+      options[:classes]
     )
   end
 end
