@@ -4,6 +4,7 @@ module Users
   class InvitationsController < Devise::InvitationsController
     before_action :configure_permitted_parameters
     def new
+      add_breadcrumb "Organization settings", settings_organization_path
       authorize! :invite, User
       super
     end

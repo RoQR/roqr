@@ -34,7 +34,9 @@ class OnboardingController < ApplicationController
   end
 
   def link_params
-    params.require(:link).permit(:name, url_link_attributes: %i[id url]).with_defaults(name: "My first link")
+    params.require(:link)
+          .permit(:name, url_link_attributes: %i[id url])
+          .with_defaults(name: "#{current_user.email}'s first link")
   end
 
   def finish_wizard_path
