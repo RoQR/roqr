@@ -5,11 +5,11 @@ class ScansController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @all_scans = @scans.includes(:link)
-    @links_stats = @all_scans.joins(:link).group('links.name').count
-    @platform_stats = @all_scans.group(:platform_name).count
-    @browser_stats = @all_scans.group(:browser_name).count
-    @countries_stats = @all_scans.group(:country).count
+    @all_scans = @scans.includes([:link])
+    @links_stats = @all_scans.joins(:link).group("links.name").order("count_id desc").count("id")
+    @platform_stats = @all_scans.group(:platform_name).order("count_id desc").count("id")
+    @browser_stats = @all_scans.group(:browser_name).order("count_id desc").count("id")
+    @countries_stats = @all_scans.group(:country).order("count_id desc").count("id")
     @paginated_scans = @all_scans.page params[:page]
     respond_to do |format|
       format.html
