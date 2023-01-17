@@ -1,16 +1,14 @@
-<% if @all_scans.empty? %>
-  <div class="text-center">
-    <h3 class="mt-2 text-sm font-medium text-gray-700 dark:text-gray-200">No insights at this time</h3>
-    <p class="mt-1 text-sm text-gray-500">Share your QR codes to start generating insights from scans.</p>
-  </div>
-<% else %>
-  <%= render SectionHeaderComponent.new do |c| %>
-    <%= c.with_title do %>
-      Insights
-    <% end %>
+<%= render SectionHeaderComponent.new do |c| %>
+  <%= c.with_title do %>
+    Insights
   <% end %>
+<% end %>
+<%= form_with(url: scans_path, method: :get, class: 'flex flex-row my-3', data: { controller: :autosave, turbo_action: :advance, turbo_frame: :_top }) do |f| %>
+  <%= f.select :period, options_for_select([['today', 'today'], ['last thirty days', '30d'], ['all-time', 'all']], @period), {}, class: 'ml-auto bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block sm:text-sm rounded-md"', data: { action: 'autosave#save' } %>
+<% end %>
+<%= turbo_frame_tag 'scans' do %>
   <%= render_component 'card' do %>
-    <%= area_chart Scan.accessible_by(current_ability).includes(:link).last_thirty_days, discrete: true, points: false, legend: false, min: 0, colors: ['#facc15'], library: { scales: { y: { grid: { display: false, drawBorder: false } } } }  %> 
+    <%= area_chart @timeline_stats, discrete: true, points: false, legend: false, min: 0, colors: ['#facc15'], library: { scales: { y: { grid: { display: false, drawBorder: false } } } }  %> 
   <% end %>
   <div class="my-5 grid grid-cols-1 md:grid-cols-2 gap-3">
     <%= render ChartContainerComponent.new do |c| %>

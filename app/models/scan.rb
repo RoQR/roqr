@@ -9,35 +9,8 @@ class Scan < ApplicationRecord
   end
 
   scope :by_datetime, -> { order(created_at: :desc) }
-
-  def self.today(**options)
-    group_by_hour(:created_at, range: Time.zone.now.midnight..Time.zone.now, format: "%l%p", **options).count
-  end
-
-  def self.last_seven_days(**options)
-    group_by_day(:created_at, last: 7, **options).count
-  end
-
-  def self.last_thirty_days(**options)
-    group_by_day(:created_at, last: 30, format: "%d %b", **options).count
-  end
-
-  def self.month_to_date(**options)
-    group_by_day(:created_at, range: Date.current.beginning_of_month..Date.current, format: "%d %b", **options).count
-  end
-
-  def self.last_month(**options)
-    group_by_day(:created_at, range: Date.current.prev_month.beginning_of_month..Date.current.prev_month.end_of_month, format: "%d %b",
-                              **options).count
-  end
-
-  def self.year_to_date(**options)
-    group_by_month(:created_at, range: Date.current.beginning_of_year..Date.current, format: "%b", **options).count
-  end
-
-  def self.last_twelve_months(**options)
-    group_by_month(:created_at, last: 12, format: "%b", **options).count
-  end
+  scope :today, -> { where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day) }
+  scope :last_thirty_days, -> { where(created_at: 30.days.ago.beginning_of_day..Time.zone.now.end_of_day) }
 
   def self.to_csv
     CSV.generate(headers: true) do |csv|
