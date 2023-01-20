@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PaddleWebhooksController < ApplicationController
-  before_action :verify_webhook, unless: -> { Rails.env.test? }
+  before_action :verify_webhook
   skip_before_action :verify_authenticity_token
   skip_before_action :redirect_if_inactive_subscription
   skip_before_action :redirect_if_not_onboarded
