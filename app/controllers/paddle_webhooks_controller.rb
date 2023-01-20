@@ -105,7 +105,7 @@ class PaddleWebhooksController < ApplicationController
   end
 
   def public_key
-    public_key = ENV.fetch("PADDLE_PUBLIC_KEY", nil) || Rails.application.credentials.dig(:paddle, :public_key)
+    public_key = Rails.application.credentials.dig(:paddle, :public_key) || ENV.fetch("PADDLE_PUBLIC_KEY", nil)
     OpenSSL::PKey::RSA.new(public_key).public_key
   end
 
