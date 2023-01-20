@@ -24,7 +24,7 @@ class PaddleWebhooksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create subscription payment" do
-    post paddle_webhooks_url, params: create_subscription_params
+    post paddle_webhooks_url, params: prepare_params(create_subscription_params)
     assert_difference("SubscriptionPayment.count") do
       post paddle_webhooks_url, params: prepare_params(create_successful_subscription_payment_params)
     end
