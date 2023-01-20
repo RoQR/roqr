@@ -13,7 +13,6 @@ class GithubSecretReportsControllerTest < ActionDispatch::IntegrationTest
           is_current: true
         }]
       }.to_json)
-    stub_request(:post, "https://api.fly.io/graphql").to_return(status: 200, body: "", headers: {})
   end
 
   test "can report actual leaked token" do
