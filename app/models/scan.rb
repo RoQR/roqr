@@ -11,6 +11,7 @@ class Scan < ApplicationRecord
   scope :by_datetime, -> { order(created_at: :desc) }
   scope :today, -> { where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day) }
   scope :last_thirty_days, -> { where(created_at: 30.days.ago.beginning_of_day..Time.zone.now.end_of_day) }
+  scope :by_link_name, -> { joins(:link).group("links.name").count }
 
   def self.to_csv
     CSV.generate(headers: true) do |csv|

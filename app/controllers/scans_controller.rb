@@ -7,7 +7,7 @@ class ScansController < ApplicationController
   before_action :filter_scans
 
   def index
-    @scans = @scans.includes([:link])
+    @scans = @scans.includes(:link)
     @timeline_stats = timeline_stats
     @links_stats = @scans.group("links.name").order("count_id desc").count("id")
     @platform_stats = @scans.group(:platform_name).order("count_id desc").count("id")
@@ -24,10 +24,17 @@ class ScansController < ApplicationController
 
   def set_filters
     @period = params[:period] || "30d"
+    @platform = params[:platform]
+    @browser = params[:browser]
+    @country = params[:country]
   end
 
   def filter_scans
     filter_by_period
+    # filter_by_link
+    filter_by_platform
+    filter_by_browser
+    filter_by_country
   end
 
   def filter_by_period
@@ -39,6 +46,30 @@ class ScansController < ApplicationController
              when "today"
                @scans.today
              end
+  end
+
+  def filter_by_link
+    return unless params["link"]
+
+    @scans = @scans.joins(:link).where(link: { name: params["link"] })
+  end
+
+  def filter_by_platform
+    return unless @platform
+
+    @scans = @scans.where(platform_name: @platform)
+  end
+
+  def filter_by_browser
+    return unless @browser
+
+    @scans = @scans.where(browser_name: @browser)
+  end
+
+  def filter_by_country
+    return unless @country
+
+    @scans = @scans.where(country: @country)
   end
 
   def timeline_stats

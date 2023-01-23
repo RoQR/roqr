@@ -1,2 +1,0 @@
-module Marketing::QrHelper
-end
