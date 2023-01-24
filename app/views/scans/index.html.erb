@@ -20,25 +20,25 @@
       <%= c.with_title do %>
         Links
       <% end %>
-      <%= c.with_chart(label_unit: 'Link', data_unit: 'Scans', data: @links_stats, filter: false) %>
+      <%= c.with_chart(label_unit: 'Link', data_unit: 'Scans', data: @links_stats, filter: false, current_user: current_user) %>
     <% end %>
     <%= render ChartContainerComponent.new do |c| %>
       <%= c.with_title do %>
         Platforms
       <% end %>
-      <%= c.with_chart(label_unit: 'Platform', data_unit: 'Scans', data: @platform_stats) %>
+      <%= c.with_chart(label_unit: 'Platform', data_unit: 'Scans', data: @platform_stats, current_user: current_user) %>
     <% end %>
     <%= render ChartContainerComponent.new do |c| %>
       <%= c.with_title do %>
         Browsers
       <% end %>
-      <%= c.with_chart(label_unit: 'Browser', data_unit: 'Scans', data: @browser_stats) %>
+      <%= c.with_chart(label_unit: 'Browser', data_unit: 'Scans', data: @browser_stats, current_user: current_user) %>
     <% end %>
     <%= render ChartContainerComponent.new do |c| %>
       <%= c.with_title do %>
         Countries
       <% end %>
-      <%= c.with_chart(label_unit: 'Country', data_unit: 'Scans', data: @countries_stats) %>
+      <%= c.with_chart(label_unit: 'Country', data_unit: 'Scans', data: @countries_stats, current_user: current_user) %>
     <% end %>
   </div>
   <%= render SectionHeaderComponent.new do |c| %>
