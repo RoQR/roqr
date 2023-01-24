@@ -8,7 +8,7 @@ class ScansController < ApplicationController
 
   def index
     @scans = @scans.includes(:link)
-    @timeline_stats = timeline_stats
+    set_chart_data
     @links_stats = @scans.group("links.name").order("count_id desc").count("id")
     @platform_stats = @scans.group(:platform_name).order("count_id desc").count("id")
     @browser_stats = @scans.group(:browser_name).order("count_id desc").count("id")
@@ -73,14 +73,43 @@ class ScansController < ApplicationController
     @scans = @scans.where(country: @country)
   end
 
-  def timeline_stats
-    case @period
-    when "all"
-      @scans.group_by_day(:created_at, format: "%d %b").count
-    when "30d"
-      @scans.group_by_day(:created_at, format: "%d %b").count
-    when "today"
-      @scans.group_by_hour(:created_at, format: "%l%p").count
-    end
+  def set_chart_data
+    @timeline_stats = @scans.group_by_day(:created_at, format: "%d %b").count
+    @chart_data = {
+      labels: @timeline_stats.keys,
+      datasets: [{
+        pointStyle: false,
+        fill: "origin",
+        borderColor: "#facc15",
+        borderWidth: 1,
+        backgroundColor: "#9d862a",
+        tension: 0.1,
+        data: @timeline_stats.values
+      }]
+    }
+    # case @period
+    # when "all"
+    #  @scans.group_by_day(:created_at, format: "%d %b").count
+    # when "30d"
+    #  @scans.group_by_day(:created_at, format: "%d %b").count
+    # when "today"
+    #  @scans.group_by_hour(:created_at, format: "%l%p").count
+    # end
+    @chart_options = {
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
+      scales: {
+        y: {
+          grid: {
+            display: false, drawBorder: false
+          }
+        }
+      }
+    }
+
+    # <%= area_chart @timeline_stats, discrete: true, points: false, legend: false, min: 0, colors: ['#facc15'], library: { scales: { y: { grid: { display: false, drawBorder: false } } } }  %>
   end
 end
