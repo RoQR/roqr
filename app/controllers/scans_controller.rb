@@ -73,8 +73,19 @@ class ScansController < ApplicationController
     @scans = @scans.where(country: @country)
   end
 
+  def timeline_stats
+    case @period
+    when "all"
+      @scans.group_by_day(:created_at, format: "%d %b").count
+    when "30d"
+      @scans.group_by_day(:created_at, format: "%d %b").count
+    when "today"
+      @scans.group_by_hour(:created_at, format: "%l%p").count
+    end
+  end
+
   def set_chart_data
-    @timeline_stats = @scans.group_by_day(:created_at, format: "%d %b").count
+    @timeline_stats = timeline_stats
     @chart_data = {
       labels: @timeline_stats.keys,
       datasets: [{
@@ -87,14 +98,6 @@ class ScansController < ApplicationController
         data: @timeline_stats.values
       }]
     }
-    # case @period
-    # when "all"
-    #  @scans.group_by_day(:created_at, format: "%d %b").count
-    # when "30d"
-    #  @scans.group_by_day(:created_at, format: "%d %b").count
-    # when "today"
-    #  @scans.group_by_hour(:created_at, format: "%l%p").count
-    # end
     @chart_options = {
       plugins: {
         legend: {
@@ -109,7 +112,5 @@ class ScansController < ApplicationController
         }
       }
     }
-
-    # <%= area_chart @timeline_stats, discrete: true, points: false, legend: false, min: 0, colors: ['#facc15'], library: { scales: { y: { grid: { display: false, drawBorder: false } } } }  %>
   end
 end
