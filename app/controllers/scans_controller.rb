@@ -73,6 +73,12 @@ class ScansController < ApplicationController
     @scans = @scans.where(country: @country)
   end
 
+  def empty_period(start)
+    (start.to_i..Date.today.end_of_day.to_i).step(1.day).map do |t|
+      [Time.at(t).strftime("%d %b"), 0]
+    end.to_h
+  end
+
   def empty_day
     (Date.today.beginning_of_day.to_i..Date.today.end_of_day.to_i).step(1.hour).map do |t|
       [Time.at(t).strftime("%l%p"), 0]
@@ -82,9 +88,9 @@ class ScansController < ApplicationController
   def timeline_stats
     case @period
     when "all"
-      @scans.group_by_day(:created_at, format: "%d %b").count
+      @scans.group_by_day(:created_at, format: "%d %b").count.reverse_merge(empty_period(@scans.first.created_at))
     when "30d"
-      @scans.group_by_day(:created_at, format: "%d %b").count
+      @scans.group_by_day(:created_at, format: "%d %b").count.reverse_merge(empty_period(30.days.ago))
     when "today"
       @scans.group_by_hour(:created_at, format: "%l%p").count.reverse_merge(empty_day)
     end
