@@ -4,7 +4,6 @@ export default class extends Controller {
   dismiss() {
     this.element.classList.add("hidden");
     this.element.destroy;
-    debugger;
   }
 }
 
