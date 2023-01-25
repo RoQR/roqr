@@ -24,6 +24,7 @@ class ScansController < ApplicationController
 
   def set_filters
     @period = params[:period] || "30d"
+    @link = params[:link]
     @platform = params[:platform]
     @browser = params[:browser]
     @country = params[:country]
@@ -31,7 +32,7 @@ class ScansController < ApplicationController
 
   def filter_scans
     filter_by_period
-    # filter_by_link
+    filter_by_link
     filter_by_platform
     filter_by_browser
     filter_by_country
@@ -51,7 +52,7 @@ class ScansController < ApplicationController
   def filter_by_link
     return unless params["link"]
 
-    @scans = @scans.joins(:link).where(link: { name: params["link"] })
+    @scans = @scans.includes(:link).where(links: { name: params["link"] })
   end
 
   def filter_by_platform
