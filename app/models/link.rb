@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Link < ApplicationRecord
+  paginates_per 10
   belongs_to :organization
   belongs_to :contact_link, dependent: :destroy, optional: true
   belongs_to :email_link, dependent: :destroy, optional: true

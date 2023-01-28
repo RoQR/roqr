@@ -1,0 +1,28 @@
+<tr class="align-top">
+  <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium sm:w-auto sm:max-w-none sm:pl-6">
+    <%= link_to link.name, link %>
+    <dl class="font-normal text-gray-500 dark:text-gray-400">
+      <dt class="sr-only">Summary</dt>
+      <dd class="mt-1 truncate"><%= link.summary %></dd>
+      <div class="flex gap-x-3">
+      <dt class="sr-only sm:hidden">Type</dt>
+      <dd class="mt-1 truncate sm:hidden flex"><%= heroicon 'tag', variant: :mini %><span class="ml-2"><%= type(link) %></span></dd>
+      <dt class="sr-only lg:hidden">Scans</dt>
+      <dd class="mt-1 truncate lg:hidden flex"><%= heroicon 'camera', variant: :mini %><span class="ml-2"><%= link.scans.count %></span></dd>
+      </div>
+    </dl>
+  </td>
+  <td class="hidden px-3 py-4 text-sm sm:table-cell"><%= type(link) %></td>
+  <td class="hidden px-3 py-4 text-sm lg:table-cell"><%= link.scans.count %></td>
+  <td class="px-3 py-4 text-sm">
+    <div>
+      <%= link.created_at.strftime('%Y-%m-%d') %>
+    </div>
+    <div class="text-gray-500 dark:text-gray-400">
+      <%= link.created_at.strftime('%l:%m %p') %>
+    </div>
+  </td>
+  <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+    <%= link_to 'Edit', edit_link_path(link), class: "text-gray-900 dark:text-yellow-300" %>
+  </td>
+</tr>

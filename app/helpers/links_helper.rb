@@ -13,4 +13,21 @@ module LinksHelper
       link.barcode_data
     end
   end
+
+  def type(link)
+    case link.link_data
+    when UrlLink
+      "URL"
+    when EmailLink
+      "Email"
+    when WifiLink
+      "WiFi"
+    when TelephoneLink
+      "Telephone"
+    when SmsLink
+      "SMS"
+    when ContactLink
+      "Contact"
+    end
+  end
 end

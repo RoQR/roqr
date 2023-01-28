@@ -10,7 +10,10 @@ class LinksController < ApplicationController
 
   def index
     @links = Link.accessible_by(current_ability).includes(LinkData::TYPES)
+    @sort = params[:sort] || "desc"
+    @links = @links.order(created_at: @sort)
     filter_links
+    @paginated_links = @links.page params[:page]
   end
 
   def show
@@ -216,7 +219,6 @@ class LinksController < ApplicationController
   def filter_links
     filter_by_status
     filter_by_search
-    filter_by_type
   end
 
   def filter_by_status
@@ -226,12 +228,5 @@ class LinksController < ApplicationController
 
   def filter_by_search
     @links = @links.where("name ILIKE :search", search: "%#{params[:search]}%")
-  end
-
-  def filter_by_type
-    types_filter = params[:types] || LinkData::TYPES
-    @links = @links.filter do |l|
-      types_filter.include?(l.link_type.to_sym)
-    end
   end
 end

@@ -11,13 +11,7 @@
 <% unless @links.empty? %>
   <%= turbo_frame_tag 'links' do %>
     <%= render_component "card", classes: 'mt-3' do %>
-      <ul role="list" class="divide-y divide-gray-300 dark:divide-gray-600">
-        <% @links.each do |link| %>
-          <li>
-            <%= render_component 'link_card', link: link %>
-          </li>
-        <% end %>
-      </ul>
+      <%= render 'links/table/table', links: @paginated_links %>
     <% end %>
   <% end %>
 <% else %>
