@@ -3,15 +3,15 @@
     <tr class="text-gray-800 dark:text-gray-100">
       <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6">Link</th>
       <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold sm:table-cell">Type</th>
-      <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold lg:table-cell">Scans</th>
-      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold">
+      <th scope="col" align="right" class="hidden px-3 py-3.5 text-right text-sm font-semibold lg:table-cell">Scans</th>
+      <th scope="col" align="right" class="px-3 py-3.5 text-right text-sm font-semibold">
         <% if @sort == 'desc' %>
-          <%= link_to request.params.merge(sort: :asc), class: 'flex items-center' do %>
+          <%= link_to request.params.merge(sort: :asc), class: 'flex items-center justify-end' do %>
             <span class="mr-2">Date</span>
             <%= heroicon 'chevron-down', variant: :mini %>
           <% end %>
         <% else %>
-          <%= link_to request.params.merge(sort: :desc), class: 'flex items-center' do %>
+          <%= link_to request.params.merge(sort: :desc), class: 'flex items-center justify-end' do %>
             <span class="mr-2">Date</span>
             <%= heroicon 'chevron-up', variant: :mini %>
           <% end %>
