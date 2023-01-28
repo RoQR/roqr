@@ -6,21 +6,26 @@
     </span>
   </div>
 
-  <% @data.each do |title, count| %>
-    <div class="flex items-center justify-between my-1 text-sm">
-      <div class="w-full relative" style="max-width: calc(100% - 5rem);">
-        <div class="absolute top-0 left-0 h-full bg-gray-200 dark:bg-gray-600" style="width: <%= 100.0 * count / @max_count %>%;"></div>
-        <span class="flex px-2 py-1.5 group relative z-9 break-all">
-          <% if title.present? %>
-            <%= link_to request.params.merge("#{@label_unit.downcase}_filter": title), class: 'hover:underline decoration-gray-800 dark:decoration-gray-100', data: { turbo_action: 'advance', turbo_frame: 'scans' } do %>
-              <p class="md:truncate block text-gray-800 dark:text-gray-100"><%= title || 'Unknown' %></p>
-            <% end %>
-          <% else %>
-            <p class="md:truncate block text-gray-800 dark:text-gray-100"><%= title || 'Unknown' %></p>
-          <% end %>
-        </span>
+  <% if @expandable %>
+    <div class="flex flex-col" data-controller="reveal">
+      <% @data.first(5).each do |title, count| %>
+        <%= row(title, count) %>
+      <% end %>
+      <div class="hidden" data-reveal-target='item'>
+      <% @data.drop(5).each do |title, count| %>
+        <%= row(title, count) %>
+      <% end %>
       </div>
-      <span class="w-20 text-right text-gray-800 dark:text-gray-100" tooltip="<%= count %>"><%= count %></span>
+      <%= render ButtonComponent.new(style: :text, classes: 'mt-3 self-center', data: { action: 'reveal#toggle' }) do %>
+        <span data-reveal-target="item">More</span>
+        <%= heroicon 'plus', variant: :mini, data: { reveal_target: 'item' } %>
+        <span class="hidden" data-reveal-target="item">Less</span>
+        <%= heroicon 'minus', class: 'hidden', variant: :mini, data: { reveal_target: 'item' } %>
+      <% end %>
     </div>
+  <% else %>
+    <% @data.each do |title, count| %>
+      <%= row(title, count) %>
+    <% end %>
   <% end %>
 </div>
