@@ -1,0 +1,40 @@
+<%= render SectionHeaderComponent.new do |c| %>
+  <%= c.with_title do %>
+    Scan log
+  <% end %>
+  <%= c.with_button(style: :secondary, href: scans_path(format: :csv)) do %>
+    <span class="flex items-center">
+      <%= heroicon 'cloud-arrow-down' %>
+      <p class="ml-2">Download as CSV</p>
+    </span>
+  <% end %>
+<% end %>
+<div class="overflow-hidden rounded-md md:rounded-lg overflow-x-auto">
+  <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
+    <thead class="bg-gray-100 dark:bg-gray-700">
+      <tr>
+        <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-800 dark:text-gray-100 sm:pl-6">Datetime</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">Link</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">Browser name</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">Browser version</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">Bot name</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">Device name</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">Platform name</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">Platform version</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">Language</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">City</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">Country</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan='100%'> 
+          <%= paginate @paginated_scans, window: 2, outer_window: 2 %>
+        </td>
+      </tr>
+    </tfoot>
+    <tbody id="scans" class="divide-y divide-gray-200 dark:divide-gray-600">
+      <%= render partial: "row", collection: @scans.by_datetime, as: :scan %>
+    </tbody>
+  </table>
+</div>

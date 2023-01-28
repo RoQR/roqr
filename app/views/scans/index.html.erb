@@ -4,83 +4,8 @@
   <% end %>
 <% end %>
 <%= turbo_frame_tag 'scans' do %>
-  <%= render 'scans/filters' %>
-  <%= render_component 'card' do %>
-    <div class="relative">
-    <canvas
-      data-controller="chart"
-      data-chart-data-value="<%= @chart_data.to_json %>"
-      data-chart-options-value="<%= @chart_options.to_json %>"
-      class="h-64 w-full"
-      >
-    </canvas>
-      
-    </div>
-  <% end %>
-  <div class="my-5 grid grid-cols-1 md:grid-cols-2 gap-3">
-    <%= render ChartContainerComponent.new do |c| %>
-      <%= c.with_title do %>
-        Links
-      <% end %>
-      <%= c.with_chart(label_unit: 'Link', data_unit: 'Scans', data: chart_data("links.name")) %>
-    <% end %>
-    <%= render ChartContainerComponent.new do |c| %>
-      <%= c.with_title do %>
-        Platforms
-      <% end %>
-      <%= c.with_chart(label_unit: 'Platform', data_unit: 'Scans', data: chart_data(:platform_name)) %>
-    <% end %>
-    <%= render ChartContainerComponent.new do |c| %>
-      <%= c.with_title do %>
-        Browsers
-      <% end %>
-      <%= c.with_chart(label_unit: 'Browser', data_unit: 'Scans', data: chart_data(:browser_name)) %>
-    <% end %>
-    <%= render ChartContainerComponent.new do |c| %>
-      <%= c.with_title do %>
-        Countries
-      <% end %>
-      <%= c.with_chart(label_unit: 'Country', data_unit: 'Scans', data: chart_data(:country)) %>
-    <% end %>
-  </div>
-  <%= render SectionHeaderComponent.new do |c| %>
-    <%= c.with_title do %>
-      Scan log
-    <% end %>
-    <%= c.with_button(style: :secondary, href: scans_path(format: :csv)) do %>
-      <span class="flex items-center">
-        <%= heroicon 'cloud-arrow-down' %>
-        <p class="ml-2">Download as CSV</p>
-      </span>
-    <% end %>
-  <% end %>
-  <div class="overflow-hidden rounded-md md:rounded-lg overflow-x-auto">
-    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-      <thead class="bg-gray-100 dark:bg-gray-700">
-        <tr>
-          <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-800 dark:text-gray-100 sm:pl-6">Datetime</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">Link</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">Browser name</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">Browser version</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">Bot name</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">Device name</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">Platform name</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">Platform version</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">Language</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">City</th>
-          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-800 dark:text-gray-100">Country</th>
-        </tr>
-      </thead>
-      <tfoot>
-        <tr>
-          <td colspan='100%'> 
-            <%= paginate @paginated_scans, window: 2, outer_window: 2 %>
-          </td>
-        </tr>
-      </tfoot>
-      <tbody id="scans" class="divide-y divide-gray-200 dark:divide-gray-600">
-        <%= render partial: "row", collection: @scans.by_datetime, as: :scan %>
-      </tbody>
-    </table>
-  </div>
+  <%= render 'filters' %>
+  <%= render 'scans_chart' %>
+  <%= render 'bar_charts' %>
+  <%= render 'table' %>
 <% end %>

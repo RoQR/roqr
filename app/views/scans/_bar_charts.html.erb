@@ -1,0 +1,26 @@
+<div class="my-5 grid grid-cols-1 md:grid-cols-2 gap-3">
+  <%= render ChartContainerComponent.new do |c| %>
+    <%= c.with_title do %>
+      Links
+    <% end %>
+    <%= c.with_chart(label_unit: 'Link', data_unit: 'Scans', data: chart_data("links.name")) %>
+  <% end %>
+  <%= render ChartContainerComponent.new do |c| %>
+    <%= c.with_title do %>
+      Platforms
+    <% end %>
+    <%= c.with_chart(label_unit: 'Platform', data_unit: 'Scans', data: chart_data(:platform_name)) %>
+  <% end %>
+  <%= render ChartContainerComponent.new do |c| %>
+    <%= c.with_title do %>
+      Browsers
+    <% end %>
+    <%= c.with_chart(label_unit: 'Browser', data_unit: 'Scans', data: chart_data(:browser_name)) %>
+  <% end %>
+  <%= render ChartContainerComponent.new do |c| %>
+    <%= c.with_title do %>
+      Countries
+    <% end %>
+    <%= c.with_chart(label_unit: 'Country', data_unit: 'Scans', data: chart_data(:country)) %>
+  <% end %>
+</div>
