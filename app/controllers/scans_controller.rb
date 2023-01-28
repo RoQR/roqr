@@ -10,10 +10,6 @@ class ScansController < ApplicationController
   def index
     @scans = @scans.includes(:link)
     set_chart_data
-    @links_stats = @scans.group("links.name").order("count_id desc").count("id")
-    @platform_stats = @scans.group(:platform_name).order("count_id desc").count("id")
-    @browser_stats = @scans.group(:browser_name).order("count_id desc").count("id")
-    @countries_stats = @scans.group(:country).order("count_id desc").count("id")
     @paginated_scans = @scans.page params[:page]
     respond_to do |format|
       format.html
@@ -24,11 +20,11 @@ class ScansController < ApplicationController
   private
 
   def set_filters
-    @period = params[:period] || "30d"
-    @link = params[:link]
-    @platform = params[:platform]
-    @browser = params[:browser]
-    @country = params[:country]
+    @period_filter = params[:period_filter] || "30d"
+    @link_filter = params[:link_filter]
+    @platform_filter = params[:platform_filter]
+    @browser_filter = params[:browser_filter]
+    @country_filter = params[:country_filter]
   end
 
   def filter_scans
@@ -40,58 +36,62 @@ class ScansController < ApplicationController
   end
 
   def filter_by_period
-    @scans = case @period
+    @scans = case @period_filter
              when "all"
                @scans
+             when "7d"
+               @scans.last_x_days(7)
              when "30d"
-               @scans.last_thirty_days
+               @scans.last_x_days(30)
              when "today"
                @scans.today
              end
   end
 
   def filter_by_link
-    return unless params["link"]
+    return unless @link_filter
 
-    @scans = @scans.includes(:link).where(links: { name: params["link"] })
+    @scans = @scans.includes(:link).where(links: { name: @link_filter })
   end
 
   def filter_by_platform
-    return unless @platform
+    return unless @platform_filter
 
-    @scans = @scans.where(platform_name: @platform)
+    @scans = @scans.where(platform_name: @platform_filter)
   end
 
   def filter_by_browser
-    return unless @browser
+    return unless @browser_filter
 
-    @scans = @scans.where(browser_name: @browser)
+    @scans = @scans.where(browser_name: @browser_filter)
   end
 
   def filter_by_country
-    return unless @country
+    return unless @country_filter
 
-    @scans = @scans.where(country: @country)
+    @scans = @scans.where(country: @country_filter)
   end
 
   def empty_period(start)
-    (start.to_i..Date.today.end_of_day.to_i).step(1.day).map do |t|
+    (start.to_i..Date.today.end_of_day.to_i).step(1.day).to_h do |t|
       [Time.at(t).strftime("%d %b"), 0]
-    end.to_h
+    end
   end
 
   def empty_day
-    (Date.today.beginning_of_day.to_i..Date.today.end_of_day.to_i).step(1.hour).map do |t|
+    (Date.today.beginning_of_day.to_i..Date.today.end_of_day.to_i).step(1.hour).to_h do |t|
       [Time.at(t).strftime("%l%p"), 0]
-    end.to_h
+    end
   end
 
   def timeline_stats
-    case @period
+    case @period_filter
     when "all"
       @scans.group_by_day(:created_at, format: "%d %b").count.reverse_merge(empty_period(@scans.first.created_at))
     when "30d"
       @scans.group_by_day(:created_at, format: "%d %b").count.reverse_merge(empty_period(30.days.ago))
+    when "7d"
+      @scans.group_by_day(:created_at, format: "%d %b").count.reverse_merge(empty_period(7.days.ago))
     when "today"
       @scans.group_by_hour(:created_at, format: "%l%p").count.reverse_merge(empty_day)
     end

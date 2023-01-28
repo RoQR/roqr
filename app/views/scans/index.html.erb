@@ -4,60 +4,43 @@
   <% end %>
 <% end %>
 <%= turbo_frame_tag 'scans' do %>
-<%= form_with(url: scans_path, method: :get, class: 'flex flex-row my-3', data: { controller: :autosave, turbo_action: :advance, turbo_frame: :_top }) do |f| %>
-  <div class="hidden xl:flex flex-row gap-x-2">
-    <%= render FilterComponent.new(:link, @link) %>
-    <%= render FilterComponent.new(:platform, @platform) %>
-    <%= render FilterComponent.new(:browser, @browser) %>
-    <%= render FilterComponent.new(:country, @country) %>
-  </div>
-  <div class="relative xl:hidden" data-controller="dropdown">
-    <%= render ButtonComponent.new(type: :button, style: :text, classes: class_names(hidden: !filtered?), data: { action: 'dropdown#toggle' }) do %>
-      <span class="mr-1">Filters</span>
-      <%= heroicon 'chevron-down', variant: :mini %>
-    <% end %>
-    <div class="hidden z-10 origin-top-left absolute bg-gray-300 dark:bg-gray-700 w-80 rounded-md shadow-lg mt-2 py-1 transition" data-dropdown-target="menu">
-      <%= render FilterComponent.new(:link, @link) %>
-      <%= render FilterComponent.new(:platform, @platform) %>
-      <%= render FilterComponent.new(:browser, @browser) %>
-      <%= render FilterComponent.new(:country, @country) %>
-    </div>
-  </div>
-  <%= f.select :period, options_for_select([['Today', 'today'], ['Last thirty days', '30d'], ['All-time', 'all']], @period), {}, class: 'ml-auto bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block sm:text-sm rounded-md"', data: { action: 'autosave#save' } %>
-<% end %>
+  <%= render 'scans/filters' %>
   <%= render_component 'card' do %>
+    <div class="relative">
     <canvas
       data-controller="chart"
       data-chart-data-value="<%= @chart_data.to_json %>"
       data-chart-options-value="<%= @chart_options.to_json %>"
-      class="w-full"
+      class="h-64 w-full"
       >
     </canvas>
+      
+    </div>
   <% end %>
   <div class="my-5 grid grid-cols-1 md:grid-cols-2 gap-3">
     <%= render ChartContainerComponent.new do |c| %>
       <%= c.with_title do %>
         Links
       <% end %>
-      <%= c.with_chart(label_unit: 'Link', data_unit: 'Scans', data: @links_stats, current_user: current_user) %>
+      <%= c.with_chart(label_unit: 'Link', data_unit: 'Scans', data: chart_data("links.name")) %>
     <% end %>
     <%= render ChartContainerComponent.new do |c| %>
       <%= c.with_title do %>
         Platforms
       <% end %>
-      <%= c.with_chart(label_unit: 'Platform', data_unit: 'Scans', data: @platform_stats, current_user: current_user) %>
+      <%= c.with_chart(label_unit: 'Platform', data_unit: 'Scans', data: chart_data(:platform_name)) %>
     <% end %>
     <%= render ChartContainerComponent.new do |c| %>
       <%= c.with_title do %>
         Browsers
       <% end %>
-      <%= c.with_chart(label_unit: 'Browser', data_unit: 'Scans', data: @browser_stats, current_user: current_user) %>
+      <%= c.with_chart(label_unit: 'Browser', data_unit: 'Scans', data: chart_data(:browser_name)) %>
     <% end %>
     <%= render ChartContainerComponent.new do |c| %>
       <%= c.with_title do %>
         Countries
       <% end %>
-      <%= c.with_chart(label_unit: 'Country', data_unit: 'Scans', data: @countries_stats, current_user: current_user) %>
+      <%= c.with_chart(label_unit: 'Country', data_unit: 'Scans', data: chart_data(:country)) %>
     <% end %>
   </div>
   <%= render SectionHeaderComponent.new do |c| %>

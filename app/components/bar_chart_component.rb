@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
 class BarChartComponent < ViewComponent::Base
-  def initialize(label_unit:, data_unit:, data:, current_user: nil, filter: true)
+  def initialize(label_unit:, data_unit:, data:)
     @label_unit = label_unit
     @data_unit = data_unit
     @data = data
-    @current_user = current_user
-    @max_count = data.map { |_, v| v }.max
-    @filter = filter
+    @max_count = data.values.max
   end
 
   def title

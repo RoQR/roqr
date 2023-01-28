@@ -1,0 +1,22 @@
+
+  <%= form_with(url: scans_path, method: :get, class: 'flex flex-row my-3', data: { controller: :autosave, turbo_action: :advance, turbo_frame: :_top }) do |f| %>
+    <div class="hidden xl:flex flex-row gap-x-2">
+      <%= render FilterComponent.new(:link, @link_filter) %>
+      <%= render FilterComponent.new(:platform, @platform_filter) %>
+      <%= render FilterComponent.new(:browser, @browser_filter) %>
+      <%= render FilterComponent.new(:country, @country_filter) %>
+    </div>
+    <div class="relative xl:hidden" data-controller="dropdown">
+      <%= render ButtonComponent.new(type: :button, style: :text, classes: class_names(hidden: !filtered?), data: { action: 'dropdown#toggle' }) do %>
+        <span class="mr-1">Filters</span>
+        <%= heroicon 'chevron-down', variant: :mini %>
+      <% end %>
+      <div class="hidden z-10 origin-top-left absolute bg-gray-300 dark:bg-gray-700 w-80 rounded-md shadow-lg mt-2 py-1 transition" data-dropdown-target="menu">
+        <%= render FilterComponent.new(:link, @link_filter) %>
+        <%= render FilterComponent.new(:platform, @platform_filter) %>
+        <%= render FilterComponent.new(:browser, @browser_filter) %>
+        <%= render FilterComponent.new(:country, @country_filter) %>
+      </div>
+    </div>
+    <%= f.select :period_filter, options_for_select([['Today', 'today'], ['One week', '7d'], ['Thirty days', '30d'], ['All-time', 'all']], @period_filter), {}, class: 'ml-auto bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block sm:text-sm rounded-md"', data: { action: 'autosave#save' } %>
+  <% end %>
