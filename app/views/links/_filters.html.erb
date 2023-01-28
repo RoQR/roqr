@@ -1,9 +1,6 @@
 <%= form_with(url: links_path, method: :get, data: { turbo_action: 'advance', turbo_frame: 'links', controller: 'autosave', autosave_delay_value: 200 }) do |f| %>
   <div class="grid grid-cols-2 lg:grid-cols-5">
     <%= f.text_field :search, class: "lg:col-span-2 bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md", placeholder: 'Search...', data: { action: 'autosave#save' } %>
-    <%= render_component 'button', style: :text do %>
-      <span>Sort by</span>
-    <% end %>
     <%= render ToggleComponent.new(:show_archived, form: f, classes: 'lg:col-start-5', data: { action: 'autosave#save' }) do %>
       Show archived?
     <% end %>
