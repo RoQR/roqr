@@ -8,6 +8,7 @@ class ScansController < ApplicationController
   before_action :filter_scans
 
   def index
+    @organization = current_user.organization
     @scans = @scans.includes(:link)
     set_chart_data
     @paginated_scans = @scans.page params[:page]
@@ -87,7 +88,8 @@ class ScansController < ApplicationController
   def timeline_stats
     case @period_filter
     when "all"
-      @scans.group_by_day(:created_at, format: "%d %b").count.reverse_merge(empty_period(@scans.first.created_at))
+      @scans.group_by_day(:created_at,
+                          format: "%d %b").count.reverse_merge(empty_period(@organization.created_at))
     when "30d"
       @scans.group_by_day(:created_at, format: "%d %b").count.reverse_merge(empty_period(30.days.ago))
     when "7d"
@@ -119,6 +121,8 @@ class ScansController < ApplicationController
       },
       scales: {
         y: {
+          min: 0,
+          suggestedMax: 10,
           grid: {
             display: false, drawBorder: false
           }
