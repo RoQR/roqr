@@ -73,89 +73,9 @@ class ScansController < ApplicationController
     @scans = @scans.where(country: @country_filter)
   end
 
-  def empty_period(start_at, end_at = Date.today.end_of_day, step: :day, format: "%d %b")
-    (start_at.to_i..end_at.to_i).step(1.send(step)).to_h do |t|
-      [Time.at(t).strftime(format), 0]
-    end
-  end
-
-  def timeline_stats
-    case @period_filter
-    when "all"
-      if @organization.created_at > 1.month.ago
-        @scans
-          .group_by_day(:created_at, format: "%d %b")
-          .count
-          .reverse_merge(
-            empty_period(
-              @organization.created_at
-            )
-          )
-      elsif @organization.created_at > 3.months.ago
-        @scans
-          .group_by_week(:created_at, format: "%d %b")
-          .count
-          .reverse_merge(
-            empty_period(
-              @organization.created_at,
-              Time.now.end_of_week,
-              step: :week
-            )
-          )
-      else
-        @scans
-          .group_by_month(:created_at, format: "%b %Y")
-          .count
-          .reverse_merge(
-            empty_period(
-              @organization.created_at.beginning_of_month,
-              Time.now.end_of_month,
-              step: :month,
-              format: "%b %Y"
-            )
-          )
-      end
-
-    when "30d"
-      @scans.group_by_day(:created_at, format: "%d %b").count.reverse_merge(empty_period(30.days.ago))
-    when "7d"
-      @scans.group_by_day(:created_at, format: "%d %b").count.reverse_merge(empty_period(7.days.ago))
-    when "today"
-      @scans.group_by_hour(
-        :created_at, format: "%l%p"
-      ).count.reverse_merge(empty_period(Date.today.beginning_of_day, step: :hour, format: "%l%p"))
-    end
-  end
-
   def set_chart_data
-    @timeline_stats = timeline_stats
-    @chart_data = {
-      labels: @timeline_stats.keys,
-      datasets: [{
-        pointStyle: false,
-        fill: "origin",
-        borderColor: "#facc15",
-        borderWidth: 1,
-        backgroundColor: "#9d862a",
-        tension: 0.1,
-        data: @timeline_stats.values
-      }]
-    }
-    @chart_options = {
-      plugins: {
-        legend: {
-          display: false
-        }
-      },
-      scales: {
-        y: {
-          min: 0,
-          suggestedMax: 10,
-          grid: {
-            display: false, drawBorder: false
-          }
-        }
-      }
-    }
+    timeline_chart = TimelineChart.new(@scans, @period_filter)
+    @chart_data = timeline_chart.chart_data
+    @chart_options = timeline_chart.chart_options
   end
 end
