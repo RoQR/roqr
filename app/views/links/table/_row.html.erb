@@ -16,10 +16,10 @@
   <td align="right" class="hidden px-3 py-4 text-sm lg:table-cell"><%= link.scans.count %></td>
   <td align="right" class="px-3 py-4 text-sm">
     <div>
-      <%= link.created_at.strftime('%Y-%m-%d') %>
+      <%= local_relative_time(link.created_at, 'weekday-or-date') %>
     </div>
     <div class="text-gray-500 dark:text-gray-400">
-      <%= link.created_at.strftime('%l:%m %p') %>
+      <%= local_time(link.created_at, '%l:%M %p') %>
     </div>
   </td>
   <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">

@@ -22,3 +22,4 @@ pin "lodash.debounce", to: "https://ga.jspm.io/npm:lodash.debounce@4.0.8/index.j
 pin "stimulus-chartjs", to: "https://ga.jspm.io/npm:stimulus-chartjs@5.0.0/dist/stimulus-chartjs.mjs"
 pin "@kurkle/color", to: "https://ga.jspm.io/npm:@kurkle/color@0.3.2/dist/color.esm.js"
 pin "chart.js/auto", to: "https://ga.jspm.io/npm:chart.js@4.2.0/auto/auto.js"
+pin "local-time", to: "https://ga.jspm.io/npm:local-time@2.1.0/app/assets/javascripts/local-time.js"

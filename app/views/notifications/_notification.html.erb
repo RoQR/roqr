@@ -13,8 +13,8 @@
         <div>
           <p class="text-sm text-gray-700 dark:text-gray-200"><%= sanitize notification.to_notification.message %></p>
         </div>
-        <div title="<%= notification.created_at %>" class="text-right text-sm whitespace-nowrap text-gray-500">
-          <time><%= time_ago_in_words(notification.created_at) %> ago</time>
+        <div class="text-right text-sm whitespace-nowrap text-gray-500">
+          <%= local_time_ago(notification.created_at) %>
         </div>
       </div>
     </div>

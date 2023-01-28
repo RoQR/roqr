@@ -244,6 +244,7 @@ GEM
     llhttp-ffi (0.4.0)
       ffi-compiler (~> 1.0)
       rake (~> 13.0)
+    local_time (2.1.0)
     lockbox (1.1.1)
     loofah (2.19.1)
       crass (~> 1.0.2)
@@ -517,6 +518,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kaminari (~> 1.2)
+  local_time (~> 2.1)
   lockbox (~> 1.0)
   lookbook
   noticed (~> 1.5)

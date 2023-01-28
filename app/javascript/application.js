@@ -2,4 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import ahoy from 'ahoy.js';
+import LocalTime from "local-time"
+
+LocalTime.start()
 ahoy.configure({cookies: false});
