@@ -73,29 +73,34 @@ class ScansController < ApplicationController
     @scans = @scans.where(country: @country_filter)
   end
 
-  def empty_period(start)
-    (start.to_i..Date.today.end_of_day.to_i).step(1.day).to_h do |t|
-      [Time.at(t).strftime("%d %b"), 0]
-    end
-  end
-
-  def empty_day
-    (Date.today.beginning_of_day.to_i..Date.today.end_of_day.to_i).step(1.hour).to_h do |t|
-      [Time.at(t).strftime("%l%p"), 0]
+  def empty_period(start_at, end_at = Date.today.end_of_day, step: :day, format: "%d %b")
+    (start_at.to_i..end_at.to_i).step(1.send(step)).to_h do |t|
+      [Time.at(t).strftime(format), 0]
     end
   end
 
   def timeline_stats
     case @period_filter
     when "all"
-      @scans.group_by_day(:created_at,
-                          format: "%d %b").count.reverse_merge(empty_period(@organization.created_at))
+      @scans
+        .group_by_month(:created_at, format: "%b %Y")
+        .count
+        .reverse_merge(
+          empty_period(
+            @organization.created_at.beginning_of_month,
+            Time.now.end_of_month,
+            step: :month,
+            format: "%b %Y"
+          )
+        )
     when "30d"
       @scans.group_by_day(:created_at, format: "%d %b").count.reverse_merge(empty_period(30.days.ago))
     when "7d"
       @scans.group_by_day(:created_at, format: "%d %b").count.reverse_merge(empty_period(7.days.ago))
     when "today"
-      @scans.group_by_hour(:created_at, format: "%l%p").count.reverse_merge(empty_day)
+      @scans.group_by_hour(
+        :created_at, format: "%l%p"
+      ).count.reverse_merge(empty_period(Date.today.beginning_of_day, step: :hour, format: "%l%p"))
     end
   end
 
