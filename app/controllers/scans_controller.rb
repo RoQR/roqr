@@ -82,17 +82,40 @@ class ScansController < ApplicationController
   def timeline_stats
     case @period_filter
     when "all"
-      @scans
-        .group_by_month(:created_at, format: "%b %Y")
-        .count
-        .reverse_merge(
-          empty_period(
-            @organization.created_at.beginning_of_month,
-            Time.now.end_of_month,
-            step: :month,
-            format: "%b %Y"
+      if @organization.created_at > 1.month.ago
+        @scans
+          .group_by_day(:created_at, format: "%d %b")
+          .count
+          .reverse_merge(
+            empty_period(
+              @organization.created_at
+            )
           )
-        )
+      elsif @organization.created_at > 3.months.ago
+        @scans
+          .group_by_week(:created_at, format: "%d %b")
+          .count
+          .reverse_merge(
+            empty_period(
+              @organization.created_at,
+              Time.now.end_of_week,
+              step: :week
+            )
+          )
+      else
+        @scans
+          .group_by_month(:created_at, format: "%b %Y")
+          .count
+          .reverse_merge(
+            empty_period(
+              @organization.created_at.beginning_of_month,
+              Time.now.end_of_month,
+              step: :month,
+              format: "%b %Y"
+            )
+          )
+      end
+
     when "30d"
       @scans.group_by_day(:created_at, format: "%d %b").count.reverse_merge(empty_period(30.days.ago))
     when "7d"
