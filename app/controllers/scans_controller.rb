@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ScansController < ApplicationController
+  include ScansHelper
   before_action :authenticate_user!
   load_and_authorize_resource
   before_action :set_filters

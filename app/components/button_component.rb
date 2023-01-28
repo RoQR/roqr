@@ -4,10 +4,11 @@ class ButtonComponent < ViewComponent::Base
   include ComponentHelper
   STYLE_DEFAULT = :primary
   STYLE_MAPPINGS = {
-    STYLE_DEFAULT => "border-transparent text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500",
-    :secondary => "border-gray-400 dark:border-gray-500 text-gray-500 dark:text-gray-400 bg-transparent hover:bg-transparent/5",
-    :destructive => "border-transparent text-gray-50 bg-red-600 hover:bg-red-700 focus:ring-red-500",
-    :destructive_inverted => "border-transparent bg-red-200 text-red-800 hover:bg-red-300 focus:ring-red-200"
+    STYLE_DEFAULT => "border border-transparent text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500 shadow-sm",
+    :secondary => "border border-gray-400 dark:border-gray-500 text-gray-500 dark:text-gray-400 bg-transparent hover:bg-transparent/5 shadow-sm",
+    :text => "text-gray-500 dark:text-gray-300",
+    :destructive => "border border-transparent text-gray-50 bg-red-600 hover:bg-red-700 focus:ring-red-500 shadow-sm",
+    :destructive_inverted => "border border-transparent bg-red-200 text-red-800 hover:bg-red-300 focus:ring-red-200 shadow-sm"
   }.freeze
   STYLE_OPTIONS = STYLE_MAPPINGS.keys
 
@@ -32,7 +33,7 @@ class ButtonComponent < ViewComponent::Base
     @options[:data] ||= {}
     @options[:data][:turbo_method] = method
     @classes = class_names(
-      "cursor-pointer inline-flex justify-center disabled:opacity-50 disabled:cursor-not-allowed items-center border font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2",
+      "cursor-pointer inline-flex justify-center disabled:opacity-50 disabled:cursor-not-allowed items-center font-medium rounded focus:outline-none focus:ring-2 focus:ring-offset-2",
       STYLE_MAPPINGS[fetch_or_fallback(STYLE_OPTIONS, style, STYLE_DEFAULT)],
       SIZE_MAPPINGS[fetch_or_fallback(SIZE_OPTIONS, size, SIZE_DEFAULT)],
       options[:classes]
