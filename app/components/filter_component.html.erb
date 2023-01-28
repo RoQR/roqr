@@ -1,5 +1,5 @@
 <%= render ApplicationComponent.new(**@options) do %>
-  <%= hidden_field_tag @field, @value %>
+  <%= hidden_field_tag "#{@field}_filter", @value %>
   <p><%= text %></p>
   <%= link_to request.params.except("#{@field}_filter"), data: { turbo_action: 'advance' } do %>
     <%= heroicon 'x-mark' %>
