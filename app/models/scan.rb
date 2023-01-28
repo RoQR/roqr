@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Scan < ApplicationRecord
-  paginates_per 25
+  paginates_per 10
   belongs_to :link
 
   after_create_commit do

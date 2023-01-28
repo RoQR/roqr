@@ -11,6 +11,7 @@ class ScansController < ApplicationController
     @organization = current_user.organization
     @scans = @scans.includes(:link)
     set_chart_data
+
     @paginated_scans = @scans.page params[:page]
     respond_to do |format|
       format.html

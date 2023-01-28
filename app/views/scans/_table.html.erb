@@ -34,7 +34,7 @@
       </tr>
     </tfoot>
     <tbody id="scans" class="divide-y divide-gray-200 dark:divide-gray-600">
-      <%= render partial: "row", collection: @scans.by_datetime, as: :scan %>
+      <%= render partial: "row", collection: @paginated_scans.by_datetime, as: :scan %>
     </tbody>
   </table>
 </div>
