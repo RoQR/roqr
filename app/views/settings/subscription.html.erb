@@ -9,11 +9,13 @@
             <%= SubscriptionPresenter.new(@organization.subscription).status_badge if @organization.subscribed? %>
           <% end %>
           <% if @organization.subscribed? %>
-            <% unless @organization.subscription_cancelled? %>
+            <% unless @organization.subscription_cancelled? || cannot?(:edit, @organization.subscription, current_user) %>
               <%= c.button(href: edit_subscription_path(@organization.subscription), style: :secondary).with_content("Manage subscription") %>
             <% end %>
           <% else %>
-            <%= c.button(href: new_subscription_path, style: :secondary).with_content("Manage subscription") %>
+            <% if can?(:create, Subscription) %>
+              <%= c.button(href: new_subscription_path, style: :secondary).with_content("Manage subscription") %>
+            <% end %>
           <% end %>
         <% end %>
         <% if @organization.subscribed? && !@organization.subscription.cancelled?  %>
