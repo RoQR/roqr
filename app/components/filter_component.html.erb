@@ -1,10 +1,10 @@
 <%= render ApplicationComponent.new(**@options) do %>
   <%= hidden_field_tag "#{@field}_filter", @value %>
-  <div class="flex flex-col pr-2 border-gray-400 dark:border-gray-600 border-r">
+  <div class="flex flex-col pr-2">
     <p class="text-xs uppercase"><%= @field %></p>
     <p class="text-sm font-semibold"><%= @value %></p>
   </div>
-  <%= link_to request.params.except("#{@field}_filter"), class: 'pl-2', data: { turbo_action: 'advance' } do %>
+  <%= link_to request.params.except("#{@field}_filter"), class: 'flex items-center h-full border-gray-400 dark:border-gray-600 border-l pl-2 ml-auto', data: { turbo_action: 'advance' } do %>
     <%= heroicon 'x-mark', variant: :mini %>
   <% end %>
 <% end %>

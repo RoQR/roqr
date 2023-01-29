@@ -9,6 +9,7 @@ class TimelineChart
   }.freeze
 
   CHART_OPTIONS = {
+    animation: false,
     plugins: {
       legend: {
         display: false

@@ -10,7 +10,7 @@
       <span class="mr-1">Filters</span>
       <%= heroicon 'chevron-down', variant: :mini %>
     <% end %>
-    <div class="hidden z-10 origin-top-left absolute bg-gray-300 dark:bg-gray-700 w-80 rounded-md shadow-lg mt-2 py-1 transition" data-dropdown-target="menu">
+    <div class="hidden z-10 divide-y divide-gray-400 dark:divide-gray-600 origin-top-left absolute bg-gray-300 dark:bg-gray-700 w-80 rounded-md shadow-lg mt-2 py-1 transition" data-dropdown-target="menu">
       <%= render FilterComponent.new(:link, @link_filter) %>
       <%= render FilterComponent.new(:platform, @platform_filter) %>
       <%= render FilterComponent.new(:browser, @browser_filter) %>
