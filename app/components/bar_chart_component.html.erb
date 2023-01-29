@@ -11,7 +11,15 @@
       <% @data.first(5).each do |title, count| %>
         <%= row(title, count) %>
       <% end %>
-      <div class="hidden" data-reveal-target='item'>
+      <div 
+        class="hidden"
+        data-reveal-target='item'
+        data-transition-enter="transition ease-out duration-100"
+        data-transition-enter-start='tansform opacity-0'
+        data-transition-enter-end='transform opacity-100'
+        data-transition-leave="transition ease-in duration-75"
+        data-transition-leave-start='transform opacity-100'
+        data-transition-leave-end='transform opacity-0'>
       <% @data.drop(5).each do |title, count| %>
         <%= row(title, count) %>
       <% end %>

@@ -7,12 +7,12 @@
       <th scope="col" align="right" class="px-3 py-3.5 text-right text-sm font-semibold">
         <% if @sort == 'desc' %>
           <%= link_to request.params.merge(sort: :asc), class: 'flex items-center justify-end', data: { turbo_action: :advance } do %>
-            <span class="mr-2">Date</span>
+            <span class="mr-1">Date</span>
             <%= heroicon 'chevron-down', variant: :mini %>
           <% end %>
         <% else %>
           <%= link_to request.params.merge(sort: :desc), class: 'flex items-center justify-end', data: { turbo_action: :advance } do %>
-            <span class="mr-2">Date</span>
+            <span class="mr-1">Date</span>
             <%= heroicon 'chevron-up', variant: :mini %>
           <% end %>
         <% end %>
