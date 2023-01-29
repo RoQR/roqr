@@ -12,6 +12,7 @@ class SettingsController < ApplicationController
     return unless @organization.subscribed?
 
     @subscription_payments = @organization.subscription.subscription_payments.page params[:page]
+    @last_payment_date = @subscription_payments.pluck(:event_time).max
     @num_scans = Scan.accessible_by(current_ability).where("created_at > ?", @last_payment_date).count
   end
 

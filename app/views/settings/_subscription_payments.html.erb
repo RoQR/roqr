@@ -31,7 +31,7 @@
             <%= local_time(payment.event_time, '%l:%M %p') %>
           </div>
         </td>
-        <td align="right" class="px-3 py-4 text-sm">$<%= payment.sale_gross %></td>
+        <td align="right" class="px-3 py-4 text-sm">$<%= number_with_precision(payment.sale_gross, precision: 2) %></td>
         <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
           <%= link_to 'Receipt', payment.receipt_url, class: "text-gray-900 dark:text-yellow-300" %>
         </td>
