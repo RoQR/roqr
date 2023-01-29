@@ -17,7 +17,8 @@
           <% end %>
         <% end %>
         <% if @organization.subscribed? && !@organization.subscription.cancelled?  %>
-          <%= render 'subscription_timeline', subscription: @organization.subscription %>
+          <%= render 'current_cycle_summary', subscription: @organization.subscription %>
+          <%= render 'subscription_payments', subscription_payments: @subscription_payments %>
         <% else %>
           <div class="text-center">
             <h3 class="mt-2 text-sm font-medium text-gray-700 dark:text-gray-200">Not subscribed</h3>

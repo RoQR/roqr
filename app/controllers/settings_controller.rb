@@ -8,7 +8,12 @@ class SettingsController < ApplicationController
 
   def organization; end
 
-  def subscription; end
+  def subscription
+    return unless @organization.subscribed?
+
+    @subscription_payments = @organization.subscription.subscription_payments.page params[:page]
+    @num_scans = Scan.accessible_by(current_ability).where("created_at > ?", @last_payment_date).count
+  end
 
   def settings; end
 

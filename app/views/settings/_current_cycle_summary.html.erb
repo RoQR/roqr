@@ -1,0 +1,16 @@
+<dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+  <div class="overflow-hidden rounded-lg dark:bg-gray-600 px-4 py-5 shadow sm:p-6">
+	<dt class="truncate text-sm font-medium dark:text-gray-400">Next Bill Date</dt>
+	<dd class="mt-1 text-3xl font-semibold tracking-tight dark:text-gray-100"><%= local_date(subscription.next_bill_date) %></dd>
+  </div>
+
+  <div class="overflow-hidden rounded-lg dark:bg-gray-600 px-4 py-5 shadow sm:p-6">
+	<dt class="truncate text-sm font-medium dark:text-gray-400">Scans This Cycle</dt>
+	<dd class="mt-1 text-3xl font-semibold tracking-tight dark:text-gray-100"><%= @num_scans %></dd>
+  </div>
+
+  <div class="overflow-hidden rounded-lg dark:bg-gray-600 px-4 py-5 shadow sm:p-6">
+	<dt class="truncate text-sm font-medium dark:text-gray-400">Plan Scans</dt>
+	<dd class="mt-1 text-3xl font-semibold tracking-tight dark:text-gray-100">10,000</dd>
+  </div>
+</dl>
