@@ -123,4 +123,5 @@ Rails.application.routes.draw do
     get "500", to: "application#internal_error"
   end
   mount Lookbook::Engine, at: "/lookbook" if Rails.env.development?
+  get "/pages/*id" => "pages#show", :as => :page, :format => false
 end
