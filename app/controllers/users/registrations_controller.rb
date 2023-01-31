@@ -9,6 +9,17 @@ module Users
     # GET /resource/sign_up
 
     # POST /resource
+    def create
+      if verify_recaptcha
+        super
+      else
+        build_resource sign_up_params
+        clean_up_passwords resource
+        flash.now[:alert] = "Recaptcha verification failed. Please try again"
+        flash.delete :recaptcha_error
+        render :new
+      end
+    end
 
     # GET /resource/edit
 
