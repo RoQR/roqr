@@ -12,7 +12,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
+         :recoverable, :rememberable, :validatable, :lockable,
          :confirmable, :masqueradable, :omniauthable, omniauth_providers: %i[github google_oauth2]
 
   enum role: { viewer: "viewer", editor: "editor", administrator: "administrator" }
