@@ -19,6 +19,8 @@ Or
     <%= link_to "Resend confirmation email", new_user_confirmation_path, class: "font-medium text-yellow-300 hover:text-yellow-400" %>
   </div>
 
+  <%= recaptcha_tags %>
+
   <div>
     <%= f.submit "Sign up", class: "w-full inline-flex justify-center items-center border font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 border-transparent text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500 px-4 py-2 text-sm" %>
   </div>

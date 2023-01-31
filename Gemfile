@@ -85,3 +85,5 @@ group :test do
 end
 
 gem "high_voltage", "~> 3.1"
+
+gem "recaptcha", "~> 5.12", require: "recaptcha/rails"
