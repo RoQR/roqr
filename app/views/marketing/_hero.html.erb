@@ -58,7 +58,11 @@
                       </div>
                     </div>
 
-                    <%= recaptcha_tags %>
+                    <% if @show_checkbox_recaptcha %>
+                      <%= recaptcha_tags %>
+                    <% else %>
+                      <%= recaptcha_v3(action: 'register', site_key: ENV['RECAPTCHA_V3_SITE_KEY']) %>
+                    <% end %>
 
                     <div>
                       <%= render_component 'button', type: :submit, classes: 'w-full justify-center', data: { turbo: false } do %>

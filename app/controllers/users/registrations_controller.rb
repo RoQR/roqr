@@ -10,14 +10,18 @@ module Users
 
     # POST /resource
     def create
-      if verify_recaptcha
+      success = verify_recaptcha(action: "register", minimum_score: 0.5,
+                                 secret_key: ENV.fetch("RECAPTCHA_V3_SECRET_KEY", nil))
+      checkbox_success = verify_recaptcha unless success
+      if success || checkbox_success
         super
       else
+        @show_checkbox_recaptcha = true unless success
         build_resource sign_up_params
         clean_up_passwords resource
         flash.now[:alert] = "Recaptcha verification failed. Please try again"
         flash.delete :recaptcha_error
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
