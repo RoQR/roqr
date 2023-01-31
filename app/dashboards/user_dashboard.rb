@@ -37,7 +37,9 @@ class UserDashboard < Administrate::BaseDashboard
     uid: Field::String,
     unconfirmed_email: Field::String,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime
+    updated_at: Field::DateTime,
+    locked_at: Field::DateTime,
+    failed_attempts: Field::Number
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -78,6 +80,8 @@ class UserDashboard < Administrate::BaseDashboard
     reset_password_token
     created_at
     updated_at
+    locked_at
+    failed_attempts
   ].freeze
 
   # FORM_ATTRIBUTES
