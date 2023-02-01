@@ -204,10 +204,7 @@ class LinksController < ApplicationController
   end
 
   def process_scan
-    if @link.should_record_scan?
-      record_scan
-      FirstScanNotification.with(link_name: @link.name).deliver_later(@link.organization.users) if @link.scans.size == 1
-    end
+    record_scan if @link.should_record_scan?
     case @link.link_type
     when "contact_link"
       send_data @link.barcode_data, filename: @link.name, type: :vcf, disposition: :inline
