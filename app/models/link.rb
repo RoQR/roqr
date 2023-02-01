@@ -25,6 +25,7 @@ class Link < ApplicationRecord
   scope :active, -> { where("archived_at IS NULL") }
   scope :archived, -> { where("archived_at IS NOT NULL") }
   delegate :summary, :barcode_data, to: :link_data
+  attr_reader :style
 
   def style=(style_id)
     return if style_id.blank?

@@ -6,12 +6,7 @@
     </div>
     <div class="md:col-span-2 md:grid-cols-3 md:gap-6">
       <div class="mt-5">
-        <div class="flex flex-col">
-          <%= form.label :style, "Choose from an existing style", class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
-          <div class="mt-1">
-            <%= form.select :style, options_for_select(@styles.map{|t| [t.name, t.id]}), {include_blank: true}, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
-          </div>
-        </div>
+        <%= form.input :style, as: :select, label: 'Choose from an existing style', collection: @styles.map{|t| [t.name, t.id]}, include_blank: true  %>
         <%= turbo_frame_tag Style.new do %>
           <span class="text-sm font-medium text-gray-600 dark:text-gray-300">
             or

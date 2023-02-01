@@ -1,5 +1,5 @@
 <div>
-  <%= form_with(model: style) do |form| %>
+  <%= simple_form_for(style) do |form| %>
     <div data-controller="qr" data-qr-barcode-data-value="https://roqr.app" class="md:grid md:grid-cols-2 md:gap-6 flex flex-col-reverse space-y-5 md:space-y-0">
       <div class="md:col-span-1">
         <div class="space-y-6">
@@ -8,25 +8,21 @@
             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Set values for a reusable style that can then be applied to your links</p>
             <div class="mt-5 space-y-5 divide-y divide-gray-500">
               <div class="mt-5">
-                <%= form.label :name, class: "block text-sm font-medium text-gray-600 dark:text-gray-300" %>
-                <%= form.text_field :name, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md", required: true, autofocus: true %>
+                <%= form.input :name, required: true, autofocus: true %>
               </div>
               <div class="flex flex-col pt-5 space-y-3" data-controller="reveal">
                 <h4 class="text-md font-medium leading-6 text-gray-700 dark:text-gray-200">Background settings</h4>
                 <%= render ToggleComponent.new(:transparent_background, form: form, data: { qr_target: 'transparentBackground', action: 'reveal#toggle qr#update' }) do %>
                   Transparent background?
                 <% end %>
-                <div 
-                  class='<%= class_names("flex flex-col", {'hidden': truthy?(form.object.transparent_background)}) %>' data-reveal-target="item">
-                  <%= form.label :background_color, 'Color', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
-                  <%= form.color_field :background_color, value: style.background_color, "data-action": "input->qr#update", "data-qr-target": "backgroundColor" %>
+                <div class='<%= class_names("flex flex-col", {'hidden': truthy?(form.object.transparent_background)}) %>' data-reveal-target="item">
+                  <%= form.input :background_color, label: 'Color', as: :color, input_html: { data: { action: 'input->qr#update', qr_target: 'backgroundColor' } }%>
                 </div>
               </div>
               <div class="flex flex-col pt-5 space-y-3">
                 <h4 class="text-md font-medium leading-6 text-gray-700 dark:text-gray-200">Dots settings</h4>
                 <div class="flex flex-col">
-                  <%= form.label :dots_color, 'Color', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
-                  <%= form.color_field :dots_color, value: style.dots_color, "data-action": "input->qr#update", "data-qr-target": "dotsColor" %>
+                  <%= form.input :dots_color, label: 'Color', as: :color, input_html: { data: { action: 'input->qr#update', qr_target: 'dotsColor' } }%>
                 </div>
                 <div>
                   <%= form.label :dots_shape, 'Shape', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
@@ -36,7 +32,7 @@
                       <% Style::DOTS_SHAPES.each do |s| %>
                         <label class="flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
                           <%= form.radio_button :dots_shape, s, class: 'peer sr-only', data: { action: 'input->qr#update', qr_target: 'dotsShape' } %>
-                          <%= image_tag "dots-shapes/#{s}.svg", class: 'p-1 rounded peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
+                          <%= image_tag "dots-shapes/#{s}.svg", class: 'p-1 rounded-sm peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
                         </label>
                       <% end %>
                     </div>
@@ -49,20 +45,19 @@
                   Copy corner squares?
                 <% end %>
                 <div class='<%= class_names("flex flex-col", {'hidden': truthy?(form.object.corner_squares_copy_dots)}) %>' data-reveal-target="item">
-                  <%= form.label :corner_squares_color, 'Color', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
-                  <%= form.color_field :corner_squares_color, value: style.corner_squares_color, "data-action": "input->qr#update", "data-qr-target": "cornerSquaresColor" %>
+                  <%= form.input :corner_squares_color, label: 'Color', as: :color, input_html: { data: { action: 'input->qr#update', qr_target: 'cornerSquaresColor' } }%>
                   <%= form.label :corner_squares_shape, 'Shape', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
                   <fieldset>
                     <legend></legend>
                     <div class="grid grid-cols-4 gap-3 sm:grid-cols-6">
                       <label class="flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
                         <%= form.radio_button :corner_squares_shape, '', class: 'peer sr-only', data: { action: 'input->qr#update', qr_target: 'cornerSquaresShape' } %>
-                        <%= image_tag "x.svg", class: 'p-1 rounded peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
+                        <%= image_tag "x.svg", class: 'p-1 rounded-sm peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
                       </label>
                       <% Style::CORNER_SQUARES_SHAPES.each do |s| %>
                         <label class="flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
                           <%= form.radio_button :corner_squares_shape, s, class: 'peer sr-only', data: { action: 'input->qr#update', qr_target: 'cornerSquaresShape' } %>
-                          <%= image_tag "corner-squares-shapes/#{s}.svg", class: 'p-1 rounded peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
+                          <%= image_tag "corner-squares-shapes/#{s}.svg", class: 'p-1 rounded-sm peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
                         </label>
                       <% end %>
                     </div>
@@ -75,20 +70,19 @@
                   Copy corner dots?
                 <% end %>
                 <div class='<%= class_names("flex flex-col", {'hidden': truthy?(form.object.corner_dots_copy_dots)}) %>' data-reveal-target="item">
-                  <%= form.label :corner_dots_color, 'Color', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
-                  <%= form.color_field :corner_dots_color, value: style.corner_dots_color, "data-action": "input->qr#update", "data-qr-target": "cornerDotsColor" %>
+                  <%= form.input :corner_dots_color, label: 'Color', as: :color, input_html: { data: { action: 'input->qr#update', qr_target: 'cornerDotsColor' } }%>
                   <%= form.label :corner_dots_shape, 'Shape', class: "text-sm font-medium text-gray-600 dark:text-gray-300" %>
                   <fieldset>
                     <legend></legend>
                     <div class="grid grid-cols-4 gap-3 sm:grid-cols-6">
                       <label class="flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
                         <%= form.radio_button :corner_dots_shape, '', class: 'peer sr-only', data: { action: 'input->qr#update', qr_target: 'cornerDotsShape' } %>
-                        <%= image_tag "x.svg", class: 'p-1 rounded peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
+                        <%= image_tag "x.svg", class: 'p-1 rounded-sm peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
                       </label>
                       <% Style::CORNER_DOTS_SHAPES.each do |s| %>
                         <label class="flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
                           <%= form.radio_button :corner_dots_shape, s, class: 'peer sr-only', data: { action: 'input->qr#update', qr_target: 'cornerDotsShape' } %>
-                          <%= image_tag "corner-dots-shapes/#{s}.svg", class: 'p-1 rounded peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
+                          <%= image_tag "corner-dots-shapes/#{s}.svg", class: 'p-1 rounded-sm peer-checked:bg-gray-200 dark:peer-checked:bg-gray-800' %>
                         </label>
                       <% end %>
                     </div>
@@ -97,8 +91,7 @@
               </div>
               <div class="flex flex-col pt-5">
                 <h4 class="text-md font-medium leading-6 text-gray-700 dark:text-gray-200">Image settings</h4>
-                <%= form.label :image_url, 'Image URL', class: "mt-2 text-sm font-medium text-gray-600 dark:text-gray-300" %>
-                <%= form.url_field :image_url, value: style.image_url, class: 'bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md', "data-action": "qr#update", "data-qr-target": "imageUrl" %>
+                <%= form.input :image_url, label: 'Image URL', input_html: { data: { action: "qr#update", qr_target: "imageUrl" } } %>
               </div>
             </div>
           <% end %>

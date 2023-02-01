@@ -33,7 +33,7 @@ class ButtonComponent < ViewComponent::Base
     @options[:data] ||= {}
     @options[:data][:turbo_method] = method
     @classes = class_names(
-      "cursor-pointer inline-flex justify-center disabled:opacity-50 disabled:cursor-not-allowed items-center font-medium rounded focus:outline-none focus:ring-2 focus:ring-offset-2",
+      "cursor-pointer inline-flex justify-center disabled:opacity-50 disabled:cursor-not-allowed items-center font-medium rounded-sm focus:outline-none focus:ring-2 focus:ring-offset-2",
       STYLE_MAPPINGS[fetch_or_fallback(STYLE_OPTIONS, style, STYLE_DEFAULT)],
       SIZE_MAPPINGS[fetch_or_fallback(SIZE_OPTIONS, size, SIZE_DEFAULT)],
       options[:classes]

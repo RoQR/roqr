@@ -1,14 +1,16 @@
-<%= form_with(model: link, class: "space-y-6") do |form| %>
-  <%= render 'link_settings_fields', form: form, link: link %>
-  <%= render @link_type, form: form %>
-  <%= render 'link_styling_fields', form: form, link: link %>
+<%= simple_form_for(link) do |form| %>
+  <div class="space-y-6">
+    <%= render 'link_settings_fields', form: form, link: link %>
+    <%= render @link_type, form: form %>
+    <%= render 'link_styling_fields', form: form, link: link %>
 
-  <div class="flex gap-x-3 justify-end">
-    <%= render_component 'button', href: url_for(:back), style: :secondary do %>
-      Cancel
-    <% end %>
-    <%= render_component 'button', type: :submit do %>
-      Save
-    <% end %>
+    <div class="flex gap-x-3 justify-end">
+      <%= render_component 'button', href: url_for(:back), style: :secondary do %>
+        Cancel
+      <% end %>
+      <%= render_component 'button', type: :submit do %>
+        Save
+      <% end %>
+    </div>
   </div>
 <% end %>	

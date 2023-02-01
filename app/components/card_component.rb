@@ -6,7 +6,7 @@ class CardComponent < ApplicationComponent
 
     @options[:tag] ||= :div
     @options[:classes] = class_names(
-      "bg-gray-100 dark:bg-gray-700 px-4 py-5 rounded-lg sm:p-6",
+      "bg-gray-100 dark:bg-gray-700 px-4 py-5 rounded-sm sm:p-6",
       options[:classes]
     )
   end

@@ -1,5 +1,5 @@
 <%= render_component 'card' do %>
-  <%= form.fields_for :telephone_link, @link.link_data || TelephoneLink.new do |telephone_form| %>
+  <%= form.simple_fields_for :telephone_link, @link.link_data || TelephoneLink.new do |telephone_form| %>
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
         <h3 class="text-lg font-medium leading-6 text-gray-800 dark:text-gray-100">Link target</h3>
@@ -7,10 +7,7 @@
       <div class="mt-5 md:mt-0 md:col-span-2">
         <div class="grid grid-cols-6 gap-6">
           <div class="col-span-12 sm:col-span-5 lg:col-span-3">
-            <%= telephone_form.label :number, class: "block text-sm font-medium text-gray-600 dark:text-gray-300" %>
-            <div class="mt-1">
-              <%= telephone_form.phone_field :number, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md", required: true %>
-            </div>
+            <%= telephone_form.input :number, required: true %>
           </div>
         </div>
       </div>

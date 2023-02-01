@@ -87,3 +87,7 @@ end
 gem "high_voltage", "~> 3.1"
 
 gem "recaptcha", "~> 5.12", require: "recaptcha/rails"
+
+gem "simple_form", "~> 5.2"
+
+gem "simple_form_tailwind_css", "~> 1.0"

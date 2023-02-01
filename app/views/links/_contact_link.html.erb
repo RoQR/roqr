@@ -1,5 +1,5 @@
 <%= render_component 'card' do %>
-  <%= form.fields_for :contact_link, @link.link_data || ContactLink.new do |contact_form| %>
+  <%= form.simple_fields_for :contact_link, @link.link_data || ContactLink.new do |contact_form| %>
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
         <h3 class="text-lg font-medium leading-6 text-gray-800 dark:text-gray-100">Link target</h3>
@@ -7,73 +7,43 @@
       <div class="mt-5 md:mt-0 md:col-span-2">
         <div class="grid grid-cols-6 gap-6">
           <div class="col-span-3 sm:col-span-2">
-            <%= contact_form.label :first_name, class: "block text-sm font-medium text-gray-600 dark:text-gray-300" %>
-            <div class="mt-1">
-              <%= contact_form.text_field :first_name, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
-            </div>
+            <%= contact_form.input :first_name %>
           </div>
 
           <div class="col-span-3 sm:col-span-2">
-            <%= contact_form.label :last_name, class: "block text-sm font-medium text-gray-600 dark:text-gray-300" %>
-            <div class="mt-1">
-              <%= contact_form.text_field :last_name, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
-            </div>
+            <%= contact_form.input :last_name %>
           </div>
 
           <div class="col-span-3 sm:col-span-2">
-            <%= contact_form.label :email, class: "block text-sm font-medium text-gray-600 dark:text-gray-300" %>
-            <div class="mt-1">
-              <%= contact_form.email_field :email, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
-            </div>
+            <%= contact_form.input :email %>
           </div>
 
           <div class="col-span-3 sm:col-span-2">
-            <%= contact_form.label :phone, class: "block text-sm font-medium text-gray-600 dark:text-gray-300" %>
-            <div class="mt-1">
-              <%= contact_form.phone_field :phone, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
-            </div>
+            <%= contact_form.input :phone %>
           </div>
 
           <div class="col-span-3 sm:col-span-2">
-            <%= contact_form.label :birthday, class: "block text-sm font-medium text-gray-600 dark:text-gray-300" %>
-            <div class="mt-1">
-              <%= contact_form.date_field :birthday, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
-            </div>
+            <%= contact_form.input :birthday, as: :date, html5: true %>
           </div>
 
           <div class="col-span-4 sm:col-span-3">
-            <%= contact_form.label :website, class: "block text-sm font-medium text-gray-600 dark:text-gray-300" %>
-            <div class="mt-1">
-              <%= contact_form.url_field :website, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
-            </div>
+            <%= contact_form.input :website, as: :url %>
           </div>
 
           <div class="col-span-6 sm:col-span-6">
-            <%= contact_form.label :address, class: "block text-sm font-medium text-gray-600 dark:text-gray-300" %>
-            <div class="mt-1">
-              <%= contact_form.text_area :address, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
-            </div>
+            <%= contact_form.input :address, as: :text %>
           </div>
 
           <div class="col-span-3 sm:col-span-3">
-            <%= contact_form.label :company, class: "block text-sm font-medium text-gray-600 dark:text-gray-300" %>
-            <div class="mt-1">
-              <%= contact_form.text_field :company, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
-            </div>
+            <%= contact_form.input :company %>
           </div>
 
           <div class="col-span-3 sm:col-span-3">
-            <%= contact_form.label :title, class: "block text-sm font-medium text-gray-600 dark:text-gray-300" %>
-            <div class="mt-1">
-              <%= contact_form.text_field :title, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
-            </div>
+            <%= contact_form.input :title %>
           </div>
 
           <div class="col-span-6 sm:col-span-6">
-            <%= contact_form.label :note, class: "block text-sm font-medium text-gray-600 dark:text-gray-300" %>
-            <div class="mt-1">
-              <%= contact_form.text_area :note, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
-            </div>
+            <%= contact_form.input :note, as: :text %>
           </div>
         </div>
       </div>

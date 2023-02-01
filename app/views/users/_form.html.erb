@@ -1,4 +1,4 @@
-<%= form_for(@user, url: user_registration_path, html: {method: :put}) do |form| %>
+<%= simple_form_for(@user, url: user_registration_path, html: {method: :put}) do |form| %>
   <%= render_component 'card' do %>
     <%= render_component 'section_header', classes: 'dark:border-gray-600' do |c| %>
       <%= c.title {'Profile details' } %>
@@ -6,20 +6,12 @@
 
     <div class="mt-6 grid grid-cols-12 gap-6">
       <div class="col-span-12 sm:col-span-6">
-        <%= form.label :name, class: "block text-sm font-medium text-gray-600 dark:text-gray-300" %>
-        <div class="mt-1">
-          <%= form.text_field :name, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
-        </div>
+          <%= form.input :name, label: 'Name' %>
       </div>
 
       <div class="col-span-12 sm:col-span-6">
-        <%= form.label :email, class: "block text-sm font-medium text-gray-600 dark:text-gray-300" %>
-        <div class="mt-1">
-          <%= form.email_field :email, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
-        </div> 
-        <% if @user.pending_reconfirmation? %>
-           <p class="text-sm font-medium text-gray-600 dark:text-gray-300">Currently waiting confirmation for: <%= @user.unconfirmed_email %></div>
-        <% end %>
+        <% hint = "Currently waiting for confirmation for: #{@user.unconfirmed_email}" if @user.pending_reconfirmation? %>
+        <%= form.input :email, label: 'Email', placeholder: 'user@domain.com', hint: hint %>
       </div>
 
       <div class="col-span-12">
@@ -45,7 +37,7 @@
           <% end %>
           </div>
           <div class="mt-1">
-            <%= form.collection_select :role, User.roles.keys, :to_s, lambda{|i| i.to_s.humanize}, {}, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
+            <%= form.input :role, collection: User.roles.keys.map {|u| [u.to_s.humanize, u.to_s]}, include_blank: false %>
           </div> 
         </div>
       <% end %>

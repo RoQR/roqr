@@ -1,13 +1,5 @@
-<%= fields model: @link do |form| %>
+<%= simple_fields_for @link do |form| %>
   <%= turbo_frame_tag :custom_domain do %>
-    <div class="flex items-center">
-      <%= form.label :custom_domain_id, 'Custom domain', class: "block text-sm font-medium text-gray-600 dark:text-gray-300" %>
-      <%= render TooltipComponent.new do %>
-        Adding a custom domain will change the text displayed to your users when they focus on your QR code in their scanner app. The custom domain associated with a link cannot be changed once created.
-      <% end %>
-    </div>
-    <div class="mt-1">
-      <%= form.select :custom_domain_id, options_from_collection_for_select(CustomDomain.accessible_by(current_ability), 'hashid', 'url'), {include_blank: true}, class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-md" %>
-    </div>
+    <%= form.input :custom_domain_id, collection: CustomDomain.accessible_by(current_ability).map{|c| [c.hashid, c.url]}, hint: 'Adding a custom domain will change the text displayed to your users when they focus on your QR code in their scanner app. The custom domain associated with a link cannot be changed once created.' %>
   <% end %>
 <% end %>
