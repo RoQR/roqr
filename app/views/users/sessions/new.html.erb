@@ -1,46 +1,35 @@
-<h2 class="mt-6 text-center text-3xl font-extrabold text-gray-100">Sign in to your account</h2>
-<p class="mt-2 text-center text-sm text-gray-200">
+<h2 class="mt-6 text-center text-3xl font-extrabold text-gray-800 dark:text-gray-100">Sign in to your account</h2>
+<p class="mt-2 text-center text-sm text-gray-700 dark:text-gray-200">
 Or
-<%= link_to "sign up now", new_user_registration_path, class: "font-medium text-yellow-300 hover:text-yellow-400"  %>
+<%= link_to "sign up now", new_user_registration_path, class: "font-medium text-black underline dark:no-underline dark:text-yellow-300 dark:hover:text-yellow-400"  %>
 </p>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "mt-8 space-y-6" }) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "mt-8 space-y-6" }) do |f| %>
   <input type="hidden" name="remember" value="true">
-  <div class="rounded-md shadow-sm">
-    <div>
-      <%= f.label :email, class: "sr-only" %>
-      <%= f.email_field :email, autocomplete: "email", autofocus: true, required: true, class: "bg-gray-100 focus:bg-gray-200 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-t-md", placeholder: "Email address" %>
-    </div>
-    <div>
-      <%= f.label :password, class: "sr-only" %>
-      <%= f.password_field :password, autocomplete: "current-password", required: true, class: "bg-gray-100 focus:bg-gray-200 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-b-md", placeholder: "Password" %>
-    </div>
-  </div>
+  <%= f.input :email, autocomplete: 'email', autofocus: true, required: true %>
+  <%= f.input :password, autcomplete: 'current-password', required: true %>
 
   <div class="flex items-center justify-between">
     <% if devise_mapping.rememberable? %>
-      <div class="flex items-center">
-        <%= f.check_box :remember_me, class: "focus:ring-gray-700 h-4 w-4 bg-gray-800 text-gray-800 rounded" %>
-        <%= f.label :remember_me, class: "ml-2 block text-sm text-gray-300"  %>
-      </div>
+      <%= f.input :remember_me, as: :boolean, input_html: { class: 'w-4' }, boolean_style: :inline %>
     <% end %>
 
     <div class="text-sm">
-      <%= link_to "Forgot your password?", new_user_password_path, class: "font-medium text-yellow-300 hover:text-yellow-400" %>
+      <%= link_to "Forgot your password?", new_user_password_path, class: "font-medium underline dark:no-underline dark:text-yellow-300 dark:hover:text-yellow-400" %>
     </div>
 
   </div>
 
-  <div>
-    <%= f.submit "Sign in", class: "w-full inline-flex justify-center items-center border font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 border-transparent text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500 px-4 py-2 text-sm" %>
-  </div>
+    <%= render ButtonComponent.new(type: :submit, classes: 'w-full') do  %>
+      Sign in
+    <% end %>
 <% end %>
 <div class="mt-6">
   <div class="relative">
     <div class="absolute inset-0 flex items-center">
-      <div class="w-full border-t border-gray-600"></div>
+      <div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
     </div>
     <div class="relative flex justify-center text-sm">
-      <span class="px-2 bg-gray-700 text-gray-400"> Or continue with </span>
+      <span class="px-2 bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-400"> Or continue with </span>
     </div>
   </div>
 

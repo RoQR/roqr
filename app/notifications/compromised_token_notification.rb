@@ -10,7 +10,7 @@ class CompromisedTokenNotification < Noticed::Base
   def message
     "Our secret scanning partner GitHub notified us that your API key might have been committed to one of " \
     "#{link_to('their repositories', params[:url],
-               class: 'text-yellow-300')}. To ensure the safety of your account, we have " \
+               class: 'underline dark:no-underline dark:text-yellow-300')}. To ensure the safety of your account, we have " \
     "automatically rotated your API key.".html_safe
   end
 

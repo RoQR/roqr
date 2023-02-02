@@ -16,7 +16,8 @@ class OrganizationsController < ApplicationController
   end
 
   def confirm_destroy
-    render TurboModalComponent.new(title: "Delete account").with_content(render_to_string(partial: "organizations/confirm_destroy"))
+    @title = "Really delete organization?"
+    render TurboModalComponent.new.with_content(render_to_string(partial: "organizations/confirm_destroy"))
   end
 
   private

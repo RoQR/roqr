@@ -3,7 +3,7 @@
 class TurboModalComponent < ApplicationComponent
   include Turbo::FramesHelper
   include IconsHelper
-  def initialize(title:)
+  def initialize(title: nil)
     @title = title
   end
 end

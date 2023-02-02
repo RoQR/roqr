@@ -4,8 +4,10 @@
   <% end %>
 <% end %>
 
+<%= render_component 'card' do %>
 <div class="flow-root">
-<ul role="list" class="-mb-8">
-<%= render @notifications.sort_by(&:created_at).reverse %>
-</ul>
+  <ul role="list" class="-mb-8">
+    <%= render @notifications.sort_by(&:created_at).reverse %>
+  </ul>
 </div>
+<% end %>

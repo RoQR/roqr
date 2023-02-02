@@ -101,7 +101,9 @@
             <% end %>
           <% end %>
           <div>
-            <%= link_to 'Delete organization', confirm_destroy_organization_path(@organization), class: 'text-red-500', data: {turbo_frame: :modal} %> 
+            <%= render ButtonComponent.new(href: confirm_destroy_organization_path(@organization), style: :destructive_inverted, data: {turbo_frame: :modal}) do %>
+              Delete organization
+            <% end %>
           </div>
         <% end %>
       <% end %>

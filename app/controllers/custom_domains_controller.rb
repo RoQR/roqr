@@ -10,7 +10,9 @@ class CustomDomainsController < ApplicationController
   end
 
   # GET /custom_domains/new
-  def new; end
+  def new
+    add_breadcrumb "Organization settings", settings_organization_path
+  end
 
   # GET /custom_domains/1/edit
   def edit; end

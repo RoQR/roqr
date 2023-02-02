@@ -8,6 +8,7 @@ module.exports = {
     './app/javascript/**/*.js',
     './app/components/**/*',
     './app/presenters/**/*',
+    './app/notifications/**/*',
     './app/assets/icons/*.svg',
     './app/views/**/*.{erb,haml,html,slim}'
   ],
