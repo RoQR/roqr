@@ -14,18 +14,22 @@ export default class extends Controller {
 
   evaluate() {
     let value = this.passwordTarget.value;
-    this.uppercaseTarget.classList.toggle(this.badClass, !this.uppercase.test(value));
-    this.uppercaseTarget.classList.toggle(this.goodClass, this.uppercase.test(value));
-    this.lowercaseTarget.classList.toggle(this.badClass, !this.lowercase.test(value));
-    this.lowercaseTarget.classList.toggle(this.goodClass, this.lowercase.test(value));
-    this.specialTarget.classList.toggle(this.badClass, !this.special.test(value));
-    this.specialTarget.classList.toggle(this.goodClass, this.special.test(value));
-    this.numberTarget.classList.toggle(this.badClass, !this.number.test(value));
-    this.numberTarget.classList.toggle(this.goodClass, this.number.test(value));
-    this.lengthTarget.classList.toggle(this.badClass, !this.length.test(value));
-    this.lengthTarget.classList.toggle(this.goodClass, this.length.test(value));
-    this.matchTarget.classList.toggle(this.badClass, value !== this.confirmTarget.value);
-    this.matchTarget.classList.toggle(this.goodClass, value === this.confirmTarget.value);
+    this.goodClasses.forEach((c) => {
+      this.uppercaseTarget.classList.toggle(c, this.uppercase.test(value));
+      this.lowercaseTarget.classList.toggle(c, this.lowercase.test(value));
+      this.specialTarget.classList.toggle(c, this.special.test(value));
+      this.numberTarget.classList.toggle(c, this.number.test(value));
+      this.lengthTarget.classList.toggle(c, this.length.test(value));
+      this.matchTarget.classList.toggle(c, value === this.confirmTarget.value);
+    });
+    this.badClasses.forEach((c) => {
+      this.uppercaseTarget.classList.toggle(c, !this.uppercase.test(value));
+      this.lowercaseTarget.classList.toggle(c, !this.lowercase.test(value));
+      this.specialTarget.classList.toggle(c, !this.special.test(value));
+      this.numberTarget.classList.toggle(c, !this.number.test(value));
+      this.lengthTarget.classList.toggle(c, !this.length.test(value));
+      this.matchTarget.classList.toggle(c, value !== this.confirmTarget.value);
+    })
   }
 }
 
