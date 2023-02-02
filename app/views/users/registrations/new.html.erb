@@ -1,22 +1,15 @@
-<h2 class="mt-6 text-center text-3xl font-extrabold text-gray-100">Sign up</h2>
-<p class="mt-2 text-center text-sm text-gray-200">
+<h2 class="mt-6 text-center text-3xl font-extrabold text-gray-800 dark:text-gray-100">Sign up</h2>
+<p class="mt-2 text-center text-sm text-gray-700 dark:text-gray-200">
 Or
-<%= link_to "sign in", new_user_session_path, class: "font-medium text-yellow-300 hover:text-yellow-400"  %>
+<%= link_to "sign in", new_user_session_path, class: "font-medium text-black underline dark:no-underline dark:text-yellow-300 dark:hover:text-yellow-400"  %>
 </p>
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "mt-8 space-y-6" }) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "mt-8 space-y-4" }) do |f| %>
   <input type="hidden" name="remember" value="true">
-  <div class="rounded-md shadow-sm">
-    <div>
-      <%= f.label :name, class: "sr-only" %>
-      <%= f.text_field :name, autocomplete: "name", autofocus: true, required: true, class: "bg-gray-100 focus:bg-gray-200 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-t-md", placeholder: "Name" %>
-    </div>
-    <div>
-      <%= f.label :email, class: "sr-only" %>
-      <%= f.email_field :email, autocomplete: "email", required: true, class: "bg-gray-100 focus:bg-gray-200 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-b-md", placeholder: "Email" %>
-    </div>
-  </div>
+  <%= f.input :name, autcomplete: 'name', autofocus: true, required: true %>
+  <%= f.input :email, autocomplete: 'email', required: true %>
+
   <div class="text-sm">
-    <%= link_to "Resend confirmation email", new_user_confirmation_path, class: "font-medium text-yellow-300 hover:text-yellow-400" %>
+    <%= link_to "Resend confirmation email", new_user_confirmation_path, class: "font-medium underline dark:no-underline dark:text-yellow-300 dark:hover:text-yellow-400" %>
   </div>
 
   <% if @show_checkbox_recaptcha %>
@@ -25,17 +18,17 @@ Or
     <%= recaptcha_v3(action: 'register', site_key: ENV['RECAPTCHA_V3_SITE_KEY']) %>
   <% end %>
 
-  <div>
-    <%= f.submit "Sign up", class: "w-full inline-flex justify-center items-center border font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 border-transparent text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500 px-4 py-2 text-sm" %>
-  </div>
+  <%= render ButtonComponent.new(type: :submit, classes: 'w-full') do  %>
+    Sign in
+  <% end %>
 <% end %>
 <div class="mt-6">
   <div class="relative">
     <div class="absolute inset-0 flex items-center">
-      <div class="w-full border-t border-gray-600"></div>
+      <div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
     </div>
     <div class="relative flex justify-center text-sm">
-      <span class="px-2 bg-gray-700 text-gray-400"> Or continue with </span>
+      <span class="px-2 bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-400"> Or continue with </span>
     </div>
   </div>
 

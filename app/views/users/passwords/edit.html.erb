@@ -1,25 +1,19 @@
-<h2 class="mt-6 text-center text-3xl font-extrabold text-gray-100">Set your password</h2>
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "mt-8 space-y-6" }, data: { controller: 'password' }) do |f| %>
+<h2 class="mt-6 text-center text-3xl font-extrabold text-gray-800 dark:text-gray-100">Set your password</h2>
+<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "mt-8 space-y-6", data: { controller: 'password', password_good_class: 'text-green-700 dark:text-green-300', password_bad_class: 'text-gray-500 dark:text-gray-400' } }) do |f| %>
   <%= f.hidden_field :reset_password_token %>
-  <div class="rounded-md shadow-sm -space-y-px">
-    <div>
-      <%= f.label :password, class: "sr-only" %>
-      <%= f.password_field :password, autocomplete: "new-password", required: true, class: "bg-gray-100 focus:bg-gray-200 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-t-md", data: { action: 'password#evaluate', password_target: 'password' }, placeholder: "Password" %>
-    </div>
-    <div>
-      <%= f.label :password_confirmation, class: "sr-only" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: "bg-gray-100 focus:bg-gray-200 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-b-md", data: { action: 'password#evaluate', password_target: 'confirm' }, placeholder: "Confirm password" %>
-    </div>
-  </div>
+  <%= f.input :password, input_html: { autocomplete: 'new-password', data: { action: 'password#evaluate', password_target: 'password' } }, required: true %>
+  <%= f.input :password_confirmation, label: 'Confirm password', input_html: { autocomplete: 'new-password', data: { action: 'password#evaluate', password_target: 'confirm' } }, required: true %>
+
   <ul class="flex flex-col gap-y-1">
-    <li data-password-target="uppercase" class="flex items-center text-xs text-gray-400"><%= heroicon :check, size: 14  %><span class="ml-2">One uppercase character</span></li>
-    <li data-password-target="lowercase" class="flex items-center text-xs text-gray-400"><%= heroicon :check, size: 14  %><span class="ml-2">One lowercase character</span></li>
-    <li data-password-target="special" class="flex items-center text-xs text-gray-400"><%= heroicon :check, size: 14 %><span class="ml-2">One special character</span></li>
-    <li data-password-target="number" class="flex items-center text-xs text-gray-400"><%= heroicon :check, size: 14 %><span class="ml-2">One number</span></li>
-    <li data-password-target="length" class="flex items-center text-xs text-gray-400"><%= heroicon :check, size: 14 %><span class="ml-2">At least 8 characters</span></li>
-    <li data-password-target="match" class="flex items-center text-xs text-gray-400"><%= heroicon :check, size: 14 %><span class="ml-2">Password matches confirmation</span></li>
+    <li data-password-target="uppercase" class="flex items-center text-xs text-gray-500 dark:text-gray-400"><%= heroicon :check, size: 14  %><span class="ml-2">One uppercase character</span></li>
+    <li data-password-target="lowercase" class="flex items-center text-xs text-gray-500 dark:text-gray-400"><%= heroicon :check, size: 14  %><span class="ml-2">One lowercase character</span></li>
+    <li data-password-target="special" class="flex items-center text-xs text-gray-500 dark:text-gray-400"><%= heroicon :check, size: 14 %><span class="ml-2">One special character</span></li>
+    <li data-password-target="number" class="flex items-center text-xs text-gray-500 dark:text-gray-400"><%= heroicon :check, size: 14 %><span class="ml-2">One number</span></li>
+    <li data-password-target="length" class="flex items-center text-xs text-gray-500 dark:text-gray-400"><%= heroicon :check, size: 14 %><span class="ml-2">At least 8 characters</span></li>
+    <li data-password-target="match" class="flex items-center text-xs text-gray-500 dark:text-gray-400"><%= heroicon :check, size: 14 %><span class="ml-2">Password matches confirmation</span></li>
   </ul>
-  <div>
-    <%= f.submit "Set my password", class: "w-full inline-flex justify-center items-center border font-medium rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 border-transparent text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500 px-4 py-2 text-sm" %>
-  </div>
+
+  <%= render ButtonComponent.new(type: :submit, classes: 'w-full') do %>
+    Set my password
+  <% end %>
 <% end %>

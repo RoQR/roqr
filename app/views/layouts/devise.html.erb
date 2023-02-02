@@ -8,7 +8,7 @@
       <div class="flex flex-col max-w-md w-full gap-y-3">
         <%= render_breadcrumbs builder: BreadcrumbsHelper::RoqrBreadcrumbs %>
         <%= render_component 'card' do %>
-          <div class="text-yellow-300 mx-auto flex h-8 w-8">
+          <div class="text-gray-900 dark:text-yellow-300 mx-auto flex h-8 w-8">
             <%= show_svg("solid/bolt") %>
           </div>
           <%= yield %>

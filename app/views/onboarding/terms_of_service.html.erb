@@ -5,7 +5,7 @@
     <div class="flex flex-row items-center" data-controller="disable">
       <%= f.check_box :terms_accepted, class: 'focus:ring-gray-700 h-4 w-4 bg-gray-800 text-gray-800 rounded', data: { action: 'disable#toggle' } %>
       <%= f.label :terms_accepted, class: "ml-3 block text-sm font-medium text-gray-600 dark:text-gray-300" do %>
-        I accept the <%= link_to 'Terms of Service', terms_of_service_url, class: 'text-yellow-300', target: :_blank %>
+        I accept the <%= link_to 'Terms of Service', terms_of_service_url, class: 'underline dark:no-underline dark:text-yellow-300', target: :_blank %>
       <% end %>
       <div class="ml-auto">
         <%= render_component 'button', type: :submit, disabled: true, data: {disable_target: "item"} do %>

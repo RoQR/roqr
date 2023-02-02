@@ -2,6 +2,7 @@ import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
   static targets = ['password', 'confirm', 'uppercase', 'lowercase', 'special', 'number', 'length', 'match'];
+  static classes = ['good', 'bad'];
 
   connect() {
     this.uppercase = new RegExp(/[A-Z]/);
@@ -13,18 +14,18 @@ export default class extends Controller {
 
   evaluate() {
     let value = this.passwordTarget.value;
-    this.uppercaseTarget.classList.toggle('text-gray-400', !this.uppercase.test(value));
-    this.uppercaseTarget.classList.toggle('text-green-200', this.uppercase.test(value));
-    this.lowercaseTarget.classList.toggle('text-gray-400', !this.lowercase.test(value));
-    this.lowercaseTarget.classList.toggle('text-green-200', this.lowercase.test(value));
-    this.specialTarget.classList.toggle('text-gray-400', !this.special.test(value));
-    this.specialTarget.classList.toggle('text-green-200', this.special.test(value));
-    this.numberTarget.classList.toggle('text-gray-400', !this.number.test(value));
-    this.numberTarget.classList.toggle('text-green-200', this.number.test(value));
-    this.lengthTarget.classList.toggle('text-gray-400', !this.length.test(value));
-    this.lengthTarget.classList.toggle('text-green-200', this.length.test(value));
-    this.matchTarget.classList.toggle('text-gray-400', value !== this.confirmTarget.value);
-    this.matchTarget.classList.toggle('text-green-200', value === this.confirmTarget.value);
+    this.uppercaseTarget.classList.toggle(this.badClass, !this.uppercase.test(value));
+    this.uppercaseTarget.classList.toggle(this.goodClass, this.uppercase.test(value));
+    this.lowercaseTarget.classList.toggle(this.badClass, !this.lowercase.test(value));
+    this.lowercaseTarget.classList.toggle(this.goodClass, this.lowercase.test(value));
+    this.specialTarget.classList.toggle(this.badClass, !this.special.test(value));
+    this.specialTarget.classList.toggle(this.goodClass, this.special.test(value));
+    this.numberTarget.classList.toggle(this.badClass, !this.number.test(value));
+    this.numberTarget.classList.toggle(this.goodClass, this.number.test(value));
+    this.lengthTarget.classList.toggle(this.badClass, !this.length.test(value));
+    this.lengthTarget.classList.toggle(this.goodClass, this.length.test(value));
+    this.matchTarget.classList.toggle(this.badClass, value !== this.confirmTarget.value);
+    this.matchTarget.classList.toggle(this.goodClass, value === this.confirmTarget.value);
   }
 }
 

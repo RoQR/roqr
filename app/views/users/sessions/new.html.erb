@@ -3,7 +3,7 @@
 Or
 <%= link_to "sign up now", new_user_registration_path, class: "font-medium text-black underline dark:no-underline dark:text-yellow-300 dark:hover:text-yellow-400"  %>
 </p>
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "mt-8 space-y-6" }) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "mt-8 space-y-4" }) do |f| %>
   <input type="hidden" name="remember" value="true">
   <%= f.input :email, autocomplete: 'email', autofocus: true, required: true %>
   <%= f.input :password, autcomplete: 'current-password', required: true %>

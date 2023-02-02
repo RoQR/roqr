@@ -1,5 +1,5 @@
 <nav class="flex items-center justify-center" aria-label="Progress">
-  <p class="text-sm font-medium text-gray-200">Step <%= step %> of 3</p>
+  <p class="text-sm font-medium text-gray-700 dark:text-gray-200">Step <%= step %> of 3</p>
   <ol role="list" class="ml-8 flex items-center space-x-5">
     <% [:terms_of_service, :link, :scan].each.with_index(1) do |name, i| %>
       <% if i < step %>
@@ -20,7 +20,7 @@
 	</li>
       <% else %>
 	<li>
-	  <div class="block h-2.5 w-2.5 rounded-full bg-gray-200">
+	  <div class="block h-2.5 w-2.5 rounded-full bg-gray-700 dark:bg-gray-200">
 	    <span class="sr-only">Step <%= step %></span>
 	  </div>
 	</li>
