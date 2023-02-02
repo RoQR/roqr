@@ -57,7 +57,7 @@ module BreadcrumbsHelper
     def content_with_path(element)
       element.options[:class] = "text-sm font-medium text-gray-500 hover:text-gray-700"
       @context.link_to_unless_current(compute_name(element), compute_path(element), element.options) do
-        @context.content_tag(:p, class: "text-sm font-medium text-yellow-500 dark:text-yellow-400") do
+        @context.content_tag(:p, class: "text-sm font-medium text-gray-900 dark:text-yellow-400") do
           compute_name(element)
         end
       end

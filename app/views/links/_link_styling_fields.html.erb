@@ -8,9 +8,9 @@
       <div class="mt-5">
         <%= form.input :style, as: :select, label: 'Choose from an existing style', collection: @styles.map{|t| [t.name, t.id]}, include_blank: true  %>
         <%= turbo_frame_tag Style.new do %>
-          <span class="text-sm font-medium text-gray-600 dark:text-gray-300">
+          <span class="text-sm font-medium text-gray-500 dark:text-gray-300">
             or
-            <%= link_to "create a new style", new_style_path, class: "text-yellow-500 dark:text-yellow-400", data: {turbo_frame: "modal"} %>
+            <%= link_to "create a new style", new_style_path, class: "font-medium text-gray-900 dark:text-yellow-400", data: {turbo_frame: "modal"} %>
           </span>
         <% end %>
       </div>

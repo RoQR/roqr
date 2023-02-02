@@ -26,7 +26,7 @@ SimpleForm.setup do |config|
 
     b.use :label, class: "block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1"
     b.use :input,
-          class: "bg-gray-200 focus:bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-transparent focus:border-gray-100 text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-sm",
+          class: "bg-gray-100 dark:bg-gray-800 dark:focus:bg-gray-700 border-gray-300 dark:border-transparent text-gray-800 dark:text-gray-100 block w-full sm:text-sm rounded-sm",
           error_class: "block w-full pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md"
     b.use :full_error, wrap_with: { tag: "p", class: "mt-2 text-sm text-red-600" }
     b.use :hint, wrap_with: { tag: :p, class: "mt-2 text-sm text-gray-500 dark:text-gray-400" }

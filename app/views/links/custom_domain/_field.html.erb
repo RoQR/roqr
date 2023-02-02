@@ -1,5 +1,5 @@
 <%= simple_fields_for @link do |form| %>
   <%= turbo_frame_tag :custom_domain do %>
-    <%= form.input :custom_domain_id, collection: CustomDomain.accessible_by(current_ability).map{|c| [c.hashid, c.url]}, hint: 'Adding a custom domain will change the text displayed to your users when they focus on your QR code in their scanner app. The custom domain associated with a link cannot be changed once created.' %>
+    <%= form.input :custom_domain_id, collection: CustomDomain.accessible_by(current_ability).map{|c| [c.hashid, c.url]} %>
   <% end %>
 <% end %>
