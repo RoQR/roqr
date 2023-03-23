@@ -11,9 +11,9 @@ module Users
     # POST /resource
     def create
       success = verify_recaptcha(action: "register", minimum_score: 0.5,
-                                 secret_key: ENV.fetch("RECAPTCHA_V3_SECRET_KEY", nil))
+        secret_key: ENV.fetch("RECAPTCHA_V3_SECRET_KEY", nil))
       checkbox_success = verify_recaptcha unless success
-      if success || checkbox_success
+      if success || checkbox_success || Rails.env.development?
         super
       else
         @show_checkbox_recaptcha = true unless success
