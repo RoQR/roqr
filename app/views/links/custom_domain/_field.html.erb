@@ -1,5 +1,5 @@
 <%= simple_fields_for @link do |form| %>
   <%= turbo_frame_tag :custom_domain do %>
-    <%= form.input :custom_domain_id, collection: CustomDomain.accessible_by(current_ability).map{|c| [c.hashid, c.url]} %>
+    <%= form.input :custom_domain_id, collection: CustomDomain.accessible_by(current_ability).map{|c| [c.url, c.hashid]} %>
   <% end %>
 <% end %>
