@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/integer/time'
+require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -24,7 +24,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress CSS using a preprocessor.
   config.assets.css_compressor = nil
@@ -38,6 +38,7 @@ Rails.application.configure do
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
+  config.action_dispatch.trusted_proxies = %w[127.0.0.1 ::1 fc00::/7 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 37.16.7.108 2a09:8280:1::1:996b].map { |proxy| IPAddr.new(proxy) }
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
@@ -67,14 +68,14 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: ENV.fetch('MAILGUN_SMTP_SERVER', nil),
-    port: ENV.fetch('MAILGUN_SMTP_PORT', nil),
-    domain: 'roqr.app',
-    user_name: ENV.fetch('MAILGUN_SMTP_LOGIN', nil),
-    password: ENV.fetch('MAILGUN_SMTP_PASSWORD', nil),
-    authentication: 'plain'
+    address: ENV.fetch("MAILGUN_SMTP_SERVER", nil),
+    port: ENV.fetch("MAILGUN_SMTP_PORT", nil),
+    domain: "roqr.app",
+    user_name: ENV.fetch("MAILGUN_SMTP_LOGIN", nil),
+    password: ENV.fetch("MAILGUN_SMTP_PASSWORD", nil),
+    authentication: "plain"
   }
-  config.action_mailer.default_url_options = { host: 'https://roqr.app' }
+  config.action_mailer.default_url_options = {host: "https://roqr.app"}
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -94,7 +95,7 @@ Rails.application.configure do
   # require "syslog/logger"
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
 
-  if ENV['RAILS_LOG_TO_STDOUT'].present?
+  if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
